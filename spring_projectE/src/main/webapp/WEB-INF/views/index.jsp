@@ -8,5 +8,8 @@
 </head>
 <body>
 1234
+
+<a href="loginChoicePage">로그인하러가기</a>
+
 </body>
 </html>
