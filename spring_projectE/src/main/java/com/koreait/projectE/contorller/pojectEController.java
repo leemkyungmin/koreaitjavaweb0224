@@ -9,9 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.koreait.projectE.command.CustomerSignUpCommand;
 import com.koreait.projectE.command.boardViewCommand;
 import com.koreait.projectE.commom.Command;
-import com.koreait.projectE.commom.CustomerSignUpCommand;
 
 
 @Controller
@@ -65,7 +65,7 @@ public class pojectEController {
 	@RequestMapping(value="customerSignUp", method=RequestMethod.POST)
 	public String customerSignUp(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		command = new com.koreait.projectE.command.CustomerSignUpCommand();
+		command = new CustomerSignUpCommand();
 		command.execute(sqlSession, model);
 		return "redirec:index"; 
 	}
