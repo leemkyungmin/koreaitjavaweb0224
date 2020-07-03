@@ -78,7 +78,7 @@ public class pojectEController {
 								 @RequestParam("cEmail") String cEmail,
 								 @RequestParam("cPhone") int cPhone,
 								 @RequestParam("cGender") String cGender) {
-		DAO dao = sqlSession.getMapper(DAO.class);
+		DAO dao = sqlsession.getMapper(DAO.class);
 		dao.customerSignUp(cId, cPw, cName, cNickname, cEmail, cPhone, cGender);
 		return "";
 	}
