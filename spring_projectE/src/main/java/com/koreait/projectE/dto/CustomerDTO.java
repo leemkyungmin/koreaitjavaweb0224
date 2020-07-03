@@ -19,7 +19,7 @@ public class CustomerDTO {
 		this.cEmail = cEmail;
 		this.cDept = cDept;
 	}
-
+ 
 	public int getcNo() {
 		return cNo;
 	}
