@@ -27,7 +27,7 @@ public class pojectEController {
 	
 	private Command command;
 
-	private SqlSession sqlSession;
+	
 
 	
 	@RequestMapping("/")
