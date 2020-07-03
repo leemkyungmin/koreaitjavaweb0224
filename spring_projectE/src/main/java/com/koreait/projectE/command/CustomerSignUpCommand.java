@@ -22,8 +22,8 @@ public class CustomerSignUpCommand implements Command {
 		String cId = request.getParameter("cId");
 		String cPw = request.getParameter("cPw");
 		String cName = request.getParameter("cName");
-		String cNickname = request.getParameter("cNickName");
-		int cPhone = Integer.parseInt(request.getParameter("cPhone"));
+		String cNickname = request.getParameter("cNickname");
+		String cPhone = request.getParameter("cPhone");
 		String cEmail = request.getParameter("cEmail");
 		String cGender = request.getParameter("cGender");
 		

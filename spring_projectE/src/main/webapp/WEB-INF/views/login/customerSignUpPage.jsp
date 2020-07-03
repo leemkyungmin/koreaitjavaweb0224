@@ -445,13 +445,13 @@
                     }
                     
                     //아이디 검사
-                    if($('#id').val()==""){
+                    if($('#cId').val()==""){
                         modalContents.text("아이디를 입력하여 주시기 바랍니다.");
                         modal.modal('show');
                         
                         divId.removeClass("has-success");
                         divId.addClass("has-error");
-                        $('#id').focus();
+                        $('#cId').focus();
                         return false;
                     }else{
                         divId.removeClass("has-error");
@@ -459,7 +459,7 @@
                     }
                     
                     //패스워드 검사
-                    if($('#password').val()==""){
+                    if($('#cPw').val()==""){
                         modalContents.text("패스워드를 입력하여 주시기 바랍니다.");
                         modal.modal('show');
                         
