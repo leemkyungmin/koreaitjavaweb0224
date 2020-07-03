@@ -52,7 +52,7 @@
                 
  
  
-            <form class="form-horizontal" role="form" method="post" action="javascript:alert( '가입성공' );customerSignUp">
+            <form class="form-horizontal" role="form" method="post" action="customerSignUp">
                 <div class="form-group">
                     <label for="provision" class="col-lg-2 control-label">회원가입약관</label>
                     <div class="col-lg-10" id="provision">
@@ -199,13 +199,13 @@
                 <div class="form-group" id="divId">
                     <label for="inputId" class="col-lg-2 control-label">아이디</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control onlyAlphabetAndNumber" id="cId" data-rule-required="true" placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">
+                        <input type="text" class="form-control onlyAlphabetAndNumber" name="cId" id="cId" data-rule-required="true" placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">
                     </div>
                 </div>
                 <div class="form-group" id="divPassword">
                     <label for="inputPassword" class="col-lg-2 control-label">패스워드</label>
                     <div class="col-lg-10">
-                        <input type="password" class="form-control" id="cPw" name="excludeHangul" data-rule-required="true" placeholder="패스워드" maxlength="30">
+                        <input type="password" class="form-control" id="cPw" name="cPw" data-rule-required="true" placeholder="패스워드" maxlength="30">
                     </div>
                 </div>
                 <div class="form-group" id="divPasswordCheck">
@@ -217,34 +217,34 @@
                 <div class="form-group" id="divName">
                     <label for="inputName" class="col-lg-2 control-label">이름</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control onlyHangul" id="cName" data-rule-required="true" placeholder="한글만 입력 가능합니다." maxlength="15">
+                        <input type="text" class="form-control onlyHangul" name="cName" id="cName" data-rule-required="true" placeholder="한글만 입력 가능합니다." maxlength="15">
                     </div>
                 </div>
                 
                 <div class="form-group" id="divNickname">
                     <label for="inputNickname" class="col-lg-2 control-label">별명</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="cNickname" data-rule-required="true" placeholder="별명" maxlength="15">
+                        <input type="text" class="form-control" id="cNickname" name="cNickname" data-rule-required="true" placeholder="별명" maxlength="15">
                     </div>
                 </div>
                 
                 <div class="form-group" id="divEmail">
                     <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
                     <div class="col-lg-10">
-                        <input type="email" class="form-control" id="cEmail" data-rule-required="true" placeholder="이메일" maxlength="40"> <br/>
+                        <input type="email" class="form-control" id="cEmail" name="cEmail" data-rule-required="true" placeholder="이메일" maxlength="40"> <br/>
                         <input type="button" value="이메일 인증하기" onclick="#" class="btn btn-primary" />
                     </div>
                 </div>
                 <div class="form-group" id="divPhoneNumber">
                     <label for="inputPhoneNumber" class="col-lg-2 control-label">휴대폰 번호</label>
                     <div class="col-lg-10">
-                        <input type="tel" class="form-control onlyNumber" id="cPhone" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
+                        <input type="tel" class="form-control onlyNumber" id="cPhone" name="cPhone" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPhoneNumber" class="col-lg-2 control-label">성별</label>
                     <div class="col-lg-10">
-                        <select class="form-control" id="cGender">
+                        <select class="form-control" id="cGender" name="cGender">
                             <option value="M">남</option>
                             <option value="F">여</option>
                         </select>

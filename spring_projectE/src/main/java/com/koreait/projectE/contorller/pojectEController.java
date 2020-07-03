@@ -1,12 +1,17 @@
 package com.koreait.projectE.contorller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.koreait.projectE.commom.Command;
+import com.koreait.projectE.commom.CustomerSignUpCommand;
 import com.koreait.projectE.dao.DAO;
 
 @Controller
@@ -14,6 +19,7 @@ public class pojectEController {
 	
 	@Autowired
 	private SqlSession sqlSession;
+	private Command command;
 	
 	@RequestMapping("/")
 	public String goIndex() {
@@ -45,15 +51,11 @@ public class pojectEController {
 	}
 	
 	@RequestMapping(value="customerSignUp", method=RequestMethod.POST)
-	public String customerSignUp(@RequestParam("cId") String cId,
-								 @RequestParam("cPw") String cPw,
-								 @RequestParam("cName") String cName,
-								 @RequestParam("cNickname") String cNickname,
-								 @RequestParam("cPhone") int cPhone,
-								 @RequestParam("cEmail") String cEmail,
-								 @RequestParam("cGender") String cGender) {
-		DAO dao = sqlSession.getMapper(DAO.class);
-		dao.customerSignUp(cId, cPw, cName, cNickname, cPhone, cEmail, cGender);
+	public String customerSignUp(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		command = new CustomerSignUpCommand();
+		command.execute(sqlSession, model);
 		return "redirec:index";
 	}
 	
