@@ -65,9 +65,9 @@ public class pojectEController {
 	@RequestMapping(value="customerSignUp", method=RequestMethod.POST)
 	public String customerSignUp(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		command = new CustomerSignUpCommand();
+		command = new com.koreait.projectE.command.CustomerSignUpCommand();
 		command.execute(sqlSession, model);
-		return "redirec:index";
+		return "redirec:index"; 
 	}
 	
 	
