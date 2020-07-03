@@ -103,7 +103,7 @@ public class CustomerDTO {
 	public void setcGender(String cGender) {
 		this.cGender = cGender;
 	}
-	
+	 
 	
 	
 	
