@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	메인페이지입니다.1
+	1111
 </body>
 </html>
