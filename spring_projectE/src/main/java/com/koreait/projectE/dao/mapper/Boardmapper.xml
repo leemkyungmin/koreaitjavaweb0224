@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.koreait.projectE.dao.BoardDAO">
+	<select id="DepartView" resultType="com.koreait.projectE.dto.DepartmentDTO">
+		select * from DEPARTMENT_INFO WHERE DSAUP_NO=#{dSaup_no}
+	</select>
+	
+	<select id="reviewList" resultType="com.koreait.projectE.dto.ReviewDTO">
+		select r.rNo,r.rpoint,r.rdepth,r.REPORTCOUNT,c.cnickname,r.rTitle,r.rcontent,r.rPoto,r.rwriter_date 
+		from review r,customer c 
+		where r.dsaup_no=#{dSaup_no} and r.cno=c.cno 
+	</select>
+	
+</mapper>
