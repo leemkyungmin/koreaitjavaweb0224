@@ -84,25 +84,11 @@ public class pojectEController {
 	}
 	
 	@RequestMapping(value="customerSignUp", method=RequestMethod.POST)
-<<<<<<< HEAD
 	public String customerSignUp(HttpServletRequest request, Model model) {
-		
 		model.addAttribute("request", request);
 		command = new CustomerSignUpCommand();
 		command.execute(sqlSession, model);
 		return "redirec:index";
-=======
-	public String customerSignUp(@RequestParam("cId") String cId,
-								 @RequestParam("cPw") String cPw,
-								 @RequestParam("cName") String cName,
-								 @RequestParam("cNickname") String cNickname,
-								 @RequestParam("cEmail") String cEmail,
-								 @RequestParam("cPhone") int cPhone,
-								 @RequestParam("cGender") String cGender) {
-		DAO dao = sqlsession.getMapper(DAO.class);
-		dao.customerSignUp(cId, cPw, cName, cNickname, cEmail, cPhone, cGender);
-		return "";
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 	}
 	
 	
