@@ -9,7 +9,7 @@
 <body>
 1234
 
-<a href="loginChoicePage">로그인하러가기</a>
+<a href="loginChoicePage">테스트용 로그인하러가기</a> <!-- 테스트용 수정하셔도 됩니다. -->
 
 </body>
 </html>

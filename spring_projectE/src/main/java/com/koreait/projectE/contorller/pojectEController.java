@@ -1,10 +1,19 @@
 package com.koreait.projectE.contorller;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.koreait.projectE.dao.DAO;
 
 @Controller
 public class pojectEController {
+	
+	@Autowired
+	private SqlSession sqlSession;
 	
 	@RequestMapping("/")
 	public String goIndex() {
@@ -34,5 +43,19 @@ public class pojectEController {
 	public String godeptSingUpPage() {
 		return "login/deptSignUpPage";
 	}
+	
+	@RequestMapping(value="customerSignUp", method=RequestMethod.POST)
+	public String customerSignUp(@RequestParam("cId") String cId,
+								 @RequestParam("cPw") String cPw,
+								 @RequestParam("cName") String cName,
+								 @RequestParam("cNickname") String cNickname,
+								 @RequestParam("cEmail") String cEmail,
+								 @RequestParam("cPhone") int cPhone,
+								 @RequestParam("cGender") String cGender) {
+		DAO dao = sqlSession.getMapper(DAO.class);
+		dao.customerSignUp(cId, cPw, cName, cNickname, cEmail, cPhone, cGender);
+		return "";
+	}
+	
 	
 }

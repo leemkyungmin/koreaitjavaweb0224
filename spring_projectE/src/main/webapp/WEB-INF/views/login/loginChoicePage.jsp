@@ -13,7 +13,6 @@
 	<input type="button" value="일반 회원 로그인" onclick="location.href='customerLoginPage'" /> <br/>
 	
 	업체 로그인
-	<form action=""></form>
 	<input type="button" value="업체 회원 로그인" onclick="location.href='deptLoginPage'" />
 	
 </body>
