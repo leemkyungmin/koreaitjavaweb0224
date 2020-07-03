@@ -14,4 +14,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where r.dsaup_no=#{dSaup_no} and r.cno=c.cno 
 	</select>
 	
+	<update id="UpdateHit">
+		update DEPARTMENT_INFO SET DHIT =DHIT+1 WHERE DSAUP_NO=#{dSaup_no}
+	</update>
+	
+	<select id="menuList" resultType="com.koreait.projectE.dto.MenuDTO">
+		select * from menu_info where dsaup_no=#{dSaup_no}
+	</select>
+	
 </mapper>

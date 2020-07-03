@@ -1,10 +1,10 @@
-package com.koreait.projectE.dto;
+	package com.koreait.projectE.dto;
 
 import java.sql.Date;
 
 public class ReviewDTO {
 
-	private long rNo,rPoint,rDepth,rReportCount,cName;
+	private int rNo,rPoint,rDepth,rReportCount,cName;
 	private String rTitle,rContent,rPoto;
 	private Date rWriter_date;
 	
@@ -12,7 +12,7 @@ public class ReviewDTO {
 		
 	}
 
-	public ReviewDTO(long rNo, long rPoint, long rDepth, long rReportCount, long cName, String rTitle, String rContent,
+	public ReviewDTO(int rNo, int rPoint, int rDepth, int rReportCount, int cName, String rTitle, String rContent,
 			String rPoto, Date rWriter_date) {
 		super();
 		this.rNo = rNo;
@@ -26,7 +26,7 @@ public class ReviewDTO {
 		this.rWriter_date = rWriter_date;
 	}
 
-	public long getrNo() {
+	public int getrNo() {
 		return rNo;
 	}
 
@@ -34,7 +34,7 @@ public class ReviewDTO {
 		this.rNo = rNo;
 	}
 
-	public long getrPoint() {
+	public int getrPoint() {
 		return rPoint;
 	}
 
@@ -42,7 +42,7 @@ public class ReviewDTO {
 		this.rPoint = rPoint;
 	}
 
-	public long getrDepth() {
+	public int getrDepth() {
 		return rDepth;
 	}
 
@@ -50,7 +50,7 @@ public class ReviewDTO {
 		this.rDepth = rDepth;
 	}
 
-	public long getrReportCount() {
+	public int getrReportCount() {
 		return rReportCount;
 	}
 
@@ -58,7 +58,7 @@ public class ReviewDTO {
 		this.rReportCount = rReportCount;
 	}
 
-	public long getcName() {
+	public int getcName() {
 		return cName;
 	}
 
