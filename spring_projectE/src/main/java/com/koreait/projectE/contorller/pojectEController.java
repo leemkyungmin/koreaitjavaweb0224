@@ -49,12 +49,12 @@ public class pojectEController {
 								 @RequestParam("cPw") String cPw,
 								 @RequestParam("cName") String cName,
 								 @RequestParam("cNickname") String cNickname,
-								 @RequestParam("cEmail") String cEmail,
 								 @RequestParam("cPhone") int cPhone,
+								 @RequestParam("cEmail") String cEmail,
 								 @RequestParam("cGender") String cGender) {
 		DAO dao = sqlSession.getMapper(DAO.class);
-		dao.customerSignUp(cId, cPw, cName, cNickname, cEmail, cPhone, cGender);
-		return "";
+		dao.customerSignUp(cId, cPw, cName, cNickname, cPhone, cEmail, cGender);
+		return "redirec:index";
 	}
 	
 	
