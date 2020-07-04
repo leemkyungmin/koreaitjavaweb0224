@@ -1,8 +1,4 @@
 <%@page import="java.util.Map"%>
-<%@page import="org.springframework.ui.Model"%>
-<%@page import="org.junit.runner.Request"%>
-<%@page import="java.util.ArrayList"%>
-<%@ page import="java.util.regex.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
@@ -241,7 +237,7 @@
 </head>
 <body>
 	이미지 처리 
-	<c:set var="img" value="${deptDTO.dPoto }"></c:set>
+	
 	${deptDTO.dPoto }
 	
 	
