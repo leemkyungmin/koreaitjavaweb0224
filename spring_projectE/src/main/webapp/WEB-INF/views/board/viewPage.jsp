@@ -1,12 +1,9 @@
-<%@page import="java.util.Map"%>
-<%@page import="org.springframework.ui.Model"%>
-<%@page import="org.junit.runner.Request"%>
-<%@page import="java.util.ArrayList"%>
-<%@ page import="java.util.regex.*" %>
+<%@page import="java.util.regex.Pattern"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 
 <!DOCTYPE html> 
@@ -15,234 +12,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-<style type="text/css">
+<link href="resources/assets/style/ViewPage.css" rel="stylesheet" type="text/css">
 
-	*{
-		margin:0;
-		padding:0;
-	}
-	body{
-		position: relative;
-	    min-width: 320px;
-	    margin: 0 auto;
-	    font-size: 100%;
-	    line-height: 100%;
-	    text-size-adjust: 100%;
-	    -webkit-text-size-adjust: 100%;
-	    word-break: keep-all;
-		
-	}
-
-	.inner{
-		box-sizing: border-box;
-	}
-	.inner>section{
-	    width: 800px;
-	    margin: 0 auto;
-	    margin-top: 20px;
-	}
-	
-	.pg-restaurant .restaurant-detail {
-	    padding: 30px 0 0;
-	    width: 800px;
-	    margin: 0 auto;
-	}
-	.restaurant_name {
-	    display: inline-block;
-	    max-width: 100%;
-	    word-break: break-all;
-	}
-	.rate-point{
-		color: #ff792a;
-    	margin-left: 5px;
-	}
-	
-	html,body,div,span,h1,p,a,ol,ul,li,form,label{
-		border:0 none;
-	}
-	
-	header{
-		border-bottom :1px solid lightgray;
-		position:relative;
-		padding-bottom: 10px;
-		heigth:74px;
-		display:block;
-	}
-	header>.restaurant_title_wrap{
-		display: -moz-flex;
-	    display: -ms-flexbox;
-	    display: flex;
-	    display: -webkit-box;
-	    display: -webkit-flex;
-	    -moz-flex-direction: row;
-	    -ms-flex-direction: row;
-	    flex-direction: row;
-	    -webkit-flex-direction: row;
-	    -webkit-box-direction: normal;
-	    -webkit-box-orient: horizontal;
-	}
-	header>.status.branch_none{
-		margin:5px 0 10px;
-	}
-	header .title {
-	    padding-right: 50px;
-	    max-width: 75%;
-	    font-size: 1.8rem;
-	    line-height: 46px;
-    }
-    .pg-restaurant .restaurant-detail>header .review_writing_button {
-	    display: -moz-flex;
-	    display: -ms-flexbox;
-	    display: flex;
-	    display: -webkit-box;
-	    display: -webkit-flex;
-	    -moz-flex-direction: column;
-	    -ms-flex-direction: column;
-	    flex-direction: column;
-	    -webkit-flex-direction: column;
-	    -webkit-box-direction: normal;
-	    -webkit-box-orient: vertical;
-	    -moz-align-items: center;
-	    align-items: center;
-	    -webkit-align-items: center;
-	    -webkit-box-align: center;
-	    -ms-flex-align: center;
-	    margin: 0 19px 0 0;
-	}
-	
-	button {
-	    appearance: none;
-	    cursor: pointer;
-	    border: 0px;
-	    border-radius: 0;
-	    background-color: transparent;
-	}
-	
-	.info {
-	    padding: 20px 0;
-	    position: relative;
-	    display: block;
-	}
-	table{
-		border-collapse: collapse;
-    	border-spacing: 0;
-    	border-collapse: separate;
-	    box-sizing: border-box;
-	    border-spacing: 2px;
-	    border-color: grey;
-	}
-	table tbody {
-	    display: table-row-group;
-	    vertical-align: middle;
-	    border-color: inherit;
-	}
-	caption, legend {
-	    display: none;
-	    position: absolute;
-	    width: 0;
-	    height: 0;
-	    font-size: 0;
-	    overflow: hidden;
-	    visibility: hidden;
-    }
-	tbody tr {
-	    display: table-row;
-	    vertical-align: inherit;
-	    border-color: inherit;
-	  
-	}
-	.restaurant_action_button_wrap {
-	    display: -moz-flex;
-	    display: -ms-flexbox;
-	    display: flex;
-	    display: -webkit-box;
-	    display: -webkit-flex;
-	    -moz-flex-direction: row;
-	    -ms-flex-direction: row;
-	    flex-direction: row;
-	    -webkit-flex-direction: row;
-	    -webkit-box-direction: normal;
-	    -webkit-box-orient: horizontal;
-	    margin-left: auto;
-    }
-    .review_writing_button{
-   		margin: 0 19px 0 0;
-    }
-	
-	.info th {
-	    width: 110px;
-	    font-size: .9rem;
-	    display: table-cell;
-	    color: rgba(79,79,79,0.6);
-	    line-height: 1.7;
-	    text-align: left;
-	    vertical-align: top;
-	    padding-right: 10px;
-	    padding-bottom: 5px;
-	    font-weight: normal;
-	}
-	.info td {
-	    font-size: .9rem;
-		font-weight:bold;
-	    line-height: 1.7;
-	    text-align: left;
-	    vertical-align: middle;
-	    padding-bottom: 5px;
-	}
-	.Restaurant_MenuItem {
-	    display: -moz-flex;
-	    display: -ms-flexbox;
-	    display: flex;
-	    display: -webkit-box;
-	    display: -webkit-flex;
-	    -moz-flex-direction: row;
-	    -ms-flex-direction: row;
-	    flex-direction: row;
-	    -webkit-flex-direction: row;
-	    -webkit-box-direction: normal;
-	    -webkit-box-orient: horizontal;
-	    border-bottom: 1px solid #e9e9e9;
-	    margin-bottom: 4px;
-	}
-	.Restaurant_Menu {
-	    flex: 1;
-	    display: inline-block;
-	    margin-right: 30px;
-	    white-space: normal;
-	}
-	.Restaurant_MenuPrice {
-	    margin-left: auto;
-	}
-	.update_date {
-    	padding: 4px 0 20px 0;
-    	padding: 20px 10px 19px 10px;
-	    font-size: 15px;
-	    text-align: right;
-	   
-	}
-	.RestaurantIntroduceSection {
-	    display: -moz-flex;
-	    display: -ms-flexbox;
-	    display: flex;
-	    display: -webkit-box;
-	    display: -webkit-flex;
-	    -moz-flex-direction: column;
-	    -ms-flex-direction: column;
-	    flex-direction: column;
-	    -webkit-flex-direction: column;
-	    -webkit-box-direction: normal;
-	    -webkit-box-orient: vertical;
-	    border-bottom: 1px solid #e9e9e9;
-	}
-	    
-		
-</style>
 
 </head>
 <body>
 	이미지 처리 
 	<c:set var="img" value="${deptDTO.dPoto }"></c:set>
-	${deptDTO.dPoto }
+	
+	<div class="top-image">
+	
+	<c:forEach var="split" items="${fn:split(img,',')}">
+		<div class="column-image">
+		<img alt="${split }" src="${pageContext.request.contextPath }/resources/storage/department_img/${split }">
+		</div>
+	</c:forEach>
+	</div>
 	
 	
 	<div class="column-contents">
@@ -271,7 +56,7 @@
                  
                     <button class="btn-type-icon favorite wannago_btn " onclick="">
 	                    <i class="far fa-calendar-check fa-3x"></i>
-	                    <p class="wannago_txt">가고싶다</p>
+	                    <p class="wannago_txt">예약하기</p>
                   	</button>
                 </div>
               </div>
@@ -304,6 +89,7 @@
     
 		</div>
 
+            <div class="mainView_info">
             
 
             <!-- 상세 정보 -->
@@ -384,6 +170,49 @@
                 </tr>
               </tbody>
             </table>
+            
+            <div id="map" style="width:400px;height:328px;"></div>
+            
+			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=395b351aabfbda166c782bab5c1101f8&libraries=services"></script>
+			<script>
+			var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			    mapOption = {
+			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			        level: 3 // 지도의 확대 레벨
+			    };  
+			
+			// 지도를 생성합니다    
+			var map = new kakao.maps.Map(mapContainer, mapOption); 
+			
+			// 주소-좌표 변환 객체를 생성합니다
+			var geocoder = new kakao.maps.services.Geocoder();
+		
+			// 주소로 좌표를 검색합니다
+			geocoder.addressSearch('${deptDTO.dAddress}', function(result, status) {
+				
+			    // 정상적으로 검색이 완료됐으면 
+			     if (status === kakao.maps.services.Status.OK) {
+			
+			        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+					
+			        // 결과값으로 받은 위치를 마커로 표시합니다
+			        var marker = new kakao.maps.Marker({
+			            map: map,
+			            position: coords
+			        });
+			
+			        // 인포윈도우로 장소에 대한 설명을 표시합니다
+			        var infowindow = new kakao.maps.InfoWindow({
+			            content: '<div style="width:150px;text-align:center;padding:6px 0;">${deptDTO.dName}</div>'
+			        });
+			        infowindow.open(map, marker);
+			
+			        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			        map.setCenter(coords);
+			    } 
+			});    
+			</script>
+            </div>
 
               <p class="update_date">
                  	업데이트  : ${deptDTO.dReg_date }
