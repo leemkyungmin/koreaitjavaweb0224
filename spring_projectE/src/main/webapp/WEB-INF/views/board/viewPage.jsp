@@ -10,7 +10,7 @@
 <html> 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>${deptDTO.dName }&nbsp;${deptDTO.dType }</title>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <link href="resources/assets/style/ViewPage.css" rel="stylesheet" type="text/css">
 
@@ -171,7 +171,7 @@
               </tbody>
             </table>
             
-            <div id="map" style="width:400px;height:328px;"></div>
+            <div class="map" id="map" style="width:400px;height:350px;"></div>
             
 			<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=395b351aabfbda166c782bab5c1101f8&libraries=services"></script>
 			<script>
@@ -220,47 +220,97 @@
 
             <div id="reviewListFocusId"></div>
           </section>
+		  <section class="RestaurantReviewList">
+            <header class="RestaurantReviewList__Header">
+              <h2 class="RestaurantReviewList__Title">
+                <span class="RestaurantReviewList__RestaurantNameSuffixDesktop">리뷰</span>
+              	<span class="RestaurantReviewList__AllCount">(${reviewCount })</span>
+              </h2>
+			<!--
+              <ul class="RestaurantReviewList__FilterList">
+                <li class="RestaurantReviewList__FilterItem">
+                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__AllFilterButton RestaurantReviewList__FilterButton--Selected">
+                    전체
+                  <span class="RestaurantReviewList__ReviewCount">20</span></button>
+                </li>
 
-          <section class="restaurant_introduce_section_desktop only-desktop">
-            <div class="RestaurantIntroduceSection">
-  
+                <li class="RestaurantReviewList__FilterItem">
+                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__RecommendFilterButton">
+                    맛있다
+                  <span class="RestaurantReviewList__ReviewCount">18</span></button>
+                </li>
 
-    
+                <li class="RestaurantReviewList__FilterItem">
+                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__OkFilterButton">
+                    괜찮다
+                  <span class="RestaurantReviewList__ReviewCount">1</span></button>
+                </li>
 
-    
-</div>
-
+                <li class="RestaurantReviewList__FilterItem">
+                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__NotRecommendButton">
+                    별로
+                  <span class="RestaurantReviewList__ReviewCount">1</span></button>
+                </li>
+              </ul>
+             -->
+            </header>
+ 			
+            <ul class="RestaurantReviewList__ReviewList">
+			<c:forEach var ="review" items="${reviewList }">
+				<li class="RestaurantReviewItem RestaurantReviewList__ReviewItem">
+  				<a class="RestaurantReviewItem__Link" href="/reviews/NzE4Mjcw" target="_blank">
+    			<div class="RestaurantReviewItem__User">
+       
+	      	<div class="RestaurantReviewItem__UserPictureWrap">
+	       		 <img class="RestaurantReviewItem__UserPicture loaded" data-src="https://mp-seoul-image-production-s3.mangoplate.com/1407183_1563215702669?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" alt="user profile picture" src="https://mp-seoul-image-production-s3.mangoplate.com/1407183_1563215702669?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true">
+	     	 </div>
+	      
+	     	<!--  
+	    	 <span class="RestaurantReviewItem__UserNickName"></span>
+		   	-->
+		  <!--  유저 글 갯수 
+	     	 <ul class="RestaurantReviewItem__UserStat">
+	       		 <li class="RestaurantReviewItem__UserStatItem RestaurantReviewItem__UserStatItem--Review">1</li>
+	       		 <li class="RestaurantReviewItem__UserStatItem RestaurantReviewItem__UserStatItem--Follower">0</li>
+	     	 </ul>
+      	 -->
+      
+    		</div>
+		    <div class="RestaurantReviewItem__ReviewContent">
+		    	
+		      <div class="RestaurantReviewItem__ReviewTextWrap">
+				
+		        <p class="RestaurantReviewItem__ReviewText">
+		        	${review.rTitle }<br/>
+		         	 ${review.rContent }
+		        </p>
+				
+	       		 <span class="RestaurantReviewItem__ReviewDate">2020-02-22</span>
+			      </div>
+			      
+		      
+		    </div>
+		
+		    <div class="RestaurantReviewItem__Rating RestaurantReviewItem__Rating--Ok">
+		      <span class="RestaurantReviewItem__RatingText">괜찮다</span>
+		    </div>
+		    
+		    
+		  	</a>
+			</li>
+			</c:forEach>
+            
+			</ul>
+			<c:if test="${empty reviewList }">
+	            <div class="RestaurantReviewList__Empty">
+	              <span class="RestaurantReviewList__EmptyTitle">아직 작성된 리뷰가 없네요.</span>
+	              <span class="RestaurantReviewList__EmptyDescription">앱에서 해당 식당의 첫 리뷰를 작성해주시겠어요?</span>
+	            </div>
+			</c:if>
+            <div class="RestaurantReviewList__MoreReviewButton" role="button">
+              더보기
+            </div>
           </section>
-
-            <ul class="Restaurant__TagList only-mobile">
-                <li class="Restaurant__TagItem">
-                  <a class="Restaurant__TagLink" href="/search/장어" onclick="trackEvent('CLICK_RELATED_TAG', {&quot;restaurant_key&quot;:&quot;KU-4QO6Yvt&quot;,&quot;keyword&quot;:&quot;장어&quot;})">#장어</a>
-                </li>
-                <li class="Restaurant__TagItem">
-                  <a class="Restaurant__TagLink" href="/search/방배" onclick="trackEvent('CLICK_RELATED_TAG_METRO', {&quot;restaurant_key&quot;:&quot;KU-4QO6Yvt&quot;,&quot;keyword&quot;:&quot;방배&quot;})">#방배</a>
-                </li>
-                <li class="Restaurant__TagItem">
-                  <a class="Restaurant__TagLink" href="/search/반포" onclick="trackEvent('CLICK_RELATED_TAG_METRO', {&quot;restaurant_key&quot;:&quot;KU-4QO6Yvt&quot;,&quot;keyword&quot;:&quot;반포&quot;})">#반포</a>
-                </li>
-                <li class="Restaurant__TagItem">
-                  <a class="Restaurant__TagLink" href="/search/잠원" onclick="trackEvent('CLICK_RELATED_TAG_METRO', {&quot;restaurant_key&quot;:&quot;KU-4QO6Yvt&quot;,&quot;keyword&quot;:&quot;잠원&quot;})">#잠원</a>
-                </li>
-                <li class="Restaurant__TagItem">
-                  <a class="Restaurant__TagLink" href="/search/돈부리" onclick="trackEvent('CLICK_RELATED_TAG_SUBCUISINE', {&quot;restaurant_key&quot;:&quot;KU-4QO6Yvt&quot;,&quot;keyword&quot;:&quot;돈부리&quot;})">#돈부리</a>
-                </li>
-                <li class="Restaurant__TagItem">
-                  <a class="Restaurant__TagLink" href="/search/일본 카레" onclick="trackEvent('CLICK_RELATED_TAG_SUBCUISINE', {&quot;restaurant_key&quot;:&quot;KU-4QO6Yvt&quot;,&quot;keyword&quot;:&quot;일본 카레&quot;})">#일본 카레</a>
-                </li>
-                <li class="Restaurant__TagItem">
-                  <a class="Restaurant__TagLink" href="/search/벤토" onclick="trackEvent('CLICK_RELATED_TAG_SUBCUISINE', {&quot;restaurant_key&quot;:&quot;KU-4QO6Yvt&quot;,&quot;keyword&quot;:&quot;벤토&quot;})">#벤토</a>
-                </li>
-            </ul>
-
-          <div class="ad_area info only-desktop" id="web_desktop-restaurant-info"><div class="ad_wrap"><div class="content" id="web_desktop-restaurant-info-content" data-google-query-id="CNGotdyHseoCFRIIXAodzdkN6Q"><div id="google_ads_iframe_/395211568/production/desktop-web.restaurant.info_0__container__" style="border: 0pt none; display: inline-block; width: 728px; height: 90px;"><iframe frameborder="0" src="https://908c4a132c487a0a0030b4b2a0be0a37.safeframe.googlesyndication.com/safeframe/1-0-37/html/container.html" id="google_ads_iframe_/395211568/production/desktop-web.restaurant.info_0" title="3rd party ad content" name="" scrolling="no" marginwidth="0" marginheight="0" width="728" height="90" data-is-safeframe="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" data-google-container-id="1" style="border: 0px; vertical-align: bottom;" data-load-complete="true"></iframe></div></div></div></div>
-          <div class="ad_area info only-mobile" id="web_mobile-restaurant-info"><div class="ad_wrap"><div class="content" id="web_mobile-restaurant-info-content"></div></div></div>
-
-          <script id="reviewCountInfo" type="application/json">[{"action_value":1,"count":11},{"action_value":2,"count":35},{"action_value":3,"count":114}]</script>
-          
       </div>
    </div>
       

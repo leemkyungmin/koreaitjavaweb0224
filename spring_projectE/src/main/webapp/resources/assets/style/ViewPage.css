@@ -103,7 +103,7 @@
 	.info {
 	    padding: 20px 0;
 	    position: relative;
-	    display: block;
+	    display: inline-block;
 	}
 	table{
 		border-collapse: collapse;
@@ -228,5 +228,117 @@
 		width:348px;
 		height: 340px;
 		padding:2px;
+	}
+	.RestaurantReviewList__Title {
+	    font-size: 18px;
+	    line-height: 1.2;
+	    color: #4F4F4F;
+	}
+	.RestaurantReviewList__RestaurantName {
+   	 	display: none;
+	}
+	.RestaurantReviewItem__Link {
+	    display: -moz-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    -moz-flex-direction: row;
+	    -ms-flex-direction: row;
+	    flex-direction: row;
+	    -webkit-flex-direction: row;
+	    -webkit-box-direction: normal;
+	    -webkit-box-orient: horizontal;
+	    padding: 20px 0 52px 0;
+	}
+	.RestaurantReviewItem__User {
+	    display: -moz-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    -moz-flex-direction: column;
+	    -ms-flex-direction: column;
+	    flex-direction: column;
+	    -webkit-flex-direction: column;
+	    -webkit-box-direction: normal;
+	    -webkit-box-orient: vertical;
+	    -moz-flex-basis: 70px;
+	    -ms-flex-preferred-size: 70px;
+	    flex-basis: 70px;
+	    -webkit-flex-basis: 70px;
+	    margin: 15px 35px 0 8px;
+	}
+	.RestaurantReviewItem__ReviewContent {
+	    display: -moz-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    -moz-flex-direction: column;
+	    -ms-flex-direction: column;
+	    flex-direction: column;
+	    -webkit-flex-direction: column;
+	    -webkit-box-direction: normal;
+	    -webkit-box-orient: vertical;
+	    width: 605px;
+	}
+	.RestaurantReviewItem__ReviewTextWrap {
+	    display: -moz-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    -moz-flex-direction: column-reverse;
+	    -ms-flex-direction: column-reverse;
+	    flex-direction: column-reverse;
+	    -webkit-flex-direction: column-reverse;
+	    -webkit-box-direction: reverse;
+	    -webkit-box-orient: vertical;
+	}
+	.RestaurantReviewItem__ReviewText {
+	   
+	    font-size: 15px;
+	    line-height: 1.666;
+	    word-break: break-all;
+	    color: #000000;
+	}
+	
+	ul{
+		list-style-type: none;
+	}
+	
+	a{
+		text-decoration: none;
+	}
+	p {
+	    display: block;
+	    margin-block-start: 1em;
+	    margin-block-end: 1em;
+	    margin-inline-start: 0px;
+	    margin-inline-end: 0px;
+	}
+	.RestaurantReviewItem__ReviewDate {
+	    -moz-order: 3;
+	    -ms-flex-order: 3;
+	    order: 3;
+	    -webkit-box-ordinal-group: 4;
+	    -webkit-order: 3;
+	    font-size: 14px;
+	    line-height: 1.2;
+	    color: #9B9B9B;
+	}
+	.RestaurantReviewList__Header{
+		border-top:1px solid lightgray;
+	}
+	.map{
+		display: inline-block;
+		margin: 10px 10px 10px 0;
+		float: right;
+		
+		
+	}
+	.RestaurantReviewList__ReviewItem{
+		border-bottom: 1px solid lightgray;
 	}
 	   
