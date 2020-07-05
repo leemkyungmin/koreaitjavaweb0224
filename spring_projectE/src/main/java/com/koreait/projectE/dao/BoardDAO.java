@@ -8,6 +8,10 @@ import com.koreait.projectE.dto.ReviewDTO;
 
 public interface BoardDAO {
    
+	
+	//리뷰에서 Rating 평점을 가져와 update
+	public void DepartRatingUpdate(String dSaup_no);
+	
 	// 업체 정보 가져오기 
 	public DepartmentDTO DepartView(String dSaup_no);
 	// 리뷰 가져오기 

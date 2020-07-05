@@ -28,6 +28,8 @@ public class boardViewCommand implements Command {
 		//페이지 요청시 hit 수 증가 
 		bdao.UpdateHit(dSaup_no);
 		
+		bdao.DepartRatingUpdate(dSaup_no);
+		
 		//view 페이지 업체 정보 가져오기 
 		model.addAttribute("deptDTO", bdao.DepartView(dSaup_no));
 		
