@@ -38,7 +38,7 @@
             <header>
               <div class="restaurant_title_wrap">
                 <span class="title">
-                  <h1 class="restaurant_name">${deptDTO.dName }</h1>
+                   <h1 class="restaurant_name">${deptDTO.dName }</h1>
                     <strong class="rate-point ">
                       <span>${deptDTO.dRating }</span>
                     </strong>
