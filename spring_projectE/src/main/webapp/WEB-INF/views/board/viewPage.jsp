@@ -64,7 +64,7 @@
 
 <body>
 
-	<c:set var="img" value="${deptDTO.dPoto }"></c:set>
+	<c:set var="img" value="${deptDTO.dPhoto }"></c:set>
 	
 	<div class="top-image">
 	
@@ -389,9 +389,9 @@
 				    <div class="NearByRestaurantItem__PictureAndContent">
 				  	
 				      <a class="NearByRestaurantItem__PictureLink" href="viewPage?dSaup_no=${side.dSaup_no }">
-				       <c:set var="index" value="${fn:indexOf(side.dPoto,',') }"></c:set>
+				       <c:set var="index" value="${fn:indexOf(side.dPhoto,',') }"></c:set>
 				       
-				        <img class="NearByRestaurantItem__Picture loaded"alt="${fn:substring(side.dPoto,0,index) }" src="${pageContext.request.contextPath }/resources/storage/department_img/${fn:substring(side.dPoto,0,index) }" >
+				        <img class="NearByRestaurantItem__Picture loaded"alt="${fn:substring(side.dPhoto,0,index) }" src="${pageContext.request.contextPath }/resources/storage/department_img/${fn:substring(side.dPhoto,0,index) }" >
 				       
 				      </a>
 				  
