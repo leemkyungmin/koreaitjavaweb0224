@@ -10,5 +10,5 @@ public interface LoginDAO {
 	
 	// 아이디 중복체크
 	public int idCheck(String cId);
-	
+	 
 }
