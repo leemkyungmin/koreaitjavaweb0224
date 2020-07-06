@@ -1,48 +1,31 @@
-	package com.koreait.projectE.dto;
+package com.koreait.projectE.dto;
 
 import java.sql.Date;
 
 public class ReviewDTO {
 
-	private int rNo,rPoint,rDepth,rReportCount,cName,rAppointment;
-	private double Rating;
-	private String rTitle,rContent,rPoto;
+	private int rNo,rPoint,rDepth,rReportCount,cNo;
+	private String rTitle,rContent,rPoto, rAppointment, dSaup_no;
 	private Date rWriter_date;
 	
 	public ReviewDTO() {
-		
+		// TODO Auto-generated constructor stub
 	}
 
-	public ReviewDTO(double Rating,int rNo, int rPoint, int rDepth, int rReportCount, int cName,int rAppointment, String rTitle, String rContent,
-			String rPoto, Date rWriter_date) {
+	public ReviewDTO(int rNo, int rPoint, int rDepth, int rReportCount, int cNo, String rTitle, String rContent,
+			String rPoto, String rAppointment, String dSaup_no, Date rWriter_date) {
 		super();
-		this.rAppointment=rAppointment;
-		this.Rating=Rating;
 		this.rNo = rNo;
 		this.rPoint = rPoint;
 		this.rDepth = rDepth;
 		this.rReportCount = rReportCount;
-		this.cName = cName;
+		this.cNo = cNo;
 		this.rTitle = rTitle;
 		this.rContent = rContent;
 		this.rPoto = rPoto;
-		this.rWriter_date = rWriter_date;
-	}
-	
-	public int getrAppointment() {
-		return rAppointment;
-	}
-
-	public void setrAppointment(int rAppointment) {
 		this.rAppointment = rAppointment;
-	}
-
-	public double getRating() {
-		return Rating;
-	}
-
-	public void setRating(double rating) {
-		Rating = rating;
+		this.dSaup_no = dSaup_no;
+		this.rWriter_date = rWriter_date;
 	}
 
 	public int getrNo() {
@@ -77,12 +60,12 @@ public class ReviewDTO {
 		this.rReportCount = rReportCount;
 	}
 
-	public int getcName() {
-		return cName;
+	public int getcNo() {
+		return cNo;
 	}
 
-	public void setcName(int cName) {
-		this.cName = cName;
+	public void setcNo(int cNo) {
+		this.cNo = cNo;
 	}
 
 	public String getrTitle() {
@@ -109,6 +92,22 @@ public class ReviewDTO {
 		this.rPoto = rPoto;
 	}
 
+	public String getrAppointment() {
+		return rAppointment;
+	}
+
+	public void setrAppointment(String rAppointment) {
+		this.rAppointment = rAppointment;
+	}
+
+	public String getdSaup_no() {
+		return dSaup_no;
+	}
+
+	public void setdSaup_no(String dSaup_no) {
+		this.dSaup_no = dSaup_no;
+	}
+
 	public Date getrWriter_date() {
 		return rWriter_date;
 	}
@@ -116,7 +115,6 @@ public class ReviewDTO {
 	public void setrWriter_date(Date rWriter_date) {
 		this.rWriter_date = rWriter_date;
 	}
-	
 	
 	
 }
