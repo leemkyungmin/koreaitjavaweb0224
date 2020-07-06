@@ -10,4 +10,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (CUSTOMER_SEQ.NEXTVAL, #{param1},#{param2},#{param3},#{param4},#{param5},#{param6},'1','일반',#{param7},SYSDATE)
 	</insert>
 	
+	<insert id="deptSignUp">
+		INSERT INTO DEPARTMENT(DSAUP_NO, DID, DPW)
+		VALUES (#{param1}, #{param2}, #{param3})
+	</insert>
+	
 </mapper>

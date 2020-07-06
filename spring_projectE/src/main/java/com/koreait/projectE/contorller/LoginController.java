@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.koreait.projectE.command.CustomerSignUpCommand;
+import com.koreait.projectE.command.DeptSignUpCommand;
 import com.koreait.projectE.commom.Command;
 
 @Controller
@@ -39,7 +40,7 @@ public class LoginController {
 		return "login/customerSignUpPage";
 	}
 	
-	@RequestMapping("deptSignUp")
+	@RequestMapping("deptSignUpPage")
 	public String godeptSingUpPage() {
 		return "login/deptSignUpPage";
 	}
@@ -52,4 +53,25 @@ public class LoginController {
 		return "redirec:index"; 
 	}
 	
+	@RequestMapping(value="deptSignUp", method=RequestMethod.POST)
+	public String deptSignUp(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new DeptSignUpCommand();
+		command.execute(sqlSession, model);
+		return "";
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
