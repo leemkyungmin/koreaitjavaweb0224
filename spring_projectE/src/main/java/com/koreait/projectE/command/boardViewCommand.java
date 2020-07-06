@@ -32,10 +32,7 @@ public class boardViewCommand implements Command {
 		//view 페이지 업체 정보 가져오기 
 		model.addAttribute("deptDTO", bdao.DepartView(dSaup_no));
 		
-		/*
-		 * 테스트 (사이드 메뉴)
-		 * 
-		 */
+		
 		String address =bdao.DepartView(dSaup_no).getdAddress();
 		String[] addr =address.split(" ");
 		System.out.println(addr[1]);
