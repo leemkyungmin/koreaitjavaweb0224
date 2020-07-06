@@ -27,6 +27,11 @@ public class pojectEController {
 		return "index";
 	}
 	
+	@RequestMapping("index")
+	public String goIndex2() {
+		return "index";
+	}
+	
 
 	@RequestMapping(value="viewPage",method=RequestMethod.GET)
 	public String viewPage(HttpServletRequest request,Model model) {
