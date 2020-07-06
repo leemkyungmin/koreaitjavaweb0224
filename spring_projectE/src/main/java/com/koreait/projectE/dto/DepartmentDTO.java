@@ -151,7 +151,6 @@ public class DepartmentDTO {
 	public void setdReg_date(Date dReg_date) {
 		this.dReg_date = dReg_date;
 	}
-	
-	
+
 	
 }
