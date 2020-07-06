@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <html>
-<head>
+<head>  
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
     <title>아이디 중복 체크</title>
     

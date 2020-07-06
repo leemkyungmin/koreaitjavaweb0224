@@ -18,6 +18,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="idCheck" resultType="int">
 		SELECT COUNT(*) FROM CUSTOMER
 		WHERE CID = #{cId} 
-	</select>
+	</select> 
 	
 </mapper>
