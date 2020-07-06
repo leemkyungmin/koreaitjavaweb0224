@@ -1,0 +1,344 @@
+@charset "UTF-8";
+*{
+		margin:0;
+		padding:0;
+	}
+	body{
+		position: relative;
+	    min-width: 320px;
+	    margin: 0 auto;
+	    font-size: 100%;
+	    line-height: 100%;
+	    text-size-adjust: 100%;
+	    -webkit-text-size-adjust: 100%;
+	    word-break: keep-all;
+		
+	}
+
+	.inner{
+		box-sizing: border-box;
+	}
+	.inner>section{
+	    width: 800px;
+	    margin: 0 auto;
+	    margin-top: 20px;
+	}
+	
+	.pg-restaurant .restaurant-detail {
+	    padding: 30px 0 0;
+	    width: 800px;
+	    margin: 0 auto;
+	}
+	.restaurant_name {
+	    display: inline-block;
+	    max-width: 100%;
+	    word-break: break-all;
+	}
+	.rate-point{
+		color: #ff792a;
+    	margin-left: 5px;
+	}
+	
+	html,body,div,span,h1,p,a,ol,ul,li,form,label{
+		border:0 none;
+	}
+	
+	header{
+		border-bottom :1px solid lightgray;
+		position:relative;
+		padding-bottom: 10px;
+		heigth:74px;
+		display:block;
+	}
+	header>.restaurant_title_wrap{
+		display: -moz-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    -moz-flex-direction: row;
+	    -ms-flex-direction: row;
+	    flex-direction: row;
+	    -webkit-flex-direction: row;
+	    -webkit-box-direction: normal;
+	    -webkit-box-orient: horizontal;
+	}
+	header>.status.branch_none{
+		margin:5px 0 10px;
+	}
+	header .title {
+	    padding-right: 50px;
+	    max-width: 75%;
+	    font-size: 1.8rem;
+	    line-height: 46px;
+    }
+    .pg-restaurant .restaurant-detail>header .review_writing_button {
+	    display: -moz-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    -moz-flex-direction: column;
+	    -ms-flex-direction: column;
+	    flex-direction: column;
+	    -webkit-flex-direction: column;
+	    -webkit-box-direction: normal;
+	    -webkit-box-orient: vertical;
+	    -moz-align-items: center;
+	    align-items: center;
+	    -webkit-align-items: center;
+	    -webkit-box-align: center;
+	    -ms-flex-align: center;
+	    margin: 0 19px 0 0;
+	}
+	
+	button {
+	    appearance: none;
+	    cursor: pointer;
+	    border: 0px;
+	    border-radius: 0;
+	    background-color: transparent;
+	}
+	
+	.info {
+	    padding: 20px 0;
+	    position: relative;
+	    display: inline-block;
+	}
+	table{
+		border-collapse: collapse;
+    	border-spacing: 0;
+    	border-collapse: separate;
+	    box-sizing: border-box;
+	    border-spacing: 2px;
+	    border-color: grey;
+	}
+	table tbody {
+	    display: table-row-group;
+	    vertical-align: middle;
+	    border-color: inherit;
+	}
+	caption, legend {
+	    display: none;
+	    position: absolute;
+	    width: 0;
+	    height: 0;
+	    font-size: 0;
+	    overflow: hidden;
+	    visibility: hidden;
+    }
+	tbody tr {
+	    display: table-row;
+	    vertical-align: inherit;
+	    border-color: inherit;
+	  
+	}
+	.restaurant_action_button_wrap {
+	    display: -moz-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    -moz-flex-direction: row;
+	    -ms-flex-direction: row;
+	    flex-direction: row;
+	    -webkit-flex-direction: row;
+	    -webkit-box-direction: normal;
+	    -webkit-box-orient: horizontal;
+	    margin-left: auto;
+    }
+    .review_writing_button{
+   		margin: 0 19px 0 0;
+    }
+	
+	.info th {
+	    width: 110px;
+	    font-size: .9rem;
+	    display: table-cell;
+	    color: rgba(79,79,79,0.6);
+	    line-height: 1.7;
+	    text-align: left;
+	    vertical-align: top;
+	    padding-right: 10px;
+	    padding-bottom: 5px;
+	    font-weight: normal;
+	}
+	.info td {
+	    font-size: .9rem;
+		font-weight:bold;
+	    line-height: 1.7;
+	    text-align: left;
+	    vertical-align: middle;
+	    padding-bottom: 5px;
+	}
+	.Restaurant_MenuItem {
+	    display: -moz-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    -moz-flex-direction: row;
+	    -ms-flex-direction: row;
+	    flex-direction: row;
+	    -webkit-flex-direction: row;
+	    -webkit-box-direction: normal;
+	    -webkit-box-orient: horizontal;
+	    border-bottom: 1px solid #e9e9e9;
+	    margin-bottom: 4px;
+	}
+	.Restaurant_Menu {
+	    flex: 1;
+	    display: inline-block;
+	    margin-right: 30px;
+	    white-space: normal;
+	}
+	.Restaurant_MenuPrice {
+	    margin-left: auto;
+	}
+	.update_date {
+    	padding: 4px 0 20px 0;
+    	padding: 20px 10px 19px 10px;
+	    font-size: 15px;
+	    text-align: right;
+	   
+	}
+	.RestaurantIntroduceSection {
+	    display: -moz-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    -moz-flex-direction: column;
+	    -ms-flex-direction: column;
+	    flex-direction: column;
+	    -webkit-flex-direction: column;
+	    -webkit-box-direction: normal;
+	    -webkit-box-orient: vertical;
+	    border-bottom: 1px solid #e9e9e9;
+	}
+	.top-image{
+		width: 100%;
+	    overflow: hidden;
+	    display: block;
+	    display:flex;
+	    
+	}
+	
+	.column-image img{
+		width:348px;
+		height: 340px;
+		padding:2px;
+	}
+	.RestaurantReviewList__Title {
+	    font-size: 18px;
+	    line-height: 1.2;
+	    color: #4F4F4F;
+	}
+	.RestaurantReviewList__RestaurantName {
+   	 	display: none;
+	}
+	.RestaurantReviewItem__Link {
+	    display: -moz-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    -moz-flex-direction: row;
+	    -ms-flex-direction: row;
+	    flex-direction: row;
+	    -webkit-flex-direction: row;
+	    -webkit-box-direction: normal;
+	    -webkit-box-orient: horizontal;
+	    padding: 20px 0 52px 0;
+	}
+	.RestaurantReviewItem__User {
+	    display: -moz-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    -moz-flex-direction: column;
+	    -ms-flex-direction: column;
+	    flex-direction: column;
+	    -webkit-flex-direction: column;
+	    -webkit-box-direction: normal;
+	    -webkit-box-orient: vertical;
+	    -moz-flex-basis: 70px;
+	    -ms-flex-preferred-size: 70px;
+	    flex-basis: 70px;
+	    -webkit-flex-basis: 70px;
+	    margin: 15px 35px 0 8px;
+	}
+	.RestaurantReviewItem__ReviewContent {
+	    display: -moz-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    -moz-flex-direction: column;
+	    -ms-flex-direction: column;
+	    flex-direction: column;
+	    -webkit-flex-direction: column;
+	    -webkit-box-direction: normal;
+	    -webkit-box-orient: vertical;
+	    width: 605px;
+	}
+	.RestaurantReviewItem__ReviewTextWrap {
+	    display: -moz-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    -moz-flex-direction: column-reverse;
+	    -ms-flex-direction: column-reverse;
+	    flex-direction: column-reverse;
+	    -webkit-flex-direction: column-reverse;
+	    -webkit-box-direction: reverse;
+	    -webkit-box-orient: vertical;
+	}
+	.RestaurantReviewItem__ReviewText {
+	   
+	    font-size: 15px;
+	    line-height: 1.666;
+	    word-break: break-all;
+	    color: #000000;
+	}
+	
+	ul{
+		list-style-type: none;
+	}
+	
+	a{
+		text-decoration: none;
+	}
+	p {
+	    display: block;
+	    margin-block-start: 1em;
+	    margin-block-end: 1em;
+	    margin-inline-start: 0px;
+	    margin-inline-end: 0px;
+	}
+	.RestaurantReviewItem__ReviewDate {
+	    -moz-order: 3;
+	    -ms-flex-order: 3;
+	    order: 3;
+	    -webkit-box-ordinal-group: 4;
+	    -webkit-order: 3;
+	    font-size: 14px;
+	    line-height: 1.2;
+	    color: #9B9B9B;
+	}
+	.RestaurantReviewList__Header{
+		border-top:1px solid lightgray;
+	}
+	.map{
+		display: inline-block;
+		margin: 10px 10px 10px 0;
+		float: right;
+		
+		
+	}
+	.RestaurantReviewList__ReviewItem{
+		border-bottom: 1px solid lightgray;
+	}
+	   
