@@ -15,6 +15,29 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <!-- Respond.js 으로 IE8 에서 반응형 기능을 활성화하세요 (https://github.com/scottjehl/Respond) -->
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        
+        <script type="text/javascript">
+        
+        $(function() {
+        	$('#cId').blur(function() {
+        		$.ajax({
+        			url: 'idCheck',
+        			type: 'GET',
+        			data: 'cId=' + $('#cId').val(),
+        			dataType: 'text',
+        			success: function(responseText) {
+        				$('#content1').text(responseText);
+        			},
+        			error: function () {
+        				alert('AJAX 통신 실패');
+        			}
+        		});
+        	});
+        });
+        
+        	 
+        </script>
+        
     </head>
     <body>
         <div class="container"><!-- 좌우측의 공간 확보 -->
@@ -199,7 +222,12 @@
                 <div class="form-group" id="divId">
                     <label for="inputId" class="col-lg-2 control-label">아이디</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control onlyAlphabetAndNumber" name="cId" id="cId" data-rule-required="true" placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">
+                        <input type="text" class="form-control onlyAlphabetAndNumber" name="cId" id="cId" data-rule-required="true" placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다."maxlength="30"><br/>
+                    </div>
+                    <div class="check-font" id="id_check">
+                    	&nbsp;&nbsp;
+                    	<input type="button" class="btn btn-primary" value="중복체크" />
+                    	<div id="idCheck" class="check_font"></div>
                     </div>
                 </div>
                 <div class="form-group" id="divPassword">
@@ -428,6 +456,11 @@
                     }else{
                         provision.removeClass("has-error");
                         provision.addClass("has-success");
+                    }
+                    
+                    if (form.idDuplication.value != "idCheck"){
+                    	modalContents.text("아이디 중복체크를 해주세요.");
+                    	return false;
                     }
                     
                     //개인정보취급방침

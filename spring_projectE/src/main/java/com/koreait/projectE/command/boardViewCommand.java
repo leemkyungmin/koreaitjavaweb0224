@@ -2,7 +2,6 @@ package com.koreait.projectE.command;
 
 import java.util.ArrayList;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -21,7 +20,7 @@ public class boardViewCommand implements Command {
 		
 		BoardDAO bdao =sqlSession.getMapper(BoardDAO.class);
 		Map<String,Object> map = model.asMap();
-		
+				
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		String dSaup_no = request.getParameter("dSaup_no");
 		
@@ -32,6 +31,19 @@ public class boardViewCommand implements Command {
 		
 		//view 페이지 업체 정보 가져오기 
 		model.addAttribute("deptDTO", bdao.DepartView(dSaup_no));
+		
+		/*
+		 * 테스트 (사이드 메뉴)
+		 * 
+		 */
+		String address =bdao.DepartView(dSaup_no).getdAddress();
+		String[] addr =address.split(" ");
+		System.out.println(addr[1]);
+		ArrayList<DepartmentDTO> side_list = bdao.getSide_list(addr[1]);
+		model.addAttribute("side_list", side_list);
+		
+		//appointment(예약자 db)에서 총 예약 갯수 가져오기
+		model.addAttribute("appointmentCount",bdao.appointmentCount(dSaup_no));
 		
 		//menu_info 에서 업체 메뉴 가져오기 
 		ArrayList<MenuDTO> menuList =bdao.menuList(dSaup_no);

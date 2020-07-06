@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.koreait.projectE.command.CustomerSignUpCommand;
 import com.koreait.projectE.command.boardViewCommand;
@@ -42,6 +43,18 @@ public class pojectEController {
 		
 		return "board/viewPage";
 	}
+	
+	//테스트용 
+	@RequestMapping("insertPage")
+	public String insertPage(@RequestParam("dSaup_no") String dSaup_no,@RequestParam("cNo") int cNo,Model model) {
+		
+		model.addAttribute("dSaup_no", dSaup_no);
+		model.addAttribute("cNo", cNo);
+		
+		return "board/insertPage";
+	}
+	//테스트
+	
 
 	
 	
