@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.koreait.projectE.commom.Command;
-import com.koreait.projectE.dao.DAO;
+import com.koreait.projectE.dao.LoginDAO;
 
 public class CustomerSignUpCommand implements Command {
 
@@ -27,7 +27,7 @@ public class CustomerSignUpCommand implements Command {
 		String cEmail = request.getParameter("cEmail");
 		String cGender = request.getParameter("cGender");
 		
-		DAO dao = sqlSession.getMapper(DAO.class);
+		LoginDAO dao = sqlSession.getMapper(LoginDAO.class);
 		
 		dao.customerSignUp(cId, cPw, cName, cNickname, cPhone, cEmail, cGender);
 		

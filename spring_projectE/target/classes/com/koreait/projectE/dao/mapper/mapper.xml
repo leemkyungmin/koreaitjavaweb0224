@@ -3,11 +3,11 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.koreait.projectE.dao.DAO">
+<mapper namespace="com.koreait.projectE.dao.LoginDAO">
 	
 	<insert id="customerSignUp">
-		INSERT INTO CUSTOMER (CNO, CID, CPW, CNAME, CNICKNAME, CPHONE,CEMAIL,CGRADE,CDEPT,CGENDER,CREGDATE)
-		VALUES (CUSTOMER_SEQ.NEXTVAL, #{param1},#{param2},#{param3},#{param4},#{param5},#{param6},'1','일반',#{param7},SYSDATE)
+		INSERT INTO CUSTOMER (CNO, CID, CPW, CNAME, CNICKNAME, CPHONE,CEMAIL,CPOTO,CGRADE,CDEPT,CGENDER,CREGDATE)
+		VALUES (CUSTOMER_SEQ.NEXTVAL, #{param1},#{param2},#{param3},#{param4},#{param5},#{param6},null,'1','일반',#{param7},SYSDATE)
 	</insert>
 	
 	<insert id="deptSignUp">
@@ -18,6 +18,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="idCheck" resultType="int">
 		SELECT COUNT(*) FROM CUSTOMER
 		WHERE CID = #{cId} 
-	</select>
+	</select> 
 	
 </mapper>

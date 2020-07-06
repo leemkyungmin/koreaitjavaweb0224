@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html lang="ko">
     <head>
+   	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
         <meta charset="utf-8">
         <!-- meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/ -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +17,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <!-- Respond.js 으로 IE8 에서 반응형 기능을 활성화하세요 (https://github.com/scottjehl/Respond) -->
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        
+          
         <script type="text/javascript">
         
         $(function() {
@@ -263,6 +265,19 @@
                         <input type="button" value="이메일 인증하기" onclick="#" class="btn btn-primary" />
                     </div>
                 </div>
+                <div class="form-group" id="divPhoto">
+                	<label for="inputPhoto" class="col-lg-2 control-label">프로필 사진</label><br/> &nbsp;&nbsp;&nbsp;
+                	<div id="photoBox" style="width:50; height:50;">
+                		<input type="file" id="cPhoto" name="cPhoto" /> 
+                		<c:if test="${empty cPhoto }">
+                			<i class="fa fa-camera-retro fa-3x"></i>
+                		</c:if>
+                		<c:if test="${not empty cPhoto }">
+                			<img src="${cPhoto }" />
+                		</c:if> <br/>
+                		<input type="button" value="업로드" onclick="#" class="btn btn-primary" />
+                	</div>
+                </div>
                 <div class="form-group" id="divPhoneNumber">
                     <label for="inputPhoneNumber" class="col-lg-2 control-label">휴대폰 번호</label>
                     <div class="col-lg-10">
@@ -273,8 +288,8 @@
                     <label for="inputPhoneNumber" class="col-lg-2 control-label">성별</label>
                     <div class="col-lg-10">
                         <select class="form-control" id="cGender" name="cGender">
-                            <option value="M">남</option>
-                            <option value="F">여</option>
+                            <option value="1">남</option>
+                            <option value="2">여</option>
                         </select>
                     </div>
                 </div>

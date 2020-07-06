@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.koreait.projectE.commom.Command;
-import com.koreait.projectE.dao.DAO;
+import com.koreait.projectE.dao.LoginDAO;
 
 public class IdCheckCommand implements Command {
 
@@ -21,7 +21,7 @@ public class IdCheckCommand implements Command {
 		HttpServletRequest checkId = (HttpServletRequest)map.get("checkId");
 		String cId = request.getParameter("cId");
 		
-		DAO dao = sqlSession.getMapper(DAO.class);
+		LoginDAO dao = sqlSession.getMapper(LoginDAO.class);
 		
 		dao.idCheck(cId);
 		
