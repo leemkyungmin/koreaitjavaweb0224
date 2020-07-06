@@ -18,12 +18,9 @@ public class IdCheckCommand implements Command {
 		Map<String, Object> map = model.asMap();
 		
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		HttpServletRequest checkId = (HttpServletRequest)map.get("checkId");
 		String cId = request.getParameter("cId");
-		
 		DAO dao = sqlSession.getMapper(DAO.class);
-		
-		dao.idCheck(cId);
+		boolean result;
 		
 		
 		

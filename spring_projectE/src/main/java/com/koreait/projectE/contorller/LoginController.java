@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +16,7 @@ import com.koreait.projectE.command.CustomerSignUpCommand;
 import com.koreait.projectE.command.DeptSignUpCommand;
 import com.koreait.projectE.command.IdCheckCommand;
 import com.koreait.projectE.commom.Command;
+import com.koreait.projectE.dao.DAO;
 
 @Controller
 public class LoginController {
@@ -66,21 +67,21 @@ public class LoginController {
 		return "redirect:deptLoginPage";
 	}
 	
-	@RequestMapping(value="idCheck", produces="text/html; charset=utf-8")
+	@RequestMapping(value="idCheck",method=RequestMethod.POST)
 	@ResponseBody
-	public String idChcek(HttpServletRequest request,
-						  Model model,
-						  @RequestParam("cId") String checkId) {
-		int result = 0;
+	public Boolean idCheck(HttpServletRequest request, Model model) throws Exception {
 		model.addAttribute("request", request);
-		model.addAttribute("checkId", checkId);
 		command = new IdCheckCommand();
 		command.execute(sqlSession, model);
+		return true;
+	}
+	@GetMapping("idCheck")
+	public @ResponseBody int idCheck(@RequestParam("cId")String cId, DAO dao) {
 		
-		return "/login/idCheck";
+		int cnt=dao.idCheck(cId);
+		return cnt;
 	}
 	
-
 	
 }
 

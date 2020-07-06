@@ -22,20 +22,43 @@
         	$('#cId').blur(function() {
         		$.ajax({
         			url: 'idCheck',
-        			type: 'GET',
+        			type: 'POST',
         			data: 'cId=' + $('#cId').val(),
-        			dataType: 'text',
-        			success: function(responseText) {
-        				$('#content1').text(responseText);
+        			success: function(data) {
+        				idCheckMessage(data);
         			},
         			error: function () {
         				alert('AJAX 통신 실패');
         			}
         		});
         	});
-        });
+        	function idCheckMessage(map) {
+        		if(data > 0) {
+        			$("#id_check").html("사용할 수 없는 아이디입니다.");
+        		}else{
+        			$("#id_check").html("사용할 수 있는 아이디입니다.");
+        		}
+        	}
+        }); 
         
-        	 
+       /*  $(function(){
+        	$('#cId').blur(function(){
+        		$.ajax({
+        			type:"POST",
+        			url:"../login/idCheckForm.jsp",
+        			data:{
+        				"cId":$('#cId').val()
+        			},
+        			success:function(data){
+        				if($.trim(data) == "YES") {
+        					$('#id_check').html("사용할 수 없는 아이디입니다.");
+        				} else {
+        					$("#id_check").html("사용할 수 있는 아이디입니다.");
+        				}
+        			}
+        		});
+        	});
+        });	  */
         </script>
         
     </head>
@@ -51,7 +74,7 @@
                     </small>
                 </div>
             </div>
-            <!--// 헤더 들어가는 부분 -->
+            <!--// 헤더 들어가는 부분 -->z
             <!-- 모달창 -->
             <div class="modal fade" id="defaultModal">
                 <div class="modal-dialog">
