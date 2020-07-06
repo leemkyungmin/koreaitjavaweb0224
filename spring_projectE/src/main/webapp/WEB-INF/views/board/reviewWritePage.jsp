@@ -184,6 +184,11 @@
 			margin-bottom: 9px;
 		}
 		
+		img {
+			width: 20px;
+			height: 20px;
+		}
+		
 	</style>
 	
 	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

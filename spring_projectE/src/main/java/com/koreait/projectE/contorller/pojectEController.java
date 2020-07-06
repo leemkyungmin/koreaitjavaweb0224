@@ -44,6 +44,11 @@ public class pojectEController {
 		return "board/viewPage";
 	}
 	
+	@RequestMapping("reviewWritePage")
+	public String reviewPage() {
+		return "board/reviewWritePage";
+	}
+	
 	//테스트용 
 	@RequestMapping("insertPage")
 	public String insertPage(@RequestParam("dSaup_no") String dSaup_no,@RequestParam("cNo") int cNo,Model model) {
