@@ -5,9 +5,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-
+ 
 <!DOCTYPE html> 
-<html> 
+<html>  
 <head>
 <meta charset="UTF-8">
 <title>${deptDTO.dName }&nbsp;${deptDTO.dType }</title>
