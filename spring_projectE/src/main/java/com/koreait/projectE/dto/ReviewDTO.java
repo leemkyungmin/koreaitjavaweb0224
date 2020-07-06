@@ -5,6 +5,7 @@ import java.sql.Date;
 public class ReviewDTO {
 
 	private int rNo,rPoint,rDepth,rReportCount,cName;
+	private double Rating;
 	private String rTitle,rContent,rPoto;
 	private Date rWriter_date;
 	
@@ -12,9 +13,10 @@ public class ReviewDTO {
 		
 	}
 
-	public ReviewDTO(int rNo, int rPoint, int rDepth, int rReportCount, int cName, String rTitle, String rContent,
+	public ReviewDTO(double Rating,int rNo, int rPoint, int rDepth, int rReportCount, int cName, String rTitle, String rContent,
 			String rPoto, Date rWriter_date) {
 		super();
+		this.Rating=Rating;
 		this.rNo = rNo;
 		this.rPoint = rPoint;
 		this.rDepth = rDepth;
@@ -24,6 +26,14 @@ public class ReviewDTO {
 		this.rContent = rContent;
 		this.rPoto = rPoto;
 		this.rWriter_date = rWriter_date;
+	}
+	
+	public double getRating() {
+		return Rating;
+	}
+
+	public void setRating(double rating) {
+		Rating = rating;
 	}
 
 	public int getrNo() {
