@@ -113,7 +113,7 @@
 	                ">
 	                <span class="cnt hit">
 	                	<i class="fas fa-eye"></i>
-	                 	${deptDTO.dHit } 
+	                 	${deptDTO.dHit }	
 	                 </span>
 	                <span class="cnt review">
 	                	<i class="fas fa-pen"></i>
@@ -384,151 +384,49 @@
               <span class="title NearByRestaurantList__Title">주변 인기 식당</span>
 
               <ul class="list-restaurants type-single NearByRestaurantList__List">
-                
+              	<c:forEach var="side" items="${side_list }">
+              		<li class="NearByRestaurantItem NearByRestaurantList__Item">
+				    <div class="NearByRestaurantItem__PictureAndContent">
+				  	
+				      <a class="NearByRestaurantItem__PictureLink" href="viewPage?dSaup_no=${side.dSaup_no }">
+				       <c:set var="index" value="${fn:indexOf(side.dPoto,',') }"></c:set>
+				       
+				        <img class="NearByRestaurantItem__Picture loaded"alt="${fn:substring(side.dPoto,0,index) }" src="${pageContext.request.contextPath }/resources/storage/department_img/${fn:substring(side.dPoto,0,index) }" >
+				       
+				      </a>
+				  
+				      <div class="NearByRestaurantItem__Content">
+				        <div class="NearByRestaurantItem__NameWrap">
+				          <a class="NearByRestaurantItem__Name" href="viewPage?dSaup_no=${side.dSaup_no }">${side.dName }</a>
+				          <span class="NearByRestaurantItem__Rating NearByRestaurantItem__Rating--Expected">4.3</span>
+				        </div>
+				  
+				        <div class="NearByRestaurantItem__MetroAndCuisine">
+				          <span class="NearByRestaurantItem__Metro">${side.dAddress }</span>
+				          <span class="NearByRestaurantItem__SubCuisine">${side.dType }</span>
+				        </div>
+				  
+				        <div class="NearByRestaurantItem__InfoWrap">
+				          <dl class="NearByRestaurantItem__Info">
+				            <dt class="NearByRestaurantItem__InfoLabel">음식 종류</dt>
+				            <dd class="NearByRestaurantItem__InfoValue NearByRestaurantItem__InfoValue--SubCuisine">${side.dType }</dd>
+				          </dl>
+				  
+				          <dl class="NearByRestaurantItem__Info">
+				            <dt class="NearByRestaurantItem__InfoLabel">위치</dt>
+				            <dd class="NearByRestaurantItem__InfoValue NearByRestaurantItem__InfoValue--Metro">${side.dAddress }</dd>
+				          </dl>
+				  
+				          
+				        </div>
+				      </div>
+				    </div>
+				  </li>
+              	
+              	</c:forEach>
 
                 
-              <li class="NearByRestaurantItem NearByRestaurantList__Item">
-    <div class="NearByRestaurantItem__PictureAndContent">
-  
-      <a class="NearByRestaurantItem__PictureLink" href="/restaurants/S16mfd4Ese4E">
-        <img class="NearByRestaurantItem__Picture loaded" data-src="https://mp-seoul-image-production-s3.mangoplate.com/617296_1555155701165529.jpg?fit=around|383:383&amp;crop=383:383;*,*&amp;output-format=jpg&amp;output-quality=80" alt="near by popular restaurant picture" src="https://mp-seoul-image-production-s3.mangoplate.com/617296_1555155701165529.jpg?fit=around|383:383&amp;crop=383:383;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true">
-      </a>
-  
-      <div class="NearByRestaurantItem__Content">
-        <div class="NearByRestaurantItem__NameWrap">
-          <a class="NearByRestaurantItem__Name" href="/restaurants/S16mfd4Ese4E">브릭하우스76</a>
-          <span class="NearByRestaurantItem__Rating ">4.0</span>
-        </div>
-  
-        <div class="NearByRestaurantItem__MetroAndCuisine">
-          <span class="NearByRestaurantItem__Metro">은평구</span>
-          <span class="NearByRestaurantItem__SubCuisine">치킨 / 호프 / 펍</span>
-        </div>
-  
-        <div class="NearByRestaurantItem__InfoWrap">
-          <dl class="NearByRestaurantItem__Info">
-            <dt class="NearByRestaurantItem__InfoLabel">음식 종류</dt>
-            <dd class="NearByRestaurantItem__InfoValue NearByRestaurantItem__InfoValue--SubCuisine">치킨 / 호프 / 펍</dd>
-          </dl>
-  
-          <dl class="NearByRestaurantItem__Info">
-            <dt class="NearByRestaurantItem__InfoLabel">위치</dt>
-            <dd class="NearByRestaurantItem__InfoValue NearByRestaurantItem__InfoValue--Metro">은평구</dd>
-          </dl>
-  
-          <dl class="NearByRestaurantItem__Info">
-            <dt class="NearByRestaurantItem__InfoLabel">가격대</dt>
-            <dd class="NearByRestaurantItem__InfoValue NearByRestaurantItem__InfoValue--PriceRange">만원-2만원</dd>
-          </dl>
-        </div>
-      </div>
-    </div>
-  </li><li class="NearByRestaurantItem NearByRestaurantList__Item">
-    <div class="NearByRestaurantItem__PictureAndContent">
-  
-      <a class="NearByRestaurantItem__PictureLink" href="/restaurants/xU-GrrZeGYSf">
-        <img class="NearByRestaurantItem__Picture loaded" data-src="https://mp-seoul-image-production-s3.mangoplate.com/334608/qq6f8uozos_1zc.jpg?fit=around|383:383&amp;crop=383:383;*,*&amp;output-format=jpg&amp;output-quality=80" alt="near by popular restaurant picture" src="https://mp-seoul-image-production-s3.mangoplate.com/334608/qq6f8uozos_1zc.jpg?fit=around|383:383&amp;crop=383:383;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true">
-      </a>
-  
-      <div class="NearByRestaurantItem__Content">
-        <div class="NearByRestaurantItem__NameWrap">
-          <a class="NearByRestaurantItem__Name" href="/restaurants/xU-GrrZeGYSf">카페 달력</a>
-          <span class="NearByRestaurantItem__Rating NearByRestaurantItem__Rating--Expected">3.7</span>
-        </div>
-  
-        <div class="NearByRestaurantItem__MetroAndCuisine">
-          <span class="NearByRestaurantItem__Metro">은평구</span>
-          <span class="NearByRestaurantItem__SubCuisine">카페 / 디저트</span>
-        </div>
-  
-        <div class="NearByRestaurantItem__InfoWrap">
-          <dl class="NearByRestaurantItem__Info">
-            <dt class="NearByRestaurantItem__InfoLabel">음식 종류</dt>
-            <dd class="NearByRestaurantItem__InfoValue NearByRestaurantItem__InfoValue--SubCuisine">카페 / 디저트</dd>
-          </dl>
-  
-          <dl class="NearByRestaurantItem__Info">
-            <dt class="NearByRestaurantItem__InfoLabel">위치</dt>
-            <dd class="NearByRestaurantItem__InfoValue NearByRestaurantItem__InfoValue--Metro">은평구</dd>
-          </dl>
-  
-          <dl class="NearByRestaurantItem__Info">
-            <dt class="NearByRestaurantItem__InfoLabel">가격대</dt>
-            <dd class="NearByRestaurantItem__InfoValue NearByRestaurantItem__InfoValue--PriceRange">만원 미만</dd>
-          </dl>
-        </div>
-      </div>
-    </div>
-  </li><li class="NearByRestaurantItem NearByRestaurantList__Item">
-    <div class="NearByRestaurantItem__PictureAndContent">
-  
-      <a class="NearByRestaurantItem__PictureLink" href="/restaurants/lgUI7FzXZYrg">
-        <img class="NearByRestaurantItem__Picture loaded" data-src="https://mp-seoul-image-production-s3.mangoplate.com/63413_1592663434733167.jpg?fit=around|383:383&amp;crop=383:383;*,*&amp;output-format=jpg&amp;output-quality=80" alt="near by popular restaurant picture" src="https://mp-seoul-image-production-s3.mangoplate.com/63413_1592663434733167.jpg?fit=around|383:383&amp;crop=383:383;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true">
-      </a>
-  
-      <div class="NearByRestaurantItem__Content">
-        <div class="NearByRestaurantItem__NameWrap">
-          <a class="NearByRestaurantItem__Name" href="/restaurants/lgUI7FzXZYrg">튀김소리</a>
-          <span class="NearByRestaurantItem__Rating NearByRestaurantItem__Rating--Expected">4.3</span>
-        </div>
-  
-        <div class="NearByRestaurantItem__MetroAndCuisine">
-          <span class="NearByRestaurantItem__Metro">은평구</span>
-          <span class="NearByRestaurantItem__SubCuisine">기타 한식</span>
-        </div>
-  
-        <div class="NearByRestaurantItem__InfoWrap">
-          <dl class="NearByRestaurantItem__Info">
-            <dt class="NearByRestaurantItem__InfoLabel">음식 종류</dt>
-            <dd class="NearByRestaurantItem__InfoValue NearByRestaurantItem__InfoValue--SubCuisine">기타 한식</dd>
-          </dl>
-  
-          <dl class="NearByRestaurantItem__Info">
-            <dt class="NearByRestaurantItem__InfoLabel">위치</dt>
-            <dd class="NearByRestaurantItem__InfoValue NearByRestaurantItem__InfoValue--Metro">은평구</dd>
-          </dl>
-  
-          <dl class="NearByRestaurantItem__Info">
-            <dt class="NearByRestaurantItem__InfoLabel">가격대</dt>
-            <dd class="NearByRestaurantItem__InfoValue NearByRestaurantItem__InfoValue--PriceRange">만원 미만</dd>
-          </dl>
-        </div>
-      </div>
-    </div>
-  </li><li class="NearByRestaurantItem NearByRestaurantList__Item">
-    <div class="NearByRestaurantItem__PictureAndContent">
-  
-      <a class="NearByRestaurantItem__PictureLink" href="/restaurants/-bsxlFqhXFov">
-        <img class="NearByRestaurantItem__Picture loaded" data-src="https://mp-seoul-image-production-s3.mangoplate.com/383407/1042666_1592468984979_34076?fit=around|383:383&amp;crop=383:383;*,*&amp;output-format=jpg&amp;output-quality=80" alt="near by popular restaurant picture" src="https://mp-seoul-image-production-s3.mangoplate.com/383407/1042666_1592468984979_34076?fit=around|383:383&amp;crop=383:383;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true">
-      </a>
-  
-      <div class="NearByRestaurantItem__Content">
-        <div class="NearByRestaurantItem__NameWrap">
-          <a class="NearByRestaurantItem__Name" href="/restaurants/-bsxlFqhXFov">은평커피로스터스</a>
-          <span class="NearByRestaurantItem__Rating NearByRestaurantItem__Rating--Expected">4.1</span>
-        </div>
-  
-        <div class="NearByRestaurantItem__MetroAndCuisine">
-          <span class="NearByRestaurantItem__Metro">은평구</span>
-          <span class="NearByRestaurantItem__SubCuisine">카페 / 디저트</span>
-        </div>
-  
-        <div class="NearByRestaurantItem__InfoWrap">
-          <dl class="NearByRestaurantItem__Info">
-            <dt class="NearByRestaurantItem__InfoLabel">음식 종류</dt>
-            <dd class="NearByRestaurantItem__InfoValue NearByRestaurantItem__InfoValue--SubCuisine">카페 / 디저트</dd>
-          </dl>
-  
-          <dl class="NearByRestaurantItem__Info">
-            <dt class="NearByRestaurantItem__InfoLabel">위치</dt>
-            <dd class="NearByRestaurantItem__InfoValue NearByRestaurantItem__InfoValue--Metro">은평구</dd>
-          </dl>
-  
-          
-	        </div>
-	      </div>
-	    </div>
-	  </li></ul>
+              </ul>
             </section>
 
 

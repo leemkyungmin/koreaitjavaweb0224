@@ -23,5 +23,8 @@ public interface BoardDAO {
 	//appointment 개수 가져오기 
 	public int appointmentCount(String dSaup_no);
 	
+	// 주소로 사이드 리스트 받아 오기 
+	public ArrayList<DepartmentDTO> getSide_list(String addr);
+	
 	public ArrayList<MenuDTO> menuList(String dSaup_no);
 }
