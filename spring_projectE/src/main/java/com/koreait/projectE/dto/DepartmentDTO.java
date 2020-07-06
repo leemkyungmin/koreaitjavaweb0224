@@ -4,7 +4,8 @@ import java.sql.Date;
 
 public class DepartmentDTO {
 
-	private long dNo,dSeat,dHit,dRating,dAccpet;
+	private long dNo,dSeat,dHit,dAccpet;
+	private double dRating;
 	private String dPhone,dName,dAddress,dType,dPoto,dStart,dEnd,dParking,dSaup_no;
 	private Date dReg_date;
 	
@@ -50,7 +51,7 @@ public class DepartmentDTO {
 		this.dHit = dHit;
 	}
 
-	public long getdRating() {
+	public double getdRating() {
 		return dRating;
 	}
 
@@ -130,7 +131,7 @@ public class DepartmentDTO {
 		this.dReg_date = dReg_date;
 	}
 
-	public DepartmentDTO(long dNo, long dSeat,long dAccpet, String dSaup_no, long dHit, long dRating, String dPhone, String dName,
+	public DepartmentDTO(long dNo, long dSeat,long dAccpet, String dSaup_no, long dHit, double dRating, String dPhone, String dName,
 			String dAddress, String dType, String dPoto, String dStart, String dEnd, String dParking, Date dReg_date) {
 		super();
 		this.dAccpet = dAccpet;

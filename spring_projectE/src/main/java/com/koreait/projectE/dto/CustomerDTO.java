@@ -5,10 +5,17 @@ public class CustomerDTO {
 	private int cNo;
 	private String cId,cPw,cName,cNickname,cPhone,cEmail,cGrade,cDept,cGender;
 	
-	public CustomerDTO() {
-		// TODO Auto-generated constructor stub
-	}
-
+	
+	
+	//private String cPoto;
+	//cPoto getter/setter 생성 
+	// 하단 Constructor String cPoto 추가 
+	// this.cPoto = cPoto 추가 
+	
+	
+	public CustomerDTO() {}
+	
+	
 	public CustomerDTO(int cNo, String cId, String cPw, String cName, String cNickname, String cPhone, String cEmail,
 			String cGrade, String cDept, String cGender) {
 		super();
