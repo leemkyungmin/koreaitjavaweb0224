@@ -43,7 +43,7 @@
 						  <a href="javascript:void(20)">부산</a> |
 						  <a href="javascript:void(21)">제주</a><br/><br/>
 				<hr/>
-			</div>
+			</div> 
 			
 			<div class="footer-bottom">
 				<div class="footer-info">				
