@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html lang="ko">
     <head>
+   	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
         <meta charset="utf-8">
         <!-- meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/ -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -262,6 +264,19 @@
                         <input type="email" class="form-control" id="cEmail" name="cEmail" data-rule-required="true" placeholder="이메일" maxlength="40"> <br/>
                         <input type="button" value="이메일 인증하기" onclick="#" class="btn btn-primary" />
                     </div>
+                </div>
+                <div class="form-group" id="divPhoto">
+                	<label for="inputPhoto" class="col-lg-2 control-label">프로필 사진</label><br/> &nbsp;&nbsp;&nbsp;
+                	<div id="photoBox" style="width:50; height:50;">
+                		<input type="file" id="cPhoto" name="cPhoto" /> 
+                		<c:if test="${empty cPhoto }">
+                			<i class="fa fa-camera-retro fa-3x"></i>
+                		</c:if>
+                		<c:if test="${not empty cPhoto }">
+                			<img src="${cPhoto }" />
+                		</c:if> <br/>
+                		<input type="button" value="업로드" onclick="#" class="btn btn-primary" />
+                	</div>
                 </div>
                 <div class="form-group" id="divPhoneNumber">
                     <label for="inputPhoneNumber" class="col-lg-2 control-label">휴대폰 번호</label>

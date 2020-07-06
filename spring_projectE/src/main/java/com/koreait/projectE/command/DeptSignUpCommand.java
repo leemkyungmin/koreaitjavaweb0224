@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.koreait.projectE.commom.Command;
-import com.koreait.projectE.dao.DAO;
+import com.koreait.projectE.dao.LoginDAO;
 
 public class DeptSignUpCommand implements Command {
 
@@ -23,7 +23,7 @@ public class DeptSignUpCommand implements Command {
 		String dId = request.getParameter("dId");
 		String dPw = request.getParameter("dPw");
 		
-		DAO dao = sqlSession.getMapper(DAO.class);
+		LoginDAO dao = sqlSession.getMapper(LoginDAO.class);
 		
 		dao.deptSignUp(dSaup_no, dId, dPw);
 		

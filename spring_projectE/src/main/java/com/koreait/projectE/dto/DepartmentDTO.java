@@ -6,24 +6,37 @@ public class DepartmentDTO {
 
 	private long dNo,dSeat,dHit,dAccpet;
 	private double dRating;
-	private String dPhone,dName,dAddress,dType,dPoto,dStart,dEnd,dParking,dSaup_no;
+	private String dPhone,dName,dAddress,dType,dPhoto,dStart,dEnd,dParking,dSaup_no;
 	private Date dReg_date;
 	
 	public DepartmentDTO() {}
+
+	public DepartmentDTO(long dNo, long dSeat, long dHit, long dAccpet, double dRating, String dPhone, String dName,
+			String dAddress, String dType, String dPhoto, String dStart, String dEnd, String dParking, String dSaup_no,
+			Date dReg_date) {
+		super();
+		this.dNo = dNo;
+		this.dSeat = dSeat;
+		this.dHit = dHit;
+		this.dAccpet = dAccpet;
+		this.dRating = dRating;
+		this.dPhone = dPhone;
+		this.dName = dName;
+		this.dAddress = dAddress;
+		this.dType = dType;
+		this.dPhoto = dPhoto;
+		this.dStart = dStart;
+		this.dEnd = dEnd;
+		this.dParking = dParking;
+		this.dSaup_no = dSaup_no;
+		this.dReg_date = dReg_date;
+	}
 
 	public long getdNo() {
 		return dNo;
 	}
 
-	public long getdAccpet() {
-		return dAccpet;
-	}
-
-	public void setdAccpet(int dAccpet) {
-		this.dAccpet = dAccpet;
-	}
-
-	public void setdNo(int dNo) {
+	public void setdNo(long dNo) {
 		this.dNo = dNo;
 	}
 
@@ -31,31 +44,31 @@ public class DepartmentDTO {
 		return dSeat;
 	}
 
-	public void setdSeat(int dSeat) {
+	public void setdSeat(long dSeat) {
 		this.dSeat = dSeat;
-	}
-
-	public String getdSaup_no() {
-		return dSaup_no;
-	}
-
-	public void setdSaup_no(String dSaup_no) {
-		this.dSaup_no = dSaup_no;
 	}
 
 	public long getdHit() {
 		return dHit;
 	}
 
-	public void setdHit(int dHit) {
+	public void setdHit(long dHit) {
 		this.dHit = dHit;
+	}
+
+	public long getdAccpet() {
+		return dAccpet;
+	}
+
+	public void setdAccpet(long dAccpet) {
+		this.dAccpet = dAccpet;
 	}
 
 	public double getdRating() {
 		return dRating;
 	}
 
-	public void setdRating(int dRating) {
+	public void setdRating(double dRating) {
 		this.dRating = dRating;
 	}
 
@@ -91,12 +104,12 @@ public class DepartmentDTO {
 		this.dType = dType;
 	}
 
-	public String getdPoto() {
-		return dPoto;
+	public String getdPhoto() {
+		return dPhoto;
 	}
 
-	public void setdPoto(String dPoto) {
-		this.dPoto = dPoto;
+	public void setdPhoto(String dPhoto) {
+		this.dPhoto = dPhoto;
 	}
 
 	public String getdStart() {
@@ -123,6 +136,14 @@ public class DepartmentDTO {
 		this.dParking = dParking;
 	}
 
+	public String getdSaup_no() {
+		return dSaup_no;
+	}
+
+	public void setdSaup_no(String dSaup_no) {
+		this.dSaup_no = dSaup_no;
+	}
+
 	public Date getdReg_date() {
 		return dReg_date;
 	}
@@ -130,26 +151,7 @@ public class DepartmentDTO {
 	public void setdReg_date(Date dReg_date) {
 		this.dReg_date = dReg_date;
 	}
-
-	public DepartmentDTO(long dNo, long dSeat,long dAccpet, String dSaup_no, long dHit, double dRating, String dPhone, String dName,
-			String dAddress, String dType, String dPoto, String dStart, String dEnd, String dParking, Date dReg_date) {
-		super();
-		this.dAccpet = dAccpet;
-		this.dNo = dNo;
-		this.dSeat = dSeat;
-		this.dSaup_no = dSaup_no;
-		this.dHit = dHit;
-		this.dRating = dRating;
-		this.dPhone = dPhone;
-		this.dName = dName;
-		this.dAddress = dAddress;
-		this.dType = dType;
-		this.dPoto = dPoto;
-		this.dStart = dStart;
-		this.dEnd = dEnd;
-		this.dParking = dParking;
-		this.dReg_date = dReg_date;
-	}
+	
 	
 	
 }
