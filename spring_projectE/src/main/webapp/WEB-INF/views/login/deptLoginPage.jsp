@@ -70,7 +70,7 @@
         </div>
         <div style="text-align: center;">
         	<a href="#">아이디/비밀번호 찾기</a> <br/>
-        	<a href="deptSignUp">업체 회원가입</a>
+        	<a href="deptSignUpPage">업체 회원가입</a>
         </div>
         <button id="login" class="btn btn-lg btn-primary btn-block" type="submit">로 그 인</button>
       </form>
