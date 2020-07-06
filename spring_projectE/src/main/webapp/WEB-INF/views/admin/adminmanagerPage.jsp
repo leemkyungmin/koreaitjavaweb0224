@@ -8,8 +8,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+
+<style>
+	table >thead >tr{
+		background-color: skyblue;
+	}
+	table{
+		text-align: center;
+	}
+	#custom{
+		display: 'block';
+	}
+</style>
+
+<script type="text/javascript">
+	
+	function fn_cus_list(){
+		document.getElementById("dept").style.display='block';
+		document.getElementById("custom").style.display='none';
+		
+	}
+	function fn_dept_list(){
+		document.getElementById("custom").style.display='block';
+		document.getElementById("dept").style.display='none';
+		
+	}
+</script>
+
 <body>
-	<h3>회원관리</h3>
+	
+	<button id="cus_btn" onclick="fn_cus_list()"><h3>회원관리</h3></button>
+	<button id="dept_btn" onclick="fn_dept_list()"><h3>업체관리</h3></button>
+	<div id="custom">
+	
 	<table border="1">
 			<c:forEach var="user" items="${cList }">
 			<tr>
@@ -40,43 +71,46 @@
 			</tr>
 			</c:forEach>
 	</table>
-
-	<br/><br/>
-	
+	</div>
+	<div id="dept">	
 	<h3>업체관리</h3>	
 		<table border="1">
+			<thead>
+				<tr>
+					<td>번호</td>
+					<td>사업자 등록번호</td>
+					<td>휴대폰 번호</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+			</thead>
 			<c:forEach var="dept" items="${dList }">
 				<tr>
-					<td bgcolor="gray">번호</td>
 					<td>${dept.dNo }</td>
-					<td bgcolor="gray">번호</td>
-					<td>${dept.dSeat }</td>
-					<td bgcolor="gray">번호</td>
 					<td>${dept.dSaup_no}</td>
-					<td bgcolor="gray">휴대폰번호</td>
+					<td>${dept.dSeat }</td>
+					 
 					<td>${dept.dPhone }</td>
-					<td bgcolor="gray">번호</td>
 					<td>${dept.dNo }</td>
-					<td bgcolor="gray">번호</td>
 					<td>${dept.dNo }</td>
-					<td bgcolor="gray">번호</td>
 					<td>${dept.dNo }</td>
-					<td bgcolor="gray">번호</td>
 					<td>${dept.dNo }</td>
-					<td bgcolor="gray">번호</td>
 					<td>${dept.dNo }</td>
-					<td bgcolor="gray">번호</td>
 					<td>${dept.dNo }</td>
-					<td bgcolor="gray">번호</td>
 					<td>${dept.dNo }</td>
-					<td bgcolor="gray">번호</td>
 					<td>${dept.dNo }</td>
-					<td bgcolor="gray">번호</td>
 					<td>${dept.dNo }</td>
 				</tr>
 			</c:forEach>
 		</table>
-	<br/><br/>
+	</div>
 	
 	로그아웃
 	
