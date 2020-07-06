@@ -20,5 +20,8 @@ public interface BoardDAO {
 	public void UpdateHit(String dSaup_no);
 	// 메뉴 정보 가져오기
 	
+	//appointment 개수 가져오기 
+	public int appointmentCount(String dSaup_no);
+	
 	public ArrayList<MenuDTO> menuList(String dSaup_no);
 }

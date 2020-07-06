@@ -52,7 +52,7 @@
                 
  
  
-            <form class="form-horizontal" role="form" method="post" action="javascript:alert( '가입성공' );">
+            <form class="form-horizontal" role="form" method="post" action="deptSignUp">
                 <div class="form-group">
                     <label for="provision" class="col-lg-2 control-label">회원가입약관</label>
                     <div class="col-lg-10" id="provision">
@@ -199,13 +199,13 @@
                 <div class="form-group" id="divId">
                     <label for="inputId" class="col-lg-2 control-label">아이디</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control onlyAlphabetAndNumber" id="cId" data-rule-required="true" placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">
+                        <input type="text" class="form-control onlyAlphabetAndNumber" name="dId" id="cId" data-rule-required="true" placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">
                     </div>
                 </div>
                 <div class="form-group" id="divPassword">
                     <label for="inputPassword" class="col-lg-2 control-label">패스워드</label>
                     <div class="col-lg-10">
-                        <input type="password" class="form-control" id="cPw" name="excludeHangul" data-rule-required="true" placeholder="패스워드" maxlength="30">
+                        <input type="password" class="form-control" id="cPw" name="dPw" data-rule-required="true" placeholder="패스워드" maxlength="30">
                     </div>
                 </div>
                 <div class="form-group" id="divPasswordCheck">
@@ -215,10 +215,11 @@
                     </div>
                 </div>
                 
+                
                 <div class="form-group" id="divPhoneNumber">
                     <label for="inputPhoneNumber" class="col-lg-2 control-label">사업자 번호</label>
                     <div class="col-lg-10">
-                        <input type="tel" class="form-control onlyNumber" id="cPhone" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
+                        <input type="tel" class="form-control onlyNumber" id="cPhone" name="dSaup_no" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="10">
                     </div>
                 </div>
                 <div class="form-group">
@@ -255,7 +256,7 @@
                         var inputVal = $(this).val();
                         $(this).val(inputVal.replace(/[^0-9]/gi,''));
                     }
-                });    
+                });
                 
                 //------- 검사하여 상태를 class에 적용
                 $('#id').keyup(function(event){
@@ -394,13 +395,13 @@
                     }
                     
                     //아이디 검사
-                    if($('#id').val()==""){
+                    if($('#cId').val()==""){
                         modalContents.text("아이디를 입력하여 주시기 바랍니다.");
                         modal.modal('show');
                         
                         divId.removeClass("has-success");
                         divId.addClass("has-error");
-                        $('#id').focus();
+                        $('#cId').focus();
                         return false;
                     }else{
                         divId.removeClass("has-error");
@@ -408,7 +409,7 @@
                     }
                     
                     //패스워드 검사
-                    if($('#password').val()==""){
+                    if($('#cPw').val()==""){
                         modalContents.text("패스워드를 입력하여 주시기 바랍니다.");
                         modal.modal('show');
                         
@@ -448,51 +449,10 @@
                         divPasswordCheck.addClass("has-success");
                     }
                     
-                    //이름
-                    if($('#name').val()==""){
-                        modalContents.text("이름을 입력하여 주시기 바랍니다.");
-                        modal.modal('show');
-                        
-                        divName.removeClass("has-success");
-                        divName.addClass("has-error");
-                        $('#name').focus();
-                        return false;
-                    }else{
-                        divName.removeClass("has-error");
-                        divName.addClass("has-success");
-                    }
                     
-                    //별명
-                    if($('#nickname').val()==""){
-                        modalContents.text("별명을 입력하여 주시기 바랍니다.");
-                        modal.modal('show');
-                        
-                        divNickname.removeClass("has-success");
-                        divNickname.addClass("has-error");
-                        $('#nickname').focus();
-                        return false;
-                    }else{
-                        divNickname.removeClass("has-error");
-                        divNickname.addClass("has-success");
-                    }
-                    
-                    //이메일
-                    if($('#email').val()==""){
-                        modalContents.text("이메일을 입력하여 주시기 바랍니다.");
-                        modal.modal('show');
-                        
-                        divEmail.removeClass("has-success");
-                        divEmail.addClass("has-error");
-                        $('#email').focus();
-                        return false;
-                    }else{
-                        divEmail.removeClass("has-error");
-                        divEmail.addClass("has-success");
-                    }
-                    
-                    //휴대폰 번호
+                    //사업자 번호
                     if($('#phoneNumber').val()==""){
-                        modalContents.text("휴대폰 번호를 입력하여 주시기 바랍니다.");
+                        modalContents.text("사업자 번호를 입력하여 주시기 바랍니다.");
                         modal.modal('show');
                         
                         divPhoneNumber.removeClass("has-success");
