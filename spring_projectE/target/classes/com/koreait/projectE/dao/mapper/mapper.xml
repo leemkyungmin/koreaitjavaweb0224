@@ -15,4 +15,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (#{param1}, #{param2}, #{param3})
 	</insert>
 	
+	<select id="idCheck" resultType="int">
+		SELECT COUNT(*) FROM CUSTOMER
+		WHERE CID = #{cId} 
+	</select>
+	
 </mapper>

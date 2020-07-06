@@ -8,4 +8,7 @@ public interface DAO {
 	// 업체 회원가입
 	public void deptSignUp(String dSaup_no, String dId, String dPw );
 	
+	// 아이디 중복체크
+	public int idCheck(String cId);
+	
 }
