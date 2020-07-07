@@ -13,9 +13,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from DEPARTMENT_INFO
 	</select>
 	
-	<delete id="getCustomList" >
-		delete * from CUSTOMER 
-	</delete>
 	
 	
 </mapper>

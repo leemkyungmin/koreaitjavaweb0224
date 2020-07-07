@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.koreait.projectE.dto.CustomerDTO;
 import com.koreait.projectE.dto.DepartmentDTO;
-import com.koreait.projectE.dto.adminDTO;
 
 public interface adminDAO {
 
