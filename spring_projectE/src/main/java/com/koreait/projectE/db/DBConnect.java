@@ -12,7 +12,7 @@ public class DBConnect {
 	private static String password = "1111";
 	
 	// 메소드
-	public static Connection getConnection() throws Exception {
+	public static Connection connection() throws Exception {
 		Class.forName(jdbcDriver);
 		return DriverManager.getConnection(url, user, password);
 	}
