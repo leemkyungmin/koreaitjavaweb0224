@@ -22,6 +22,9 @@ public class ReviewInsertCommand implements Command {
 		
 		int rPoint = Integer.parseInt(mrequest.getParameter("rPoint"));
 		String rTitle = mrequest.getParameter("rTitle");
+		
+		// 제목이 없으면 제목없음으로?
+		
 		String rContent = mrequest.getParameter("rContent");
 		List<MultipartFile> fileList = mrequest.getFiles("rPoto");
 		

@@ -159,6 +159,7 @@
 		    background-color: #E9E9E9;
 		    color: #FFFFFF;
 		    cursor: not-allowed;
+		    pointer-events: none;
 		}
 		
 		ul, li { list-style: none; }
