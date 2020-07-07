@@ -63,12 +63,12 @@
 			border-radius: 3px;
 			box-sizing: border-box;
 			padding: 16px;
+			height: 300px;
 		}
 		
 		.ReviewWritenPage_Title {
 			margin-bottom: 10px;
 			height: 30px;
-<<<<<<< HEAD
 			border-bottom: 1px solid lightgray;
 		}
 		
@@ -76,9 +76,7 @@
 			text-align: center;
 			display: inline-block;
 			width: 50px;
-=======
 			border-bottom: 1px solid lightgray; 
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 		}
 		
 		.ReviewWritenPage_Title input {
@@ -111,7 +109,7 @@
 			right: 0;
 			font-size: 12px;
 			color: #7F7F7F;
-			margin-right: 5px;
+			margin-right: 10px;
 		}
 		
 		.ReviewWritenPage_PictureWrap {
@@ -161,6 +159,7 @@
 		    background-color: #E9E9E9;
 		    color: #FFFFFF;
 		    cursor: not-allowed;
+		    pointer-events: none;
 		}
 		
 		ul, li { list-style: none; }
