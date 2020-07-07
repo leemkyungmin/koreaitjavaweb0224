@@ -25,26 +25,32 @@ public class ReviewInsertCommand implements Command {
 		String rContent = mrequest.getParameter("rContent");
 		List<MultipartFile> fileList = mrequest.getFiles("rPoto");
 		
-		System.out.println(rPoint);
-		System.out.println(rContent);
-		System.out.println(fileList.size());
-		
 		ReviewDAO rDAO = sqlSession.getMapper(ReviewDAO.class);
 		
-		if (fileList != null && fileList.size() > 0) {
+		String rPoto = ""; // 실제 DB에 들어가는 필드
+		int count = 0;
+		
+		if (fileList != null && fileList.size() > 0) { // 파일첨부 O
 			for (MultipartFile file : fileList) {
 				if (!file.isEmpty()) {
+					count++;
 					String originFilename = file.getOriginalFilename();
 					String extName = originFilename.substring(originFilename.lastIndexOf(".") + 1);
-					String saveFilename = null;
+					String saveFilename = null;			
 					
 					try {
 						saveFilename = originFilename.substring(0, originFilename.lastIndexOf(".")) + 
 								"_" +
 								System.currentTimeMillis() +
-								"." + extName;
+								"." + extName;	
 						
-						String realPath = mrequest.getSession().getServletContext().getRealPath("/resources/storage");
+						if (count == fileList.size()) {
+							rPoto += saveFilename;
+						} else {
+							rPoto += saveFilename + ",";
+						}
+						
+						String realPath = mrequest.getSession().getServletContext().getRealPath("/resources/storage/review_img");
 						
 						File directory = new File(realPath);
 						if (!directory.exists()) {
@@ -60,9 +66,10 @@ public class ReviewInsertCommand implements Command {
 					}
 				}
 			}
+			rDAO.insertReview(rTitle, rContent, rPoint, rPoto);	
+		} else { // 파일첨부 X
+			rDAO.insertReview(rTitle, rContent, rPoint, null);
 		}
-		
-		rDAO.insertReview(rTitle, rContent, rPoint,"2222");
 	}
 
 }
