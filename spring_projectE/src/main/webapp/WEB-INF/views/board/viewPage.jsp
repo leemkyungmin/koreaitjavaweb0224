@@ -404,7 +404,7 @@
 	             
 	            </header>
 	            <div id="review">
-	 			
+	 			 
 	            <ul class="RestaurantReviewList__ReviewList">
 	              
 				<c:forEach var ="review" items="${reviewList }">
