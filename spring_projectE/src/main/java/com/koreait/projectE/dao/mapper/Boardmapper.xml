@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<select id="reviewList" resultType="com.koreait.projectE.dto.ReviewDTO">
-		select  r.rNo,r.rpoint,r.rdepth,r.REPORTCOUNT,c.cnickname,r.rTitle,r.rcontent,r.rPoto,r.rwriter_date 
+		select  r.rNo,r.rpoint,r.rdepth,r.REPORTCOUNT,c.cnickname,r.rTitle,r.rcontent,r.rPoto,r.rwriter_date,r.rAppointment 
 		from review r,customer c 
 		where r.dsaup_no=#{dSaup_no} and r.cno=c.cno 
 	</select>
@@ -30,6 +30,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="appointmentCount" resultType="int">
 		select count(*) as count from appointment where dSaup_no=#{dSaup_no}
+	</select>
+	<select id="getSide_list" parameterType="String" resultType="com.koreait.projectE.dto.DepartmentDTO">
+		select * 
+		from Department_info
+		 where DADDRESS LIKE '%' || #{addr} || '%'  ORDER BY DRATING DESC
 	</select>
 	
 </mapper>

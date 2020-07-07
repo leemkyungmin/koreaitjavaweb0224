@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.koreait.projectE.dao.adminDAO">
+	
+	<select id="getCustomList" resultType="com.koreait.projectE.dto.CustomerDTO">
+		select * from CUSTOMER
+	</select>
+	
+	<select id="getDepartmentList" resultType="com.koreait.projectE.dto.DepartmentDTO">
+		select * from DEPARTMENT_INFO
+	</select>
+	
+</mapper>

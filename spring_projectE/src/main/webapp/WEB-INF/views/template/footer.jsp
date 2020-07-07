@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -8,8 +9,7 @@
 			<div class="footer-top">
 				<div class="footer-logo">
 					<a href="/"><img alt="로고이미지" src="<c:url value="/resources/assets/images/logo01.png" />" class="inner-logo"></a><br/>
-					----------------<br>
-					Help yourself!
+					<br>
 					
 				</div>
 				<div class="footer-introduce">
