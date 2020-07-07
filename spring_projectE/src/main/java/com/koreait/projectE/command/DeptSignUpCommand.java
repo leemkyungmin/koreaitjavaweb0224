@@ -26,7 +26,7 @@ public class DeptSignUpCommand implements Command {
 		LoginDAO dao = sqlSession.getMapper(LoginDAO.class);
 		
 		dao.deptSignUp(dSaup_no, dId, dPw);
-		
+		  
 	}
 
 }
