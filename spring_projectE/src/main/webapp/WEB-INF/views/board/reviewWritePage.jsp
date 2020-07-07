@@ -30,7 +30,7 @@
 			
 		.ReviewWritenpage_Container {
 			width: 687px;
-			margin: 101px auto 62px;
+			margin: 50px auto 62px;
 		}
 		
 		.DeptName {
@@ -68,17 +68,11 @@
 		.ReviewWritenPage_Title {
 			margin-bottom: 10px;
 			height: 30px;
-		}
-		
-		.ReviewWritenPage_Title label {
-			text-align: center;
-			display: inline-block;
-			width: 50px;
+			border-bottom: 1px solid lightgray; 
 		}
 		
 		.ReviewWritenPage_Title input {
-			border: 1px solid #DBDBDB;
-			padding: 5px;
+			border: 0;
 		}
 		
 		.ReviewWritenPage_Editor {
@@ -297,7 +291,7 @@
 					<div class="ReviewWritenPage_Content">
 						<!-- 리뷰작성 -->
 						<div class="ReviewWritenPage_Title">
-							<label for="title-lbl">제목</label> <input id="title-lbl" type="text" name="rTitle" size="50"/>
+							<input id="title-lbl" type="text" name="rTitle" size="50" placeholder="제목을 입력하세요."/>
 						</div>
 						<textarea name="rContent" class="ReviewWritenPage_Editor" id="review" rows="1" cols="1" placeholder="주문하신 메뉴는 어떠셨나요? 식당의 분위기와 서비스도 궁금해요!"></textarea>
 						<p class="ReviewWritenPage_TextLength" id="lengthResult" name="lengthResult">
