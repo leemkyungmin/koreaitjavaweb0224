@@ -30,7 +30,7 @@
 			
 		.ReviewWritenpage_Container {
 			width: 687px;
-			margin: 101px auto 62px;
+			margin: 50px auto 62px;
 		}
 		
 		.DeptName {
@@ -68,6 +68,7 @@
 		.ReviewWritenPage_Title {
 			margin-bottom: 10px;
 			height: 30px;
+			border-bottom: 1px solid lightgray;
 		}
 		
 		.ReviewWritenPage_Title label {
@@ -84,7 +85,7 @@
 		.ReviewWritenPage_Editor {
 			overflow: hidden;
 			overflow-wrap: break-word;
-			height: 150px;
+			height: 200px;
 			display: block;
 			width: 100%;
 			border: 0;
@@ -241,7 +242,7 @@
 		// 리뷰 글자수 계산 스크립트
 		$(document).ready(function() {
 			
-		    $('#review').keyup(function () {
+		    $('#review').keydown(function () {
 		    	var review = $(this).val();
 		    	$('#lengthResult').html(review.length + ' / 1000');
 		    	
@@ -280,7 +281,7 @@
 		<div class="ReviewWritenpage_Container">
 			<div class="ReviewWritenpage_DeptName">
 				<!-- 가게이름 -->
-				<strong class="DeptName">${deptDTO.dName}김밥천국</strong>
+				<strong class="DeptName">${deptDTO.dName }</strong>
 			</div>
 			<div class="ReviewPoint">
 				<!-- 별 개수 선택 -->
@@ -315,7 +316,9 @@
 			</div>
 			<div class="ReviewWritenPage_ButtonsWrap">
 				<!-- 버튼 -->
-				<input type="button" class="ReviewWritingPage_CalcelButton" onclick="history.go(-1)" value="취소"/>
+				<input type="hidden" value="${cNo }" name="cNo">
+				<input type="hidden" value="${deptDTO.dSaup_no }" name="dSaup_no">
+				<button type="button" class="ReviewWritingPage_CalcelButton" data-dismiss="modal">취소</button>
 				<input type="button" id="submitBtn" class="ReviewWritingPage_SubmitButton ReviewWritingPage_SubmitButton_Deactive" onclick="fn_insertReview(this.form)" value="리뷰 올리기" />
 			</div>
 		</div>

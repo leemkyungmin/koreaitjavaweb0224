@@ -19,7 +19,7 @@
 
 	function fn_review(){
 	   
-	   $('#Modal .modal-content').load("insertPage?dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
+	   $('#Modal .modal-content').load("reviewWritePage?&dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
 	   $('#Modal').modal();
 	  
 	}
@@ -30,8 +30,8 @@
           display: none;
           position:relative;
           margin:auto;
-          width:80%;
-          height:100%;
+          width:1000px;
+          height:800px;
           z-index:1;
         }
         
@@ -46,7 +46,7 @@
           margin:100px auto;
           padding:20px 10px;
           background:#fff;
-          border:2px solid #666;
+          
         }
         
         #Modal .modal_layer {
@@ -262,12 +262,12 @@
 				</script>
 	            </div>
 				
-				<div class="modal fade" id='Modal' tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-xl" role="document">
-			    		<div class="modal-content">
+				<div class="modal fade" id='Modal' tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true" data-backdrop="static">
+					<div class="modal-dialog modal-xl" role="document" data-backdrop="static">
+			    		<div class="modal-content" data-backdrop="static">
 			    		</div>
 			  		</div>
-			  		<div class="modal_layer"></div>
+			  		<div class="modal_layer" data-backdrop="static"></div>
 				</div>
 				  
 				

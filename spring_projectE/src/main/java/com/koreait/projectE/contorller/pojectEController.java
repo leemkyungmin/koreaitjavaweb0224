@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.koreait.projectE.command.CustomerSignUpCommand;
 import com.koreait.projectE.command.boardViewCommand;
+import com.koreait.projectE.command.reviewWriteCommand;
 import com.koreait.projectE.commom.Command;
 
 
@@ -45,20 +46,15 @@ public class pojectEController {
 	}
 	
 	@RequestMapping("reviewWritePage")
-	public String reviewPage() {
+	public String reviewPage(HttpServletRequest request,Model model) {
+		
+		model.addAttribute("request", request);
+		command= new reviewWriteCommand();
+		command.execute(sqlSession, model);
 		return "board/reviewWritePage";
 	}
 	
-	//테스트용 
-	@RequestMapping("insertPage")
-	public String insertPage(@RequestParam("dSaup_no") String dSaup_no,@RequestParam("cNo") int cNo,Model model) {
-		
-		model.addAttribute("dSaup_no", dSaup_no);
-		model.addAttribute("cNo", cNo);
-		
-		return "board/insertPage";
-	}
-	//테스트
+	
 	
 
 	
