@@ -304,7 +304,7 @@
 				</div>
 				<div class="ReviewWritenPage_PictureWrap">
 					<!-- 이미지 업로드 -->
-					<input type="file" id="input_file" name="files" multiple />
+					<input type="file" id="input_file" name="rPoto" multiple />
 				</div>
 			</div>
 			<div class="ReviewWritenPage_ButtonsWrap">
