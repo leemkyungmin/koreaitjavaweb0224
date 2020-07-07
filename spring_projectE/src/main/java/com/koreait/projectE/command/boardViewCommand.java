@@ -38,7 +38,7 @@ public class boardViewCommand implements Command {
 		System.out.println(addr[1]);
 		ArrayList<DepartmentDTO> side_list = bdao.getSide_list(addr[1]);
 		model.addAttribute("side_list", side_list);
-		
+		System.out.println(side_list.get(0).getdPhoto());
 		//appointment(예약자 db)에서 총 예약 갯수 가져오기
 		model.addAttribute("appointmentCount",bdao.appointmentCount(dSaup_no));
 		

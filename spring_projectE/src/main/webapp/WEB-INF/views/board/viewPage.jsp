@@ -284,7 +284,7 @@
 	                <span class="RestaurantReviewList__RestaurantNameSuffixDesktop">리뷰</span>
 	              	<span class="RestaurantReviewList__AllCount">(${reviewCount })</span>
 	              </h2>
-				<!--
+				
 	              <ul class="RestaurantReviewList__FilterList">
 	                <li class="RestaurantReviewList__FilterItem">
 	                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__AllFilterButton RestaurantReviewList__FilterButton--Selected">
@@ -294,23 +294,19 @@
 	
 	                <li class="RestaurantReviewList__FilterItem">
 	                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__RecommendFilterButton">
-	                    맛있다
+	         	예약자 리뷰
 	                  <span class="RestaurantReviewList__ReviewCount">18</span></button>
 	                </li>
 	
 	                <li class="RestaurantReviewList__FilterItem">
 	                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__OkFilterButton">
-	                    괜찮다
+	                    비 예약자 리뷰
 	                  <span class="RestaurantReviewList__ReviewCount">1</span></button>
 	                </li>
 	
-	                <li class="RestaurantReviewList__FilterItem">
-	                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__NotRecommendButton">
-	                    별로
-	                  <span class="RestaurantReviewList__ReviewCount">1</span></button>
-	                </li>
+	                
 	              </ul>
-	             -->
+	             
 	            </header>
 	 			
 	            <ul class="RestaurantReviewList__ReviewList">
@@ -391,7 +387,7 @@
 				      <a class="NearByRestaurantItem__PictureLink" href="viewPage?dSaup_no=${side.dSaup_no }">
 				       <c:set var="index" value="${fn:indexOf(side.dPhoto,',') }"></c:set>
 				       
-				        <img class="NearByRestaurantItem__Picture loaded"alt="${fn:substring(side.dPhoto,0,index) }" src="${pageContext.request.contextPath }/resources/storage/department_img/${fn:substring(side.dPhoto,0,index) }" >
+				        <img class="NearByRestaurantItem__Picture loaded" alt="${fn:substring(side.dPhoto,0,index) }" src="${pageContext.request.contextPath }/resources/storage/department_img/${fn:substring(side.dPhoto,0,index) }" >
 				       
 				      </a>
 				  
