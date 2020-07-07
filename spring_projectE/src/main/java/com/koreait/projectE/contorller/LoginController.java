@@ -6,10 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-<<<<<<< HEAD
-import org.springframework.web.bind.annotation.GetMapping;
-=======
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,9 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreait.projectE.command.CustomerSignUpCommand;
 import com.koreait.projectE.command.DeptSignUpCommand;
-import com.koreait.projectE.command.IdCheckCommand;
 import com.koreait.projectE.commom.Command;
-import com.koreait.projectE.dao.DAO;
+import com.koreait.projectE.dao.LoginDAO;
+
 
 @Controller
 public class LoginController {
@@ -70,22 +66,20 @@ public class LoginController {
 		return "redirect:deptLoginPage";
 	}
 	
-	@RequestMapping(value="idCheck",method=RequestMethod.POST)
+	@RequestMapping(value="idCheck", method=RequestMethod.POST, produces="text/html; charset=utf-8")
 	@ResponseBody
-	public Boolean idCheck(HttpServletRequest request, Model model) throws Exception {
-		model.addAttribute("request", request);
-		command = new IdCheckCommand();
-		command.execute(sqlSession, model);
-		return true;
-	}
-	@GetMapping("idCheck")
-	public @ResponseBody int idCheck(@RequestParam("cId")String cId, DAO dao) {
-		
-		int cnt=dao.idCheck(cId);
-		return cnt;
+	public String idCheck(@RequestParam("cId") String cId,
+						Model model) {
+		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
+		return lDAO.idCheck(cId) + "";
 	}
 	
-	
+	@RequestMapping(value="NicknameCheck", method=RequestMethod.POST, produces="text/html; charset=utf-8")
+	@ResponseBody
+	public String NicknameCheck(@RequestParam("cNickname") String cNickname) {
+		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
+		return lDAO.NicknameCheck(cNickname) + "";
+	}
 }
 
 

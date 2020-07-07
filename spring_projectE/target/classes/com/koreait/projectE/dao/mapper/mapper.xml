@@ -15,15 +15,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (#{param1}, #{param2}, #{param3})
 	</insert>
 	
-<<<<<<< HEAD
 	<select id="idCheck" parameterType="String" resultType="int">
-		SELECT COUNT(CID) FROM CUSTOMER WHERE CID=#{CID}
-	</select>
-=======
-	<select id="idCheck" resultType="int">
 		SELECT COUNT(*) FROM CUSTOMER
-		WHERE CID = #{cId} 
+		WHERE CID = #{param1} 
 	</select> 
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
+	
+	<select id="NicknameCheck" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM CUSTOMER
+		WHERE CNICKNAME = #{param1}
+	</select>
 	
 </mapper>

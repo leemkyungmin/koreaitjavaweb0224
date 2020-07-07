@@ -8,7 +8,9 @@ public interface LoginDAO {
 	// 업체 회원가입
 	public void deptSignUp(String dSaup_no, String dId, String dPw );
 	
-	// 아이디 중복체크
+	// 일반 회원 아이디 중복체크
 	public int idCheck(String cId);
-	   
+	
+	// 별명 중복체크
+	public int NicknameCheck(String cNickname);
 }
