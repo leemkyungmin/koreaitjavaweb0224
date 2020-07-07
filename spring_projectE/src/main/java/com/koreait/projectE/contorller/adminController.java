@@ -31,7 +31,7 @@ public class adminController {
 		
 		command=new AdminCommand();
 		command.execute(sqlSession, model);
-		return "admin/delete";
+		return "redirect:adminmanagePage";
 	}
 	
 	
