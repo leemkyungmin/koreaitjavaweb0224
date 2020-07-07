@@ -4,6 +4,12 @@
 <!DOCTYPE html>
 <html lang="ko">
     <head>
+    <style>
+    	#emailAuth{
+    		display:none;
+    	}
+    </style>
+    
    	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
         <meta charset="utf-8">
         <!-- meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/ -->
@@ -19,9 +25,24 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
           
         <script type="text/javascript">
+        
+        var modalContents = $(".modal-contents");
+        var modal = $("#defaultModal");
+        
+        var provision = $('#provision');
+        var memberInfo = $('#memberInfo');
+        var divId = $('#divId');
+        var divPassword = $('#divPassword');
+        var divPasswordCheck = $('#divPasswordCheck');
+        var divName = $('#divName');
+        var divNickname = $('#divNickname');
+        var divEmail = $('#divEmail');
+        var divPhoneNumber = $('#divPhoneNumber');
+        
+        
         var idPass = false;
         $(function() {
-        	$('#id').blur(function() {
+        	$('#idCheckBtn').click(function() {
         		$.ajax({
         			url: 'idCheck',
         			type: 'POST',
@@ -32,15 +53,15 @@
         				if(data == '1'){
         					ans='이미있는아이디입니다.';
         					color='red';
-        					idPass=false;
+        					idPass='false';
         				}else if ($('#id').val() != '' && data == '0'){
         					ans='가입 가능한 아이디입니다.';
         					color='blue';
-        					idPass=true;
+        					idPass='true';
         				} else {
         					ans='아이디를 입력하세요';
         					color='red';
-        					idPass=false;
+        					idPass='false';
         				}	
         				$('#temp').text(ans);
         				$('#temp').css('color',color);
@@ -65,15 +86,15 @@
         				if(data == '1'){
         					ans='이미있는 별명 입니다.';
         					color='red';
-        					idPass=false;
+        					NickNamePass='false';
         				}else if ($('#nickname').val() != '' && data == '0'){
         					ans='가입 가능한 별명 입니다.';
         					color='blue';
-        					idPass=true;
+        					NickNamePass='false';
         				} else {
         					ans='별명을 입력하세요';
         					color='red';
-        					idPass=false;
+        					NickNamePass='false';
         				}	
         				$('#temp-nickname').text(ans);
         				$('#temp-nickname').css('color',color);
@@ -85,22 +106,91 @@
         	});
         });
         
+        
+        var emailPass = false;
+        var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 정규식
+        
+        
         $(function() {
-        	$('#signUp').click(function() {
-        		if(idPass == false) {
-        			modalContents.text("아이디 중복체크 를 하여 주시기 바랍니다.");
-                    modal.modal('show');
-                    
-                    divId.removeClass("has-success");
-                    divId.addClass("has-error");
-                    $('#id').focus();
-                    return false;
-        		} else {
-        			return true;
-        		}
-        	}) 
+        	$('#emailCheck').click(function() {
+        		$.ajax({
+        			url: 'emailCheck',
+        			type: 'POST',
+        			data: 'cEmail=' + $('#email').val(),
+        			success: function(data) {
+        				var color;
+        				var ans;
+        				if(data == '1'){
+        					ans='중복된 이메일 입니다.';
+        					color='red';
+        					emailPass='false';
+        				}else if ($('#email').val() != '' && data == '0' && emailRule.test($('#email').val())){
+        					$('#emailAuth').css('display','block')
+        					ans='가입 가능한 이메일 입니다.';
+        					color='blue';
+        					emailPass='true';
+        				} else if (!emailRule.test($("input[id='email']").val())){
+        					ans='올바른 이메일을 입력하세요.';
+        					color='red';
+        					emailPass='false';
+        				} else {
+        					ans='이메일을 입력하세요';
+        					color='red';
+        					emailPass='false';
+        				}
+        				
+        				$('#temp-email').text(ans);
+        				$('#temp-email').css('color',color);
+        			},
+        			error: function () {
+        				alert('AJAX 통신 실패');
+        			}
+        		
+	        	});
+        	});
         });
         
+        var emailAuthPass = false;
+        
+        
+        function openWin(){
+        	window.open("emailAuthPage", "이메일 인증 창", "width=300, height=300, toolbar=no, menubar=no, scrollbars=no, resizable=yes" )
+        }
+        
+        function userEmail(){
+        	
+        	var email = $('#email').val();
+        }
+        
+     
+        
+        $(function() {
+        	$('#signUp').click(function() {
+        		
+        		if(idPass == false) {
+                    $('#id').focus();
+                    alert('아이디 중복 체크를 해주세요');
+                    return false;
+        		}
+        		if(NicknamePass == false) {
+                    $('#nickname').focus();
+                    alert("닉네임 중복체크 를 하여 주시기 바랍니다.");
+                    return false;
+        		}
+        		if(emailPass == false) {
+                    $('#email').focus();
+                    alert("이메일 중복체크 를 하여 주시기 바랍니다.");
+                    return false;
+        		}
+        		if(emailAuthPass == false) {
+                    $('#email').focus();
+                    alert("이메일 인증을 하여 주시기 바랍니다.");
+                    return false;
+        		}
+	        	return true;
+        		
+        	}); 
+        });
         
         
         
@@ -147,7 +237,7 @@
                 
  
  
-            <form class="form-horizontal" role="form" method="post" action="customerSignUp">
+            <form class="form-horizontal" id="loginForm" role="form" method="post" action="customerSignUp">
                 <div class="form-group">
                     <label for="provision" class="col-lg-2 control-label">회원가입약관</label>
                     <div class="col-lg-10" id="provision">
@@ -299,7 +389,7 @@
                     </div>
                     <div class="check-font" id="id_check">
                     	&nbsp;&nbsp;
-                    	<input type="button" class="btn btn-primary" value="중복체크" />
+                    	<input type="button" class="btn btn-primary" value="중복체크" id="idCheckBtn" name="idCheckBtn" />
                     	<div id="idCheck" class="check_font"></div>
                     </div>
                 </div>
@@ -330,13 +420,18 @@
                     </div>
                 </div>
                 
+                
                 <div class="form-group" id="divEmail">
                     <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
                     <div class="col-lg-10">
                         <input type="email" class="form-control" id="email" name="cEmail" data-rule-required="true" placeholder="이메일" maxlength="40"> <br/>
-                        <input type="button" value="이메일 인증하기" onclick="#" class="btn btn-primary" />
+                        <div id="temp-email" class="temp-email"></div><br/>
+                        <input type="button" id="emailCheck" name="emailCheck" value="이메일 중복체크" class="btn btn-primary" /> &nbsp;&nbsp;&nbsp;
+                        <input type="button" id="emailAuth" name="emailAuth" value="이메일 인증" class="btn btn-primary" onclick="javascript:openWin();" />
                     </div>
                 </div>
+                
+                
                 <div class="form-group" id="divPhoto">
                 	<label for="inputPhoto" class="col-lg-2 control-label">프로필 사진</label><br/> &nbsp;&nbsp;&nbsp;
                 	<div id="photoBox" style="width:50; height:50;">

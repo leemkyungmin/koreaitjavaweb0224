@@ -13,4 +13,7 @@ public interface LoginDAO {
 	
 	// 별명 중복체크
 	public int NicknameCheck(String cNickname);
+	
+	// 일반 회원 이메일 중복체크
+	public int emailCheck(String cEmail);
 }

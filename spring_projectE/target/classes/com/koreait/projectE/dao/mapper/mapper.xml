@@ -25,4 +25,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE CNICKNAME = #{param1}
 	</select>
 	
+	<select id="emailCheck" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM CUSTOMER
+		WHERE CEMAIL = #{param1}
+	</select>
+	
 </mapper>
