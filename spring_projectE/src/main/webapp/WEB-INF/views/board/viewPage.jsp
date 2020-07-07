@@ -20,8 +20,10 @@
 	function fn_review(){
 	   
 	   $('#Modal .modal-content').load("reviewWritePage?&dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
-	   $('#Modal').modal();
-	  
+	   $('#Modal').modal('show');
+	}
+	function fn_modal1Cancle(){
+		$('#Modal').modal('hide');
 	}
 	function fn_reviewDetail(){
 		$('#Modal2 .modal-content2').load("reivewDetail?rNo=");
@@ -63,7 +65,7 @@
 				if(data.length>0){
 					for(i=0; i<data.length; i++){
 						html+='<li class="RestaurantReviewItem RestaurantReviewList__ReviewItem">';
-						html+='<a class="RestaurantReviewItem__Link" href="/reviews/NzE4Mjcw" target="_blank">';
+						html+='<button class="RestaurantReviewItem__Link" onclick="fn_reviewDetail(${review.rNo})">';
 		    			html+='<div class="RestaurantReviewItem__User">';
 		       
 		    			html+='<div class="RestaurantReviewItem__UserPictureWrap">';
@@ -88,7 +90,7 @@
 				      	html+='<div class="RestaurantReviewItem__Rating RestaurantReviewItem__Rating--Ok">';
 				      	html+='<span class="RestaurantReviewItem__RatingText">괜찮다</span>';
 				      	html+='</div>';  
-				      	html+='</a>';
+				      	html+='</button>';
 				      	html+='</li>';	
 				      	
 		            }
@@ -107,6 +109,7 @@
 			}
 		});
 	}
+	
 
 
 	
@@ -361,6 +364,9 @@
 					<div class="modal-dialog modal-xl" role="document" data-backdrop="static">
 			    		<div class="modal-content2" data-backdrop="static">
 			    		</div>
+			    		<div class="modal-cancle">
+			    			<button onClick="fn_modal1Cancle()">취소</button>
+			    		</div>
 			  		</div>
 			  		<div class="modal_layer2" data-backdrop="static"></div>
 				</div>
@@ -416,9 +422,9 @@
 		       		 <img class="RestaurantReviewItem__UserPicture loaded" data-src="https://mp-seoul-image-production-s3.mangoplate.com/1407183_1563215702669?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" alt="user profile picture" src="https://mp-seoul-image-production-s3.mangoplate.com/1407183_1563215702669?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true">
 		     	 </div>
 		      
-		     	<!--  
-		    	 <span class="RestaurantReviewItem__UserNickName"></span>
-			   	-->
+		     	  
+		    	 <span class="RestaurantReviewItem__UserNickName">${review.cNickname}</span>
+			   	
 			  <!--  유저 글 갯수 
 		     	 <ul class="RestaurantReviewItem__UserStat">
 		       		 <li class="RestaurantReviewItem__UserStatItem RestaurantReviewItem__UserStatItem--Review">1</li>
@@ -443,7 +449,7 @@
 			    </div>
 			
 			    <div class="RestaurantReviewItem__Rating RestaurantReviewItem__Rating--Ok">
-			      <span class="RestaurantReviewItem__RatingText">${review.rNo }</span>
+			      <span class="RestaurantReviewItem__RatingText">맛있다.</span>
 			    </div>
 			     			    
 			  	</button>

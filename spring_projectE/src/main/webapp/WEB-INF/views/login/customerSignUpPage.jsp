@@ -26,22 +26,23 @@
           
         <script type="text/javascript">
         
-        var modalContents = $(".modal-contents");
-        var modal = $("#defaultModal");
-        
-        var provision = $('#provision');
-        var memberInfo = $('#memberInfo');
-        var divId = $('#divId');
-        var divPassword = $('#divPassword');
-        var divPasswordCheck = $('#divPasswordCheck');
-        var divName = $('#divName');
-        var divNickname = $('#divNickname');
-        var divEmail = $('#divEmail');
-        var divPhoneNumber = $('#divPhoneNumber');
-        
-        
-        var idPass = false;
         $(function() {
+        
+	        var modalContents = $(".modal-contents");
+	        var modal = $("#defaultModal");
+	        
+	        var provision = $('#provision');
+	        var memberInfo = $('#memberInfo');
+	        var divId = $('#divId');
+	        var divPassword = $('#divPassword');
+	        var divPasswordCheck = $('#divPasswordCheck');
+	        var divName = $('#divName');
+	        var divNickname = $('#divNickname');
+	        var divEmail = $('#divEmail');
+	        var divPhoneNumber = $('#divPhoneNumber');
+	        
+	        
+	        var idPass = false;
         	$('#idCheckBtn').click(function() {
         		$.ajax({
         			url: 'idCheck',
@@ -53,15 +54,13 @@
         				if(data == '1'){
         					ans='이미있는아이디입니다.';
         					color='red';
-        					idPass='false';
         				}else if ($('#id').val() != '' && data == '0'){
         					ans='가입 가능한 아이디입니다.';
         					color='blue';
-        					idPass='true';
+        					idPass=true;
         				} else {
         					ans='아이디를 입력하세요';
         					color='red';
-        					idPass='false';
         				}	
         				$('#temp').text(ans);
         				$('#temp').css('color',color);
@@ -70,12 +69,10 @@
         				alert('AJAX 통신 실패');
         			}
         		});
-        	});
-        });  // 아이디 중복 체크
-        
-        var NickNamePass = false;
-        $(function() {
-        	$('#nickname').blur(function() {
+        	}); // 아이디 중복 체크
+                  
+        	var NicknamePass = false;
+           	$('#nickname').blur(function() {
         		$.ajax({
         			url: 'NicknameCheck',
         			type: 'POST',
@@ -86,15 +83,14 @@
         				if(data == '1'){
         					ans='이미있는 별명 입니다.';
         					color='red';
-        					NickNamePass='false';
+        					
         				}else if ($('#nickname').val() != '' && data == '0'){
         					ans='가입 가능한 별명 입니다.';
         					color='blue';
-        					NickNamePass='false';
+        					NicknamePass=true;
         				} else {
         					ans='별명을 입력하세요';
         					color='red';
-        					NickNamePass='false';
         				}	
         				$('#temp-nickname').text(ans);
         				$('#temp-nickname').css('color',color);
@@ -104,14 +100,12 @@
         			}
         		});
         	});
-        });
+          
+        
+	        var emailPass = false;
+    	    var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 정규식
         
         
-        var emailPass = false;
-        var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 정규식
-        
-        
-        $(function() {
         	$('#emailCheck').click(function() {
         		$.ajax({
         			url: 'emailCheck',
@@ -123,20 +117,17 @@
         				if(data == '1'){
         					ans='중복된 이메일 입니다.';
         					color='red';
-        					emailPass='false';
         				}else if ($('#email').val() != '' && data == '0' && emailRule.test($('#email').val())){
         					$('#emailAuth').css('display','block')
         					ans='가입 가능한 이메일 입니다.';
         					color='blue';
-        					emailPass='true';
+        					emailPass=true;
         				} else if (!emailRule.test($("input[id='email']").val())){
         					ans='올바른 이메일을 입력하세요.';
         					color='red';
-        					emailPass='false';
         				} else {
         					ans='이메일을 입력하세요';
         					color='red';
-        					emailPass='false';
         				}
         				
         				$('#temp-email').text(ans);
@@ -148,24 +139,11 @@
         		
 	        	});
         	});
-        });
         
-        var emailAuthPass = false;
+	        var emailAuthPass = false;
         
-        
-        function openWin(){
-        	window.open("emailAuthPage", "이메일 인증 창", "width=300, height=300, toolbar=no, menubar=no, scrollbars=no, resizable=yes" )
-        }
-        
-        function userEmail(){
-        	
-        	var email = $('#email').val();
-        }
-        
-     
-        
-        $(function() {
         	$('#signUp').click(function() {
+        		
         		
         		if(idPass == false) {
                     $('#id').focus();
@@ -190,10 +168,20 @@
 	        	return true;
         		
         	}); 
-        });
+
+        });  // END $(function(){})
         
         
+        /*
+        function openWin(){
+        	modalContents.text("이메일이 전송되었습니다.");
+        }
         
+        function userEmail(){
+        	
+        	var email = $('#email').val();
+        }
+        */
         
         
         
