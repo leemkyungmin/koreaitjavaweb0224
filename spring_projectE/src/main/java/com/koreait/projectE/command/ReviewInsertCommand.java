@@ -58,7 +58,7 @@ public class ReviewInsertCommand implements Command {
 			}
 		}
 		
-		rDAO.insertReview(rTitle, rContent, rPoint,"11111");
+		rDAO.insertReview(rTitle, rContent, rPoint,"2222");
 	}
 
 }
