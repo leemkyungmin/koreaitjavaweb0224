@@ -9,7 +9,7 @@ public class CustomerDTO {
 	private Date cRegdate;
 	
 	
-	//private String cPoto;
+	private String cPoto;
 	//cPoto getter/setter 생성 
 	// 하단 Constructor String cPoto 추가 
 	// this.cPoto = cPoto 추가 
@@ -18,9 +18,10 @@ public class CustomerDTO {
 	public CustomerDTO() {}
 
 
-	public CustomerDTO(int cNo, String cId, String cPw, String cName, String cNickname, String cPhone, String cEmail,
+	public CustomerDTO(String cPoto,int cNo, String cId, String cPw, String cName, String cNickname, String cPhone, String cEmail,
 			String cPhoto, String cGrade, String cDept, String cGender, Date cRegdate) {
 		super();
+		this.cPoto=cPoto;
 		this.cNo = cNo;
 		this.cId = cId;
 		this.cPw = cPw;
@@ -33,6 +34,16 @@ public class CustomerDTO {
 		this.cDept = cDept;
 		this.cGender = cGender;
 		this.cRegdate = cRegdate;
+	}
+
+
+	public String getcPoto() {
+		return cPoto;
+	}
+
+
+	public void setcPoto(String cPoto) {
+		this.cPoto = cPoto;
 	}
 
 

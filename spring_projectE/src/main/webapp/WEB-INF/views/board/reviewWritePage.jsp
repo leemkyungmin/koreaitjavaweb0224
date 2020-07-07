@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>리뷰 작성</title>
-	
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	<style type="text/css">
 			
 		* {
@@ -320,7 +321,7 @@
 				<input type="hidden" value="${cNo }" name="cNo">
 				<input type="hidden" value="${deptDTO.dSaup_no }" name="dSaup_no">
 				<button type="button" class="ReviewWritingPage_CalcelButton" data-dismiss="modal">취소</button>
-				<input type="button" id="submitBtn" class="ReviewWritingPage_SubmitButton ReviewWritingPage_SubmitButton_Deactive" onclick="fn_insertReview(this.form)" value="리뷰 올리기" />
+				<input type="button" id="submitBtn" class="ReviewWritingPage_SubmitButton ReviewWritingPage_SubmitButton_Deactive"  onclick="fn_insertReview(this.form)" value="리뷰 올리기" />
 			</div>
 		</div>
 	</form>

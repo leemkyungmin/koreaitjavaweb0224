@@ -4,22 +4,22 @@ import java.sql.Date;
 
 public class ReviewDTO {
 
-	private int rNo,rPoint,rDepth,rReportCount,cNo;
-	private String rTitle,rContent,rPoto, rAppointment, dSaup_no;
+	private int rNo,rPoint,rDepth,rReportCount;
+	private String rTitle,rContent,rPoto, rAppointment, dSaup_no,cNickname;
 	private Date rWriter_date;
 	
 	public ReviewDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReviewDTO(int rNo, int rPoint, int rDepth, int rReportCount, int cNo, String rTitle, String rContent,
+	public ReviewDTO(int rNo, int rPoint, int rDepth, int rReportCount,String cNickname, String rTitle, String rContent,
 			String rPoto, String rAppointment, String dSaup_no, Date rWriter_date) {
 		super();
 		this.rNo = rNo;
 		this.rPoint = rPoint;
 		this.rDepth = rDepth;
 		this.rReportCount = rReportCount;
-		this.cNo = cNo;
+		this.cNickname = cNickname;
 		this.rTitle = rTitle;
 		this.rContent = rContent;
 		this.rPoto = rPoto;
@@ -60,12 +60,14 @@ public class ReviewDTO {
 		this.rReportCount = rReportCount;
 	}
 
-	public int getcNo() {
-		return cNo;
+	
+
+	public String getcNickname() {
+		return cNickname;
 	}
 
-	public void setcNo(int cNo) {
-		this.cNo = cNo;
+	public void setcNickname(String cNickname) {
+		this.cNickname = cNickname;
 	}
 
 	public String getrTitle() {
