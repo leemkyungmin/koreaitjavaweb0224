@@ -132,9 +132,35 @@
 		td {font-family: "돋움"; font-size: 9pt; color:#595959;}
 		th {font-family: "돋움"; font-size: 9pt; color:#000000;}
 		
+		.contents {
+			width:20%;
+			margin:auto;
+		}
 		
+		.appintment_table {
+			width: 100%;
+		}
 		
+		.appintment_table tr {
+			width: 100%;
+		}
 		
+		.text_subject{
+			width: 20%;
+		    font-size: 18px;
+		    vertical-align: middle;
+		    text-align: center;
+		}
+		
+		.text_desc {
+			width: 80%;
+		}
+		
+		.text_type1 {
+			width: 100%;
+			font-size: 18px;
+			border: 0;
+		}
 		
 		
 		
@@ -212,37 +238,76 @@
 						<c:forEach var="dateList" items="${dateList}" varStatus="date_status"> 
 							<c:choose>
 								<c:when test="${dateList.value=='today'}">
+									<c:if test="${date_status.index%7==0}">
+										<tr>
+									</c:if>
 									<td class="today">
-										<div class="date">${dateList.date}</div>
-										<div></div>
-									</td>
+										<div class="date">
 								</c:when>
 								<c:when test="${date_status.index%7==6}">
 									<td class="sat_day">
-										<div class="sat">${dateList.date}</div>
-										<div></div>
-									</td>
-								</c:when>
+										<div class="sat">
+								</c:when>	
 								<c:when test="${date_status.index%7==0}">
 									</tr>
 									<tr>	
-										<td class="sun_day">
-											<div class="sun">${dateList.date}</div>
-											<div></div>
-										</td>
+									<td class="sun_day">
+											<div class="sun">
 								</c:when>
 								<c:otherwise>
 									<td class="normal_day">
-										<div class="date">${dateList.date}</div>
-										<div></div>
-									</td>
+										<div class="date">
 								</c:otherwise>
 							</c:choose>
+								${dateList.date}
+								</div>
+								<div>
+									<!-- 예약가능/불가능 삽입 -->
+									<!-- 버튼삽입 -->
+									<input type="button" value="" />
+									
+								</div>
+							</td>
 						</c:forEach>
 					</tr>
 				</tbody>
 			</table>
-		
+		</div>
+	</form>
+	
+	<form name="appointment_form">
+		<div class="contents">
+			<table class="appintment_table">
+				<tr>
+					<td class="text_subject">날짜 :</td>
+					<td class="text_desc"><input type="text" name="aDate" class="text_type1" value="" /></td>
+				</tr>
+				<tr>
+					<td class="text_subject">시간 :</td>
+					<td class="text_desc"><input type="text" name="예약시간" value="" class="text_type1" placeholder="시간을 선택해주세요." readonly /></td> 
+				</tr>
+				<tr>
+					<td></td>
+					<td class="text_desc">
+						<!-- 영업시간 별로 생성 -->
+						<!-- 버튼 누르면 해당 div안보이고, 위의 textinput에 값 넣기 -->
+						<input type="button" value="11:00" />
+						<input type="button" value="12:00" />
+						<input type="button" value="13:00" />
+						<input type="button" value="14:00" />
+					</td>
+				</tr>
+				<tr>
+					<td class="text_subject">인원 :</td>
+					<td class="text_desc">
+						<select name="aP_count">
+							<option value="1">1명</option>
+							<!-- 음식점 좌석 수 만큼 생성 -->
+						</select>	
+					</td>
+				</tr>
+			</table>
+				
 		</div>
 	</form>
 	
