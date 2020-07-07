@@ -23,6 +23,11 @@
 	   $('#Modal').modal();
 	  
 	}
+	function fn_reviewDetail(){
+		$('#Modal2 .modal-content2').load("reivewDetail?rNo=");
+		$('#Modal2').modal();
+	}
+	
 	$(document).ready(function(){
 		$('#reviewAll').click(function(){ 
 			$('#reviewAll').css('color','#ff792a');
@@ -109,7 +114,7 @@
 
 </script>
 <style>
-        #Modal {
+        #Modal,#Modal2 {
           display: none;
           position:relative;
           margin:auto;
@@ -118,12 +123,12 @@
           z-index:1;
         }
         
-        #Modal h2 {
+        #Modal h2,#Modal2 h2 {
           margin:0;
         }
        
         
-        #Modal .modal-content {
+        #Modal .modal-content,#Modal2 .modal-content2  {
           width:100%;
           height:100%;
           margin:100px auto;
@@ -132,7 +137,7 @@
           
         }
         
-        #Modal .modal_layer {
+        #Modal .modal_layer,#Modal2 .modal_layer2 {
           position:fixed;
           top:0;
           left:0;
@@ -352,6 +357,13 @@
 			  		</div>
 			  		<div class="modal_layer" data-backdrop="static"></div>
 				</div>
+				<div class="modal fade" id='Modal2' tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true" data-backdrop="static">
+					<div class="modal-dialog modal-xl" role="document" data-backdrop="static">
+			    		<div class="modal-content2" data-backdrop="static">
+			    		</div>
+			  		</div>
+			  		<div class="modal_layer2" data-backdrop="static"></div>
+				</div>
 				  
 				
 				
@@ -397,7 +409,7 @@
 	              
 				<c:forEach var ="review" items="${reviewList }">
 					<li class="RestaurantReviewItem RestaurantReviewList__ReviewItem">
-	  				<a class="RestaurantReviewItem__Link" href="/reviews/NzE4Mjcw" target="_blank">
+	  				<button class="RestaurantReviewItem__Link" onclick="fn_reviewDetail(${review.rNo})">
 	    			<div class="RestaurantReviewItem__User">
 	       
 		      	<div class="RestaurantReviewItem__UserPictureWrap">
@@ -431,11 +443,10 @@
 			    </div>
 			
 			    <div class="RestaurantReviewItem__Rating RestaurantReviewItem__Rating--Ok">
-			      <span class="RestaurantReviewItem__RatingText">괜찮다</span>
+			      <span class="RestaurantReviewItem__RatingText">${review.rNo }</span>
 			    </div>
-			    
-			    
-			  	</a>
+			     			    
+			  	</button>
 				</li>
 				</c:forEach>
 	            
