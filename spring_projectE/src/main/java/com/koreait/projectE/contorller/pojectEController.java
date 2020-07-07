@@ -1,14 +1,10 @@
 package com.koreait.projectE.contorller;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-=======
-import java.util.Calendar;
-import java.util.List;
 import java.util.Map;
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -30,13 +26,10 @@ import com.koreait.projectE.command.ReviewInsertCommand;
 import com.koreait.projectE.command.boardViewCommand;
 import com.koreait.projectE.command.reviewWriteCommand;
 import com.koreait.projectE.commom.Command;
-<<<<<<< HEAD
 import com.koreait.projectE.dao.BoardDAO;
-import com.koreait.projectE.dto.ReviewDTO;
-import com.sun.mail.iap.Response;
-=======
 import com.koreait.projectE.dao.DateData;
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
+import com.koreait.projectE.dto.ReviewDTO;
+
 
 
 @Controller
