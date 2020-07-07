@@ -23,6 +23,89 @@
 	   $('#Modal').modal();
 	  
 	}
+	$(document).ready(function(){
+		$('#reviewAll').click(function(){ 
+			$('#reviewAll').css('color','#ff792a');
+			$('#reviewAppointment').css('color','#9b9b9b');
+			$('#reviewNotAppointment').css('color','#9b9b9b');
+			getReview('all');
+		});
+		$('#reviewAppointment').click(function(){ 
+			$('#reviewAll').css('color','#9b9b9b');
+			$('#reviewAppointment').css('color','#ff792a');
+			$('#reviewNotAppointment').css('color','#9b9b9b');
+			getReview("ap");
+		});
+		$('#reviewNotAppointment').click(function(){ 
+			$('#reviewAll').css('color','#9b9b9b');
+			$('#reviewAppointment').css('color','#9b9b9b');
+			$('#reviewNotAppointment').css('color','#ff792a');
+			getReview("np")
+		});
+	});
+	function getReview(type){
+		
+		$.ajax({
+			url : 'getReview',
+			method :'post',
+			data: { 'type':type, 'dSaup_no' : ${deptDTO.dSaup_no}},
+			dataType:'JSON',
+			success:function(data){
+				
+				var html = ' <ul class="RestaurantReviewList__ReviewList">';
+				var dataCount=data.length;
+				
+				if(data.length>0){
+					for(i=0; i<data.length; i++){
+						html+='<li class="RestaurantReviewItem RestaurantReviewList__ReviewItem">';
+						html+='<a class="RestaurantReviewItem__Link" href="/reviews/NzE4Mjcw" target="_blank">';
+		    			html+='<div class="RestaurantReviewItem__User">';
+		       
+		    			html+='<div class="RestaurantReviewItem__UserPictureWrap">';
+		    			html+='<img class="RestaurantReviewItem__UserPicture loaded" data-src="https://mp-seoul-image-production-s3.mangoplate.com/1407183_1563215702669?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" alt="user profile picture" src="https://mp-seoul-image-production-s3.mangoplate.com/1407183_1563215702669?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true">';
+		    			html+='</div>';
+			      
+			     	
+		      
+				      	html+='</div>';
+				      	html+='<div class="RestaurantReviewItem__ReviewContent">';
+						    	
+				      	html+='<div class="RestaurantReviewItem__ReviewTextWrap">';
+								
+				      	html+='<p class="RestaurantReviewItem__ReviewText">'
+				      	html+=data[i].rTitle+'<br/>';
+				      	html+=data[i].rContent;
+				      	html+='</p>';
+								
+				      	html+='<span class="RestaurantReviewItem__ReviewDate">'+data[i].rWriter_date+'</span>';
+				      	html+='</div>';
+				      	html+='</div>';
+				      	html+='<div class="RestaurantReviewItem__Rating RestaurantReviewItem__Rating--Ok">';
+				      	html+='<span class="RestaurantReviewItem__RatingText">괜찮다</span>';
+				      	html+='</div>';  
+				      	html+='</a>';
+				      	html+='</li>';	
+				      	
+		            }
+					html+='</ul>';
+		      	}else {
+		      		html+='<div class="RestaurantReviewList__Empty">';		              
+		      		html+='<span class="RestaurantReviewList__EmptyTitle">아직 작성된 리뷰가 없네요.</span>';
+		      		html+='<span class="RestaurantReviewList__EmptyDescription">해당 식당의 첫 리뷰를 작성해주시겠어요?</span>';
+		      		html+='</div>';
+		      	}
+				$('#review').empty();
+				$('#review').html(html);
+			},
+			error:function(){
+				alert('ajax통신 실패');
+			}
+		});
+	}
+
+
+	
+	
 
 </script>
 <style>
@@ -278,7 +361,7 @@
 	
 	            <div id="reviewListFocusId"></div>
 	          </section>
-			  <section class="RestaurantReviewList">
+			  <section class="RestaurantReviewList" >
 	            <header class="RestaurantReviewList__Header">
 	              <h2 class="RestaurantReviewList__Title">
 	                <span class="RestaurantReviewList__RestaurantNameSuffixDesktop">리뷰</span>
@@ -287,29 +370,31 @@
 				
 	              <ul class="RestaurantReviewList__FilterList">
 	                <li class="RestaurantReviewList__FilterItem">
-	                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__AllFilterButton RestaurantReviewList__FilterButton--Selected">
+	                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__AllFilterButton RestaurantReviewList__FilterButton--Selected" id="reviewAll">
 	                    전체
 	                  <span class="RestaurantReviewList__ReviewCount">20</span></button>
 	                </li>
 	
 	                <li class="RestaurantReviewList__FilterItem">
-	                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__RecommendFilterButton">
+	                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__RecommendFilterButton" id="reviewAppointment">
 	         	예약자 리뷰
 	                  <span class="RestaurantReviewList__ReviewCount">18</span></button>
 	                </li>
 	
 	                <li class="RestaurantReviewList__FilterItem">
-	                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__OkFilterButton">
-	                    비 예약자 리뷰
-	                  <span class="RestaurantReviewList__ReviewCount">1</span></button>
-	                </li>
+                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__NotRecommendButton" id="reviewNotAppointment">
+                 비 예약자 리뷰
+                  <span class="RestaurantReviewList__ReviewCount">6</span></button>
+                </li>
 	
 	                
 	              </ul>
 	             
 	            </header>
+	            <div id="review">
 	 			
 	            <ul class="RestaurantReviewList__ReviewList">
+	              
 				<c:forEach var ="review" items="${reviewList }">
 					<li class="RestaurantReviewItem RestaurantReviewList__ReviewItem">
 	  				<a class="RestaurantReviewItem__Link" href="/reviews/NzE4Mjcw" target="_blank">
@@ -328,7 +413,7 @@
 		       		 <li class="RestaurantReviewItem__UserStatItem RestaurantReviewItem__UserStatItem--Follower">0</li>
 		     	 </ul>
 	      	 -->
-	      
+	      	
 	    		</div>
 			    <div class="RestaurantReviewItem__ReviewContent">
 			    	
@@ -355,10 +440,11 @@
 				</c:forEach>
 	            
 				</ul>
+				</div>
 				<c:if test="${empty reviewList }">
 		            <div class="RestaurantReviewList__Empty">
 		              <span class="RestaurantReviewList__EmptyTitle">아직 작성된 리뷰가 없네요.</span>
-		              <span class="RestaurantReviewList__EmptyDescription">앱에서 해당 식당의 첫 리뷰를 작성해주시겠어요?</span>
+		              <span class="RestaurantReviewList__EmptyDescription">해당 식당의 첫 리뷰를 작성해주시겠어요?</span>
 		            </div>
 				</c:if>
 	            <div class="RestaurantReviewList__MoreReviewButton" role="button">
@@ -420,7 +506,7 @@
 				  </li>
               	
               	</c:forEach>
-
+				
                 
               </ul>
             </section>

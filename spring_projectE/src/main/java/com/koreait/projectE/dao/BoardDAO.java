@@ -27,4 +27,10 @@ public interface BoardDAO {
 	public ArrayList<DepartmentDTO> getSide_list(String addr);
 	
 	public ArrayList<MenuDTO> menuList(String dSaup_no);
+	
+	//test
+	public ArrayList<ReviewDTO> reviewAll(String dSaup_no);
+	public ArrayList<ReviewDTO> reviewAp(String dSaup_no);
+	public ArrayList<ReviewDTO> reviewNp(String dSaup_no);
+	
 }

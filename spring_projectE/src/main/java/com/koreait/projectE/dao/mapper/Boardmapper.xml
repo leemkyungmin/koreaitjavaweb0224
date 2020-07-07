@@ -37,4 +37,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 where DADDRESS LIKE '%' || #{addr} || '%'  ORDER BY DRATING DESC
 	</select>
 	
+	<!-- test -->
+	<select id="reviewAll" resultType="com.koreait.projectE.dto.ReviewDTO">
+		select * from review where RAPPOINTMENT >= 0 and dSaup_no=#{dSaup_no}
+	</select>
+	<select id="reviewAp" resultType="com.koreait.projectE.dto.ReviewDTO">
+		select * from review where RAPPOINTMENT > 0 and dSaup_no=#{dSaup_no}
+	</select>
+	<select id="reviewNp" resultType="com.koreait.projectE.dto.ReviewDTO">
+		select * from review where RAPPOINTMENT = 0 and dSaup_no=#{dSaup_no}
+	</select>
+	
 </mapper>
