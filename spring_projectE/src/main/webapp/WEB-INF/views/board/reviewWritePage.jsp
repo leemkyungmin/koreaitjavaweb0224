@@ -266,10 +266,6 @@
 </head>
 <body>
 	
-		<div>
-			<!-- header : 메인페이지로 가는 로고 -->
-		</div>
-	
 	<form name="myForm" method="post" enctype="multipart/form-data">
 		<div class="ReviewWritenpage_Container">
 			<div class="ReviewWritenpage_DeptName">
@@ -308,6 +304,9 @@
 				</div>
 			</div>
 			<div class="ReviewWritenPage_ButtonsWrap">
+			
+				<!-- DB에 넣을 업체사업자번호(DSAUP_NO) 고객번호(CNO)가 필요함) -->
+			
 				<!-- 버튼 -->
 				<input type="button" class="ReviewWritingPage_CalcelButton" onclick="history.go(-1)" value="취소"/>
 				<input type="button" id="submitBtn" class="ReviewWritingPage_SubmitButton ReviewWritingPage_SubmitButton_Deactive" onclick="fn_insertReview(this.form)" value="리뷰 올리기" />
