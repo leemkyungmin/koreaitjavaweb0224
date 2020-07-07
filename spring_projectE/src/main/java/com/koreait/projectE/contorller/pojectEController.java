@@ -9,9 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.koreait.projectE.command.CustomerSignUpCommand;
+import com.koreait.projectE.command.ReviewInsertCommand;
 import com.koreait.projectE.command.boardViewCommand;
+import com.koreait.projectE.command.reviewWriteCommand;
 import com.koreait.projectE.commom.Command;
 
 
@@ -45,8 +47,21 @@ public class pojectEController {
 	}
 	
 	@RequestMapping("reviewWritePage")
-	public String reviewPage() {
+	public String reviewPage(HttpServletRequest request,Model model) {
+		
+		model.addAttribute("request", request);
+		command= new reviewWriteCommand();
+		command.execute(sqlSession, model);
 		return "board/reviewWritePage";
+	}
+	
+
+	@RequestMapping(value="insertReview", method=RequestMethod.POST)
+	public String insertReview(MultipartHttpServletRequest mrequest, Model model) {
+		model.addAttribute("mrequest", mrequest);
+		command = new ReviewInsertCommand();
+		command.execute(sqlSession, model);
+		return "redirect:index"; // 일단 index로 이동
 	}
 	
 	//테스트용 
@@ -59,7 +74,6 @@ public class pojectEController {
 		return "board/insertPage";
 	}
 	//테스트
-	
 
 	
 	

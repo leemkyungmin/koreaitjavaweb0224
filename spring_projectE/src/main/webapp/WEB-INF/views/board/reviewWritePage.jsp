@@ -30,7 +30,7 @@
 			
 		.ReviewWritenpage_Container {
 			width: 687px;
-			margin: 101px auto 62px;
+			margin: 50px auto 62px;
 		}
 		
 		.DeptName {
@@ -63,28 +63,30 @@
 			border-radius: 3px;
 			box-sizing: border-box;
 			padding: 16px;
+			height: 300px;
 		}
 		
 		.ReviewWritenPage_Title {
 			margin-bottom: 10px;
 			height: 30px;
+			border-bottom: 1px solid lightgray;
 		}
 		
 		.ReviewWritenPage_Title label {
 			text-align: center;
 			display: inline-block;
 			width: 50px;
+			border-bottom: 1px solid lightgray; 
 		}
 		
 		.ReviewWritenPage_Title input {
-			border: 1px solid #DBDBDB;
-			padding: 5px;
+			border: 0;
 		}
 		
 		.ReviewWritenPage_Editor {
 			overflow: hidden;
 			overflow-wrap: break-word;
-			height: 150px;
+			height: 200px;
 			display: block;
 			width: 100%;
 			border: 0;
@@ -107,7 +109,7 @@
 			right: 0;
 			font-size: 12px;
 			color: #7F7F7F;
-			margin-right: 5px;
+			margin-right: 10px;
 		}
 		
 		.ReviewWritenPage_PictureWrap {
@@ -157,6 +159,7 @@
 		    background-color: #E9E9E9;
 		    color: #FFFFFF;
 		    cursor: not-allowed;
+		    pointer-events: none;
 		}
 		
 		ul, li { list-style: none; }
@@ -241,7 +244,7 @@
 		// 리뷰 글자수 계산 스크립트
 		$(document).ready(function() {
 			
-		    $('#review').keyup(function () {
+		    $('#review').keydown(function () {
 		    	var review = $(this).val();
 		    	$('#lengthResult').html(review.length + ' / 1000');
 		    	
@@ -272,15 +275,11 @@
 </head>
 <body>
 	
-		<div>
-			<!-- header : 메인페이지로 가는 로고 -->
-		</div>
-	
 	<form name="myForm" method="post" enctype="multipart/form-data">
 		<div class="ReviewWritenpage_Container">
 			<div class="ReviewWritenpage_DeptName">
 				<!-- 가게이름 -->
-				<strong class="DeptName">${deptDTO.dName}김밥천국</strong>
+				<strong class="DeptName">${deptDTO.dName }</strong>
 			</div>
 			<div class="ReviewPoint">
 				<!-- 별 개수 선택 -->
@@ -297,7 +296,7 @@
 					<div class="ReviewWritenPage_Content">
 						<!-- 리뷰작성 -->
 						<div class="ReviewWritenPage_Title">
-							<label for="title-lbl">제목</label> <input id="title-lbl" type="text" name="rTitle" size="50"/>
+							<input id="title-lbl" type="text" name="rTitle" size="50" placeholder="제목을 입력하세요."/>
 						</div>
 						<textarea name="rContent" class="ReviewWritenPage_Editor" id="review" rows="1" cols="1" placeholder="주문하신 메뉴는 어떠셨나요? 식당의 분위기와 서비스도 궁금해요!"></textarea>
 						<p class="ReviewWritenPage_TextLength" id="lengthResult" name="lengthResult">
@@ -310,12 +309,17 @@
 				</div>
 				<div class="ReviewWritenPage_PictureWrap">
 					<!-- 이미지 업로드 -->
-					<input type="file" id="input_file" name="files" multiple />
+					<input type="file" id="input_file" name="rPoto" multiple />
 				</div>
 			</div>
 			<div class="ReviewWritenPage_ButtonsWrap">
+			
+				<!-- DB에 넣을 업체사업자번호(DSAUP_NO) 고객번호(CNO)가 필요함) -->
+			
 				<!-- 버튼 -->
-				<input type="button" class="ReviewWritingPage_CalcelButton" onclick="history.go(-1)" value="취소"/>
+				<input type="hidden" value="${cNo }" name="cNo">
+				<input type="hidden" value="${deptDTO.dSaup_no }" name="dSaup_no">
+				<button type="button" class="ReviewWritingPage_CalcelButton" data-dismiss="modal">취소</button>
 				<input type="button" id="submitBtn" class="ReviewWritingPage_SubmitButton ReviewWritingPage_SubmitButton_Deactive" onclick="fn_insertReview(this.form)" value="리뷰 올리기" />
 			</div>
 		</div>

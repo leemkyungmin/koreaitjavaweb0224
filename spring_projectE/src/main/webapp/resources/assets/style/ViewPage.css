@@ -204,15 +204,15 @@
 	html,body,div,span,h1,p,a,ol,ul,li,form,label{
 		border:0 none;
 	}
-	
-	header{
+
+	.restaurant-detail>header{
 		border-bottom :1px solid lightgray;
 		position:relative;
 		padding: 20px 0 10px 0;
 		heigth:74px;
 		display:block;
 	}
-	header>.restaurant_title_wrap{
+	.restaurant-detail>header>.restaurant_title_wrap{
 		display: -moz-flex;
 	    display: -ms-flexbox;
 	    display: flex;
@@ -583,5 +583,62 @@
 	.pg-restaurant .module {
 	    padding: 33px 0 33px 0;
 	}
+	.RestaurantReviewList__FilterList {
+	    display: -moz-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    margin-left: auto;
+	}
+	ol, ul, ul li {
+	    list-style: none;
+	}
+	.RestaurantReviewList__FilterItem {
+	    display: -moz-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    -moz-flex-direction: row;
+	    -ms-flex-direction: row;
+	    flex-direction: row;
+	    -webkit-flex-direction: row;
+	    -webkit-box-direction: normal;
+	    -webkit-box-orient: horizontal;
+	    -moz-align-items: center;
+	    align-items: center;
+	    -webkit-align-items: center;
+	    -webkit-box-align: center;
+	    -ms-flex-align: center;
+	}
+	.RestaurantReviewList__FilterButton--Selected {
+	    color: #ff792a;
+	}	
+	.RestaurantReviewList__FilterButton {
+	    padding-right: 3px;
+	    font-size: 16px;
+	    color: #9b9b9b;
+	}
+	.RestaurantReviewList__Header {
+	    display: -moz-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    margin-bottom: 14px;
+	}
+	.RestaurantReviewList__FilterList {
+	    display: -moz-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    margin-left: auto;
+	}
+	.RestaurantReviewList__RestaurantName {
+	    display: none;
+	}
+	.RestaurantReviewList>
 	
 	   

@@ -19,7 +19,7 @@
 
 	function fn_review(){
 	   
-	   $('#Modal .modal-content').load("insertPage?dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
+	   $('#Modal .modal-content').load("reviewWritePage?&dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
 	   $('#Modal').modal();
 	  
 	}
@@ -30,8 +30,8 @@
           display: none;
           position:relative;
           margin:auto;
-          width:80%;
-          height:100%;
+          width:1000px;
+          height:800px;
           z-index:1;
         }
         
@@ -46,7 +46,7 @@
           margin:100px auto;
           padding:20px 10px;
           background:#fff;
-          border:2px solid #666;
+          
         }
         
         #Modal .modal_layer {
@@ -262,12 +262,12 @@
 				</script>
 	            </div>
 				
-				<div class="modal fade" id='Modal' tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-xl" role="document">
-			    		<div class="modal-content">
+				<div class="modal fade" id='Modal' tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true" data-backdrop="static">
+					<div class="modal-dialog modal-xl" role="document" data-backdrop="static">
+			    		<div class="modal-content" data-backdrop="static">
 			    		</div>
 			  		</div>
-			  		<div class="modal_layer"></div>
+			  		<div class="modal_layer" data-backdrop="static"></div>
 				</div>
 				  
 				
@@ -284,7 +284,7 @@
 	                <span class="RestaurantReviewList__RestaurantNameSuffixDesktop">리뷰</span>
 	              	<span class="RestaurantReviewList__AllCount">(${reviewCount })</span>
 	              </h2>
-				<!--
+				
 	              <ul class="RestaurantReviewList__FilterList">
 	                <li class="RestaurantReviewList__FilterItem">
 	                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__AllFilterButton RestaurantReviewList__FilterButton--Selected">
@@ -294,23 +294,19 @@
 	
 	                <li class="RestaurantReviewList__FilterItem">
 	                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__RecommendFilterButton">
-	                    맛있다
+	         	예약자 리뷰
 	                  <span class="RestaurantReviewList__ReviewCount">18</span></button>
 	                </li>
 	
 	                <li class="RestaurantReviewList__FilterItem">
 	                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__OkFilterButton">
-	                    괜찮다
+	                    비 예약자 리뷰
 	                  <span class="RestaurantReviewList__ReviewCount">1</span></button>
 	                </li>
 	
-	                <li class="RestaurantReviewList__FilterItem">
-	                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__NotRecommendButton">
-	                    별로
-	                  <span class="RestaurantReviewList__ReviewCount">1</span></button>
-	                </li>
+	                
 	              </ul>
-	             -->
+	             
 	            </header>
 	 			
 	            <ul class="RestaurantReviewList__ReviewList">
@@ -391,7 +387,7 @@
 				      <a class="NearByRestaurantItem__PictureLink" href="viewPage?dSaup_no=${side.dSaup_no }">
 				       <c:set var="index" value="${fn:indexOf(side.dPhoto,',') }"></c:set>
 				       
-				        <img class="NearByRestaurantItem__Picture loaded"alt="${fn:substring(side.dPhoto,0,index) }" src="${pageContext.request.contextPath }/resources/storage/department_img/${fn:substring(side.dPhoto,0,index) }" >
+				        <img class="NearByRestaurantItem__Picture loaded" alt="${fn:substring(side.dPhoto,0,index) }" src="${pageContext.request.contextPath }/resources/storage/department_img/${fn:substring(side.dPhoto,0,index) }" >
 				       
 				      </a>
 				  
