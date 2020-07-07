@@ -1,5 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<<<<<<< HEAD
+<jsp:useBean id="LoginController" class="com.koreait.projectE.contorller.LoginController"></jsp:useBean>    
+<%
+	request.setCharacterEncoding("UTF-8");
+
+	String cId = request.getParameter("cId");
+	boolean flag = true;
+	String str = "";
+	if (cId == null) {
+		cId = "";
+	}
+	
+	if(!cId.equals("")){
+	}
+	if(flag) {
+		str = "NO";
+		out.print(str);
+	}else{
+		str="YSE";
+		out.print(str);
+	}
+	
+%>
+=======
 <html>
 <head>  
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -131,3 +155,4 @@
 </div>    
 </body>
 </html>
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git

@@ -1,8 +1,14 @@
 package com.koreait.projectE.contorller;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.List;
+=======
+import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,9 +30,13 @@ import com.koreait.projectE.command.ReviewInsertCommand;
 import com.koreait.projectE.command.boardViewCommand;
 import com.koreait.projectE.command.reviewWriteCommand;
 import com.koreait.projectE.commom.Command;
+<<<<<<< HEAD
 import com.koreait.projectE.dao.BoardDAO;
 import com.koreait.projectE.dto.ReviewDTO;
 import com.sun.mail.iap.Response;
+=======
+import com.koreait.projectE.dao.DateData;
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 
 
 @Controller
@@ -125,6 +135,56 @@ public class pojectEController {
 
 	
 	
-	
+	// 예약 달력 테스트
+	@RequestMapping(value = "calendar", method = RequestMethod.GET)
+	public String calendar(Model model, HttpServletRequest request, DateData dateData){
+		
+		Calendar cal = Calendar.getInstance();
+		DateData calendarData;
+		
+		// 달력 페이지가 처음 실행되면,오늘 날짜로 date 생성
+		//검색 날짜
+		if(dateData.getDate().equals("")&&dateData.getMonth().equals("")){
+			dateData = new DateData(String.valueOf(cal.get(Calendar.YEAR)),String.valueOf(cal.get(Calendar.MONTH)),String.valueOf(cal.get(Calendar.DATE)),null);
+		}
+		//검색 날짜 end
+
+		// 이번달에 대한 모든 정보를 가져온다
+		Map<String, Integer> today_info =  dateData.today_info(dateData);
+		
+		// 달력 데이터 리스트 생성
+		List<DateData> dateList = new ArrayList<DateData>();
+		
+		// 1일에 해당하는 요일까지 null 삽입
+		for(int i=1; i<today_info.get("start"); i++){
+			calendarData= new DateData(null, null, null, null);
+			dateList.add(calendarData);
+		}
+		
+		// 1일부터 말일까지 데이터 리스트 삽입
+		for (int i = today_info.get("startDay"); i <= today_info.get("endDay"); i++) {
+			if(i==today_info.get("today")){
+				calendarData= new DateData(String.valueOf(dateData.getYear()), String.valueOf(dateData.getMonth()), String.valueOf(i), "today");
+			}else{
+				calendarData= new DateData(String.valueOf(dateData.getYear()), String.valueOf(dateData.getMonth()), String.valueOf(i), "normal_date");
+			}
+			dateList.add(calendarData);
+		}
+
+		// 마지막 주를 직사각형 모양으로 맞추기 위해 비어있는 만큼 null 삽입
+		int index = 7-dateList.size()%7;
+		if(dateList.size()%7!=0){
+			for (int i = 0; i < index; i++) {
+				calendarData= new DateData(null, null, null, null);
+				dateList.add(calendarData);
+			}
+		}
+		System.out.println(dateList);
+		
+		model.addAttribute("dateList", dateList); // 달력 배열
+		model.addAttribute("today_info", today_info); // 오늘 날짜에 대한 정보
+		
+		return "board/bookPage"; // view
+	}
 
 }

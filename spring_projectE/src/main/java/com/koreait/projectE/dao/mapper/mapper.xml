@@ -15,9 +15,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (#{param1}, #{param2}, #{param3})
 	</insert>
 	
-	<select id="idCheck" resultType="int">
+	<select id="idCheck" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM CUSTOMER
-		WHERE CID = #{cId} 
+		WHERE CID = #{param1} 
 	</select> 
+	
+	<select id="NicknameCheck" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM CUSTOMER
+		WHERE CNICKNAME = #{param1}
+	</select>
+	
+	<select id="emailCheck" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM CUSTOMER
+		WHERE CEMAIL = #{param1}
+	</select>
 	
 </mapper>
