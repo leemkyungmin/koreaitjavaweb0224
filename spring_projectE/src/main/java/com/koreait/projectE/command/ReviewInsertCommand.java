@@ -27,6 +27,8 @@ public class ReviewInsertCommand implements Command {
 		
 		String rContent = mrequest.getParameter("rContent");
 		List<MultipartFile> fileList = mrequest.getFiles("rPoto");
+		int cNo = Integer.parseInt(mrequest.getParameter("cNo"));
+		String dSaup_no = mrequest.getParameter("dSaup_no");
 		
 		ReviewDAO rDAO = sqlSession.getMapper(ReviewDAO.class);
 		
@@ -69,9 +71,9 @@ public class ReviewInsertCommand implements Command {
 					}
 				}
 			}
-			rDAO.insertReview(rTitle, rContent, rPoint, rPoto);	
+			rDAO.insertReview(rTitle, rContent, rPoint, rPoto, cNo, dSaup_no);	
 		} else { // 파일첨부 X
-			rDAO.insertReview(rTitle, rContent, rPoint, null);
+			rDAO.insertReview(rTitle, rContent, rPoint, null, cNo, dSaup_no);
 		}
 	}
 
