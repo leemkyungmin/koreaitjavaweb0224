@@ -2,7 +2,6 @@ package com.koreait.projectE.command;
 
 import java.util.ArrayList;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -32,6 +31,9 @@ public class boardViewCommand implements Command {
 		
 		//view 페이지 업체 정보 가져오기 
 		model.addAttribute("deptDTO", bdao.DepartView(dSaup_no));
+		
+		//appointment(예약자 db)에서 총 예약 갯수 가져오기
+		model.addAttribute("appointmentCount",bdao.appointmentCount(dSaup_no));
 		
 		//menu_info 에서 업체 메뉴 가져오기 
 		ArrayList<MenuDTO> menuList =bdao.menuList(dSaup_no);

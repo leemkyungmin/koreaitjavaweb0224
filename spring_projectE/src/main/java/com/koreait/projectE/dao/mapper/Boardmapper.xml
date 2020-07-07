@@ -28,4 +28,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from menu_info where dsaup_no=#{dSaup_no}
 	</select>
 	
+	<select id="appointmentCount" resultType="int">
+		select count(*) as count from appointment where dSaup_no=#{dSaup_no}
+	</select>
+	
 </mapper>
