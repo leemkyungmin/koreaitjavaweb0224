@@ -636,9 +636,24 @@
 	    display: -webkit-flex;
 	    margin-left: auto;
 	}
+	.RestaurantReviewList__FilterItem:nth-of-type(1):after,.RestaurantReviewList__FilterItem:nth-of-type(2):after {
+	    content: '|';
+	    margin: 0 7px;
+	    color: #9b9b9b;
+	}
+	.RestaurantReviewList__ReviewCount:after {
+	    display: inline;
+	    content: ')';
+	}
+	.RestaurantReviewList__ReviewCount:before {
+	    display: inline;
+	    content: '(';
+	}
 	.RestaurantReviewList__RestaurantName {
 	    display: none;
 	}
-	.RestaurantReviewList>
+	.RestaurantReviewList__FilterButton--Selected {
+    color: #ff792a;
+}
 	
 	   
