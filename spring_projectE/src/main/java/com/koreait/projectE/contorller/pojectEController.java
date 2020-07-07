@@ -55,6 +55,7 @@ public class pojectEController {
 		model.addAttribute("mrequest", mrequest);
 		command = new ReviewInsertCommand();
 		command.execute(sqlSession, model);
+		
 		return "redirect:index"; // 일단 index로 이동
 	}
 	
