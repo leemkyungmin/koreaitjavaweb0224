@@ -68,6 +68,7 @@
 		.ReviewWritenPage_Title {
 			margin-bottom: 10px;
 			height: 30px;
+<<<<<<< HEAD
 			border-bottom: 1px solid lightgray;
 		}
 		
@@ -75,11 +76,13 @@
 			text-align: center;
 			display: inline-block;
 			width: 50px;
+=======
+			border-bottom: 1px solid lightgray; 
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 		}
 		
 		.ReviewWritenPage_Title input {
-			border: 1px solid #DBDBDB;
-			padding: 5px;
+			border: 0;
 		}
 		
 		.ReviewWritenPage_Editor {
@@ -273,10 +276,6 @@
 </head>
 <body>
 	
-		<div>
-			<!-- header : 메인페이지로 가는 로고 -->
-		</div>
-	
 	<form name="myForm" method="post" enctype="multipart/form-data">
 		<div class="ReviewWritenpage_Container">
 			<div class="ReviewWritenpage_DeptName">
@@ -298,7 +297,7 @@
 					<div class="ReviewWritenPage_Content">
 						<!-- 리뷰작성 -->
 						<div class="ReviewWritenPage_Title">
-							<label for="title-lbl">제목</label> <input id="title-lbl" type="text" name="rTitle" size="50"/>
+							<input id="title-lbl" type="text" name="rTitle" size="50" placeholder="제목을 입력하세요."/>
 						</div>
 						<textarea name="rContent" class="ReviewWritenPage_Editor" id="review" rows="1" cols="1" placeholder="주문하신 메뉴는 어떠셨나요? 식당의 분위기와 서비스도 궁금해요!"></textarea>
 						<p class="ReviewWritenPage_TextLength" id="lengthResult" name="lengthResult">
@@ -311,10 +310,13 @@
 				</div>
 				<div class="ReviewWritenPage_PictureWrap">
 					<!-- 이미지 업로드 -->
-					<input type="file" id="input_file" name="files" multiple />
+					<input type="file" id="input_file" name="rPoto" multiple />
 				</div>
 			</div>
 			<div class="ReviewWritenPage_ButtonsWrap">
+			
+				<!-- DB에 넣을 업체사업자번호(DSAUP_NO) 고객번호(CNO)가 필요함) -->
+			
 				<!-- 버튼 -->
 				<input type="hidden" value="${cNo }" name="cNo">
 				<input type="hidden" value="${deptDTO.dSaup_no }" name="dSaup_no">
