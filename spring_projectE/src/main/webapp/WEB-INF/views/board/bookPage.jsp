@@ -161,9 +161,9 @@
 			border: 0;
 		}
 		
-		/* .deactive {
+		.deactive {
 			display: none;
-		} */
+		} 
 		
 		
 		select {font-family: "돋움"; font-size: 9pt; color:#595959;}
@@ -245,33 +245,25 @@
 						<c:forEach var="dateList" items="${dateList}" varStatus="date_status"> 
 							<c:choose>
 								<c:when test="${dateList.value=='today'}">
-									<td class="today click">
-										<button onclick="fn_a(${dateList.date})">
+									<td class="today click"  onclick="fn_a(${dateList.date})">
 										<div class="date">${dateList.date}</div>
-										</button>
 									</td>
 								</c:when>
 								<c:when test="${date_status.index%7==6}">
-									<td class="sat_day click">
-										<button onclick="fn_a(${dateList.date})">
+									<td class="sat_day click"  onclick="fn_a(${dateList.date})">
 										<div class="sat">${dateList.date}</div>
-										</button>
 									</td>
 								</c:when>
 								<c:when test="${date_status.index%7==0}">
 									</tr>
 									<tr>	
-										<td class="sun_day click">
-											<button onclick="fn_a(${dateList.date})">
-											<div class="sun">${dateList.date}</div>
-											</button>
+										<td class="sun_day click" onclick="fn_a(${dateList.date})">
+											<div class="sun" >${dateList.date}</div>
 										</td>
 								</c:when>
 								<c:otherwise>
-									<td class="normal_day click">
-										<button onclick="fn_a(${dateList.date})">
+									<td class="normal_day click"  onclick="fn_a(${dateList.date})">
 										<div class="date">${dateList.date}</div>
-										</button>
 									</td>
 								</c:otherwise>
 							</c:choose>
@@ -284,8 +276,9 @@
 	<script type="text/javascript">
 		
 		function fn_a(da) {
-			/* $('#myForm').removeClass('deactive'); */
+			$('#myForm').removeClass('deactive');
 			$('.text_type1').val('${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일');
+			
 		}
 		
 	</script>
