@@ -5,13 +5,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-
 <%@ include file="../template/header.jsp" %>
+
+<!DOCTYPE html>         
+<html>  
+<head>
+<meta charset="UTF-8">
+<title>${deptDTO.dName }&nbsp;${deptDTO.dType }</title>
+
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <link href="resources/assets/style/ViewPage.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 
 	
@@ -135,7 +141,16 @@
           height:100%;
           background:rgba(0, 0, 0, 0.5);
           z-index:-1;
-        }   
+        }
+        #myModal .modal-header{
+        	position: relative;
+        	width: 1040px;
+        }
+        .modal-header >button{
+        	position: absolute;
+        	bottom: 0;
+        	right: 0;
+        }
 </style> 
 
 </head>
@@ -172,7 +187,8 @@
 	
 	                <div class="restaurant_action_button_wrap">
 	
-	                  <button class="review_writing_button" onclick="fn_review()">
+	                  <button class="review_writing_button" data-remote="reviewWritePage?dSaup_no=${deptDTO.dSaup_no}&cNo=1"
+						data-toggle="modal" data-target="#myModal">
 	                    <i class="fas fa-pen fa-3x"></i>
 	                    <p class="review_writing_button_text">리뷰쓰기</p>
 	                  </button>
@@ -242,7 +258,7 @@
 	
 	                <tr>
 	                  <th>주차</th>
-	                  <td>${dept.dParking ==1 ? '파킹가능' : '파킹 불가' }</td>
+	                  <td>${dept.dParking ==1 ? '주차 가능' : '주차 불가' }</td>
 	                </tr>
 	
 	                <tr>
@@ -349,11 +365,13 @@
 			  		<div class="modal_layer" data-backdrop="static"></div>
 				</div>
 				
-				<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				    	<button type="button" class="close"  data-dismiss="modal" aria-hidden="true">X</button>
+				<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				 	<div class="modal-header" data-backdrop="static">
 				    	<!-- data-dismiss="modal" -->
-				    	<h3 id="myModalLabel" data-backdrop="static">모달 제목</h3>
+				    	
+				    	<button type="button" class="close"  data-dismiss="modal" aria-hidden="true">
+							<i class="fas fa-times fa-3x"></i>
+						</button>
 				  	</div>
 				  <div class="modal-body" data-backdrop="static">
 				    
@@ -363,18 +381,16 @@
 				</div>
 				
 				<script type="text/javascript">
-					function fn_reviewClose(){
-						
-						$('#myModal .modal-body').modal('hide');
-					}
-					function fn_review(){
-					   
-					   //$('#Modal .modal-content').load("reviewWritePage?&dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
-					   //$('#Modal').modal('show');
-					  
-					   $('#myModal .modal-body').load("reviewWritePage?&dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
-					   $('#myModal').modal();
-					}
+					
+					$('#myModal').on('show.bs.modal',function(e){
+						var button = $(e.relatedTarget);
+						var modal = $(this);
+						modal.find('.modal-body').load(button.data("remote"));
+					});
+					
+					
+					
+					
 					
 					
 					
@@ -400,19 +416,19 @@
 	                <li class="RestaurantReviewList__FilterItem">
 	                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__AllFilterButton RestaurantReviewList__FilterButton--Selected" id="reviewAll">
 	                    전체
-	                  <span class="RestaurantReviewList__ReviewCount">20</span></button>
+	                  </button>
 	                </li>
 	
 	                <li class="RestaurantReviewList__FilterItem">
 	                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__RecommendFilterButton" id="reviewAppointment">
 	         	예약자 리뷰
-	                  <span class="RestaurantReviewList__ReviewCount">18</span></button>
+	                  </button>
 	                </li>
 	
 	                <li class="RestaurantReviewList__FilterItem">
                   <button class="RestaurantReviewList__FilterButton RestaurantReviewList__NotRecommendButton" id="reviewNotAppointment">
                  비 예약자 리뷰
-                  <span class="RestaurantReviewList__ReviewCount">6</span></button>
+                  </button>
                 </li>
 	
 	                
@@ -507,7 +523,7 @@
 				      <div class="NearByRestaurantItem__Content">
 				        <div class="NearByRestaurantItem__NameWrap">
 				          <a class="NearByRestaurantItem__Name" href="viewPage?dSaup_no=${side.dSaup_no }">${side.dName }</a>
-				          <span class="NearByRestaurantItem__Rating NearByRestaurantItem__Rating--Expected">4.3</span>
+				          <span class="NearByRestaurantItem__Rating NearByRestaurantItem__Rating--Expected">${side.dRating }</span>
 				        </div>
 				  
 				        <div class="NearByRestaurantItem__MetroAndCuisine">

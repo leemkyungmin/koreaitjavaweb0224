@@ -43,10 +43,6 @@ public class pojectEController {
 	private Command command;
 
 
-	@RequestMapping("/")
-	public String goIndex() {
-		return "index";
-	}
 	
 	@RequestMapping("index")
 	public String goIndex2() {
