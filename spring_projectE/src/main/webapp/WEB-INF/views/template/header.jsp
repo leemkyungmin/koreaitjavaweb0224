@@ -16,26 +16,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <script src="https://code.jquery.com/jquery-2.2.2.js"></script>
 
-<script>
-
-	$(function () {
-	    var lastScrollTop = 0,
-	        delta = 15;
-	    $(window).scroll(function (event) {
-	        var st = $(this).scrollTop();
-	        if (Math.abs(lastScrollTop - st) <= delta) return;
-	        if ((st > lastScrollTop) ) {
-	            $(".nav-wrap").css("background-color", "white");
-	        } if((st < lastScrollTop) ) {
-	            $(".nav-wrap").css("background-color", "transparent");
-	        }
-	        lastScrollTop = st;
-	    });
-	});  
-</script>
 
 </head>
-<body>
+<body class="pt-5">
 
 	
 	<header class="Header" data-page="home">
@@ -47,11 +30,11 @@
 					<div class="nav-icon-box"><i class="fab fa-searchengin"></i></div><input class="nav-HomeSearchInput" name="main-search" type="text" maxlength="50" placeholder="지역, 식당 또는 음식" autocomplete="off" onclick="">
 				</li>
 				<li class="nav-list-wrap">
-					<a href="">맛집 리스트</a>
+					<a href="" class="nav-btn">맛집 리스트</a>
 				</li>
 				<li class="nav-user-wrap">
-					<a href=""><i class="far fa-user"></i></a>
+					<a href="loginChoicePage" class="nav-btn"><i class="far fa-user"></i></a>
 				</li>
 		</ul>
 	</header>
-	
+
