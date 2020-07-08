@@ -166,6 +166,16 @@
 			display: none;
 		}
 		
+		.select_aDate_hour {
+			width: 100px;
+			height: 20px;
+		}
+		
+		.select_aP_count {
+			width: 50px;
+			height: 20px;
+		}
+		
 		.submit_btn_wrap {
 			width: 100%;
 			text-align: center;
@@ -288,42 +298,52 @@
 	<script type="text/javascript">
 		
 		function fn_a(da) {
-			$('#myForm').removeClass('deactive');
-			$('.text_type1').val('${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일');
-			
+			if (da == undefined) {
+			} else {
+				$('#myForm').removeClass('deactive');
+				$('.text_type1').val('${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일');
+			}			
 		}
 		
 	</script>
 	
-	<form name="appointment_form">
+	<form name="appointment_form" method="post" action="insertAppointment">
 		<div id="myForm" class="contents deactive">
 			<table class="appintment_table">
 				<tr>
 					<td class="text_subject">날짜 :</td>
-					<td class="text_desc"><input type="text" name="aDate" class="text_type1" /></td>
+					<td class="text_desc"><input type="text" name="aDate_day" class="text_type1" /></td>
 				</tr>
 				<tr>
 					<td class="text_subject">시간 :</td>
 					<td class="text_desc">
-						<!-- 영업시간 별로 생성 -->			
-						<select name="">
-							<option value="11:00">11:00</option>
-							<option value="12:00">12:00</option>
+						<!-- 영업시간 별로 생성 -->
+						<!-- 전체 좌석 수 에따라 몇명 남았는지 함께 표시 -->
+						<!-- 업체번호, 예약날짜, 예약시간이 같아야 함 -->
+						<select class="select_aDate_hour" name="aDate_hour">
+							<option value="11:00">11:00 (00명)</option>
+							<option value="12:00">12:00 (00명)</option>
 						</select>
 					</td> 
 				</tr>
 				<tr>
 					<td class="text_subject">인원 :</td>
 					<td class="text_desc">
-						<select name="aP_count">
+						<select class="select_aP_count" name="aP_count">
 							<option value="1">1명</option>
-							<!-- 음식점 좌석 수 만큼 생성 -->
+							<option value="1">2명</option>
+							<option value="1">3명</option>
+							<option value="1">4명</option>
+							<!-- 음식점 좌석 수 , 남은 예약명수 만큼 생성 -->
 						</select>	
 					</td>
 				</tr>
 			</table>
 			<div class="submit_btn_wrap">
-				<input class="submit_btn" type="button" value="예약하기" />
+				<!-- 사용자정보(cNo), 업체번호(dSaup_no) 함께 전송 -->
+				<input class="submit_btn" type="submit" value="예약하기" />
+				<input type="hidden" name="cNo" value="" />
+				<input type="hidden" name="dSaup_no" value="" />
 			</div>
 		</div>
 	</form>
