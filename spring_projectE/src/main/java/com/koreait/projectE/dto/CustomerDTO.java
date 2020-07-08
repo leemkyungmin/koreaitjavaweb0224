@@ -5,7 +5,7 @@ import java.sql.Date;
 public class CustomerDTO {
 
 	private int cNo;
-	private String cId,cPw,cName,cNickname,cPhone,cEmail,cPhoto,cGrade,cDept,cGender;
+	private String cId,cPw,cName,cNickname,cPhone,cEmail,cPoto,cGrade,cDept,cGender;
 	private Date cRegdate;
 	
 	
@@ -13,10 +13,10 @@ public class CustomerDTO {
 	public CustomerDTO() {}
 
 
-	public CustomerDTO(String cPhoto,int cNo, String cId, String cPw, String cName, String cNickname, String cPhone, String cEmail,
+	public CustomerDTO(String cPoto,int cNo, String cId, String cPw, String cName, String cNickname, String cPhone, String cEmail,
 			 String cGrade, String cDept, String cGender, Date cRegdate) {
 		super();
-		this.cPhoto=cPhoto;
+		this.cPoto=cPoto;
 		this.cNo = cNo;
 		this.cId = cId;
 		this.cPw = cPw;
@@ -104,13 +104,16 @@ public class CustomerDTO {
 	}
 
 
-	public String getcPhoto() {
-		return cPhoto;
+	
+
+
+	public String getcPoto() {
+		return cPoto;
 	}
 
 
-	public void setcPhoto(String cPhoto) {
-		this.cPhoto = cPhoto;
+	public void setcPoto(String cPoto) {
+		this.cPoto = cPoto;
 	}
 
 
