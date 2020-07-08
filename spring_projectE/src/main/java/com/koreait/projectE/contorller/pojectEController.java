@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.koreait.projectE.command.AppointmentInsertCommand;
 import com.koreait.projectE.command.ReviewInsertCommand;
@@ -176,10 +178,12 @@ public class pojectEController {
 				dateList.add(calendarData);
 			}
 		}
-	//	System.out.println(dateList);
 		
 		model.addAttribute("dateList", dateList); // 달력 배열
 		model.addAttribute("today_info", today_info); // 오늘 날짜에 대한 정보
+
+		model.addAttribute("dSaup_no", request.getParameter("dSaup_no"));
+		model.addAttribute("cNo", request.getParameter("cNo"));
 		
 		return "board/bookPage"; // view
 	}
@@ -196,7 +200,7 @@ public class pojectEController {
 		model.addAttribute("request",request);
 		command= new AppointmentInsertCommand();
 		command.execute(sqlSession, model);
-		return "redirect:index";
+		return "redirect:viewPage?dSaup_no="+request.getParameter("dSaup_no");
 	}
 
 }

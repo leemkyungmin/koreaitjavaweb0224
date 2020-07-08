@@ -27,5 +27,10 @@ public class AdminCommand implements Command {
 		model.addAttribute("dList", dList);
 
 	}
+	
+	
+	
+	
+	
 
 }

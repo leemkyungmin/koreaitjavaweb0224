@@ -13,6 +13,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from DEPARTMENT_INFO
 	</select>
 	
-	
+	<select id="UpdateUserPage" resultType="com.koreait.projectE.dto.CustomerDTO">
+		select * from CUSTOMER 
+		where cNo=#{cNo}
+	</select>
 	
 </mapper>
