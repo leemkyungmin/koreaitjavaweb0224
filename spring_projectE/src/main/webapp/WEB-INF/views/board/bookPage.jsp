@@ -220,15 +220,17 @@
 
 		<input type="hidden" name="year" value="${today_info.search_year}" />
 		<input type="hidden" name="month" value="${today_info.search_month}" />
+		<input type="hidden" name="cNo" value="${cNo}" />
+		<input type="hidden" name="dSaup_no" value="${dSaup_no}" />
 
 		<div class="calendar" >
 			<!--날짜 네비게이션  -->
 			<div class="navigation">
 				<!-- 이전해 -->
 				<!-- 버튼을 누르면 달력리스트 새로 가져와야 하므로, CalendarController 한번 더 다녀온다 -->
-				<a class="before_after_year" href="calendar?year=${today_info.search_year-1}&month=${today_info.search_month-1}">&lt;&lt;</a> 
+				<a class="before_after_year" href="calendar?year=${today_info.search_year-1}&month=${today_info.search_month-1}&cNo=${cNo}&dSaup_no=${dSaup_no}">&lt;&lt;</a> 
 				<!-- 이전달 -->
-				<a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}">&lt;</a> 
+				<a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cNo}&dSaup_no=${dSaup_no}">&lt;</a> 
 				
 				<!-- yyyy.mm -->
 				<span class="this_month">
@@ -237,9 +239,9 @@
 				</span>
 				
 				<!-- 다음달 -->
-				<a class="before_after_month" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}">&gt;</a> 
+				<a class="before_after_month" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}&cNo=${cNo}&dSaup_no=${dSaup_no}">&gt;</a> 
 				<!-- 다음해 -->
-				<a class="before_after_year" href="calendar?year=${today_info.search_year+1}&month=${today_info.search_month-1}">&gt;&gt;</a>
+				<a class="before_after_year" href="calendar?year=${today_info.search_year+1}&month=${today_info.search_month-1}&cNo=${cNo}&dSaup_no=${dSaup_no}">&gt;&gt;</a>
 			</div>
 
 			<!-- 달력 테이블 -->
@@ -342,8 +344,8 @@
 			<div class="submit_btn_wrap">
 				<!-- 사용자정보(cNo), 업체번호(dSaup_no) 함께 전송 -->
 				<input class="submit_btn" type="submit" value="예약하기" />
-				<input type="hidden" name="cNo" value="1" />
-				<input type="hidden" name="dSaup_no" value="11111111111" />
+				<input type="hidden" name="cNo" value="${cNo}" />
+				<input type="hidden" name="dSaup_no" value="${dSaup_no}" />
 			</div>
 		</div>
 	</form>

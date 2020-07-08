@@ -107,7 +107,7 @@
 
 	<a href="loginChoicePage">테스트용 로그인하러가기</a> <!-- 테스트용 수정하셔도 됩니다. -->
 	<br/>
-	<a href="calendar">book페이지</a>
+	<a href="calendar?&dSaup_no=11111111111&cNo=1">book페이지</a>
 	
 <%@ include file="template/footer.jsp" %>
 

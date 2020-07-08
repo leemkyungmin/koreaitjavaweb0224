@@ -319,7 +319,7 @@
 				<!-- 버튼 -->
 				<input type="hidden" value="${cNo }" name="cNo">
 				<input type="hidden" value="${deptDTO.dSaup_no }" name="dSaup_no">
-				 <input type="button" id="submitBtn" class="ReviewWritingPage_SubmitButton ReviewWritingPage_calcelButton" data-dismiss="modal" value="취소"/>
+				 <input type="button" class="ReviewWritingPage_SubmitButton ReviewWritingPage_calcelButton" data-dismiss="modal" value="취소"/>
 				<input type="button" id="submitBtn" class="ReviewWritingPage_SubmitButton ReviewWritingPage_SubmitButton_Deactive"  onclick="fn_insertReview(this.form)" value="리뷰 올리기" />
 			</div>
 		</div>
