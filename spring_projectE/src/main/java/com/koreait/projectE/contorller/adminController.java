@@ -10,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.koreait.projectE.command.AdminCommand;
-import com.koreait.projectE.command.AdminUpdateUserCommand;
+import com.koreait.projectE.command.admin.AdminCommand;
+import com.koreait.projectE.command.admin.AdminUpdateUserCommand;
 import com.koreait.projectE.commom.Command;
 
 

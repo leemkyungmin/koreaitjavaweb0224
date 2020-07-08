@@ -24,10 +24,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
-import com.koreait.projectE.command.AppointmentInsertCommand;
-import com.koreait.projectE.command.ReviewInsertCommand;
-import com.koreait.projectE.command.boardViewCommand;
-import com.koreait.projectE.command.reviewWriteCommand;
+import com.koreait.projectE.command.board.AppointmentInsertCommand;
+import com.koreait.projectE.command.board.ReviewInsertCommand;
+import com.koreait.projectE.command.board.boardViewCommand;
+import com.koreait.projectE.command.board.reviewWriteCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.BoardDAO;
 import com.koreait.projectE.dao.DateData;
@@ -42,11 +42,6 @@ public class pojectEController {
 	private SqlSession sqlSession;
 	private Command command;
 
-
-	@RequestMapping("/")
-	public String goIndex() {
-		return "index";
-	}
 	
 	@RequestMapping("index")
 	public String goIndex2() {

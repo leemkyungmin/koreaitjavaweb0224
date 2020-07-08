@@ -1,4 +1,4 @@
-package com.koreait.projectE.command;
+package com.koreait.projectE.command.admin;
 
 import java.util.Map;
 

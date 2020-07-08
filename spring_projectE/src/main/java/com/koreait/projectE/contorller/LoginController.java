@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.koreait.projectE.command.CustomerEmailAuthCommand;
-import com.koreait.projectE.command.CustomerSignUpCommand;
-import com.koreait.projectE.command.DeptSignUpCommand;
+import com.koreait.projectE.command.login.CustomerEmailAuthCommand;
+import com.koreait.projectE.command.login.CustomerSignUpCommand;
+import com.koreait.projectE.command.login.DeptSignUpCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.LoginDAO;
 

@@ -1,4 +1,4 @@
-package com.koreait.projectE.command;
+package com.koreait.projectE.command.board;
 
 import java.util.ArrayList;
 import java.util.Map;
