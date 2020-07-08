@@ -653,7 +653,14 @@
 	    display: none;
 	}
 	.RestaurantReviewList__FilterButton--Selected {
-    color: #ff792a;
-}
+	    color: #ff792a;
+	}
+	.btn-thumb{
+		visibility: hidden;
+	}
+	.close{
+		float:right;
+		
+	}
 	
 	   
