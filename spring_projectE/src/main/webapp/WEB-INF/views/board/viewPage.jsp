@@ -258,7 +258,7 @@
 	
 	                <tr>
 	                  <th>주차</th>
-	                  <td>${dept.dParking ==1 ? '파킹가능' : '파킹 불가' }</td>
+	                  <td>${dept.dParking ==1 ? '주차 가능' : '주차 불가' }</td>
 	                </tr>
 	
 	                <tr>
@@ -523,7 +523,7 @@
 				      <div class="NearByRestaurantItem__Content">
 				        <div class="NearByRestaurantItem__NameWrap">
 				          <a class="NearByRestaurantItem__Name" href="viewPage?dSaup_no=${side.dSaup_no }">${side.dName }</a>
-				          <span class="NearByRestaurantItem__Rating NearByRestaurantItem__Rating--Expected">4.3</span>
+				          <span class="NearByRestaurantItem__Rating NearByRestaurantItem__Rating--Expected">${side.dRating }</span>
 				        </div>
 				  
 				        <div class="NearByRestaurantItem__MetroAndCuisine">
