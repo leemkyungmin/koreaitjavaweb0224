@@ -1,45 +1,45 @@
 
 
     CREATE TABLE CUSTOMER(
-    CNO NUMBER NOT NULL PRIMARY KEY, -- °í°´ °íÀ¯ ¹øÈ£ 
-    CID VARCHAR2(30) NOT NULL UNIQUE, --°í°´ ¾ÆÀÌµð 
-    CPW VARCHAR2(30)NOT NULL,  --°í°´ ºñ¹Ð¹øÈ£
-    CNAME VARCHAR2(30) NOT NULL , --°í°´ ÀÌ¸§
-    CNICKNAME VARCHAR2(30) NOT NULL UNIQUE, --°í°´ ´Ð³×ÀÓ
-    CPHONE CHAR(11) NOT NULL UNIQUE , --°í°´ ÀüÈ­¹øÈ£ 
-    CEMAIL VARCHAR2(50)NOT NULL UNIQUE, -- °í°´ ÀÌ¸ÞÀÏ
-    CPOTO varchar2(50),  --°í°´ ÀÌ¹ÌÁö ¼¶³×ÀÏ
-    CGRADE CHAR(1)NOT NULL, --°í°´ µî±Þ (1 ºê·ÐÁî,2 ½Ç¹ö ,3 ´ÙÀÌ¾Æ,4 vip,5 ¾îµå¹Î)
-    CDEPT VARCHAR2(20),  --°í°´ ºÐ·ù (1 ÀÏ¹Ý °í°´ ,2 °ü¸®ÀÚ 
-    CGENDER CHAR(1)NOT NULL, --°í°´ ¼ºº° (1 ³²ÀÚ ,2 ¿©ÀÚ )
-    CREGDATE DATE  --°í°´ °¡ÀÔÀÏ
+    CNO NUMBER NOT NULL PRIMARY KEY, -- ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ 
+    CID VARCHAR2(30) NOT NULL UNIQUE, --ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ 
+    CPW VARCHAR2(30)NOT NULL,  --ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£
+    CNAME VARCHAR2(30) NOT NULL , --ï¿½ï¿½ ï¿½Ì¸ï¿½
+    CNICKNAME VARCHAR2(30) NOT NULL UNIQUE, --ï¿½ï¿½ ï¿½Ð³ï¿½ï¿½ï¿½
+    CPHONE CHAR(11) NOT NULL UNIQUE , --ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½È£ 
+    CEMAIL VARCHAR2(50)NOT NULL UNIQUE, -- ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½
+    CPOTO varchar2(50),  --ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    CGRADE CHAR(1)NOT NULL, --ï¿½ï¿½ ï¿½ï¿½ï¿½ (1 ï¿½ï¿½ï¿½ï¿½ï¿½,2 ï¿½Ç¹ï¿½ ,3 ï¿½ï¿½ï¿½Ì¾ï¿½,4 vip,5 ï¿½ï¿½ï¿½ï¿½)
+    CDEPT VARCHAR2(20),  --ï¿½ï¿½ ï¿½Ð·ï¿½ (1 ï¿½Ï¹ï¿½ ï¿½ï¿½ ,2 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+    CGENDER CHAR(1)NOT NULL, --ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (1 ï¿½ï¿½ï¿½ï¿½ ,2 ï¿½ï¿½ï¿½ï¿½ )
+    CREGDATE DATE  --ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 );
 
 CREATE SEQUENCE CUSTOMER_SEQ;
 
 
 CREATE TABLE DEPARTMENT(
-    DSAUP_NO varchar2(15) NOT NULL PRIMARY KEY, --À½½ÄÁ¡ »ç¾÷ÀÚ ¹øÈ£ (°íÀ¯Å°)
-    DID VARCHAR2(30) NOT NULL UNIQUE , -- À½½ÄÁ¡ ¾ÆÀÌµð 
-    DPW VARCHAR2(30) NOT NULL --À½½ÄÁ¡ ºñ¹Ð¹øÈ£ 
+    DSAUP_NO varchar2(15) NOT NULL PRIMARY KEY, --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ (ï¿½ï¿½ï¿½ï¿½Å°)
+    DID VARCHAR2(30) NOT NULL UNIQUE , -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ 
+    DPW VARCHAR2(30) NOT NULL --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£ 
 );
 
 CREATE TABLE DEPARTMENT_INFO(
-    DNO NUMBER NOT NULL PRIMARY KEY, --À½½ÄÁ¡ °íÀ¯¹øÈ£
-    DSEAT NUMBER NOT NULL, --À½½ÄÁ¡ ÁÂ¼®¼ö 
-    DSAUP_NO varchar2(15) NOT NULL UNIQUE, --À½½ÄÁ¡ »ç¾÷ÀÚ ¹øÈ£ 
-    DPHONE VARCHAR2(20) NOT NULL UNIQUE, --À½½ÄÁ¡ ÀüÈ­¹øÈ£
-    DNAME VARCHAR2(50) NOT NULL , --À½½ÄÁ¡ ÀÌ¸§
-    DADDRESS VARCHAR2(300) NOT NULL, --À½½ÄÁ¡ ÁÖ¼Ò (¼­¿ï½Ã ¸¶Æ÷±¸ ³ë°í»êµ¿ ...)
-    DSTART CHAR(4) NOT NULL , --¿µ¾÷ ½ÃÀÛ ½Ã°£(1000 >10:00)
-    DEND CHAR(4) NOT NULL , --¿µ¾÷ Á¾·á ½Ã°£ (2030 >20:30)
-    DPARKING CHAR(1) NOT NULL , -- ÁÖÂ÷°¡´É (1 ÁÖÂ÷°¡´É,2 ÁÖÂ÷ ºÒ°¡)
-    DTYPE VARCHAR2(50) NOT NULL,  -- À½½ÄÁ¡ Á¾·ù (È¸/½º½Ã , ÀÏ½Ä µîµî)
-    DPHOTO VARCHAR2(1000) NOT NULL, -- À½½ÄÁ¡ »çÁø ÀúÀå (»çÁø1.jpg,»çÁø2.jpg,»çÁø3.jpg)
-    DHIT NUMBER DEFAULT 0, --Á¶È¸¼ö
-    DRATING NUMBER(2,1) DEFAULT 0.0, --ÆòÁ¡(¸®ºä ÀÛ¼º½Ã ¾÷µ¥ÀÌÆ® Ã³¸®)
-    DACCPET NUMBER NOT NULL,  --ÃÖÃÊ ±Û µî·Ï½Ã 0À¸·Î µî·Ï µÇ¾îÀÖ´Ù°¡ °ü¸®ÀÚ°¡ ½ÂÀÎÇÏ¸é 1·Î º¯°æ (0 ½ÂÀÎ´ë±â ,1 ½ÂÀÎ)  
-    DREG_DATE DATE  -- ±Û µî·ÏÀÏ 
+    DNO NUMBER NOT NULL PRIMARY KEY, --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+    DSEAT NUMBER NOT NULL, --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Â¼ï¿½ï¿½ï¿½ 
+    DSAUP_NO varchar2(15) NOT NULL UNIQUE, --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ 
+    DPHONE VARCHAR2(20) NOT NULL UNIQUE, --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½È£
+    DNAME VARCHAR2(50) NOT NULL , --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
+    DADDRESS VARCHAR2(300) NOT NULL, --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½êµ¿ ...)
+    DSTART CHAR(4) NOT NULL , --ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½(1000 >10:00)
+    DEND CHAR(4) NOT NULL , --ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ (2030 >20:30)
+    DPARKING CHAR(1) NOT NULL , -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,2 ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½)
+    DTYPE VARCHAR2(50) NOT NULL,  -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (È¸/ï¿½ï¿½ï¿½ï¿½ , ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½)
+    DPHOTO VARCHAR2(1000) NOT NULL, -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½1.jpg,ï¿½ï¿½ï¿½ï¿½2.jpg,ï¿½ï¿½ï¿½ï¿½3.jpg)
+    DHIT NUMBER DEFAULT 0, --ï¿½ï¿½È¸ï¿½ï¿½
+    DRATING NUMBER(2,1) DEFAULT 0.0, --ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® Ã³ï¿½ï¿½)
+    DACCPET NUMBER NOT NULL,  --ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ï½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½Ö´Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (0 ï¿½ï¿½ï¿½Î´ï¿½ï¿½ ,1 ï¿½ï¿½ï¿½ï¿½)  
+    DREG_DATE DATE  -- ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ 
     
     
 );
@@ -48,85 +48,85 @@ CREATE SEQUENCE DEPARTMENT_INFO_SEQ;
 
 
 CREATE TABLE MENU_INFO(
-    MNO NUMBER NOT NULL PRIMARY KEY, --¸Þ´º °íÀ¯¹øÈ£ 
-    MNAME VARCHAR2(50) NOT NULL UNIQUE, -- ¸Þ´º ÀÌ¸§
-    MPRICE VARCHAR2(10) NOT NULL, --¸Þ´º °¡°Ý
-    DSAUP_NO varchar2(15) REFERENCES  DEPARTMENT(DSAUP_NO) --»ç¾÷ÀÚ ¹øÈ£(¾î¶² À½½ÄÁ¡ ¸Þ´ºÀÎÁö )
+    MNO NUMBER NOT NULL PRIMARY KEY, --ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£ 
+    MNAME VARCHAR2(50) NOT NULL UNIQUE, -- ï¿½Þ´ï¿½ ï¿½Ì¸ï¿½
+    MPRICE VARCHAR2(10) NOT NULL, --ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½
+    DSAUP_NO varchar2(15) REFERENCES  DEPARTMENT(DSAUP_NO) --ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£(ï¿½î¶² ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ï¿½ï¿½ï¿½ï¿½ )
 );
 
 CREATE SEQUENCE MENU_SEQ;
 
 
 CREATE TABLE APPOINTMENT(
-    ANO NUMBER NOT NULL PRIMARY KEY, --¿¹¾à ¹øÈ£ 
-    ADATE varchar2(30) not null, -- ¿¹¾àÀÏ ( ½Ã°£ Æ÷ÇÔ ) 
-    AP_COUNT NUMBER NOT NULL, -- ÃÑ ¿¹¾à ÀÎ¿ø
-    CNO NUMBER REFERENCES  CUSTOMER(CNO), -- ¿¹¾àÇÑ »ç¿ëÀÚ ¹øÈ£ ( °í°´ Å×ÀÌºí ÂüÁ¶¿ë)
-    DSAUP_NO varchar2(15) REFERENCES  DEPARTMENT(DSAUP_NO) --¿¹¾àÇÑ ¾÷Ã¼ »ç¾÷ÀÚ ¹øÈ£ 
+    ANO NUMBER NOT NULL PRIMARY KEY, --ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ 
+    ADATE varchar2(30) not null, -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ( ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ) 
+    AP_COUNT NUMBER NOT NULL, -- ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î¿ï¿½
+    CNO NUMBER REFERENCES  CUSTOMER(CNO), -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ ( ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+    DSAUP_NO varchar2(15) REFERENCES  DEPARTMENT(DSAUP_NO) --ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ 
 );
 
 CREATE SEQUENCE APPOINTMENT_SEQ;
 
 
 CREATE TABLE REVIEW(
-    RNO NUMBER NOT NULL PRIMARY KEY, --¸®ºä ¹øÈ£
-    RTITLE VARCHAR2(100) NOT NULL , --¸®ºä Á¦¸ñ 
-    RCONTENT VARCHAR2(2000) NOT NULL, --¸®ºä ³»¿ë
-    RPOINT NUMBER(2,1) NOT NULL,  --¸®ºä º°Á¡(Á¤¼ö 1ÀÚ¸®,¼Ò¼ö 1ÀÚ¸® )
-    RPOTO VARCHAR2(300), --¸®ºä »çÁø (µî·Ï ¾ÈÇØµÎ µî·Ï °¡´É)
-    RDEPTH NUMBER DEFAULT 0, -- ÀÚ½ÅÀÌ ¾´±Û 0  ´ä±Û ÇÒ¼ö·Ï +1
-    REPORTCOUNT NUMBER DEFAULT 0, --½Å°í È¸¼ö (5È¸ ÀÌ»ó½Ã Á¦¸ñ,³»¿ë ½Å°íµÈ ±ÛÀÔ´Ï´Ù.·Î º¯°æ)
-    RWRITER_DATE DATE, --¸®ºä µî·ÏÀÏ
-    RAPPOINTMENT NUMBER,  -- ¿¹¾àÀÚ ¾Æ´Ò½Ã 0(Insert ¹®¿¡¼­ count·Î ÀÚµ¿À¸·Î °¡Á®¿È) , ¿¹¾àÀÚ ¼ö·®   Insert Into (....(select count(*) from appointment where cNo=? and dSaup_no=?)..)
-    CNO NUMBER REFERENCES  CUSTOMER(CNO), --¸®ºä ÀÛ¼ºÀÚ (È¸¿ø Å×ÀÌºí Âü°í¿ë)
-    DSAUP_NO varchar2(15) REFERENCES  DEPARTMENT(DSAUP_NO) --¾÷Ã¼ »ç¾÷ÀÚ ¹øÈ£ 
+    RNO NUMBER NOT NULL PRIMARY KEY, --ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+    RTITLE VARCHAR2(100) NOT NULL , --ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+    RCONTENT VARCHAR2(2000) NOT NULL, --ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    RPOINT NUMBER(2,1) NOT NULL,  --ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ 1ï¿½Ú¸ï¿½,ï¿½Ò¼ï¿½ 1ï¿½Ú¸ï¿½ )
+    RPOTO VARCHAR2(300), --ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Øµï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+    RDEPTH NUMBER DEFAULT 0, -- ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 0  ï¿½ï¿½ï¿½ ï¿½Ò¼ï¿½ï¿½ï¿½ +1
+    REPORTCOUNT NUMBER DEFAULT 0, --ï¿½Å°ï¿½ È¸ï¿½ï¿½ (5È¸ ï¿½Ì»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
+    RWRITER_DATE DATE, --ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
+    RAPPOINTMENT NUMBER,  -- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ò½ï¿½ 0(Insert ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ countï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½) , ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½   Insert Into (....(select count(*) from appointment where cNo=? and dSaup_no=?)..)
+    CNO NUMBER REFERENCES  CUSTOMER(CNO), --ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ (È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½)
+    DSAUP_NO varchar2(15) REFERENCES  DEPARTMENT(DSAUP_NO) --ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ 
 );
 
 
 CREATE SEQUENCE REVIEW_SEQ;
 
 
---Å×½ºÆ® ¾ÆÀÌµð »ðÀÔ
-INSERT INTO CUSTOMER VALUES(CUSTOMER_SEQ.NEXTVAL,'test1','test1','Å×½ºÆ®1','´Ð³×ÀÓ1','01011111111','test1@custom.com','testimg1.jpg',1,'',1,sysdate);
-INSERT INTO CUSTOMER VALUES(CUSTOMER_SEQ.NEXTVAL,'test2','test2','Å×½ºÆ®2','´Ð³×ÀÓ2','01011112222','test2@custom.com','testimg2.jpg',2,'',2,sysdate);
-INSERT INTO CUSTOMER VALUES(CUSTOMER_SEQ.NEXTVAL,'test3','test3','Å×½ºÆ®3','´Ð³×ÀÓ3','01011113333','test3@custom.com','testimg3.jpg',3,'',1,sysdate);
-INSERT INTO CUSTOMER VALUES(CUSTOMER_SEQ.NEXTVAL,'test4','test4','Å×½ºÆ®4','´Ð³×ÀÓ4','01011114444','test4@custom.com','testimg4.jpg',4,'',2,sysdate);
-INSERT INTO CUSTOMER VALUES(CUSTOMER_SEQ.NEXTVAL,'test5','test5','Å×½ºÆ®5','´Ð³×ÀÓ5','01011115555','test5@custom.com','testimg5.jpg',5,'',1,sysdate);
+--ï¿½×½ï¿½Æ® ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
+INSERT INTO CUSTOMER VALUES(CUSTOMER_SEQ.NEXTVAL,'test1','test1','ï¿½×½ï¿½Æ®1','ï¿½Ð³ï¿½ï¿½ï¿½1','01011111111','test1@custom.com','testimg1.jpg',1,'',1,sysdate);
+INSERT INTO CUSTOMER VALUES(CUSTOMER_SEQ.NEXTVAL,'test2','test2','ï¿½×½ï¿½Æ®2','ï¿½Ð³ï¿½ï¿½ï¿½2','01011112222','test2@custom.com','testimg2.jpg',2,'',2,sysdate);
+INSERT INTO CUSTOMER VALUES(CUSTOMER_SEQ.NEXTVAL,'test3','test3','ï¿½×½ï¿½Æ®3','ï¿½Ð³ï¿½ï¿½ï¿½3','01011113333','test3@custom.com','testimg3.jpg',3,'',1,sysdate);
+INSERT INTO CUSTOMER VALUES(CUSTOMER_SEQ.NEXTVAL,'test4','test4','ï¿½×½ï¿½Æ®4','ï¿½Ð³ï¿½ï¿½ï¿½4','01011114444','test4@custom.com','testimg4.jpg',4,'',2,sysdate);
+INSERT INTO CUSTOMER VALUES(CUSTOMER_SEQ.NEXTVAL,'test5','test5','ï¿½×½ï¿½Æ®5','ï¿½Ð³ï¿½ï¿½ï¿½5','01011115555','test5@custom.com','testimg5.jpg',5,'',1,sysdate);
 
---Å×½ºÆ® ¾÷Ã¼¾ÆÀÌµð 
+--ï¿½×½ï¿½Æ® ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½Ìµï¿½ 
 INSERT INTO DEPARTMENT VALUES('11111111111','cus1','cus1');
 INSERT INTO DEPARTMENT VALUES('11111111112','cus2','cus2');
 INSERT INTO DEPARTMENT VALUES('11111111113','cus3','cus3');
 
 
---Å×½ºÆ® ¾÷Ã¼ Á¤º¸ 
-INSERT INTO DEPARTMENT_INFO VALUES(DEPARTMENT_INFO_SEQ.NEXTVAL,30,'11111111111','01022221111','½º½ÃÀÌ¸¶','¼­¿ïÆ¯º°½Ã ÀºÆò±¸ ¿ª¸»·Î 49-1 1F','1000','2200','1','È¸/½º½Ã','201978_1580641462134_5654.jfif,201978_1580641462134_5655.jfif,244033_1563623907424_29250.jfif',0,0,1,SYSDATE);
-INSERT INTO DEPARTMENT_INFO VALUES(DEPARTMENT_INFO_SEQ.NEXTVAL,20,'11111111112','01022222222','¿À·¹³ë¶ó¸à','¼­¿ï½Ã ÀºÆò±¸ ÀÀ¾Ïµ¿ 587-39','1100','2000','1','¶ó¸à/¼Ò¹Ù/¿ìµ¿','810562_1593517025754_6086.jfif,810562_1593517025754_6087.jfif',0,0,1,SYSDATE);
-INSERT INTO DEPARTMENT_INFO VALUES(DEPARTMENT_INFO_SEQ.NEXTVAL,10,'11111111113','01022223333','ÇÞ»ì¸Ó¹«´Â½ÄÅ¹','¼­¿ïÆ¯º°½Ã ÀºÆò±¸ ¿¬¼­·Î29±æ 32 1F','1200','2300','1','±î½º ¿ä¸®','75402_1510895726828_73403.jfif,617296_1592064144788789.jpg,617296_1592064154629892.jpg',0,0,1,SYSDATE);
+--ï¿½×½ï¿½Æ® ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ 
+INSERT INTO DEPARTMENT_INFO VALUES(DEPARTMENT_INFO_SEQ.NEXTVAL,30,'11111111111','01022221111','ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½','ï¿½ï¿½ï¿½ï¿½Æ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 49-1 1F','1000','2200','1','È¸/ï¿½ï¿½ï¿½ï¿½','201978_1580641462134_5654.jfif,201978_1580641462134_5655.jfif,244033_1563623907424_29250.jfif',0,0,1,SYSDATE);
+INSERT INTO DEPARTMENT_INFO VALUES(DEPARTMENT_INFO_SEQ.NEXTVAL,20,'11111111112','01022222222','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½','ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ïµï¿½ 587-39','1100','2000','1','ï¿½ï¿½ï¿½/ï¿½Ò¹ï¿½/ï¿½ìµ¿','810562_1593517025754_6086.jfif,810562_1593517025754_6087.jfif',0,0,1,SYSDATE);
+INSERT INTO DEPARTMENT_INFO VALUES(DEPARTMENT_INFO_SEQ.NEXTVAL,10,'11111111113','01022223333','ï¿½Þ»ï¿½Ó¹ï¿½ï¿½Â½ï¿½Å¹','ï¿½ï¿½ï¿½ï¿½Æ¯ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½29ï¿½ï¿½ 32 1F','1200','2300','1','ï¿½î½º ï¿½ä¸®','75402_1510895726828_73403.jfif,617296_1592064144788789.jpg,617296_1592064154629892.jpg',0,0,1,SYSDATE);
 
---Å×½ºÆ® ¾÷Ã¼ ¸Þ´º
-INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'´å»þÀÌ ÁØ¸¶ÀÌ','150,000','11111111111');
-INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'»ó¼±¿©¼ö ÁØ¸¶ÀÌ','68,000','11111111111');
-INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'ÃÊÅ°°Õ È¥ÁÒÁ¶','46,000','11111111111');
+--ï¿½×½ï¿½Æ® ï¿½ï¿½Ã¼ ï¿½Þ´ï¿½
+INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø¸ï¿½ï¿½ï¿½','150,000','11111111111');
+INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'ï¿½ó¼±¿ï¿½ï¿½ï¿½ ï¿½Ø¸ï¿½ï¿½ï¿½','68,000','11111111111');
+INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'ï¿½ï¿½Å°ï¿½ï¿½ È¥ï¿½ï¿½ï¿½ï¿½','46,000','11111111111');
 
-INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'¸ðµÒ Ä«Ã÷','10,000','11111111113');
-INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'Ä¡Áî Ä«Ã÷','10,500','11111111113');
-INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'·Î½º Ä«Ã÷','8,500','11111111113');
+INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½','10,000','11111111113');
+INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'Ä¡ï¿½ï¿½ Ä«ï¿½ï¿½','10,500','11111111113');
+INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'ï¿½Î½ï¿½ Ä«ï¿½ï¿½','8,500','11111111113');
 
-INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'Åä¸® ºüÀÌÅº','8,000','11111111112');
-INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'Åä¸® ¼î¿ì','8,000','11111111112');
-INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'½Ã¿À ¶ó¸à','8,000','11111111112');
+INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½Åº','8,000','11111111112');
+INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'ï¿½ä¸® ï¿½ï¿½ï¿½','8,000','11111111112');
+INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'ï¿½Ã¿ï¿½ ï¿½ï¿½ï¿½','8,000','11111111112');
 
---Å×½ºÆ® ¸®ºä
+--ï¿½×½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
 
-INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'½º½ÃÀÌ¸¶ ¸À ¸®ºä1 ','¸ÀÀÖ´Ù.1',4.5,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='1' AND DSAUP_NO='11111111111'),1,'11111111111');
-INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'¿À·¹³ë ¶ó¸é ¸®ºä1 ','¸À¾ø´Ù.1',3.0,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='1' AND DSAUP_NO='11111111112'),1,'11111111112');
-INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'ÇÞ»ì¸Ó¹«´Â ¸®ºä1','¸ÀÀÖ´Ù.1',5.0,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='1' AND DSAUP_NO='11111111113'),1,'11111111113');
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½1 ','ï¿½ï¿½ï¿½Ö´ï¿½.1',4.5,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='1' AND DSAUP_NO='11111111111'),1,'11111111111');
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½1 ','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.1',3.0,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='1' AND DSAUP_NO='11111111112'),1,'11111111112');
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'ï¿½Þ»ï¿½Ó¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½1','ï¿½ï¿½ï¿½Ö´ï¿½.1',5.0,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='1' AND DSAUP_NO='11111111113'),1,'11111111113');
 
-INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'½º½ÃÀÌ¸¶ ¸®ºä2 ','¸ÀÀÖ´Ù.2',4.0,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='2' AND DSAUP_NO='11111111111'),2,'11111111111');
-INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'¿À·¹³ë ¶ó¸é ¸®ºä2 ','¸À¾ø´Ù.2',3.0,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='2' AND DSAUP_NO='11111111112'),2,'11111111112');
-INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'ÇÞ»ì¸Ó¹«´Â ½ÄÅ¹ ¸®ºä2','¸ÀÀÖ´Ù.2',5.0,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='2' AND DSAUP_NO='11111111113'),2,'11111111113');
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½2 ','ï¿½ï¿½ï¿½Ö´ï¿½.2',4.0,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='2' AND DSAUP_NO='11111111111'),2,'11111111111');
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½2 ','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.2',3.0,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='2' AND DSAUP_NO='11111111112'),2,'11111111112');
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'ï¿½Þ»ï¿½Ó¹ï¿½ï¿½ï¿½ ï¿½ï¿½Å¹ ï¿½ï¿½ï¿½ï¿½2','ï¿½ï¿½ï¿½Ö´ï¿½.2',5.0,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='2' AND DSAUP_NO='11111111113'),2,'11111111113');
 
-INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'½º½ÃÀÌ¸¶ ¸®ºä3 ','¸ÀÀÖ´Ù.',3.5,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='3' AND DSAUP_NO='11111111111'),3,'11111111111');
-INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'¿À·¹³ë ¶ó¸é ¸®ºä3 ','¸À¾ø´Ù..',1.5,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='3' AND DSAUP_NO='11111111112'),3,'11111111112');
-INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'ÇÞ»ì¸Ó¹«´Â ½ÄÅ¹ ¸®ºä3','¸ÀÀÖ´Ù.',2.0,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='3' AND DSAUP_NO='11111111113'),3,'11111111113');
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½3 ','ï¿½ï¿½ï¿½Ö´ï¿½.',3.5,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='3' AND DSAUP_NO='11111111111'),3,'11111111111');
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½3 ','ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½..',1.5,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='3' AND DSAUP_NO='11111111112'),3,'11111111112');
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'ï¿½Þ»ï¿½Ó¹ï¿½ï¿½ï¿½ ï¿½ï¿½Å¹ ï¿½ï¿½ï¿½ï¿½3','ï¿½ï¿½ï¿½Ö´ï¿½.',2.0,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='3' AND DSAUP_NO='11111111113'),3,'11111111113');
