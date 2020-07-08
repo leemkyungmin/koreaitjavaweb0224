@@ -138,6 +138,7 @@
 		
 		.appintment_table {
 			width: 100%;
+			margin-bottom: 20px;
 		}
 		
 		.appintment_table tr {
@@ -163,7 +164,18 @@
 		
 		.deactive {
 			display: none;
-		} 
+		}
+		
+		.submit_btn_wrap {
+			width: 100%;
+			text-align: center;
+		}
+		
+		.submit_btn {
+			padding: 5px;
+			width: 50%;
+			border: 0;
+		}
 		
 		
 		select {font-family: "돋움"; font-size: 9pt; color:#595959;}
@@ -310,7 +322,9 @@
 					</td>
 				</tr>
 			</table>
-			<input type="button" value="예약하기" />
+			<div class="submit_btn_wrap">
+				<input class="submit_btn" type="button" value="예약하기" />
+			</div>
 		</div>
 	</form>
 	
