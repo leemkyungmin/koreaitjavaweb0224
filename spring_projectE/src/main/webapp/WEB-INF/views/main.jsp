@@ -10,7 +10,8 @@
 <script type="text/javascript">
 	$(function(){
 		$.ajax(function(){
-			url:'getSelectSi'
+			url:'getSelectSi',
+			
 		});
 	});
 	
