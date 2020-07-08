@@ -6,12 +6,11 @@
 
 <html lang="ko">
 <head>
-	<title>캘린더</title>
+	<title>예약 페이지</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-
 	<script type="text/javaScript" language="javascript"></script>
 	
-	<style TYPE="text/css">
+	<style type="text/css">
 	
 		body {
 			scrollbar-face-color: #F6F6F6;
@@ -162,9 +161,9 @@
 			border: 0;
 		}
 		
-		.deactive {
+		/* .deactive {
 			display: none;
-		}
+		} */
 		
 		
 		select {font-family: "돋움"; font-size: 9pt; color:#595959;}
@@ -190,18 +189,15 @@
 	</style>
 	
 	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script type="text/javascript">
-		
-		function fn_click() {
-			$('#myForm').removeClass('deactive');
-		}
 	
-	</script>
 	
 </head>
 <body>
 	
 	<form name="calendarFrm" id="calendarFrm" action="" method="GET">
+
+		<input type="hidden" name="year" value="${today_info.search_year}" />
+		<input type="hidden" name="month" value="${today_info.search_month}" />
 
 		<div class="calendar" >
 			<!--날짜 네비게이션  -->
@@ -249,25 +245,33 @@
 						<c:forEach var="dateList" items="${dateList}" varStatus="date_status"> 
 							<c:choose>
 								<c:when test="${dateList.value=='today'}">
-									<td class="today" onclick="fn_click()">
+									<td class="today click">
+										<button onclick="fn_a(${dateList.date})">
 										<div class="date">${dateList.date}</div>
+										</button>
 									</td>
 								</c:when>
 								<c:when test="${date_status.index%7==6}">
-									<td class="sat_day" onclick="fn_click()">
+									<td class="sat_day click">
+										<button onclick="fn_a(${dateList.date})">
 										<div class="sat">${dateList.date}</div>
+										</button>
 									</td>
 								</c:when>
 								<c:when test="${date_status.index%7==0}">
 									</tr>
 									<tr>	
-										<td class="sun_day" onclick="fn_click()">
+										<td class="sun_day click">
+											<button onclick="fn_a(${dateList.date})">
 											<div class="sun">${dateList.date}</div>
+											</button>
 										</td>
 								</c:when>
 								<c:otherwise>
-									<td class="normal_day" onclick="fn_click()">
+									<td class="normal_day click">
+										<button onclick="fn_a(${dateList.date})">
 										<div class="date">${dateList.date}</div>
+										</button>
 									</td>
 								</c:otherwise>
 							</c:choose>
@@ -277,12 +281,21 @@
 		</div>
 	</form>
 	
+	<script type="text/javascript">
+		
+		function fn_a(da) {
+			/* $('#myForm').removeClass('deactive'); */
+			$('.text_type1').val('${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일');
+		}
+		
+	</script>
+	
 	<form name="appointment_form">
 		<div id="myForm" class="contents deactive">
 			<table class="appintment_table">
 				<tr>
 					<td class="text_subject">날짜 :</td>
-					<td class="text_desc"><input type="text" name="aDate" class="text_type1" value="" /></td>
+					<td class="text_desc"><input type="text" name="aDate" class="text_type1" /></td>
 				</tr>
 				<tr>
 					<td class="text_subject">시간 :</td>
@@ -304,7 +317,7 @@
 					</td>
 				</tr>
 			</table>
-				
+			<input type="button" value="예약하기" />
 		</div>
 	</form>
 	
