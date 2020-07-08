@@ -20,7 +20,6 @@
 		
 		body {
 		    position: relative;
-		    width: 687px;
 		    margin: 0 auto;
 		    font-size: 100%;
 		    line-height: 100%;
@@ -276,36 +275,61 @@
 </head>
 <body>
 	
-	<form name="myForm" method="post" enctype="multipart/form-data">
-		<div class="ReviewWritenpage_Container">
-			<div class="ReviewWritenpage_DeptName">
-				<!-- 가게이름 -->
-				<strong class="DeptName">${deptDTO.dName }</strong>
-			</div>
-			<div class="ReviewPoint">
-				<!-- 별 개수 선택 -->
-				<img id="image1" onmouseover=show(1) onclick="mark(1)" onmouseout=noshow(1) alt="별" src="resources/assets/images/star-regular.svg">
-				<img id="image2" onmouseover=show(2) onclick="mark(2)" onmouseout=noshow(2) alt="별" src="resources/assets/images/star-regular.svg">
-				<img id="image3" onmouseover=show(3) onclick="mark(3)" onmouseout=noshow(3) alt="별" src="resources/assets/images/star-regular.svg">
-				<img id="image4" onmouseover=show(4) onclick="mark(4)" onmouseout=noshow(4) alt="별" src="resources/assets/images/star-regular.svg">
-				<img id="image5" onmouseover=show(5) onclick="mark(5)" onmouseout=noshow(5) alt="별" src="resources/assets/images/star-regular.svg">
-				
-				<input type="hidden" name="rPoint"/>
-			</div>
-			<div class="ReviewWritenPage_ContentWrap">
-				<div class="ReviewWritenPage_FormWrap">
-					<div class="ReviewWritenPage_Content">
-						<!-- 리뷰작성 -->
-						<div class="ReviewWritenPage_Title">
-							<input id="title-lbl" type="text" name="rTitle" size="50" placeholder="제목을 입력하세요."/>
+	
+	    	<form name="myForm" method="post" enctype="multipart/form-data">
+				<div class="ReviewWritenpage_Container">
+					<div class="ReviewWritenpage_DeptName">
+						<!-- 가게이름 -->
+						<strong class="DeptName">${deptDTO.dName }</strong>
+					</div>
+					<div class="ReviewPoint">
+						<!-- 별 개수 선택 -->
+						<img id="image1" onmouseover=show(1) onclick="mark(1)" onmouseout=noshow(1) alt="별" src="resources/assets/images/star-regular.svg">
+						<img id="image2" onmouseover=show(2) onclick="mark(2)" onmouseout=noshow(2) alt="별" src="resources/assets/images/star-regular.svg">
+						<img id="image3" onmouseover=show(3) onclick="mark(3)" onmouseout=noshow(3) alt="별" src="resources/assets/images/star-regular.svg">
+						<img id="image4" onmouseover=show(4) onclick="mark(4)" onmouseout=noshow(4) alt="별" src="resources/assets/images/star-regular.svg">
+						<img id="image5" onmouseover=show(5) onclick="mark(5)" onmouseout=noshow(5) alt="별" src="resources/assets/images/star-regular.svg">
+						
+						<input type="hidden" name="rPoint"/>
+					</div>
+					<div class="ReviewWritenPage_ContentWrap">
+						<div class="ReviewWritenPage_FormWrap">
+							<div class="ReviewWritenPage_Content">
+								<!-- 리뷰작성 -->
+								<div class="ReviewWritenPage_Title">
+									<input id="title-lbl" type="text" name="rTitle" size="50" placeholder="제목을 입력하세요."/>
+								</div>
+								<textarea name="rContent" class="ReviewWritenPage_Editor" id="review" rows="1" cols="1" placeholder="주문하신 메뉴는 어떠셨나요? 식당의 분위기와 서비스도 궁금해요!"></textarea>
+								<p class="ReviewWritenPage_TextLength" id="lengthResult" name="lengthResult">
+									<!-- 글자 수 계산 -->
+									0 / 1000
+								</p>
+							</div>
 						</div>
-						<textarea name="rContent" class="ReviewWritenPage_Editor" id="review" rows="1" cols="1" placeholder="주문하신 메뉴는 어떠셨나요? 식당의 분위기와 서비스도 궁금해요!"></textarea>
-						<p class="ReviewWritenPage_TextLength" id="lengthResult" name="lengthResult">
-							<!-- 글자 수 계산 -->
-							0 / 1000
-						</p>
+						<div class="ReviewWritenPage_TextWrap">
+						</div>
+						<div class="ReviewWritenPage_PictureWrap">
+							<!-- 이미지 업로드 -->
+							<input type="file" id="input_file" name="rPoto" multiple />
+						</div>
+					</div>
+					<div class="ReviewWritenPage_ButtonsWrap">
+					
+						<!-- DB에 넣을 업체사업자번호(DSAUP_NO) 고객번호(CNO)가 필요함) -->
+					
+						<!-- 버튼 -->
+						<input type="hidden" value="${cNo }" name="cNo">
+						<input type="hidden" value="${deptDTO.dSaup_no }" name="dSaup_no">
+						 <input type="button" class="ReviewWritingPage_SubmitButton" data-dismiss="modal"  value="취소"/>
+						<input type="button" id="submitBtn" class="ReviewWritingPage_SubmitButton ReviewWritingPage_SubmitButton_Deactive"  onclick="fn_insertReview(this.form)" value="리뷰 올리기" />
 					</div>
 				</div>
+<<<<<<< HEAD
+			</form>
+	  	
+	
+	
+=======
 				<div class="ReviewWritenPage_TextWrap">
 				</div>
 				<div class="ReviewWritenPage_PictureWrap">
@@ -320,11 +344,12 @@
 				<!-- 버튼 -->
 				<input type="hidden" value="${cNo }" name="cNo">
 				<input type="hidden" value="${deptDTO.dSaup_no }" name="dSaup_no">
-				<button type="button" class="ReviewWritingPage_CalcelButton" data-dismiss="modal">취소</button>
+				 <input type="button" class="ReviewWritingPage_SubmitButton ReviewWritingPage_calcelButton" data-dismiss="modal" value="취소"/>
 				<input type="button" id="submitBtn" class="ReviewWritingPage_SubmitButton ReviewWritingPage_SubmitButton_Deactive"  onclick="fn_insertReview(this.form)" value="리뷰 올리기" />
 			</div>
 		</div>
 	</form>
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 
 </body>
 </html>

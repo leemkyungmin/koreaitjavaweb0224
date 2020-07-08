@@ -1,0 +1,132 @@
+
+
+    CREATE TABLE CUSTOMER(
+    CNO NUMBER NOT NULL PRIMARY KEY, -- �� ���� ��ȣ 
+    CID VARCHAR2(30) NOT NULL UNIQUE, --�� ���̵� 
+    CPW VARCHAR2(30)NOT NULL,  --�� ��й�ȣ
+    CNAME VARCHAR2(30) NOT NULL , --�� �̸�
+    CNICKNAME VARCHAR2(30) NOT NULL UNIQUE, --�� �г���
+    CPHONE CHAR(11) NOT NULL UNIQUE , --�� ��ȭ��ȣ 
+    CEMAIL VARCHAR2(50)NOT NULL UNIQUE, -- �� �̸���
+    CPOTO varchar2(50),  --�� �̹��� ������
+    CGRADE CHAR(1)NOT NULL, --�� ��� (1 �����,2 �ǹ� ,3 ���̾�,4 vip,5 ����)
+    CDEPT VARCHAR2(20),  --�� �з� (1 �Ϲ� �� ,2 ������ 
+    CGENDER CHAR(1)NOT NULL, --�� ���� (1 ���� ,2 ���� )
+    CREGDATE DATE  --�� ������
+);
+
+CREATE SEQUENCE CUSTOMER_SEQ;
+
+
+CREATE TABLE DEPARTMENT(
+    DSAUP_NO varchar2(15) NOT NULL PRIMARY KEY, --������ ����� ��ȣ (����Ű)
+    DID VARCHAR2(30) NOT NULL UNIQUE , -- ������ ���̵� 
+    DPW VARCHAR2(30) NOT NULL --������ ��й�ȣ 
+);
+
+CREATE TABLE DEPARTMENT_INFO(
+    DNO NUMBER NOT NULL PRIMARY KEY, --������ ������ȣ
+    DSEAT NUMBER NOT NULL, --������ �¼��� 
+    DSAUP_NO varchar2(15) NOT NULL UNIQUE, --������ ����� ��ȣ 
+    DPHONE VARCHAR2(20) NOT NULL UNIQUE, --������ ��ȭ��ȣ
+    DNAME VARCHAR2(50) NOT NULL , --������ �̸�
+    DADDRESS VARCHAR2(300) NOT NULL, --������ �ּ� (����� ������ ���굿 ...)
+    DSTART CHAR(4) NOT NULL , --���� ���� �ð�(1000 >10:00)
+    DEND CHAR(4) NOT NULL , --���� ���� �ð� (2030 >20:30)
+    DPARKING CHAR(1) NOT NULL , -- �������� (1 ��������,2 ���� �Ұ�)
+    DTYPE VARCHAR2(50) NOT NULL,  -- ������ ���� (ȸ/���� , �Ͻ� ���)
+    DPHOTO VARCHAR2(1000) NOT NULL, -- ������ ���� ���� (����1.jpg,����2.jpg,����3.jpg)
+    DHIT NUMBER DEFAULT 0, --��ȸ��
+    DRATING NUMBER(2,1) DEFAULT 0.0, --����(���� �ۼ��� ������Ʈ ó��)
+    DACCPET NUMBER NOT NULL,  --���� �� ��Ͻ� 0���� ��� �Ǿ��ִٰ� �����ڰ� �����ϸ� 1�� ���� (0 ���δ�� ,1 ����)  
+    DREG_DATE DATE  -- �� ����� 
+    
+    
+);
+
+CREATE SEQUENCE DEPARTMENT_INFO_SEQ;
+
+
+CREATE TABLE MENU_INFO(
+    MNO NUMBER NOT NULL PRIMARY KEY, --�޴� ������ȣ 
+    MNAME VARCHAR2(50) NOT NULL UNIQUE, -- �޴� �̸�
+    MPRICE VARCHAR2(10) NOT NULL, --�޴� ����
+    DSAUP_NO varchar2(15) REFERENCES  DEPARTMENT(DSAUP_NO) --����� ��ȣ(� ������ �޴����� )
+);
+
+CREATE SEQUENCE MENU_SEQ;
+
+
+CREATE TABLE APPOINTMENT(
+    ANO NUMBER NOT NULL PRIMARY KEY, --���� ��ȣ 
+    ADATE varchar2(30) not null, -- ������ ( �ð� ���� ) 
+    AP_COUNT NUMBER NOT NULL, -- �� ���� �ο�
+    CNO NUMBER REFERENCES  CUSTOMER(CNO), -- ������ ����� ��ȣ ( �� ���̺� ������)
+    DSAUP_NO varchar2(15) REFERENCES  DEPARTMENT(DSAUP_NO) --������ ��ü ����� ��ȣ 
+);
+
+CREATE SEQUENCE APPOINTMENT_SEQ;
+
+
+CREATE TABLE REVIEW(
+    RNO NUMBER NOT NULL PRIMARY KEY, --���� ��ȣ
+    RTITLE VARCHAR2(100) NOT NULL , --���� ���� 
+    RCONTENT VARCHAR2(2000) NOT NULL, --���� ����
+    RPOINT NUMBER(2,1) NOT NULL,  --���� ����(���� 1�ڸ�,�Ҽ� 1�ڸ� )
+    RPOTO VARCHAR2(300), --���� ���� (��� ���ص� ��� ����)
+    RDEPTH NUMBER DEFAULT 0, -- �ڽ��� ���� 0  ��� �Ҽ��� +1
+    REPORTCOUNT NUMBER DEFAULT 0, --�Ű� ȸ�� (5ȸ �̻�� ����,���� �Ű�� ���Դϴ�.�� ����)
+    RWRITER_DATE DATE, --���� �����
+    RAPPOINTMENT NUMBER,  -- ������ �ƴҽ� 0(Insert ������ count�� �ڵ����� ������) , ������ ����   Insert Into (....(select count(*) from appointment where cNo=? and dSaup_no=?)..)
+    CNO NUMBER REFERENCES  CUSTOMER(CNO), --���� �ۼ��� (ȸ�� ���̺� �����)
+    DSAUP_NO varchar2(15) REFERENCES  DEPARTMENT(DSAUP_NO) --��ü ����� ��ȣ 
+);
+
+
+CREATE SEQUENCE REVIEW_SEQ;
+
+
+--�׽�Ʈ ���̵� ����
+INSERT INTO CUSTOMER VALUES(CUSTOMER_SEQ.NEXTVAL,'test1','test1','�׽�Ʈ1','�г���1','01011111111','test1@custom.com','testimg1.jpg',1,'',1,sysdate);
+INSERT INTO CUSTOMER VALUES(CUSTOMER_SEQ.NEXTVAL,'test2','test2','�׽�Ʈ2','�г���2','01011112222','test2@custom.com','testimg2.jpg',2,'',2,sysdate);
+INSERT INTO CUSTOMER VALUES(CUSTOMER_SEQ.NEXTVAL,'test3','test3','�׽�Ʈ3','�г���3','01011113333','test3@custom.com','testimg3.jpg',3,'',1,sysdate);
+INSERT INTO CUSTOMER VALUES(CUSTOMER_SEQ.NEXTVAL,'test4','test4','�׽�Ʈ4','�г���4','01011114444','test4@custom.com','testimg4.jpg',4,'',2,sysdate);
+INSERT INTO CUSTOMER VALUES(CUSTOMER_SEQ.NEXTVAL,'test5','test5','�׽�Ʈ5','�г���5','01011115555','test5@custom.com','testimg5.jpg',5,'',1,sysdate);
+
+--�׽�Ʈ ��ü���̵� 
+INSERT INTO DEPARTMENT VALUES('11111111111','cus1','cus1');
+INSERT INTO DEPARTMENT VALUES('11111111112','cus2','cus2');
+INSERT INTO DEPARTMENT VALUES('11111111113','cus3','cus3');
+
+
+--�׽�Ʈ ��ü ���� 
+INSERT INTO DEPARTMENT_INFO VALUES(DEPARTMENT_INFO_SEQ.NEXTVAL,30,'11111111111','01022221111','�����̸�','����Ư���� ���� ������ 49-1 1F','1000','2200','1','ȸ/����','201978_1580641462134_5654.jfif,201978_1580641462134_5655.jfif,244033_1563623907424_29250.jfif',0,0,1,SYSDATE);
+INSERT INTO DEPARTMENT_INFO VALUES(DEPARTMENT_INFO_SEQ.NEXTVAL,20,'11111111112','01022222222','��������','����� ���� ���ϵ� 587-39','1100','2000','1','���/�ҹ�/�쵿','810562_1593517025754_6086.jfif,810562_1593517025754_6087.jfif',0,0,1,SYSDATE);
+INSERT INTO DEPARTMENT_INFO VALUES(DEPARTMENT_INFO_SEQ.NEXTVAL,10,'11111111113','01022223333','�޻�ӹ��½�Ź','����Ư���� ���� ������29�� 32 1F','1200','2300','1','� �丮','75402_1510895726828_73403.jfif,617296_1592064144788789.jpg,617296_1592064154629892.jpg',0,0,1,SYSDATE);
+
+--�׽�Ʈ ��ü �޴�
+INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'����� �ظ���','150,000','11111111111');
+INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'�󼱿��� �ظ���','68,000','11111111111');
+INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'��Ű�� ȥ����','46,000','11111111111');
+
+INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'��� ī��','10,000','11111111113');
+INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'ġ�� ī��','10,500','11111111113');
+INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'�ν� ī��','8,500','11111111113');
+
+INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'�丮 ����ź','8,000','11111111112');
+INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'�丮 ���','8,000','11111111112');
+INSERT INTO MENU_INFO VALUES(MENU_SEQ.NEXTVAL,'�ÿ� ���','8,000','11111111112');
+
+--�׽�Ʈ ����
+
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'�����̸� �� ����1 ','���ִ�.1',4.5,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='1' AND DSAUP_NO='11111111111'),1,'11111111111');
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'������ ��� ����1 ','������.1',3.0,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='1' AND DSAUP_NO='11111111112'),1,'11111111112');
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'�޻�ӹ��� ����1','���ִ�.1',5.0,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='1' AND DSAUP_NO='11111111113'),1,'11111111113');
+
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'�����̸� ����2 ','���ִ�.2',4.0,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='2' AND DSAUP_NO='11111111111'),2,'11111111111');
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'������ ��� ����2 ','������.2',3.0,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='2' AND DSAUP_NO='11111111112'),2,'11111111112');
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'�޻�ӹ��� ��Ź ����2','���ִ�.2',5.0,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='2' AND DSAUP_NO='11111111113'),2,'11111111113');
+
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'�����̸� ����3 ','���ִ�.',3.5,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='3' AND DSAUP_NO='11111111111'),3,'11111111111');
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'������ ��� ����3 ','������..',1.5,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='3' AND DSAUP_NO='11111111112'),3,'11111111112');
+INSERT INTO REVIEW VALUES(REVIEW_SEQ.nextval,'�޻�ӹ��� ��Ź ����3','���ִ�.',2.0,'',0,0,SYSDATE,(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO='3' AND DSAUP_NO='11111111113'),3,'11111111113');

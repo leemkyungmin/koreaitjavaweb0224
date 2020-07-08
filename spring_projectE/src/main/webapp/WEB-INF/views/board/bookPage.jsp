@@ -6,12 +6,11 @@
 
 <html lang="ko">
 <head>
-	<title>캘린더</title>
+	<title>예약 페이지</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-
 	<script type="text/javaScript" language="javascript"></script>
 	
-	<style TYPE="text/css">
+	<style type="text/css">
 	
 		body {
 			scrollbar-face-color: #F6F6F6;
@@ -139,6 +138,7 @@
 		
 		.appintment_table {
 			width: 100%;
+			margin-bottom: 20px;
 		}
 		
 		.appintment_table tr {
@@ -162,7 +162,30 @@
 			border: 0;
 		}
 		
+		.deactive {
+			display: none;
+		}
 		
+		.select_aDate_hour {
+			width: 100px;
+			height: 20px;
+		}
+		
+		.select_aP_count {
+			width: 50px;
+			height: 20px;
+		}
+		
+		.submit_btn_wrap {
+			width: 100%;
+			text-align: center;
+		}
+		
+		.submit_btn {
+			padding: 5px;
+			width: 50%;
+			border: 0;
+		}
 		
 		
 		select {font-family: "돋움"; font-size: 9pt; color:#595959;}
@@ -187,19 +210,27 @@
 		
 	</style>
 	
+	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+	
 </head>
 <body>
 	
 	<form name="calendarFrm" id="calendarFrm" action="" method="GET">
+
+		<input type="hidden" name="year" value="${today_info.search_year}" />
+		<input type="hidden" name="month" value="${today_info.search_month}" />
+		<input type="hidden" name="cNo" value="${cNo}" />
+		<input type="hidden" name="dSaup_no" value="${dSaup_no}" />
 
 		<div class="calendar" >
 			<!--날짜 네비게이션  -->
 			<div class="navigation">
 				<!-- 이전해 -->
 				<!-- 버튼을 누르면 달력리스트 새로 가져와야 하므로, CalendarController 한번 더 다녀온다 -->
-				<a class="before_after_year" href="calendar?year=${today_info.search_year-1}&month=${today_info.search_month-1}">&lt;&lt;</a> 
+				<a class="before_after_year" href="calendar?year=${today_info.search_year-1}&month=${today_info.search_month-1}&cNo=${cNo}&dSaup_no=${dSaup_no}">&lt;&lt;</a> 
 				<!-- 이전달 -->
-				<a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}">&lt;</a> 
+				<a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cNo}&dSaup_no=${dSaup_no}">&lt;</a> 
 				
 				<!-- yyyy.mm -->
 				<span class="this_month">
@@ -208,9 +239,9 @@
 				</span>
 				
 				<!-- 다음달 -->
-				<a class="before_after_month" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}">&gt;</a> 
+				<a class="before_after_month" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}&cNo=${cNo}&dSaup_no=${dSaup_no}">&gt;</a> 
 				<!-- 다음해 -->
-				<a class="before_after_year" href="calendar?year=${today_info.search_year+1}&month=${today_info.search_month-1}">&gt;&gt;</a>
+				<a class="before_after_year" href="calendar?year=${today_info.search_year+1}&month=${today_info.search_month-1}&cNo=${cNo}&dSaup_no=${dSaup_no}">&gt;&gt;</a>
 			</div>
 
 			<!-- 달력 테이블 -->
@@ -228,7 +259,7 @@
 				</thead>
 				
 				<tbody>
-					<tr>
+					<tr class="appointBtn">
 						<!-- 
 							class="today" 오늘 : 달력 CSS를 다르게 설정
 							class="sat_day" 토요일 : 달력 CSS를 다르게 설정
@@ -238,76 +269,84 @@
 						<c:forEach var="dateList" items="${dateList}" varStatus="date_status"> 
 							<c:choose>
 								<c:when test="${dateList.value=='today'}">
-									<c:if test="${date_status.index%7==0}">
-										<tr>
-									</c:if>
-									<td class="today">
-										<div class="date">
+									<td class="today click"  onclick="fn_a(${dateList.date})">
+										<div class="date">${dateList.date}</div>
+									</td>
 								</c:when>
 								<c:when test="${date_status.index%7==6}">
-									<td class="sat_day">
-										<div class="sat">
-								</c:when>	
+									<td class="sat_day click"  onclick="fn_a(${dateList.date})">
+										<div class="sat">${dateList.date}</div>
+									</td>
+								</c:when>
 								<c:when test="${date_status.index%7==0}">
 									</tr>
 									<tr>	
-									<td class="sun_day">
-											<div class="sun">
+										<td class="sun_day click" onclick="fn_a(${dateList.date})">
+											<div class="sun" >${dateList.date}</div>
+										</td>
 								</c:when>
 								<c:otherwise>
-									<td class="normal_day">
-										<div class="date">
+									<td class="normal_day click"  onclick="fn_a(${dateList.date})">
+										<div class="date">${dateList.date}</div>
+									</td>
 								</c:otherwise>
 							</c:choose>
-								${dateList.date}
-								</div>
-								<div>
-									<!-- 예약가능/불가능 삽입 -->
-									<!-- 버튼삽입 -->
-									<input type="button" value="" />
-									
-								</div>
-							</td>
 						</c:forEach>
-					</tr>
 				</tbody>
 			</table>
 		</div>
 	</form>
 	
-	<form name="appointment_form">
-		<div class="contents">
+	<script type="text/javascript">
+		
+		function fn_a(da) {
+			if (da == undefined) {
+			} else {
+				$('#myForm').removeClass('deactive');
+				$('.text_type1').val('${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일');
+			}			
+		}
+		
+	</script>
+	
+	<form name="appointment_form" method="post" action="insertAppointment">
+		<div id="myForm" class="contents deactive">
 			<table class="appintment_table">
 				<tr>
 					<td class="text_subject">날짜 :</td>
-					<td class="text_desc"><input type="text" name="aDate" class="text_type1" value="" /></td>
+					<td class="text_desc"><input type="text" name="aDate_day" class="text_type1" /></td>
 				</tr>
 				<tr>
 					<td class="text_subject">시간 :</td>
-					<td class="text_desc"><input type="text" name="예약시간" value="" class="text_type1" placeholder="시간을 선택해주세요." readonly /></td> 
-				</tr>
-				<tr>
-					<td></td>
 					<td class="text_desc">
 						<!-- 영업시간 별로 생성 -->
-						<!-- 버튼 누르면 해당 div안보이고, 위의 textinput에 값 넣기 -->
-						<input type="button" value="11:00" />
-						<input type="button" value="12:00" />
-						<input type="button" value="13:00" />
-						<input type="button" value="14:00" />
-					</td>
+						<!-- 전체 좌석 수 에따라 몇명 남았는지 함께 표시 -->
+						<!-- 업체번호, 예약날짜, 예약시간이 같아야 함 -->
+						<select class="select_aDate_hour" name="aDate_hour">
+							<option value="11:00">11:00 (00명)</option>
+							<option value="12:00">12:00 (00명)</option>
+						</select>
+					</td> 
 				</tr>
 				<tr>
 					<td class="text_subject">인원 :</td>
 					<td class="text_desc">
-						<select name="aP_count">
+						<select class="select_aP_count" name="aP_count">
 							<option value="1">1명</option>
-							<!-- 음식점 좌석 수 만큼 생성 -->
+							<option value="2">2명</option>
+							<option value="3">3명</option>
+							<option value="4">4명</option>
+							<!-- 음식점 좌석 수 , 남은 예약명수 만큼 생성 -->
 						</select>	
 					</td>
 				</tr>
 			</table>
-				
+			<div class="submit_btn_wrap">
+				<!-- 사용자정보(cNo), 업체번호(dSaup_no) 함께 전송 -->
+				<input class="submit_btn" type="submit" value="예약하기" />
+				<input type="hidden" name="cNo" value="${cNo}" />
+				<input type="hidden" name="dSaup_no" value="${dSaup_no}" />
+			</div>
 		</div>
 	</form>
 	

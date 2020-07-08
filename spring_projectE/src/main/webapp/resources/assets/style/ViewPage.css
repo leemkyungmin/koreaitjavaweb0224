@@ -12,6 +12,7 @@
 	    text-size-adjust: 100%;
 	    -webkit-text-size-adjust: 100%;
 	    word-break: keep-all;
+	    
 		
 	}
 
@@ -653,7 +654,15 @@
 	    display: none;
 	}
 	.RestaurantReviewList__FilterButton--Selected {
-    color: #ff792a;
-}
+	    color: #ff792a;
+	}
+	.btn-thumb{
+		visibility: hidden;
+	}
+	.close{
+		float:right;
+		
+	}
+	
 	
 	   

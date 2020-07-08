@@ -1,5 +1,8 @@
 package com.koreait.projectE.contorller;
 
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.koreait.projectE.command.AdminCommand;
+import com.koreait.projectE.command.AdminUpdateUserCommand;
 import com.koreait.projectE.commom.Command;
+
 
 @Controller
 public class adminController {
@@ -25,15 +30,20 @@ public class adminController {
 		return "admin/adminmanagerPage";	
 	}
 	
-	
-	@RequestMapping("delete")
-	public String delete(Model model) {
+	@RequestMapping(value="UpdateUser", method=RequestMethod.GET)
+	public String UpdateUser(HttpServletRequest request, Model model) {
 		
-		command=new AdminCommand();
+		model.addAttribute("request", request);
+		
+		command=new AdminUpdateUserCommand();
 		command.execute(sqlSession, model);
-		return "redirect:adminmanagePage";
+		return "admin/UpdateUser";
+
 	}
 	
+	
+	
+
 	
 	
 }
