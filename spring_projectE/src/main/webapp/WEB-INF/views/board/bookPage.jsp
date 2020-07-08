@@ -162,7 +162,9 @@
 			border: 0;
 		}
 		
-		
+		.deactive {
+			display: none;
+		}
 		
 		
 		select {font-family: "돋움"; font-size: 9pt; color:#595959;}
@@ -186,6 +188,15 @@
 		}		
 		
 	</style>
+	
+	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		
+		function fn_click() {
+			$('#myForm').removeClass('deactive');
+		}
+	
+	</script>
 	
 </head>
 <body>
@@ -228,7 +239,7 @@
 				</thead>
 				
 				<tbody>
-					<tr>
+					<tr class="appointBtn">
 						<!-- 
 							class="today" 오늘 : 달력 CSS를 다르게 설정
 							class="sat_day" 토요일 : 달력 CSS를 다르게 설정
@@ -238,45 +249,36 @@
 						<c:forEach var="dateList" items="${dateList}" varStatus="date_status"> 
 							<c:choose>
 								<c:when test="${dateList.value=='today'}">
-									<c:if test="${date_status.index%7==0}">
-										<tr>
-									</c:if>
-									<td class="today">
-										<div class="date">
+									<td class="today" onclick="fn_click()">
+										<div class="date">${dateList.date}</div>
+									</td>
 								</c:when>
 								<c:when test="${date_status.index%7==6}">
-									<td class="sat_day">
-										<div class="sat">
-								</c:when>	
+									<td class="sat_day" onclick="fn_click()">
+										<div class="sat">${dateList.date}</div>
+									</td>
+								</c:when>
 								<c:when test="${date_status.index%7==0}">
 									</tr>
 									<tr>	
-									<td class="sun_day">
-											<div class="sun">
+										<td class="sun_day" onclick="fn_click()">
+											<div class="sun">${dateList.date}</div>
+										</td>
 								</c:when>
 								<c:otherwise>
-									<td class="normal_day">
-										<div class="date">
+									<td class="normal_day" onclick="fn_click()">
+										<div class="date">${dateList.date}</div>
+									</td>
 								</c:otherwise>
 							</c:choose>
-								${dateList.date}
-								</div>
-								<div>
-									<!-- 예약가능/불가능 삽입 -->
-									<!-- 버튼삽입 -->
-									<input type="button" value="" />
-									
-								</div>
-							</td>
 						</c:forEach>
-					</tr>
 				</tbody>
 			</table>
 		</div>
 	</form>
 	
 	<form name="appointment_form">
-		<div class="contents">
+		<div id="myForm" class="contents deactive">
 			<table class="appintment_table">
 				<tr>
 					<td class="text_subject">날짜 :</td>
@@ -284,18 +286,13 @@
 				</tr>
 				<tr>
 					<td class="text_subject">시간 :</td>
-					<td class="text_desc"><input type="text" name="예약시간" value="" class="text_type1" placeholder="시간을 선택해주세요." readonly /></td> 
-				</tr>
-				<tr>
-					<td></td>
 					<td class="text_desc">
-						<!-- 영업시간 별로 생성 -->
-						<!-- 버튼 누르면 해당 div안보이고, 위의 textinput에 값 넣기 -->
-						<input type="button" value="11:00" />
-						<input type="button" value="12:00" />
-						<input type="button" value="13:00" />
-						<input type="button" value="14:00" />
-					</td>
+						<!-- 영업시간 별로 생성 -->			
+						<select name="">
+							<option value="11:00">11:00</option>
+							<option value="12:00">12:00</option>
+						</select>
+					</td> 
 				</tr>
 				<tr>
 					<td class="text_subject">인원 :</td>

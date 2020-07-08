@@ -6,11 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 
-<!DOCTYPE html> 
-<html> 
-<head>
-<meta charset="UTF-8">
-<title>${deptDTO.dName }&nbsp;${deptDTO.dType }</title>
+<%@ include file="../template/header.jsp" %>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <link href="resources/assets/style/ViewPage.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -154,7 +150,7 @@
 
 	<c:set var="img" value="${deptDTO.dPhoto }"></c:set>
 	
-	<div class="top-image">
+	<div class="top-image" style="position:relative;">
 	
 	<c:forEach var="split" items="${fn:split(img,',')}">
 		<div class="column-image">
@@ -539,7 +535,4 @@
         </div>
       </div>
    </div>
-      
-
-</body>
-</html>
+<%@ include file="../template/footer.jsp" %>
