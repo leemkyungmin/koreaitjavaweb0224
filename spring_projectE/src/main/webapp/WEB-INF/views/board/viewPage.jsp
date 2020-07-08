@@ -13,14 +13,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 
-	function fn_review(){
-	   
-	   $('#Modal .modal-content').load("reviewWritePage?&dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
-	   $('#Modal').modal('show');
-	}
-	function fn_modal1Cancle(){
-		$('#Modal').modal('hide');
-	}
+	
 	
 	
 	$(document).ready(function(){
@@ -348,27 +341,20 @@
 				
 				<div class="modal fade" id='Modal' tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true" data-backdrop="static">
 					<div class="modal-dialog modal-xl" role="document" data-backdrop="static">
-			    		<div class="close">
-			    			<button onclick="fn_modal1Cancle()">
-			    				<i class="fas fa-times fa-3x"></i>
-			    			</button>
-			    			
-			    		</div>
+			    		
 			    		<div class="modal-content" data-backdrop="static">
 			    		</div>
 			  		</div>
 			  		<div class="modal_layer" data-backdrop="static"></div>
 				</div>
-				<div class="modal fade" id='Modal2' tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true" data-backdrop="static">
-					<div class="modal-dialog modal-xl" role="document" data-backdrop="static">
-			    		<div class="modal-content2" data-backdrop="static">
-			    		</div>
-			    		<div class="modal-cancle">
-			    			<button onClick="fn_modal1Cancle()">취소</button>
-			    		</div>
-			  		</div>
-			  		<div class="modal_layer2" data-backdrop="static"></div>
-				</div>
+				<script type="text/javascript">
+					function fn_review(){
+					   
+					   $('#Modal .modal-content').load("reviewWritePage?&dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
+					   $('#Modal').modal();
+					}
+					
+				</script>
 				  
 				
 				
