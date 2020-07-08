@@ -172,7 +172,7 @@ public class pojectEController {
 				dateList.add(calendarData);
 			}
 		}
-		System.out.println(dateList);
+	//	System.out.println(dateList);
 		
 		model.addAttribute("dateList", dateList); // 달력 배열
 		model.addAttribute("today_info", today_info); // 오늘 날짜에 대한 정보
