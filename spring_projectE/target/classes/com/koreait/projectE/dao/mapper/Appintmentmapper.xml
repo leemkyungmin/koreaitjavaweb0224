@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="insertAppointment">
 		INSERT INTO APPOINTMENT (ANO, ADATE, AP_COUNT, CNO, DSAUP_NO)
-		VALUES (APPOINTMENT_SEQ.NEXTVAL, #{param1), #{param2}, #{param3}, #{param4})
+		VALUES (APPOINTMENT_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4})
 	</insert>
 	
 </mapper>
