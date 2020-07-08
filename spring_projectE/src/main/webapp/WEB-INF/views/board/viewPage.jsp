@@ -11,6 +11,7 @@
 <link href="resources/assets/style/ViewPage.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
 <script type="text/javascript">
 
 	
@@ -103,7 +104,7 @@
 
 </script>
 <style>
-        #Modal,#Modal2 {
+        #Modal,#Modal2,#myModal {
           display: none;
           position:relative;
           margin:auto;
@@ -117,7 +118,7 @@
         }
        
         
-        #Modal .modal-content,#Modal2 .modal-content2  {
+        #Modal .modal-content,#Modal2 .modal-content2,#myModal .modal-body  {
           width:100%;
           height:100%;
           margin:100px auto;
@@ -126,7 +127,7 @@
           
         }
         
-        #Modal .modal_layer,#Modal2 .modal_layer2 {
+        #Modal .modal_layer,#Modal2 .modal_layer2,#myModal .modal_layer {
           position:fixed;
           top:0;
           left:0;
@@ -177,7 +178,7 @@
 	                  </button>
 	
 	                 
-	                    <button class="btn-type-icon favorite wannago_btn " onclick="">
+	                    <button class="btn-type-icon favorite wannago_btn " onclick="fn_appointment()">
 		                    <i class="far fa-calendar-check fa-3x"></i>
 		                    <p class="wannago_txt">예약하기</p>
 	                  	</button>
@@ -339,7 +340,7 @@
 				</script>
 	            </div>
 				
-				<div class="modal fade" id='Modal' tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true" data-backdrop="static">
+				<div class="modal hide fade" id='Modal' tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true" data-backdrop="static">
 					<div class="modal-dialog modal-xl" role="document" data-backdrop="static">
 			    		
 			    		<div class="modal-content" data-backdrop="static">
@@ -347,12 +348,31 @@
 			  		</div>
 			  		<div class="modal_layer" data-backdrop="static"></div>
 				</div>
+				
+				<div id="myModal" class="modal hide fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				 	<div class="modal-header" data-backdrop="static">
+				    	<button type="button" class="close"  data-dismiss="modal" aria-hidden="true">×</button>
+				    	<h3 id="myModalLabel" data-backdrop="static">모달 제목</h3>
+				  	</div>
+				  <div class="modal-body" data-backdrop="static">
+				    
+				  </div>
+				  <div class="modal_layer" data-backdrop="static"></div>
+				</div>
+				
 				<script type="text/javascript">
 					function fn_review(){
 					   
-					   $('#Modal .modal-content').load("reviewWritePage?&dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
-					   $('#Modal').modal();
+					   //$('#Modal .modal-content').load("reviewWritePage?&dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
+					   //$('#Modal').modal('show');
+					   $('#myModal .modal-body').load("reviewWritePage?&dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
+					   $('#myModal').modal('show');
 					}
+					function fn_appointment(){
+						$('#Modal2 .modal-content').load("reviewWritePage?&dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
+						$('#Modal2').modal('show');
+					}
+					
 					
 				</script>
 				  

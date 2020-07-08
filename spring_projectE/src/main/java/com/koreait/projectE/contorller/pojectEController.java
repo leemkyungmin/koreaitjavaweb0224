@@ -88,6 +88,8 @@ public class pojectEController {
 		
 		return "board/insertPage";
 	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value="getReview", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public ResponseEntity ajax_reviewList(HttpServletRequest request) {
@@ -110,7 +112,8 @@ public class pojectEController {
 		 
 		 if(rdto.size()>0) {
 			 for(int i=0; i<rdto.size(); i++) {
-				 HashMap re = new HashMap();
+				
+				HashMap re = new HashMap();
 				 re.put("rNo", rdto.get(i).getrNo());
 				 re.put("rTitle",rdto.get(i).getrTitle());
 				 re.put("rContent", rdto.get(i).getrContent());
@@ -178,6 +181,13 @@ public class pojectEController {
 		model.addAttribute("today_info", today_info); // 오늘 날짜에 대한 정보
 		
 		return "board/bookPage"; // view
+	}
+	
+	// Modal test
+	@RequestMapping("test")
+	public String goTest() {
+		
+		return "board/testPage";
 	}
 
 }
