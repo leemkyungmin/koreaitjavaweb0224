@@ -16,26 +16,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <script src="https://code.jquery.com/jquery-2.2.2.js"></script>
 
-<script>
-
-	$(function () {
-	    var lastScrollTop = 0,
-	        delta = 15;
-	    $(window).scroll(function (event) {
-	        var st = $(this).scrollTop();
-	        if (Math.abs(lastScrollTop - st) <= delta) return;
-	        if ((st > lastScrollTop) ) {
-	            $(".nav-wrap").css("background-color", "white");
-	        } if((st < lastScrollTop) ) {
-	            $(".nav-wrap").css("background-color", "transparent");
-	        }
-	        lastScrollTop = st;
-	    });
-	});  
-</script>
 
 </head>
-<body>
+<body class="pt-5">
 
 
 	<header class="Header" data-page="home">
@@ -47,28 +30,11 @@
 					<div class="nav-icon-box"><i class="fab fa-searchengin"></i></div><input class="nav-HomeSearchInput" name="main-search" type="text" maxlength="50" placeholder="지역, 식당 또는 음식" autocomplete="off" onclick="">
 				</li>
 				<li class="nav-list-wrap">
-					<a href="">맛집 리스트</a>
+					<a href="" class="nav-btn">맛집 리스트</a>
 				</li>
 				<li class="nav-user-wrap">
-					<a href=""><i class="far fa-user"></i></a>
+					<a href="loginChoicePage" class="nav-btn"><i class="far fa-user"></i></a>
 				</li>
 		</ul>
 	</header>
-	<div class="header-wrap">
-		<div class="title-wrap">
-			<p class="title">솔직한 리뷰, 믿을 수 있는 평점!</p>
-			<h1 class="title">코리아 플레이트</h1>
-		</div>
-		
- 		<div class="search-wrap">
-	 		<div class="main-search">
-				<div class="icon-box"><i class="fas fa-search"></i></div>
-				<input id="main-search" class="HomeSearchInput" name="main-search" type="text" maxlength="50" placeholder="지역, 식당 또는 음식" autocomplete="off" onclick="">
-				<input class="btn-search" type="submit" value="검색" onclick="">
-			</div>
-		</div>
-		
-		<video autoplay loop muted>
-			<source src="<c:url value="/resources/assets/video/indexvideo01.mp4" />" type="video/mp4">
-		</video>
-	</div>
+

@@ -17,7 +17,8 @@
 	
 	.nav-btn {
 		text-decoration:none;
-		color: black;		
+		color: black;
+		
 	}
 	
 	.fa-user {
@@ -33,39 +34,42 @@
 	}
 	.nav-HomeSearchInput{
 		width: 800px;
-		height: 30px;
-		margin: 5px;
-		margin-top : 5px;
+		margin-left: 10px;
 		border: 0;
-		font-size: 20px;
+		background-color: transparent;
 	}
 	
-	.Header ul {
-		display: flex;
+	.Header[data-page=home] .nav-search-wrap {
+    	visibility:hidden;
 	}
-
+	.Header[data-page=home] .nav-wrap {
+    	background-color: transparent;
+	}
+	
+	.Header[data-page=home] .nav-btn {
+    	color: white;
+	}
+	
 	.pt-5 {
-		padding-top: 50px;
+		padding-top: 0px;
 	}
 	.nav-logo-wrap {
-		border: 1px solid #E6E6E6;
-		border-right: 0; 
+		border: 0;
 	}
 	.nav-search-wrap {
 		display: flex;
 		width : 70%;
-		border: 1px solid #E6E6E6;
-		border-left: 0; 
+		border: 0;
 	}
 	
 	.nav-list-wrap {
 		width : 20%;
 		padding-top: 6px;
-		border: 1px solid #E6E6E6;
+		border: 0;
 	}
 	
 	.nav-user-wrap {
 		width : 10%;
 		padding-top: 6px;
-		border: 1px solid #E6E6E6;
+		border: 0;
 	}
