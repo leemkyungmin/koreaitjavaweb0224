@@ -6,29 +6,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 
-<!DOCTYPE html> 
-<html> 
-<head>
-<meta charset="UTF-8">
-<title>${deptDTO.dName }&nbsp;${deptDTO.dType }</title>
+<%@ include file="../template/header.jsp" %>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <link href="resources/assets/style/ViewPage.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 
-	function fn_review(){
-	   
-	   $('#Modal .modal-content').load("reviewWritePage?&dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
-	   $('#Modal').modal('show');
-	}
-	function fn_modal1Cancle(){
-		$('#Modal').modal('hide');
-	}
-	function fn_reviewDetail(){
-		$('#Modal2 .modal-content2').load("reivewDetail?rNo=");
-		$('#Modal2').modal();
-	}
+	
+	
 	
 	$(document).ready(function(){
 		$('#reviewAll').click(function(){ 
@@ -157,7 +143,7 @@
 
 	<c:set var="img" value="${deptDTO.dPhoto }"></c:set>
 	
-	<div class="top-image">
+	<div class="top-image" style="position:relative;">
 	
 	<c:forEach var="split" items="${fn:split(img,',')}">
 		<div class="column-image">
@@ -291,15 +277,15 @@
 	
 	                  <td>
 	                    <div class="list-thumb-photos size-small">
-	                        <button class="btn-thumb" onclick="trackEvent('CLICK_MENU', {&quot;restaurant_key&quot;:&quot;KU-4QO6Yvt&quot;})" ng-click="open_menu_picture(0)">
+	                        <button class="btn-thumb" >
 	                           <img class="center-croping lazy" alt="마루심 메뉴 사진 - 서울시 서초구 반포동 54-10" data-original="https://mp-seoul-image-production-s3.mangoplate.com/1402/804795_1553502245961_8594?fit=around|63:63&amp;crop=63:63;*,*&amp;output-format=jpg&amp;output-quality=80" data-error="https://mp-seoul-image-production-s3.mangoplate.com/web/resources/kssf5eveeva_xlmy.jpg?fit=around|*:*&amp;crop=*:*;*,*&amp;output-format=jpg&amp;output-quality=80" src="https://mp-seoul-image-production-s3.mangoplate.com/1402/804795_1553502245961_8594?fit=around|63:63&amp;crop=63:63;*,*&amp;output-format=jpg&amp;output-quality=80" style="display: block;">
 	
 	                         </button>
-	                        <button class="btn-thumb" onclick="trackEvent('CLICK_MENU', {&quot;restaurant_key&quot;:&quot;KU-4QO6Yvt&quot;})" ng-click="open_menu_picture(1)">
+	                        <button class="btn-thumb">
 	                          <img class="center-croping lazy" alt="마루심 메뉴 사진 - 서울시 서초구 반포동 54-10" data-original="https://mp-seoul-image-production-s3.mangoplate.com/411704_1553083695056017.jpg?fit=around|63:63&amp;crop=63:63;*,*&amp;output-format=jpg&amp;output-quality=80" data-error="https://mp-seoul-image-production-s3.mangoplate.com/web/resources/kssf5eveeva_xlmy.jpg?fit=around|*:*&amp;crop=*:*;*,*&amp;output-format=jpg&amp;output-quality=80" src="https://mp-seoul-image-production-s3.mangoplate.com/411704_1553083695056017.jpg?fit=around|63:63&amp;crop=63:63;*,*&amp;output-format=jpg&amp;output-quality=80" style="display: block;">
 	
 	                        </button>
-	                        <button class="btn-thumb" onclick="trackEvent('CLICK_MENU', {&quot;restaurant_key&quot;:&quot;KU-4QO6Yvt&quot;})" ng-click="open_menu_picture(2)">
+	                        <button class="btn-thumb" >
 	                          <img class="center-croping lazy" alt="마루심 메뉴 사진 - 서울시 서초구 반포동 54-10" data-original="https://mp-seoul-image-production-s3.mangoplate.com/9388_1549362579391934.jpg?fit=around|63:63&amp;crop=63:63;*,*&amp;output-format=jpg&amp;output-quality=80" data-error="https://mp-seoul-image-production-s3.mangoplate.com/web/resources/kssf5eveeva_xlmy.jpg?fit=around|*:*&amp;crop=*:*;*,*&amp;output-format=jpg&amp;output-quality=80" src="https://mp-seoul-image-production-s3.mangoplate.com/9388_1549362579391934.jpg?fit=around|63:63&amp;crop=63:63;*,*&amp;output-format=jpg&amp;output-quality=80" style="display: block;">
 	
 	                        </button>
@@ -355,21 +341,20 @@
 				
 				<div class="modal fade" id='Modal' tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true" data-backdrop="static">
 					<div class="modal-dialog modal-xl" role="document" data-backdrop="static">
+			    		
 			    		<div class="modal-content" data-backdrop="static">
 			    		</div>
 			  		</div>
 			  		<div class="modal_layer" data-backdrop="static"></div>
 				</div>
-				<div class="modal fade" id='Modal2' tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true" data-backdrop="static">
-					<div class="modal-dialog modal-xl" role="document" data-backdrop="static">
-			    		<div class="modal-content2" data-backdrop="static">
-			    		</div>
-			    		<div class="modal-cancle">
-			    			<button onClick="fn_modal1Cancle()">취소</button>
-			    		</div>
-			  		</div>
-			  		<div class="modal_layer2" data-backdrop="static"></div>
-				</div>
+				<script type="text/javascript">
+					function fn_review(){
+					   
+					   $('#Modal .modal-content').load("reviewWritePage?&dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
+					   $('#Modal').modal();
+					}
+					
+				</script>
 				  
 				
 				
@@ -536,7 +521,4 @@
         </div>
       </div>
    </div>
-      
-
-</body>
-</html>
+<%@ include file="../template/footer.jsp" %>

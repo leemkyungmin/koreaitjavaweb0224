@@ -106,7 +106,7 @@ public class DateData {
 		Map<String, Integer> before_after_calendar = before_after_calendar(search_year,search_month);
 		
 		//날짜 관련
-		System.out.println("search_month : " + search_month);
+	//	System.out.println("search_month : " + search_month);
 		// 캘린더 함수 end
 		today_Data.put("start", start); // 1일에 해당하는 요일
 		today_Data.put("startDay", startDay); // 1

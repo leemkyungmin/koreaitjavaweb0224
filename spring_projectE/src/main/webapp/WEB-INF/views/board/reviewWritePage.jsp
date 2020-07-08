@@ -20,7 +20,6 @@
 		
 		body {
 		    position: relative;
-		    width: 687px;
 		    margin: 0 auto;
 		    font-size: 100%;
 		    line-height: 100%;
@@ -320,7 +319,7 @@
 				<!-- 버튼 -->
 				<input type="hidden" value="${cNo }" name="cNo">
 				<input type="hidden" value="${deptDTO.dSaup_no }" name="dSaup_no">
-				<button type="button" class="ReviewWritingPage_CalcelButton" data-dismiss="modal">취소</button>
+				 <input type="button" class="ReviewWritingPage_SubmitButton ReviewWritingPage_calcelButton" data-dismiss="modal" value="취소"/>
 				<input type="button" id="submitBtn" class="ReviewWritingPage_SubmitButton ReviewWritingPage_SubmitButton_Deactive"  onclick="fn_insertReview(this.form)" value="리뷰 올리기" />
 			</div>
 		</div>
