@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.koreait.projectE.command.AppointmentInsertCommand;
 import com.koreait.projectE.command.ReviewInsertCommand;
 import com.koreait.projectE.command.boardViewCommand;
 import com.koreait.projectE.command.reviewWriteCommand;
@@ -183,11 +184,19 @@ public class pojectEController {
 		return "board/bookPage"; // view
 	}
 	
+
 	// Modal test
 	@RequestMapping("test")
-	public String goTest() {
-		
+		public String goTest() {	
 		return "board/testPage";
+	}
+	
+	@RequestMapping(value = "insertAppointment", method = RequestMethod.POST)
+	public String insertAppointment(HttpServletRequest request, Model model) {
+		model.addAttribute("request",request);
+		command= new AppointmentInsertCommand();
+		command.execute(sqlSession, model);
+		return "redirect:index";
 	}
 
 }

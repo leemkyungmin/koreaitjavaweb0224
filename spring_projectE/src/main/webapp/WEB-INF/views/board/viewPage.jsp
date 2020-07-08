@@ -10,7 +10,7 @@
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <link href="resources/assets/style/ViewPage.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
 
@@ -104,7 +104,7 @@
 
 </script>
 <style>
-        #Modal,#Modal2,#myModal {
+        #Modal,#myModal {
           display: none;
           position:relative;
           margin:auto;
@@ -113,12 +113,12 @@
           z-index:1;
         }
         
-        #Modal h2,#Modal2 h2 {
+        #Modal h2{
           margin:0;
         }
        
         
-        #Modal .modal-content,#Modal2 .modal-content2,#myModal .modal-body  {
+        #Modal .modal-content,#myModal .modal-body {
           width:100%;
           height:100%;
           margin:100px auto;
@@ -127,7 +127,7 @@
           
         }
         
-        #Modal .modal_layer,#Modal2 .modal_layer2,#myModal .modal_layer {
+         #Modal .modal_layer ,#myModal .modal_layer{
           position:fixed;
           top:0;
           left:0;
@@ -340,7 +340,7 @@
 				</script>
 	            </div>
 				
-				<div class="modal hide fade" id='Modal' tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true" data-backdrop="static">
+				<div class="modal fade" id='Modal' tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true" data-backdrop="static">
 					<div class="modal-dialog modal-xl" role="document" data-backdrop="static">
 			    		
 			    		<div class="modal-content" data-backdrop="static">
@@ -349,33 +349,38 @@
 			  		<div class="modal_layer" data-backdrop="static"></div>
 				</div>
 				
-				<div id="myModal" class="modal hide fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				    	<button type="button" class="close"  data-dismiss="modal" aria-hidden="true">X</button>
 				 	<div class="modal-header" data-backdrop="static">
-				    	<button type="button" class="close"  data-dismiss="modal" aria-hidden="true">×</button>
+				    	<!-- data-dismiss="modal" -->
 				    	<h3 id="myModalLabel" data-backdrop="static">모달 제목</h3>
 				  	</div>
 				  <div class="modal-body" data-backdrop="static">
 				    
 				  </div>
+				  
 				  <div class="modal_layer" data-backdrop="static"></div>
 				</div>
 				
 				<script type="text/javascript">
+					function fn_reviewClose(){
+						
+						$('#myModal .modal-body').modal('hide');
+					}
 					function fn_review(){
 					   
 					   //$('#Modal .modal-content').load("reviewWritePage?&dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
 					   //$('#Modal').modal('show');
+					  
 					   $('#myModal .modal-body').load("reviewWritePage?&dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
-					   $('#myModal').modal('show');
+					   $('#myModal').modal();
 					}
-					function fn_appointment(){
-						$('#Modal2 .modal-content').load("reviewWritePage?&dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
-						$('#Modal2').modal('show');
-					}
+					
+					
 					
 					
 				</script>
-				  
+				
 				
 				
 	              <p class="update_date">

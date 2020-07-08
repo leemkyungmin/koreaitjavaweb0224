@@ -275,9 +275,7 @@
 </head>
 <body>
 	
-	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  		
-	  	<div class="modal-body">
+	
 	    	<form name="myForm" method="post" enctype="multipart/form-data">
 				<div class="ReviewWritenpage_Container">
 					<div class="ReviewWritenpage_DeptName">
@@ -322,18 +320,12 @@
 						<!-- 버튼 -->
 						<input type="hidden" value="${cNo }" name="cNo">
 						<input type="hidden" value="${deptDTO.dSaup_no }" name="dSaup_no">
-						 <input type="button" data-dismiss="modal" class="ReviewWritingPage_SubmitButton ReviewWritingPage_SubmitButton_Deactive" value="취소"/>
+						 <input type="button" class="ReviewWritingPage_SubmitButton" data-dismiss="modal"  value="취소"/>
 						<input type="button" id="submitBtn" class="ReviewWritingPage_SubmitButton ReviewWritingPage_SubmitButton_Deactive"  onclick="fn_insertReview(this.form)" value="리뷰 올리기" />
 					</div>
 				</div>
 			</form>
-	  	</div>
-	  	<div class="modal-footer">
-	   	 <button class="btn" data-dismiss="modal" aria-hidden="true">닫기</button>
-	   	 <button class="btn btn-primary">변경사항 저장</button>
-	  	</div>
-	</div>
-	
+	  	
 	
 	
 
