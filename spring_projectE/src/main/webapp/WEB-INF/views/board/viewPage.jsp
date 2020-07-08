@@ -5,8 +5,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<<<<<<< HEAD
 
 <%@ include file="../template/header.jsp" %>
+=======
+ 
+<!DOCTYPE html>         
+<html>  
+<head>
+<meta charset="UTF-8">
+<title>${deptDTO.dName }&nbsp;${deptDTO.dType }</title>
+>>>>>>> branch 'kane' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <link href="resources/assets/style/ViewPage.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
