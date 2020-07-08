@@ -191,7 +191,7 @@ public class pojectEController {
 		model.addAttribute("request",request);
 		command= new AppointmentInsertCommand();
 		command.execute(sqlSession, model);
-		return "redirect:index";
+		return "redirect:viewPage?dSaup_no="+request.getParameter("dSaup_no");
 	}
 
 }
