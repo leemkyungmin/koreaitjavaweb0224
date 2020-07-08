@@ -331,9 +331,9 @@
 					<td class="text_desc">
 						<select class="select_aP_count" name="aP_count">
 							<option value="1">1명</option>
-							<option value="1">2명</option>
-							<option value="1">3명</option>
-							<option value="1">4명</option>
+							<option value="2">2명</option>
+							<option value="3">3명</option>
+							<option value="4">4명</option>
 							<!-- 음식점 좌석 수 , 남은 예약명수 만큼 생성 -->
 						</select>	
 					</td>
@@ -342,8 +342,8 @@
 			<div class="submit_btn_wrap">
 				<!-- 사용자정보(cNo), 업체번호(dSaup_no) 함께 전송 -->
 				<input class="submit_btn" type="submit" value="예약하기" />
-				<input type="hidden" name="cNo" value="" />
-				<input type="hidden" name="dSaup_no" value="" />
+				<input type="hidden" name="cNo" value="1" />
+				<input type="hidden" name="dSaup_no" value="11111111111" />
 			</div>
 		</div>
 	</form>
