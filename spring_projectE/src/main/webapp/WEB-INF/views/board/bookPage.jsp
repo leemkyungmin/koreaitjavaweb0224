@@ -302,10 +302,6 @@
 			});
 		}
 		
-		$.ajax({
-			
-		});
-		
 	</script>
 	
 	<form name="appointment_form" method="post" action="insertAppointment">
