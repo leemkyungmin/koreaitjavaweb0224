@@ -204,44 +204,33 @@ public class pojectEController {
 	}
 	
 	// 예약 가능 인원 계산
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@RequestMapping(value="getRemainSeat", produces="application/json; charset=utf-8")
+	@RequestMapping(value="getRemainSeat", produces="text/html; charset=utf-8")
 	@ResponseBody
-	public ResponseEntity getRemainSeat(HttpServletRequest request) {
-		
-		 HttpHeaders responseHeaders = new HttpHeaders();
-		 ArrayList<HashMap> aDate_Appointment_list = new ArrayList<HashMap>();
-		 
+	public String getRemainSeat(HttpServletRequest request) {
 		 String dSaup_no = request.getParameter("dSaup_no");
 		 String aDate = request.getParameter("aDate");
 		 		 
 		 // 업체 영업시간, 좌석 수 검색
 		 BoardDAO bDAO = sqlSession.getMapper(BoardDAO.class);
 		 DepartmentDTO deptDTO = bDAO.DepartView(dSaup_no);
-		 long dSeat = deptDTO.getdSeat();
 		 int dStart = Integer.parseInt(deptDTO.getdStart().substring(0, 2));
 		 int dEnd = Integer.parseInt(deptDTO.getdEnd().substring(0, 2));
 		 
 		 // APPINTMENT 테이블에서 DSAUP_NO, ADATE가 같은 영업시간대별로 AP_COUNT를 모두 더해
 		 AppointmentDAO aDAO = sqlSession.getMapper(AppointmentDAO.class);
 		 
-		 int[] aP_count_Time = new int[dEnd-dStart];
-		 int[] remainSeat = new int[dEnd-dStart];
-		 HashMap re = new HashMap();
+		 String[] remainSeat = new String[dEnd-dStart]; // 12
 		 
+		 String html ="<select class='select_aDate_hour' name='aDate_hour'>";
 		 for (int i=0; i<dEnd-dStart; i++) {
-			 aP_count_Time[i] = aDAO.selectAp_count(dSaup_no, aDate + (dEnd-(12-i)));
-			 // 업체 최대 좌석수 - 영업시간별로 AP_COUNT합계
-			 remainSeat[i] = (int) dSeat - aP_count_Time[i];
-			 // 시간-좌석, 시간-좌석, 시간-좌석 ArrayList 생성
-			 re.put(dEnd-(12-i), (int) dSeat - aP_count_Time[i]);
-			 
-			 aDate_Appointment_list.add(re);
+			 remainSeat[i] = aDAO.selectAp_count(dSaup_no, aDate + " " + (dEnd-(12-i)) + "00") + "";
+			 html += "<option value="+ (dEnd-(12-i)) + "00>";
+			 html += (dEnd-(12-i)) + ":00 (" +  remainSeat[i];
+			 html += "명)</option>";
 		 }
-		 		 
-		 JSONArray json = new JSONArray(aDate_Appointment_list);
-		 return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
+			 html += "</select>";
 		 
+		 return html;
 	}
 
 }

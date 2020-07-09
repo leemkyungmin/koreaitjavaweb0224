@@ -291,15 +291,20 @@
 				url: 'getRemainSeat',
 				method: 'post',
 				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일'},
-				dataType: 'JSON',
+				dataType: 'text',
 				success: function(data){
-					var html = '';
+					$('.remainPerson').empty();
+					$('.remainPerson').html(data);
 				},
 				error:function(){
 					alert('ajax통신 실패');
 				}
 			});
 		}
+		
+		$.ajax({
+			
+		});
 		
 	</script>
 	
@@ -312,16 +317,7 @@
 				</tr>
 				<tr>
 					<td class="text_subject">시간 :</td>
-					<td class="text_desc">
-				
-						<!-- 전체 좌석 수 에따라 몇명 남았는지 함께 표시 -->
-						<!-- 업체번호, 예약날짜, 예약시간이 같아야 함 -->
-						
-						<select class="select_aDate_hour" name="aDate_hour">
-							<c:forEach var="hour" begin="${fn:substring(deptDTO.dStart,0,2)}" end="${fn:substring(deptDTO.dEnd,0,2)-1}" step="1">
-								<option value="${hour}00">${hour}:00 (${deptDTO.dSeat}명)</option>							
-							</c:forEach>
-						</select>
+					<td class="text_desc remainPerson">		
 					</td> 
 				</tr>
 				<tr>
