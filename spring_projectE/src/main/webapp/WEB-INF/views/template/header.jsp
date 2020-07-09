@@ -16,59 +16,83 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <script src="https://code.jquery.com/jquery-2.2.2.js"></script>
 
-<script>
+<script type="text/javascript">
 
 	$(function () {
-	    var lastScrollTop = 0,
-	        delta = 15;
-	    $(window).scroll(function (event) {
-	        var st = $(this).scrollTop();
-	        if (Math.abs(lastScrollTop - st) <= delta) return;
-	        if ((st > lastScrollTop) ) {
-	            $(".nav-wrap").css("background-color", "white");
-	        } if((st < lastScrollTop) ) {
-	            $(".nav-wrap").css("background-color", "transparent");
-	        }
-	        lastScrollTop = st;
+	$('.nav-HomeSearchInput').click(function () {  
+	    if($(".nav-invisible").css("display") == "none"){   
+	    	$('.nav-invisible').css("display", "block");
+	    } else {  
+	    	$('.nav-invisible').css("display", "none");   
+	    }  
+		}); 
+	});
+	
+	
+	$( document ).ready(function() {
+	    $(document).mouseup(function(e){
+	    var container = $(".nav-invisible");
+	    if(container.has(e.target).length === 0)
+	        container.hide();
 	    });
-	});  
+	});
+
 </script>
 
+<style>
+		.nav-invisible {
+			margin-top: 1px;
+			margin-left:140px;
+			top: 55px;
+			width: 500px;
+			position: absolute;
+			background: white;
+			z-index:9;
+		}
+		
+		.item {
+			height: 1.8em;
+			width: 220px;
+			outline: none;
+			font-size: 20px;
+    		padding-left: 15px;
+    		color: lightgray;
+		}
+		
+		.item:hover {
+			color: #9baec8;
+		}
+
+</style>
+
 </head>
-<body>
+<body class="pt-5">
 
-
+	
 	<header class="Header" data-page="home">
 		<ul class="nav-wrap">
 				<li class="nav-logo-wrap">
 					<a href="index"><img alt="로고이미지" src="<c:url value="/resources/assets/images/logo01.png" />" class="logo"></a>
 				</li>
 				<li class="nav-search-wrap" >
-					<div class="nav-icon-box"><i class="fab fa-searchengin"></i></div><input class="nav-HomeSearchInput" name="main-search" type="text" maxlength="50" placeholder="지역, 식당 또는 음식" autocomplete="off" onclick="">
+					<div class="nav-icon-box"><i class="fab fa-searchengin"></i></div>
+					<input class="nav-HomeSearchInput" name="nav-search" type="text" maxlength="50" placeholder="지역 또는 식당" autocomplete="off" onclick="">
 				</li>
 				<li class="nav-list-wrap">
-					<a href="">맛집 리스트</a>
+					<a href="" class="nav-btn">맛집 리스트</a>
 				</li>
 				<li class="nav-user-wrap">
-					<a href=""><i class="far fa-user"></i></a>
+					<a href="loginChoicePage" class="nav-btn"><i class="far fa-user"></i></a>
 				</li>
 		</ul>
+		<div class="nav-invisible" style="display: none">
+			        <div class="item">test0<span class="text"></span></div>
+			        <div class="item">test1<span class="text"></span></div>
+			        <div class="item">test2<span class="text"></span></div>
+			        <div class="item">test3<span class="text"></span></div>
+			        <div class="item">test4<span class="text"></span></div>
+			        <div class="item">test5<span class="text"></span></div>
+
+    	</div>
 	</header>
-	<div class="header-wrap">
-		<div class="title-wrap">
-			<p class="title">솔직한 리뷰, 믿을 수 있는 평점!</p>
-			<h1 class="title">코리아 플레이트</h1>
-		</div>
-		
- 		<div class="search-wrap">
-	 		<div class="main-search">
-				<div class="icon-box"><i class="fas fa-search"></i></div>
-				<input id="main-search" class="HomeSearchInput" name="main-search" type="text" maxlength="50" placeholder="지역, 식당 또는 음식" autocomplete="off" onclick="">
-				<input class="btn-search" type="submit" value="검색" onclick="">
-			</div>
-		</div>
-		
-		<video autoplay loop muted>
-			<source src="<c:url value="/resources/assets/video/indexvideo01.mp4" />" type="video/mp4">
-		</video>
-	</div>
+

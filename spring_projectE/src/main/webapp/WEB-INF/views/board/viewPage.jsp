@@ -5,28 +5,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
+<%@ include file="../template/header.jsp" %>
 
-<!DOCTYPE html> 
-<html> 
+<!DOCTYPE html>         
+<html>  
 <head>
 <meta charset="UTF-8">
 <title>${deptDTO.dName }&nbsp;${deptDTO.dType }</title>
+
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <link href="resources/assets/style/ViewPage.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 
-	function fn_review(){
-	   
-	   $('#Modal .modal-content').load("reviewWritePage?&dSaup_no="+${deptDTO.dSaup_no}+"&cNo="+1);
-	   $('#Modal').modal();
-	  
-	}
-	function fn_reviewDetail(){
-		$('#Modal2 .modal-content2').load("reivewDetail?rNo=");
-		$('#Modal2').modal();
-	}
+	
+	
 	
 	$(document).ready(function(){
 		$('#reviewAll').click(function(){ 
@@ -63,7 +58,7 @@
 				if(data.length>0){
 					for(i=0; i<data.length; i++){
 						html+='<li class="RestaurantReviewItem RestaurantReviewList__ReviewItem">';
-						html+='<a class="RestaurantReviewItem__Link" href="/reviews/NzE4Mjcw" target="_blank">';
+						html+='<button class="RestaurantReviewItem__Link" onclick="fn_reviewDetail(${review.rNo})">';
 		    			html+='<div class="RestaurantReviewItem__User">';
 		       
 		    			html+='<div class="RestaurantReviewItem__UserPictureWrap">';
@@ -88,7 +83,7 @@
 				      	html+='<div class="RestaurantReviewItem__Rating RestaurantReviewItem__Rating--Ok">';
 				      	html+='<span class="RestaurantReviewItem__RatingText">괜찮다</span>';
 				      	html+='</div>';  
-				      	html+='</a>';
+				      	html+='</button>';
 				      	html+='</li>';	
 				      	
 		            }
@@ -107,6 +102,7 @@
 			}
 		});
 	}
+	
 
 
 	
@@ -114,7 +110,7 @@
 
 </script>
 <style>
-        #Modal,#Modal2 {
+        #Modal,#myModal {
           display: none;
           position:relative;
           margin:auto;
@@ -123,12 +119,12 @@
           z-index:1;
         }
         
-        #Modal h2,#Modal2 h2 {
+        #Modal h2{
           margin:0;
         }
        
         
-        #Modal .modal-content,#Modal2 .modal-content2  {
+        #Modal .modal-content,#myModal .modal-body {
           width:100%;
           height:100%;
           margin:100px auto;
@@ -137,7 +133,7 @@
           
         }
         
-        #Modal .modal_layer,#Modal2 .modal_layer2 {
+         #Modal .modal_layer ,#myModal .modal_layer{
           position:fixed;
           top:0;
           left:0;
@@ -145,7 +141,16 @@
           height:100%;
           background:rgba(0, 0, 0, 0.5);
           z-index:-1;
-        }   
+        }
+        #myModal .modal-header{
+        	position: relative;
+        	width: 1040px;
+        }
+        .modal-header >button{
+        	position: absolute;
+        	bottom: 0;
+        	right: 0;
+        }
 </style> 
 
 </head>
@@ -154,7 +159,7 @@
 
 	<c:set var="img" value="${deptDTO.dPhoto }"></c:set>
 	
-	<div class="top-image">
+	<div class="top-image" style="position:relative;">
 	
 	<c:forEach var="split" items="${fn:split(img,',')}">
 		<div class="column-image">
@@ -182,13 +187,14 @@
 	
 	                <div class="restaurant_action_button_wrap">
 	
-	                  <button class="review_writing_button" onclick="fn_review()">
+	                  <button class="review_writing_button" data-remote="reviewWritePage?dSaup_no=${deptDTO.dSaup_no}&cNo=1"
+						data-toggle="modal" data-target="#myModal">
 	                    <i class="fas fa-pen fa-3x"></i>
 	                    <p class="review_writing_button_text">리뷰쓰기</p>
 	                  </button>
 	
 	                 
-	                    <button class="btn-type-icon favorite wannago_btn " onclick="">
+	                    <button class="btn-type-icon favorite wannago_btn " onclick="fn_appointment()">
 		                    <i class="far fa-calendar-check fa-3x"></i>
 		                    <p class="wannago_txt">예약하기</p>
 	                  	</button>
@@ -252,7 +258,7 @@
 	
 	                <tr>
 	                  <th>주차</th>
-	                  <td>${dept.dParking ==1 ? '파킹가능' : '파킹 불가' }</td>
+	                  <td>${dept.dParking ==1 ? '주차 가능' : '주차 불가' }</td>
 	                </tr>
 	
 	                <tr>
@@ -288,15 +294,15 @@
 	
 	                  <td>
 	                    <div class="list-thumb-photos size-small">
-	                        <button class="btn-thumb" onclick="trackEvent('CLICK_MENU', {&quot;restaurant_key&quot;:&quot;KU-4QO6Yvt&quot;})" ng-click="open_menu_picture(0)">
+	                        <button class="btn-thumb" >
 	                           <img class="center-croping lazy" alt="마루심 메뉴 사진 - 서울시 서초구 반포동 54-10" data-original="https://mp-seoul-image-production-s3.mangoplate.com/1402/804795_1553502245961_8594?fit=around|63:63&amp;crop=63:63;*,*&amp;output-format=jpg&amp;output-quality=80" data-error="https://mp-seoul-image-production-s3.mangoplate.com/web/resources/kssf5eveeva_xlmy.jpg?fit=around|*:*&amp;crop=*:*;*,*&amp;output-format=jpg&amp;output-quality=80" src="https://mp-seoul-image-production-s3.mangoplate.com/1402/804795_1553502245961_8594?fit=around|63:63&amp;crop=63:63;*,*&amp;output-format=jpg&amp;output-quality=80" style="display: block;">
 	
 	                         </button>
-	                        <button class="btn-thumb" onclick="trackEvent('CLICK_MENU', {&quot;restaurant_key&quot;:&quot;KU-4QO6Yvt&quot;})" ng-click="open_menu_picture(1)">
+	                        <button class="btn-thumb">
 	                          <img class="center-croping lazy" alt="마루심 메뉴 사진 - 서울시 서초구 반포동 54-10" data-original="https://mp-seoul-image-production-s3.mangoplate.com/411704_1553083695056017.jpg?fit=around|63:63&amp;crop=63:63;*,*&amp;output-format=jpg&amp;output-quality=80" data-error="https://mp-seoul-image-production-s3.mangoplate.com/web/resources/kssf5eveeva_xlmy.jpg?fit=around|*:*&amp;crop=*:*;*,*&amp;output-format=jpg&amp;output-quality=80" src="https://mp-seoul-image-production-s3.mangoplate.com/411704_1553083695056017.jpg?fit=around|63:63&amp;crop=63:63;*,*&amp;output-format=jpg&amp;output-quality=80" style="display: block;">
 	
 	                        </button>
-	                        <button class="btn-thumb" onclick="trackEvent('CLICK_MENU', {&quot;restaurant_key&quot;:&quot;KU-4QO6Yvt&quot;})" ng-click="open_menu_picture(2)">
+	                        <button class="btn-thumb" >
 	                          <img class="center-croping lazy" alt="마루심 메뉴 사진 - 서울시 서초구 반포동 54-10" data-original="https://mp-seoul-image-production-s3.mangoplate.com/9388_1549362579391934.jpg?fit=around|63:63&amp;crop=63:63;*,*&amp;output-format=jpg&amp;output-quality=80" data-error="https://mp-seoul-image-production-s3.mangoplate.com/web/resources/kssf5eveeva_xlmy.jpg?fit=around|*:*&amp;crop=*:*;*,*&amp;output-format=jpg&amp;output-quality=80" src="https://mp-seoul-image-production-s3.mangoplate.com/9388_1549362579391934.jpg?fit=around|63:63&amp;crop=63:63;*,*&amp;output-format=jpg&amp;output-quality=80" style="display: block;">
 	
 	                        </button>
@@ -352,19 +358,45 @@
 				
 				<div class="modal fade" id='Modal' tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true" data-backdrop="static">
 					<div class="modal-dialog modal-xl" role="document" data-backdrop="static">
+			    		
 			    		<div class="modal-content" data-backdrop="static">
 			    		</div>
 			  		</div>
 			  		<div class="modal_layer" data-backdrop="static"></div>
 				</div>
-				<div class="modal fade" id='Modal2' tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true" data-backdrop="static">
-					<div class="modal-dialog modal-xl" role="document" data-backdrop="static">
-			    		<div class="modal-content2" data-backdrop="static">
-			    		</div>
-			  		</div>
-			  		<div class="modal_layer2" data-backdrop="static"></div>
-				</div>
+				
+				<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				 	<div class="modal-header" data-backdrop="static">
+				    	<!-- data-dismiss="modal" -->
+				    	
+				    	<button type="button" class="close"  data-dismiss="modal" aria-hidden="true">
+							<i class="fas fa-times fa-3x"></i>
+						</button>
+				  	</div>
+				  <div class="modal-body" data-backdrop="static">
+				    
+				  </div>
 				  
+				  <div class="modal_layer" data-backdrop="static"></div>
+				</div>
+				
+				<script type="text/javascript">
+					
+					$('#myModal').on('show.bs.modal',function(e){
+						var button = $(e.relatedTarget);
+						var modal = $(this);
+						modal.find('.modal-body').load(button.data("remote"));
+					});
+					
+					
+					
+					
+					
+					
+					
+					
+				</script>
+				
 				
 				
 	              <p class="update_date">
@@ -384,19 +416,19 @@
 	                <li class="RestaurantReviewList__FilterItem">
 	                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__AllFilterButton RestaurantReviewList__FilterButton--Selected" id="reviewAll">
 	                    전체
-	                  <span class="RestaurantReviewList__ReviewCount">20</span></button>
+	                  </button>
 	                </li>
 	
 	                <li class="RestaurantReviewList__FilterItem">
 	                  <button class="RestaurantReviewList__FilterButton RestaurantReviewList__RecommendFilterButton" id="reviewAppointment">
 	         	예약자 리뷰
-	                  <span class="RestaurantReviewList__ReviewCount">18</span></button>
+	                  </button>
 	                </li>
 	
 	                <li class="RestaurantReviewList__FilterItem">
                   <button class="RestaurantReviewList__FilterButton RestaurantReviewList__NotRecommendButton" id="reviewNotAppointment">
                  비 예약자 리뷰
-                  <span class="RestaurantReviewList__ReviewCount">6</span></button>
+                  </button>
                 </li>
 	
 	                
@@ -416,9 +448,9 @@
 		       		 <img class="RestaurantReviewItem__UserPicture loaded" data-src="https://mp-seoul-image-production-s3.mangoplate.com/1407183_1563215702669?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" alt="user profile picture" src="https://mp-seoul-image-production-s3.mangoplate.com/1407183_1563215702669?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true">
 		     	 </div>
 		      
-		     	<!--  
-		    	 <span class="RestaurantReviewItem__UserNickName"></span>
-			   	-->
+		     	  
+		    	 <span class="RestaurantReviewItem__UserNickName">${review.cNickname}</span>
+			   	
 			  <!--  유저 글 갯수 
 		     	 <ul class="RestaurantReviewItem__UserStat">
 		       		 <li class="RestaurantReviewItem__UserStatItem RestaurantReviewItem__UserStatItem--Review">1</li>
@@ -443,7 +475,7 @@
 			    </div>
 			
 			    <div class="RestaurantReviewItem__Rating RestaurantReviewItem__Rating--Ok">
-			      <span class="RestaurantReviewItem__RatingText">${review.rNo }</span>
+			      <span class="RestaurantReviewItem__RatingText">맛있다.</span>
 			    </div>
 			     			    
 			  	</button>
@@ -491,7 +523,7 @@
 				      <div class="NearByRestaurantItem__Content">
 				        <div class="NearByRestaurantItem__NameWrap">
 				          <a class="NearByRestaurantItem__Name" href="viewPage?dSaup_no=${side.dSaup_no }">${side.dName }</a>
-				          <span class="NearByRestaurantItem__Rating NearByRestaurantItem__Rating--Expected">4.3</span>
+				          <span class="NearByRestaurantItem__Rating NearByRestaurantItem__Rating--Expected">${side.dRating }</span>
 				        </div>
 				  
 				        <div class="NearByRestaurantItem__MetroAndCuisine">
@@ -530,7 +562,4 @@
         </div>
       </div>
    </div>
-      
-
-</body>
-</html>
+<%@ include file="../template/footer.jsp" %>
