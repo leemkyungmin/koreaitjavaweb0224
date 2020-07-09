@@ -5,7 +5,7 @@ import java.sql.Date;
 public class CustomerDTO {
 
 	private int cNo;
-	private String cId,cPw,cName,cNickname,cPhone,cEmail,cPoto,cGrade,cDept,cGender;
+	private String cId,cPw,cName,cNickname,cPhone,cEmail,cPhoto,cGrade,cDept,cGender;
 	private Date cRegdate;
 	
 	
@@ -13,10 +13,10 @@ public class CustomerDTO {
 	public CustomerDTO() {}
 
 
-	public CustomerDTO(String cPoto,int cNo, String cId, String cPw, String cName, String cNickname, String cPhone, String cEmail,
-			 String cGrade, String cDept, String cGender, Date cRegdate) {
+
+	public CustomerDTO(int cNo, String cId, String cPw, String cName, String cNickname, String cPhone, String cEmail,
+			String cPhoto, String cGrade, String cDept, String cGender, Date cRegdate) {
 		super();
-		this.cPoto=cPoto;
 		this.cNo = cNo;
 		this.cId = cId;
 		this.cPw = cPw;
@@ -24,14 +24,13 @@ public class CustomerDTO {
 		this.cNickname = cNickname;
 		this.cPhone = cPhone;
 		this.cEmail = cEmail;
+		this.cPhoto = cPhoto;
 		this.cGrade = cGrade;
 		this.cDept = cDept;
 		this.cGender = cGender;
 		this.cRegdate = cRegdate;
 	}
 
-
-	
 
 
 	public int getcNo() {
@@ -39,9 +38,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcNo(int cNo) {
 		this.cNo = cNo;
 	}
+
 
 
 	public String getcId() {
@@ -49,9 +50,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcId(String cId) {
 		this.cId = cId;
 	}
+
 
 
 	public String getcPw() {
@@ -59,9 +62,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcPw(String cPw) {
 		this.cPw = cPw;
 	}
+
 
 
 	public String getcName() {
@@ -69,9 +74,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcName(String cName) {
 		this.cName = cName;
 	}
+
 
 
 	public String getcNickname() {
@@ -79,9 +86,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcNickname(String cNickname) {
 		this.cNickname = cNickname;
 	}
+
 
 
 	public String getcPhone() {
@@ -89,9 +98,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcPhone(String cPhone) {
 		this.cPhone = cPhone;
 	}
+
 
 
 	public String getcEmail() {
@@ -99,22 +110,23 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcEmail(String cEmail) {
 		this.cEmail = cEmail;
 	}
 
 
-	
 
-
-	public String getcPoto() {
-		return cPoto;
+	public String getcPhoto() {
+		return cPhoto;
 	}
 
 
-	public void setcPoto(String cPoto) {
-		this.cPoto = cPoto;
+
+	public void setcPhoto(String cPhoto) {
+		this.cPhoto = cPhoto;
 	}
+
 
 
 	public String getcGrade() {
@@ -122,9 +134,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcGrade(String cGrade) {
 		this.cGrade = cGrade;
 	}
+
 
 
 	public String getcDept() {
@@ -132,9 +146,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcDept(String cDept) {
 		this.cDept = cDept;
 	}
+
 
 
 	public String getcGender() {
@@ -142,9 +158,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcGender(String cGender) {
 		this.cGender = cGender;
 	}
+
 
 
 	public Date getcRegdate() {
@@ -152,12 +170,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcRegdate(Date cRegdate) {
 		this.cRegdate = cRegdate;
 	}
 
-
-	
 	
 	
 	
