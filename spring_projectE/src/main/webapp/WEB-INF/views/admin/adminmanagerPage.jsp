@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <style>
@@ -18,6 +19,8 @@
 	table{
 		text-align: center;
 		border-collapse: collapse;
+		height: 100px;
+		width: 750px;
 	}
 	#custom{
 		display: 'block';
@@ -26,23 +29,17 @@
 
 <script type="text/javascript">
 	
-	function allChk(obj){
-		var chkObj = document.getElementsByName("RowCheck");
-		var rowCnt = chkObj.length -1;
-		var check = obj.checked;
-		if (check) {
-			for (var i=0; i<=rowCnt; i++){
-				if(chkObj[i].type == "checkbox")
-					chkObj[i].checked = true;
-			}		
+	$(document).on("click", "#checkAll", function(){
+		if( (! $('#checkAll').attr('checked')){
+			$('.checkSelect').attr('checked', false);
 		} else {
-			for (var i=0; i<=rowCnt;i++){
-				if(chkObj[i].type == "checkbox")
-					chkObj[i].checked = false;
-			}
-		}
-	}
-	
+			$('.checkSelect').attr('checked', 'checked');
+		});
+	});
+		
+	$(document).on("click", ".checkSelect", function(){
+		$("#checkAll").attr('checked', false);
+	});
 	
 	function fn_cus_list(){
 		document.getElementById("custom").style.display='block';
@@ -53,22 +50,47 @@
 		document.getElementById("dept").style.display='block';
 		document.getElementById("custom").style.display='none';	
 	}
+	$(function(){
+		$('#RowCheck').click(function(){
+			alert($('#RowCheck').checked);
+			if($(this).checked==false){
+				$('#allCheck').checked=false;
+			}
+		});
+		
+		$('#searchBtn').click(function(){
+			ajax({
+				url:'searchQuery',
+				data:'query='+$('#query').val(),
+				success:function(data){
+					$('#user_info').empty();
+					$('#user_info').append(data);
+				},
+				error:function(){
+					alert('ajax통신 실패');
+				}
+			});
+		})
+		
+	});
+	
 	
 	
 </script>
 
 <body>
 	
-	<button id="cus_btn" onclick="fn_cus_list()"><h3>회원관리</h3></button>
+	<button id="cus_btn" onclick="fn_cus_list()" style="display: block; width:480px; margin: 0 auto;" ><h3>회원관리</h3></button>
 	
 	<br/><br/>
 	
-	<div id="custom">
 	
+		
+	<div id="custom" style="display: block; width:760px; height:100px; margin: 0 auto; overflow:auto; ">
 	<table border="1">
 		<thead>
 			<tr>
-				<td><input id="allCheck" type="checkbox" onclick="allChk(this);"/></td>
+				<td><input id="checkAll" name="" type="checkbox" /></td>
 				<td>아이디</td>
 				<td>번호</td>
 				<td>이름</td>
@@ -79,10 +101,10 @@
 				<td>등급</td>
 				<td>성별</td>
 			</tr>
-		</thead>	
+		</thead id="user_info">	
 			<c:forEach var="user" items="${cList }">
 			<tr>	
-				<td><input name="RowCheck" type="checkbox" value="${user.cId }"/></td>
+				<td><input name="chk_box" type="checkbox" class="checkSelect"/></td>
 				<td><a href="UpdateUser?cNo=${user.cNo }">${user.cId }</a></td>			
 				<td>${user.cNo }</td>				
 				<td>${user.cName }</td>			
@@ -114,10 +136,10 @@
 	</div>
 	<br/><br/>
 	
-	<button id="dept_btn" onclick="fn_dept_list()"><h3>업체관리</h3></button>
+	<button id="dept_btn" onclick="fn_dept_list()" style="display: block; width:480px; margin: 0 auto;" ><h3>업체관리</h3></button>
 	<br/><br/>
 	
-	<div id="dept">	
+	<div id="dept" style="display: block; width:750px; margin: 0 auto;" >	
 		<table border="1">
 			<thead>
 				<tr>

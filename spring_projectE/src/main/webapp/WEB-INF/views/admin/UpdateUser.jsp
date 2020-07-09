@@ -1,3 +1,8 @@
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.SQLException"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>  
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -11,13 +16,25 @@
 		window.history.back();
 	}
 </script>
+<style type="text/css">
+	table {
+		border: 1px solid;
+		border-collapse: collapse;	
+	}
+	tr, td {
+		border: 1px solid;
+	}
+	table {
+		margin: 0 auto;
+	}	
+</style>
 </head>
 <body>
-	<input type="button" class="btn_list" value="리스트 보기" onclick="goBack()"/>
+	<input style="display: block; width:80px; margin: 0 auto;" type="button" class="btn_list" value="리스트 보기" onclick="goBack()"/>
 	<br/><br/>
-	${cDTO.cNo }
 	
-	<table border="1">
+	
+	<table>
 		
 		<tr>
 			<td>이름</td>
@@ -57,6 +74,7 @@
 		</tr>
 	</table>
 	<br/>
-	<input type="button" value="수정완료" onclick="" />
+	<input style="display: block; width:100px; margin: 0 auto;" type="button" value="수정완료" onclick="" /> 
+	<input style="display: block; width:100px; margin: 0 auto;" type="button" value="회원삭제" onclick="" />
 </body>
 </html>
