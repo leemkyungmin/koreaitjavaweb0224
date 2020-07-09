@@ -13,23 +13,10 @@ public class CustomerDTO {
 	public CustomerDTO() {}
 
 
-<<<<<<< HEAD
-	public CustomerDTO(String cPhoto,int cNo, String cId, String cPw, String cName, String cNickname, String cPhone, String cEmail,
-			 String cGrade, String cDept, String cGender, Date cRegdate) {
-=======
 
 	public CustomerDTO(int cNo, String cId, String cPw, String cName, String cNickname, String cPhone, String cEmail,
-<<<<<<< HEAD
 			String cPoto, String cGrade, String cDept, String cGender, Date cRegdate) {
-=======
-			String cPhoto, String cGrade, String cDept, String cGender, Date cRegdate) {
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 		super();
-<<<<<<< HEAD
-		this.cPhoto=cPhoto;
-=======
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 		this.cNo = cNo;
 		this.cId = cId;
 		this.cPw = cPw;
@@ -130,31 +117,14 @@ public class CustomerDTO {
 
 
 
-<<<<<<< HEAD
 	public String getcPoto() {
 		return cPoto;
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
-	public String getcPhoto() {
-		return cPhoto;
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 	}
 
 
-<<<<<<< HEAD
-=======
 
-<<<<<<< HEAD
 	public void setcPoto(String cPoto) {
 		this.cPoto = cPoto;
-=======
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
-	public void setcPhoto(String cPhoto) {
-		this.cPhoto = cPhoto;
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 	}
 
 
@@ -205,7 +175,6 @@ public class CustomerDTO {
 		this.cRegdate = cRegdate;
 	}
 
-	
 	
 	
 }       
