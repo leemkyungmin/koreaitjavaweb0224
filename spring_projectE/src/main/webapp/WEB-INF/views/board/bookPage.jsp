@@ -309,7 +309,7 @@
 			<table class="appintment_table">
 				<tr>
 					<td class="text_subject">날짜 :</td>
-					<td class="text_desc"><input type="text" name="aDate_day" class="text_type1" /></td>
+					<td class="text_desc"><input type="text" name="aDate_day" class="text_type1" readonly/></td>
 				</tr>
 				<tr>
 					<td class="text_subject">시간 :</td>
