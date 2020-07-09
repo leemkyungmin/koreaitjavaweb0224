@@ -3,6 +3,7 @@
 <%@page import="java.util.Calendar"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <html lang="ko">
 <head>
@@ -212,7 +213,6 @@
 	
 	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	
-	
 </head>
 <body>
 	
@@ -222,27 +222,17 @@
 		<input type="hidden" name="month" value="${today_info.search_month}" />
 
 		<div class="calendar" >
-			<!--날짜 네비게이션  -->
 			<div class="navigation">
-				<!-- 이전해 -->
-				<!-- 버튼을 누르면 달력리스트 새로 가져와야 하므로, CalendarController 한번 더 다녀온다 -->
-				<a class="before_after_year" href="calendar?year=${today_info.search_year-1}&month=${today_info.search_month-1}">&lt;&lt;</a> 
-				<!-- 이전달 -->
-				<a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}">&lt;</a> 
-				
-				<!-- yyyy.mm -->
+				<a class="before_after_year" href="calendar?year=${today_info.search_year-1}&month=${today_info.search_month-1}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;&lt;</a> 
+				<a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;</a> 
 				<span class="this_month">
 					&nbsp;${today_info.search_year}. 
 					<c:if test="${today_info.search_month<10}">0</c:if>${today_info.search_month}
 				</span>
-				
-				<!-- 다음달 -->
-				<a class="before_after_month" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}">&gt;</a> 
-				<!-- 다음해 -->
-				<a class="before_after_year" href="calendar?year=${today_info.search_year+1}&month=${today_info.search_month-1}">&gt;&gt;</a>
+				<a class="before_after_month" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;</a> 
+				<a class="before_after_year" href="calendar?year=${today_info.search_year+1}&month=${today_info.search_month-1}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;&gt;</a>
 			</div>
 
-			<!-- 달력 테이블 -->
 			<table class="calendar_body">
 				<thead>
 					<tr bgcolor="#CECECE">
@@ -254,16 +244,9 @@
 						<td class="day" >금</td>
 						<td class="day sat" >토</td>
 					</tr>
-				</thead>
-				
+				</thead>	
 				<tbody>
 					<tr class="appointBtn">
-						<!-- 
-							class="today" 오늘 : 달력 CSS를 다르게 설정
-							class="sat_day" 토요일 : 달력 CSS를 다르게 설정
-							class="sun_day" 일요일 : tr이 끝나므로 닫고 새로 시작함
-							class="normal_day" 월~금
-						 -->
 						<c:forEach var="dateList" items="${dateList}" varStatus="date_status"> 
 							<c:choose>
 								<c:when test="${dateList.value=='today'}">
@@ -302,7 +285,20 @@
 			} else {
 				$('#myForm').removeClass('deactive');
 				$('.text_type1').val('${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일');
-			}			
+			}
+			
+			$.ajax({
+				url: 'getRemainSeat',
+				method: 'post',
+				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일'},
+				dataType: 'JSON',
+				success: function(data){
+					var html = '';
+				},
+				error:function(){
+					alert('ajax통신 실패');
+				}
+			});
 		}
 		
 	</script>
@@ -317,12 +313,14 @@
 				<tr>
 					<td class="text_subject">시간 :</td>
 					<td class="text_desc">
-						<!-- 영업시간 별로 생성 -->
+				
 						<!-- 전체 좌석 수 에따라 몇명 남았는지 함께 표시 -->
 						<!-- 업체번호, 예약날짜, 예약시간이 같아야 함 -->
+						
 						<select class="select_aDate_hour" name="aDate_hour">
-							<option value="11:00">11:00 (00명)</option>
-							<option value="12:00">12:00 (00명)</option>
+							<c:forEach var="hour" begin="${fn:substring(deptDTO.dStart,0,2)}" end="${fn:substring(deptDTO.dEnd,0,2)-1}" step="1">
+								<option value="${hour}00">${hour}:00 (${deptDTO.dSeat}명)</option>							
+							</c:forEach>
 						</select>
 					</td> 
 				</tr>
@@ -330,11 +328,10 @@
 					<td class="text_subject">인원 :</td>
 					<td class="text_desc">
 						<select class="select_aP_count" name="aP_count">
-							<option value="1">1명</option>
-							<option value="2">2명</option>
-							<option value="3">3명</option>
-							<option value="4">4명</option>
-							<!-- 음식점 좌석 수 , 남은 예약명수 만큼 생성 -->
+							<c:forEach var="n" begin="1" end="${deptDTO.dSeat}" step="1">
+								<option value="${n}">${n}명</option>
+								<!-- 음식점 좌석 수 , 남은 예약명수 만큼 생성 -->
+							</c:forEach>
 						</select>	
 					</td>
 				</tr>
@@ -342,8 +339,8 @@
 			<div class="submit_btn_wrap">
 				<!-- 사용자정보(cNo), 업체번호(dSaup_no) 함께 전송 -->
 				<input class="submit_btn" type="submit" value="예약하기" />
-				<input type="hidden" name="cNo" value="1" />
-				<input type="hidden" name="dSaup_no" value="11111111111" />
+				<input type="hidden" name="cNo" value="${cNo}" />
+				<input type="hidden" name="dSaup_no" value="${deptDTO.dSaup_no}" />
 			</div>
 		</div>
 	</form>

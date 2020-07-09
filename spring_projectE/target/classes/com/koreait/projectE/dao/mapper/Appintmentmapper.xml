@@ -10,4 +10,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (APPOINTMENT_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4})
 	</insert>
 	
+	<select id="selectAp_count" resultType="int">
+		SELECT COUNT(*) FROM APPOINTMENT WHERE DSAUP_NO = #{param1} AND ADATE = #{param2}
+	</select>
+	
 </mapper>

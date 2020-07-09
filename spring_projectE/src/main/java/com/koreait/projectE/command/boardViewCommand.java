@@ -35,6 +35,7 @@ public class boardViewCommand implements Command {
 		
 		String address =bdao.DepartView(dSaup_no).getdAddress();
 		String[] addr =address.split(" ");
+		
 		ArrayList<DepartmentDTO> side_list = bdao.getSide_list(addr[1]);
 		model.addAttribute("side_list", side_list);
 		

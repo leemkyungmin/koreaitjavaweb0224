@@ -11,4 +11,8 @@ public interface adminDAO {
 	public ArrayList<CustomerDTO> getCustomList();
 	
 	public ArrayList<DepartmentDTO> getDepartmentList();
+	
+	public CustomerDTO UpdateUserPage(int cNo);
 }
+
+
