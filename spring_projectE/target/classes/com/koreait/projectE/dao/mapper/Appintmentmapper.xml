@@ -10,4 +10,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (APPOINTMENT_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4})
 	</insert>
 	
+	<select id="selectAp_count" resultType="int">
+		SELECT nvl(Dseat, 0) - nvl((select sum(nvl(ap_count, 0)) from appointment where adate = #{param2}), 0) from department_info where dsaup_no = #{param1}
+	</select>
+	
 </mapper>
