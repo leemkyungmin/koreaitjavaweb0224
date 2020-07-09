@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.koreait.projectE.command.CustomerEmailAuthCommand;
 import com.koreait.projectE.command.CustomerSignUpCommand;
@@ -53,8 +54,8 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="customerSignUp", method=RequestMethod.POST)
-	public String customerSignUp(HttpServletRequest request, Model model) {
-		model.addAttribute("request", request);
+	public String customerSignUp(MultipartHttpServletRequest mr, Model model) {
+		model.addAttribute("mr", mr);
 		command = new CustomerSignUpCommand();
 		command.execute(sqlSession, model);
 		return "redirect:customerLoginPage"; 
@@ -91,22 +92,30 @@ public class LoginController {
 	}
 	
 	// ▼▼▼▼▼▼▼▼▼▼▼▼ 이메일 인증 ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
-	@RequestMapping("emailAuthPage")
-	public String emailAuthPage() {
-		return "login/emailIndex";
-	}
-		@Autowired
-		private JavaMailSender mailSender; // root-context.xml 의 빈 자동생성
-		
-		@RequestMapping("emailAuth")
-		public String emailAuth(HttpServletRequest request, Model model) {
-			model.addAttribute("request", request);
-			model.addAttribute("mailSender", mailSender);
-			command = new CustomerEmailAuthCommand();
-			command.execute(sqlSession, model);
-			return "emailAuthConfirm"; // 이메일 인증코드를 emailAuthConfirm.jsp 로 보내준다.
-		}
+	@Autowired
+	private JavaMailSender mailSender; // root-context.xml 의 빈 자동생성
 	
+	@RequestMapping("emailAuthMapping")
+	@ResponseBody
+	public String emailAuth(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		model.addAttribute("mailSender", mailSender);
+		CustomerEmailAuthCommand command = new CustomerEmailAuthCommand();
+		return command.execute(sqlSession, model) + "";
+	}
+	
+	@RequestMapping(value="singleUpload", method=RequestMethod.POST)
+	public String singleUpload(MultipartHttpServletRequest mr, Model model) {
+		
+		// 1. 업로드 없는 경우 : HttpRequest request
+		// 2. 업로드 있는 경우 : MultipartHttpRequest request (mr)
+		
+		model.addAttribute("mr", mr);
+		//
+		command.execute(sqlSession, model);
+		
+		return "redirect:imageBoardListPage";
+	}
 	
 	
 	
