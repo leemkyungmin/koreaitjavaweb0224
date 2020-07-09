@@ -312,6 +312,13 @@
 						</p>
 					</div>
 				</div>
+<<<<<<< HEAD
+
+			</form>
+
+			
+
+=======
 				<div class="ReviewWritenPage_TextWrap">
 					<div class="ReviewWritenPage_PictureWrap">
 						<input type="file" id="input_file" name="rPoto" multiple />
@@ -326,6 +333,7 @@
 			</div>
 		</div>
 	</form>
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 
 </body>
 </html>

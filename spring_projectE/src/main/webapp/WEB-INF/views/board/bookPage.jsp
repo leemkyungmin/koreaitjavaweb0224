@@ -288,14 +288,30 @@
 			}
 			
 			$.ajax({
+				url: 'getRemainSeatANDTime',
+				method: 'post',
+				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일'},
+				dataType: 'text',
+				success: function(data){
+					$('.remainPerson').empty();
+					$('.remainPerson').html(data);
+				},
+				error:function(){
+					alert('ajax통신 실패');
+				}
+			});
+			
+			$.ajax({
 				url: 'getRemainSeat',
 				method: 'post',
 				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일'},
-				dataType: 'JSON',
-				success: function(data){
-					var html = '';
+				dataType: 'text',
+				async : false,
+				success: function (data) {
+					$('.selectAp_count').empty();
+					$('.selectAp_count').html(data);
 				},
-				error:function(){
+				erreor: function() {
 					alert('ajax통신 실패');
 				}
 			});
@@ -308,36 +324,20 @@
 			<table class="appintment_table">
 				<tr>
 					<td class="text_subject">날짜 :</td>
-					<td class="text_desc"><input type="text" name="aDate_day" class="text_type1" /></td>
+					<td class="text_desc"><input type="text" name="aDate_day" class="text_type1" readonly/></td>
 				</tr>
 				<tr>
 					<td class="text_subject">시간 :</td>
-					<td class="text_desc">
-				
-						<!-- 전체 좌석 수 에따라 몇명 남았는지 함께 표시 -->
-						<!-- 업체번호, 예약날짜, 예약시간이 같아야 함 -->
-						
-						<select class="select_aDate_hour" name="aDate_hour">
-							<c:forEach var="hour" begin="${fn:substring(deptDTO.dStart,0,2)}" end="${fn:substring(deptDTO.dEnd,0,2)-1}" step="1">
-								<option value="${hour}00">${hour}:00 (${deptDTO.dSeat}명)</option>							
-							</c:forEach>
-						</select>
+					<td class="text_desc remainPerson">		
 					</td> 
 				</tr>
 				<tr>
 					<td class="text_subject">인원 :</td>
-					<td class="text_desc">
-						<select class="select_aP_count" name="aP_count">
-							<c:forEach var="n" begin="1" end="${deptDTO.dSeat}" step="1">
-								<option value="${n}">${n}명</option>
-								<!-- 음식점 좌석 수 , 남은 예약명수 만큼 생성 -->
-							</c:forEach>
-						</select>	
+					<td class="text_desc selectAp_count">
 					</td>
 				</tr>
 			</table>
 			<div class="submit_btn_wrap">
-				<!-- 사용자정보(cNo), 업체번호(dSaup_no) 함께 전송 -->
 				<input class="submit_btn" type="submit" value="예약하기" />
 				<input type="hidden" name="cNo" value="${cNo}" />
 				<input type="hidden" name="dSaup_no" value="${deptDTO.dSaup_no}" />

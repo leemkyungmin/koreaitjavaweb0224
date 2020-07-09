@@ -21,10 +21,7 @@ public class ReviewInsertCommand implements Command {
 		MultipartHttpServletRequest mrequest = (MultipartHttpServletRequest) map.get("mrequest");
 		
 		int rPoint = Integer.parseInt(mrequest.getParameter("rPoint"));
-		String rTitle = mrequest.getParameter("rTitle");
-		
-		// 제목이 없으면 제목없음으로?
-		
+		String rTitle = mrequest.getParameter("rTitle");		
 		String rContent = mrequest.getParameter("rContent");
 		List<MultipartFile> fileList = mrequest.getFiles("rPoto");
 		int cNo = Integer.parseInt(mrequest.getParameter("cNo"));

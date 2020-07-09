@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.koreait.projectE.dao.ListDAO">
+	
+	<!-- <select id="si_list" resultType="String">
+		select substr(daddress,1,INSTR(DADDRESS,' ',1,1)-1) 
+		from department_info 
+		group by substr(daddress,1,INSTR(DADDRESS,' ',1,1)-1)
+	</select>
+	
+	<select id="dong_list" resultType="String">
+		select substr(daddress,INSTR(DADDRESS,' ',1,1)+1,(INSTR(DADDRESS,' ',1,2)-1)-INSTR(DADDRESS,' ',1,1)+1) as dong 
+		from department_info 
+		where DADDRESS LIKE #{si} || '%' 
+		group by substr(daddress,INSTR(DADDRESS,' ',1,1)+1,(INSTR(DADDRESS,' ',1,2)-1)-INSTR(DADDRESS,' ',1,1)+1)
+	</select> -->
+	
+	<select id="main_list" resultType="com.koreait.projectE.dto.MainListDTO">
+		select substr(daddress,INSTR(DADDRESS,' ',1,1)+1,(INSTR(DADDRESS,' ',1,2)-1)-INSTR(DADDRESS,' ',1,1)+1)as dong,count(*) as count  from department_info 
+		group by substr(daddress,INSTR(DADDRESS,' ',1,1)+1,(INSTR(DADDRESS,' ',1,2)-1)-INSTR(DADDRESS,' ',1,1)+1)
+	</select>
+	
+	
+</mapper>
