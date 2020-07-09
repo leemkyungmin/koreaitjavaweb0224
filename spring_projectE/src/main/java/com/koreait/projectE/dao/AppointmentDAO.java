@@ -9,4 +9,6 @@ public interface AppointmentDAO {
 	
 	// 예약 수정
 	
+	// 예약 인원 검색
+	public int selectAp_count(String dSaup_no, String aDate);
 }

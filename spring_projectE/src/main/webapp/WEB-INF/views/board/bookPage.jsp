@@ -293,7 +293,7 @@
 				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일'},
 				dataType: 'JSON',
 				success: function(data){
-					
+					var html = '';
 				},
 				error:function(){
 					alert('ajax통신 실패');
@@ -319,7 +319,7 @@
 						
 						<select class="select_aDate_hour" name="aDate_hour">
 							<c:forEach var="hour" begin="${fn:substring(deptDTO.dStart,0,2)}" end="${fn:substring(deptDTO.dEnd,0,2)-1}" step="1">
-								<option value="${hour}:00">${hour}:00 (${deptDTO.dSeat}명)</option>							
+								<option value="${hour}00">${hour}:00 (${deptDTO.dSeat}명)</option>							
 							</c:forEach>
 						</select>
 					</td> 

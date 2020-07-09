@@ -21,14 +21,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.koreait.projectE.command.AppointmentInsertCommand;
 import com.koreait.projectE.command.ReviewInsertCommand;
 import com.koreait.projectE.command.boardViewCommand;
 import com.koreait.projectE.command.reviewWriteCommand;
 import com.koreait.projectE.commom.Command;
+import com.koreait.projectE.dao.AppointmentDAO;
 import com.koreait.projectE.dao.BoardDAO;
 import com.koreait.projectE.dao.DateData;
 import com.koreait.projectE.dto.DepartmentDTO;
@@ -214,20 +213,32 @@ public class pojectEController {
 		 ArrayList<HashMap> aDate_Appointment_list = new ArrayList<HashMap>();
 		 
 		 String dSaup_no = request.getParameter("dSaup_no");
-		 String dDate = request.getParameter("aDate");
-		 
-		 BoardDAO bdao = sqlSession.getMapper(BoardDAO.class);
-		 
+		 String aDate = request.getParameter("aDate");
+		 		 
 		 // 업체 영업시간, 좌석 수 검색
-		 int dSeat;
-		 int dStart;
-		 int dEnd;
+		 BoardDAO bDAO = sqlSession.getMapper(BoardDAO.class);
+		 DepartmentDTO deptDTO = bDAO.DepartView(dSaup_no);
+		 long dSeat = deptDTO.getdSeat();
+		 int dStart = Integer.parseInt(deptDTO.getdStart().substring(0, 2));
+		 int dEnd = Integer.parseInt(deptDTO.getdEnd().substring(0, 2));
 		 
 		 // APPINTMENT 테이블에서 DSAUP_NO, ADATE가 같은 영업시간대별로 AP_COUNT를 모두 더해
-		 // 업체 최대 좌석수 - 영업시간별로 AP_COUNT합계
-		 // 시간-좌석, 시간-좌석, 시간-좌석 ArrayList 생성
+		 AppointmentDAO aDAO = sqlSession.getMapper(AppointmentDAO.class);
 		 
+		 int[] aP_count_Time = new int[dEnd-dStart];
+		 int[] remainSeat = new int[dEnd-dStart];
+		 HashMap re = new HashMap();
 		 
+		 for (int i=0; i<dEnd-dStart; i++) {
+			 aP_count_Time[i] = aDAO.selectAp_count(dSaup_no, aDate + (dEnd-(12-i)));
+			 // 업체 최대 좌석수 - 영업시간별로 AP_COUNT합계
+			 remainSeat[i] = (int) dSeat - aP_count_Time[i];
+			 // 시간-좌석, 시간-좌석, 시간-좌석 ArrayList 생성
+			 re.put(dEnd-(12-i), (int) dSeat - aP_count_Time[i]);
+			 
+			 aDate_Appointment_list.add(re);
+		 }
+		 		 
 		 JSONArray json = new JSONArray(aDate_Appointment_list);
 		 return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
 		 
