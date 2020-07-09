@@ -12,20 +12,10 @@ public class CustomerDTO {
 	
 	public CustomerDTO() {}
 
-
-<<<<<<< HEAD
-	public CustomerDTO(String cPhoto,int cNo, String cId, String cPw, String cName, String cNickname, String cPhone, String cEmail,
-			 String cGrade, String cDept, String cGender, Date cRegdate) {
-=======
-
 	public CustomerDTO(int cNo, String cId, String cPw, String cName, String cNickname, String cPhone, String cEmail,
 			String cPhoto, String cGrade, String cDept, String cGender, Date cRegdate) {
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
-		super();
-<<<<<<< HEAD
+
 		this.cPhoto=cPhoto;
-=======
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 		this.cNo = cNo;
 		this.cId = cId;
 		this.cPw = cPw;
@@ -126,19 +116,13 @@ public class CustomerDTO {
 
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 	public String getcPhoto() {
 		return cPhoto;
 	}
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 	public void setcPhoto(String cPhoto) {
 		this.cPhoto = cPhoto;
 	}
