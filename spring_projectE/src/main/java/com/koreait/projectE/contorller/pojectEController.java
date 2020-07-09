@@ -178,14 +178,14 @@ public class pojectEController {
 		
 		model.addAttribute("dateList", dateList); // 달력 배열
 		model.addAttribute("today_info", today_info); // 오늘 날짜에 대한 정보
-
+		
+		// 업체 정보 검색
+		// 업체 정보, cNo 뷰에 전달
 		String dSaup_no = request.getParameter("dSaup_no");
 		BoardDAO bDAO = sqlSession.getMapper(BoardDAO.class);
 		DepartmentDTO deptDTO = bDAO.DepartView(dSaup_no);
 		model.addAttribute("deptDTO", deptDTO);
 		model.addAttribute("cNo", request.getParameter("cNo"));
-		
-		System.out.println(deptDTO.getdSaup_no());
 		
 		return "board/bookPage"; // view
 	}
@@ -202,6 +202,35 @@ public class pojectEController {
 		command= new AppointmentInsertCommand();
 		command.execute(sqlSession, model);
 		return "redirect:viewPage?dSaup_no="+request.getParameter("dSaup_no");
+	}
+	
+	// 예약 가능 인원 계산
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@RequestMapping(value="getRemainSeat", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public ResponseEntity getRemainSeat(HttpServletRequest request) {
+		
+		 HttpHeaders responseHeaders = new HttpHeaders();
+		 ArrayList<HashMap> aDate_Appointment_list = new ArrayList<HashMap>();
+		 
+		 String dSaup_no = request.getParameter("dSaup_no");
+		 String dDate = request.getParameter("aDate");
+		 
+		 BoardDAO bdao = sqlSession.getMapper(BoardDAO.class);
+		 
+		 // 업체 영업시간, 좌석 수 검색
+		 int dSeat;
+		 int dStart;
+		 int dEnd;
+		 
+		 // APPINTMENT 테이블에서 DSAUP_NO, ADATE가 같은 영업시간대별로 AP_COUNT를 모두 더해
+		 // 업체 최대 좌석수 - 영업시간별로 AP_COUNT합계
+		 // 시간-좌석, 시간-좌석, 시간-좌석 ArrayList 생성
+		 
+		 
+		 JSONArray json = new JSONArray(aDate_Appointment_list);
+		 return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
+		 
 	}
 
 }

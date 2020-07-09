@@ -3,6 +3,7 @@
 <%@page import="java.util.Calendar"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <html lang="ko">
 <head>
@@ -284,7 +285,20 @@
 			} else {
 				$('#myForm').removeClass('deactive');
 				$('.text_type1').val('${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일');
-			}			
+			}
+			
+			$.ajax({
+				url: 'getRemainSeat',
+				method: 'post',
+				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일'},
+				dataType: 'JSON',
+				success: function(data){
+					
+				},
+				error:function(){
+					alert('ajax통신 실패');
+				}
+			});
 		}
 		
 	</script>
@@ -299,12 +313,14 @@
 				<tr>
 					<td class="text_subject">시간 :</td>
 					<td class="text_desc">
-						<!-- 영업시간 별로 생성 -->
+				
 						<!-- 전체 좌석 수 에따라 몇명 남았는지 함께 표시 -->
 						<!-- 업체번호, 예약날짜, 예약시간이 같아야 함 -->
+						
 						<select class="select_aDate_hour" name="aDate_hour">
-							<option value="11:00">11:00 (${deptDTO.dSeat}명)</option>
-							<option value="12:00">12:00 (${deptDTO.dSeat}명)</option>
+							<c:forEach var="hour" begin="${fn:substring(deptDTO.dStart,0,2)}" end="${fn:substring(deptDTO.dEnd,0,2)-1}" step="1">
+								<option value="${hour}:00">${hour}:00 (${deptDTO.dSeat}명)</option>							
+							</c:forEach>
 						</select>
 					</td> 
 				</tr>
