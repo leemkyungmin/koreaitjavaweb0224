@@ -21,16 +21,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.koreait.projectE.command.AppointmentInsertCommand;
 import com.koreait.projectE.command.ReviewInsertCommand;
 import com.koreait.projectE.command.boardViewCommand;
 import com.koreait.projectE.command.reviewWriteCommand;
 import com.koreait.projectE.commom.Command;
+import com.koreait.projectE.dao.AppointmentDAO;
 import com.koreait.projectE.dao.BoardDAO;
 import com.koreait.projectE.dao.DateData;
+import com.koreait.projectE.dto.DepartmentDTO;
 import com.koreait.projectE.dto.ReviewDTO;
 
 
@@ -75,7 +75,7 @@ public class pojectEController {
 		model.addAttribute("mrequest", mrequest);
 		command = new ReviewInsertCommand();
 		command.execute(sqlSession, model);
-		return "redirect:index"; // 일단 index로 이동
+		return "redirect:viewPage?dSaup_no="+mrequest.getParameter("dSaup_no");
 	}
 	
 	//테스트용 
@@ -177,14 +177,18 @@ public class pojectEController {
 		
 		model.addAttribute("dateList", dateList); // 달력 배열
 		model.addAttribute("today_info", today_info); // 오늘 날짜에 대한 정보
-
-		model.addAttribute("dSaup_no", request.getParameter("dSaup_no"));
+		
+		// 업체 정보 검색
+		// 업체 정보, cNo 뷰에 전달
+		String dSaup_no = request.getParameter("dSaup_no");
+		BoardDAO bDAO = sqlSession.getMapper(BoardDAO.class);
+		DepartmentDTO deptDTO = bDAO.DepartView(dSaup_no);
+		model.addAttribute("deptDTO", deptDTO);
 		model.addAttribute("cNo", request.getParameter("cNo"));
 		
 		return "board/bookPage"; // view
 	}
 	
-
 	// Modal test
 	@RequestMapping("test")
 		public String goTest() {	
@@ -197,6 +201,47 @@ public class pojectEController {
 		command= new AppointmentInsertCommand();
 		command.execute(sqlSession, model);
 		return "redirect:viewPage?dSaup_no="+request.getParameter("dSaup_no");
+	}
+	
+	// 예약 가능 인원 계산
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@RequestMapping(value="getRemainSeat", produces="application/json; charset=utf-8")
+	@ResponseBody
+	public ResponseEntity getRemainSeat(HttpServletRequest request) {
+		
+		 HttpHeaders responseHeaders = new HttpHeaders();
+		 ArrayList<HashMap> aDate_Appointment_list = new ArrayList<HashMap>();
+		 
+		 String dSaup_no = request.getParameter("dSaup_no");
+		 String aDate = request.getParameter("aDate");
+		 		 
+		 // 업체 영업시간, 좌석 수 검색
+		 BoardDAO bDAO = sqlSession.getMapper(BoardDAO.class);
+		 DepartmentDTO deptDTO = bDAO.DepartView(dSaup_no);
+		 long dSeat = deptDTO.getdSeat();
+		 int dStart = Integer.parseInt(deptDTO.getdStart().substring(0, 2));
+		 int dEnd = Integer.parseInt(deptDTO.getdEnd().substring(0, 2));
+		 
+		 // APPINTMENT 테이블에서 DSAUP_NO, ADATE가 같은 영업시간대별로 AP_COUNT를 모두 더해
+		 AppointmentDAO aDAO = sqlSession.getMapper(AppointmentDAO.class);
+		 
+		 int[] aP_count_Time = new int[dEnd-dStart];
+		 int[] remainSeat = new int[dEnd-dStart];
+		 HashMap re = new HashMap();
+		 
+		 for (int i=0; i<dEnd-dStart; i++) {
+			 aP_count_Time[i] = aDAO.selectAp_count(dSaup_no, aDate + (dEnd-(12-i)));
+			 // 업체 최대 좌석수 - 영업시간별로 AP_COUNT합계
+			 remainSeat[i] = (int) dSeat - aP_count_Time[i];
+			 // 시간-좌석, 시간-좌석, 시간-좌석 ArrayList 생성
+			 re.put(dEnd-(12-i), (int) dSeat - aP_count_Time[i]);
+			 
+			 aDate_Appointment_list.add(re);
+		 }
+		 		 
+		 JSONArray json = new JSONArray(aDate_Appointment_list);
+		 return new ResponseEntity(json.toString(), responseHeaders, HttpStatus.CREATED);
+		 
 	}
 
 }

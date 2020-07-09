@@ -72,8 +72,21 @@
 		.item:hover {
 			color: #9baec8;
 		}
+		
+		#aa {
+			text-decoration: none;
+		}
 
 	</style>
+	
+	<script>
+		
+	function fn_goInput(f){
+		var a = document.getElementById("aa").innerText;
+		document.getElementById("search-input").value=a;
+		};
+	
+	</script>
 	
 	<div class="header-wrap">
 		<div class="title-wrap">
@@ -84,16 +97,12 @@
  		<div class="search-wrap">
 	 		<div class="main-search">
 				<div class="icon-box"><i class="fas fa-search"></i></div>
-				<input id="search-input" class="HomeSearchInput" name="main-search" type="text" maxlength="50" placeholder="지역, 식당 또는 음식" autocomplete="off" onclick="">
+				<form class="search-form" action="">
+				<input id="search-input" class="HomeSearchInput" name="main-search" type="text" maxlength="50" placeholder="지역, 식당 또는 음식" autocomplete="off" >
 				<input class="btn-search" type="submit" value="검색" onclick="">
+    			</form>
 				<div class="invisible" style="display: none">
-			        <div class="item">test0<span class="text"></span></div>
-			        <div class="item">test1<span class="text"></span></div>
-			        <div class="item">test2<span class="text"></span></div>
-			        <div class="item">test3<span class="text"></span></div>
-			        <div class="item">test4<span class="text"></span></div>
-			        <div class="item">test5<span class="text"></span></div>
-
+			       <div class="item"><a href="#" onclick="fn_goInput(this.value)" id="aa">test</a></div>
     			</div>
 			</div>					
 		</div>		

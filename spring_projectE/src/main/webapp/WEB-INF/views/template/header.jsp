@@ -43,9 +43,9 @@
 		.nav-invisible {
 			margin-top: 1px;
 			margin-left:140px;
-			top: 55px;
 			width: 500px;
-			position: absolute;
+			top:48px;
+			position: fixed;
 			background: white;
 			z-index:9;
 		}
