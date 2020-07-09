@@ -21,16 +21,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.koreait.projectE.command.AppointmentInsertCommand;
 import com.koreait.projectE.command.ReviewInsertCommand;
 import com.koreait.projectE.command.boardViewCommand;
 import com.koreait.projectE.command.reviewWriteCommand;
 import com.koreait.projectE.commom.Command;
+import com.koreait.projectE.dao.AppointmentDAO;
 import com.koreait.projectE.dao.BoardDAO;
 import com.koreait.projectE.dao.DateData;
+import com.koreait.projectE.dto.DepartmentDTO;
 import com.koreait.projectE.dto.ReviewDTO;
 
 
@@ -43,10 +43,6 @@ public class pojectEController {
 	private Command command;
 
 
-	@RequestMapping("/")
-	public String goIndex() {
-		return "index";
-	}
 	
 	@RequestMapping("index")
 	public String goIndex2() {
@@ -79,7 +75,7 @@ public class pojectEController {
 		model.addAttribute("mrequest", mrequest);
 		command = new ReviewInsertCommand();
 		command.execute(sqlSession, model);
-		return "redirect:index"; // 일단 index로 이동
+		return "redirect:viewPage?dSaup_no="+mrequest.getParameter("dSaup_no");
 	}
 	
 	//테스트용 
@@ -91,6 +87,8 @@ public class pojectEController {
 		
 		return "board/insertPage";
 	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value="getReview", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public ResponseEntity ajax_reviewList(HttpServletRequest request) {
@@ -113,7 +111,8 @@ public class pojectEController {
 		 
 		 if(rdto.size()>0) {
 			 for(int i=0; i<rdto.size(); i++) {
-				 HashMap re = new HashMap();
+				
+				HashMap re = new HashMap();
 				 re.put("rNo", rdto.get(i).getrNo());
 				 re.put("rTitle",rdto.get(i).getrTitle());
 				 re.put("rContent", rdto.get(i).getrContent());
@@ -178,13 +177,23 @@ public class pojectEController {
 		
 		model.addAttribute("dateList", dateList); // 달력 배열
 		model.addAttribute("today_info", today_info); // 오늘 날짜에 대한 정보
-
-		model.addAttribute("dSaup_no", request.getParameter("dSaup_no"));
+		
+		// 업체 정보 검색
+		// 업체 정보, cNo 뷰에 전달
+		String dSaup_no = request.getParameter("dSaup_no");
+		BoardDAO bDAO = sqlSession.getMapper(BoardDAO.class);
+		DepartmentDTO deptDTO = bDAO.DepartView(dSaup_no);
+		model.addAttribute("deptDTO", deptDTO);
 		model.addAttribute("cNo", request.getParameter("cNo"));
 		
 		return "board/bookPage"; // view
 	}
 	
+	// Modal test
+	@RequestMapping("test")
+		public String goTest() {	
+		return "board/testPage";
+	}
 	
 	@RequestMapping(value = "insertAppointment", method = RequestMethod.POST)
 	public String insertAppointment(HttpServletRequest request, Model model) {
@@ -192,6 +201,46 @@ public class pojectEController {
 		command= new AppointmentInsertCommand();
 		command.execute(sqlSession, model);
 		return "redirect:viewPage?dSaup_no="+request.getParameter("dSaup_no");
+	}
+	
+	// 예약 가능 인원 계산
+	@RequestMapping(value="getRemainSeatANDTime", produces="text/html; charset=utf-8")
+	@ResponseBody
+	public String getRemainSeatANDTime(HttpServletRequest request) {
+		 String dSaup_no = request.getParameter("dSaup_no");
+		 String aDate = request.getParameter("aDate");
+		 		 
+		 // 업체 영업시간, 좌석 수 검색
+		 BoardDAO bDAO = sqlSession.getMapper(BoardDAO.class);
+		 DepartmentDTO deptDTO = bDAO.DepartView(dSaup_no);
+		 int dStart = Integer.parseInt(deptDTO.getdStart().substring(0, 2));
+		 int dEnd = Integer.parseInt(deptDTO.getdEnd().substring(0, 2));
+		 
+		 // APPINTMENT 테이블에서 DSAUP_NO, ADATE가 같은 영업시간대별로 AP_COUNT를 모두 더해
+		 AppointmentDAO aDAO = sqlSession.getMapper(AppointmentDAO.class);
+		 
+		 String[] remainSeat = new String[dEnd-dStart]; // 12
+		 
+		 String html ="<select class='select_aDate_hour' name='aDate_hour'>";
+		 for (int i=0; i<dEnd-dStart; i++) {
+			 remainSeat[i] = aDAO.selectAp_count(dSaup_no, aDate + " " + (dEnd-(12-i)) + "00") + "";
+			 html += "<option value="+ (dEnd-(12-i)) + "00>";
+			 html += (dEnd-(12-i)) + ":00 (" +  remainSeat[i];
+			 html += "명)</option>";
+		 }
+			 html += "</select>";
+		 
+		 return html;
+	}
+	
+	@RequestMapping(value="getRemainSeat", produces="text/html; charset=utf-8")
+	@ResponseBody
+	public String getRemainSeat(HttpServletRequest request) {
+		String html = "<select class='select_aP_count' name='aP_count'>";
+		html += "<option>1명</option>";
+		html += "</select>";
+		
+		return html;
 	}
 
 }

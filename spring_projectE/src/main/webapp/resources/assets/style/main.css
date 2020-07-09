@@ -125,7 +125,7 @@
 		
 	}
 	
-	.main-search{
+	.main-search {
 		display: flex;
 	    height: 60px;
 	    width: 750px;
@@ -134,6 +134,13 @@
 	    border-radius: 80px;
 	    background:white;
 	    
+	}
+	
+	.search-form{
+		display: flex;
+		height: 60px;
+	    width: 680px;
+	    margin:auto;
 	}
 	
 	.icon-box {

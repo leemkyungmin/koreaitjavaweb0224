@@ -13,10 +13,23 @@ public class CustomerDTO {
 	public CustomerDTO() {}
 
 
-	public CustomerDTO(String cPoto,int cNo, String cId, String cPw, String cName, String cNickname, String cPhone, String cEmail,
+<<<<<<< HEAD
+	public CustomerDTO(String cPhoto,int cNo, String cId, String cPw, String cName, String cNickname, String cPhone, String cEmail,
 			 String cGrade, String cDept, String cGender, Date cRegdate) {
+=======
+
+	public CustomerDTO(int cNo, String cId, String cPw, String cName, String cNickname, String cPhone, String cEmail,
+<<<<<<< HEAD
+			String cPoto, String cGrade, String cDept, String cGender, Date cRegdate) {
+=======
+			String cPhoto, String cGrade, String cDept, String cGender, Date cRegdate) {
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 		super();
-		this.cPoto=cPoto;
+<<<<<<< HEAD
+		this.cPhoto=cPhoto;
+=======
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 		this.cNo = cNo;
 		this.cId = cId;
 		this.cPw = cPw;
@@ -24,14 +37,13 @@ public class CustomerDTO {
 		this.cNickname = cNickname;
 		this.cPhone = cPhone;
 		this.cEmail = cEmail;
+		this.cPoto = cPoto;
 		this.cGrade = cGrade;
 		this.cDept = cDept;
 		this.cGender = cGender;
 		this.cRegdate = cRegdate;
 	}
 
-
-	
 
 
 	public int getcNo() {
@@ -39,9 +51,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcNo(int cNo) {
 		this.cNo = cNo;
 	}
+
 
 
 	public String getcId() {
@@ -49,9 +63,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcId(String cId) {
 		this.cId = cId;
 	}
+
 
 
 	public String getcPw() {
@@ -59,9 +75,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcPw(String cPw) {
 		this.cPw = cPw;
 	}
+
 
 
 	public String getcName() {
@@ -69,9 +87,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcName(String cName) {
 		this.cName = cName;
 	}
+
 
 
 	public String getcNickname() {
@@ -79,9 +99,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcNickname(String cNickname) {
 		this.cNickname = cNickname;
 	}
+
 
 
 	public String getcPhone() {
@@ -89,9 +111,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcPhone(String cPhone) {
 		this.cPhone = cPhone;
 	}
+
 
 
 	public String getcEmail() {
@@ -99,22 +123,40 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcEmail(String cEmail) {
 		this.cEmail = cEmail;
 	}
 
 
-	
 
-
+<<<<<<< HEAD
 	public String getcPoto() {
 		return cPoto;
+=======
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
+	public String getcPhoto() {
+		return cPhoto;
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 	}
 
 
+<<<<<<< HEAD
+=======
+
+<<<<<<< HEAD
 	public void setcPoto(String cPoto) {
 		this.cPoto = cPoto;
+=======
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
+	public void setcPhoto(String cPhoto) {
+		this.cPhoto = cPhoto;
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 	}
+
 
 
 	public String getcGrade() {
@@ -122,9 +164,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcGrade(String cGrade) {
 		this.cGrade = cGrade;
 	}
+
 
 
 	public String getcDept() {
@@ -132,9 +176,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcDept(String cDept) {
 		this.cDept = cDept;
 	}
+
 
 
 	public String getcGender() {
@@ -142,9 +188,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcGender(String cGender) {
 		this.cGender = cGender;
 	}
+
 
 
 	public Date getcRegdate() {
@@ -152,12 +200,11 @@ public class CustomerDTO {
 	}
 
 
+
 	public void setcRegdate(Date cRegdate) {
 		this.cRegdate = cRegdate;
 	}
 
-
-	
 	
 	
 	

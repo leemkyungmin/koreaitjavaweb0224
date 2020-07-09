@@ -1,6 +1,8 @@
 package com.koreait.projectE.contorller;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.koreait.projectE.command.CustomerEmailAuthCommand;
 import com.koreait.projectE.command.CustomerSignUpCommand;
@@ -53,8 +56,8 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="customerSignUp", method=RequestMethod.POST)
-	public String customerSignUp(HttpServletRequest request, Model model) {
-		model.addAttribute("request", request);
+	public String customerSignUp(MultipartHttpServletRequest mr, Model model) {
+		model.addAttribute("mr", mr);
 		command = new CustomerSignUpCommand();
 		command.execute(sqlSession, model);
 		return "redirect:customerLoginPage"; 
@@ -91,24 +94,48 @@ public class LoginController {
 	}
 	
 	// ▼▼▼▼▼▼▼▼▼▼▼▼ 이메일 인증 ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
-	@RequestMapping("emailAuthPage")
-	public String emailAuthPage() {
-		return "login/emailIndex";
+	@Autowired
+	private JavaMailSender mailSender; // root-context.xml 의 빈 자동생성
+	
+	@RequestMapping("emailAuthMapping")
+	@ResponseBody
+	public String emailAuth(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		model.addAttribute("mailSender", mailSender);
+		CustomerEmailAuthCommand command = new CustomerEmailAuthCommand();
+		return command.execute(sqlSession, model) + "";
 	}
-		@Autowired
-		private JavaMailSender mailSender; // root-context.xml 의 빈 자동생성
+	
+	
+	@RequestMapping(value="customerLogin", method=RequestMethod.POST,produces="text/html; charset=utf-8")
+	@ResponseBody
+	public String customerLogin(HttpServletRequest request) {
 		
-		@RequestMapping("emailAuth")
-		public String emailAuth(HttpServletRequest request, Model model) {
-			model.addAttribute("request", request);
-			model.addAttribute("mailSender", mailSender);
-			command = new CustomerEmailAuthCommand();
-			command.execute(sqlSession, model);
-			return "emailAuthConfirm"; // 이메일 인증코드를 emailAuthConfirm.jsp 로 보내준다.
+		String cId = request.getParameter("cId");
+		String cPw = request.getParameter("cPw");
+		
+		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
+		int result = lDAO.customerLogin(cId, cPw);
+		
+		if (result > 0) {
+			request.getSession().setAttribute("cId", cId);
 		}
+				
+		return result + "";
+	}
 	
-	
-	
+	@RequestMapping("logout")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String id = (String) request.getSession().getAttribute("cId");
+		
+		if (id != null) {
+			session.invalidate();
+		}
+		
+		return "index";
+		
+	}
 	
 }
 
