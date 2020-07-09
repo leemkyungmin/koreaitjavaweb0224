@@ -288,7 +288,7 @@
 			}
 			
 			$.ajax({
-				url: 'getRemainSeat',
+				url: 'getRemainSeatANDTime',
 				method: 'post',
 				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일'},
 				dataType: 'text',
@@ -297,6 +297,21 @@
 					$('.remainPerson').html(data);
 				},
 				error:function(){
+					alert('ajax통신 실패');
+				}
+			});
+			
+			$.ajax({
+				url: 'getRemainSeat',
+				method: 'post',
+				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일'},
+				dataType: 'text',
+				async : false,
+				success: function (data) {
+					$('.selectAp_count').empty();
+					$('.selectAp_count').html(data);
+				},
+				erreor: function() {
 					alert('ajax통신 실패');
 				}
 			});
@@ -318,18 +333,11 @@
 				</tr>
 				<tr>
 					<td class="text_subject">인원 :</td>
-					<td class="text_desc">
-						<select class="select_aP_count" name="aP_count">
-							<c:forEach var="n" begin="1" end="${deptDTO.dSeat}" step="1">
-								<option value="${n}">${n}명</option>
-								<!-- 음식점 좌석 수 , 남은 예약명수 만큼 생성 -->
-							</c:forEach>
-						</select>	
+					<td class="text_desc selectAp_count">
 					</td>
 				</tr>
 			</table>
 			<div class="submit_btn_wrap">
-				<!-- 사용자정보(cNo), 업체번호(dSaup_no) 함께 전송 -->
 				<input class="submit_btn" type="submit" value="예약하기" />
 				<input type="hidden" name="cNo" value="${cNo}" />
 				<input type="hidden" name="dSaup_no" value="${deptDTO.dSaup_no}" />

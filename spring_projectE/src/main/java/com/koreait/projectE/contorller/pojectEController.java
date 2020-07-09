@@ -204,9 +204,9 @@ public class pojectEController {
 	}
 	
 	// 예약 가능 인원 계산
-	@RequestMapping(value="getRemainSeat", produces="text/html; charset=utf-8")
+	@RequestMapping(value="getRemainSeatANDTime", produces="text/html; charset=utf-8")
 	@ResponseBody
-	public String getRemainSeat(HttpServletRequest request) {
+	public String getRemainSeatANDTime(HttpServletRequest request) {
 		 String dSaup_no = request.getParameter("dSaup_no");
 		 String aDate = request.getParameter("aDate");
 		 		 
@@ -231,6 +231,16 @@ public class pojectEController {
 			 html += "</select>";
 		 
 		 return html;
+	}
+	
+	@RequestMapping(value="getRemainSeat", produces="text/html; charset=utf-8")
+	@ResponseBody
+	public String getRemainSeat(HttpServletRequest request) {
+		String html = "<select class='select_aP_count' name='aP_count'>";
+		html += "<option>1명</option>";
+		html += "</select>";
+		
+		return html;
 	}
 
 }
