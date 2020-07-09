@@ -324,32 +324,11 @@
 						<input type="button" id="submitBtn" class="ReviewWritingPage_SubmitButton ReviewWritingPage_SubmitButton_Deactive"  onclick="fn_insertReview(this.form)" value="리뷰 올리기" />
 					</div>
 				</div>
-<<<<<<< HEAD
+
 			</form>
-	  	
-	
-	
-=======
-				<div class="ReviewWritenPage_TextWrap">
-				</div>
-				<div class="ReviewWritenPage_PictureWrap">
-					<!-- 이미지 업로드 -->
-					<input type="file" id="input_file" name="rPoto" multiple />
-				</div>
-			</div>
-			<div class="ReviewWritenPage_ButtonsWrap">
+
 			
-				<!-- DB에 넣을 업체사업자번호(DSAUP_NO) 고객번호(CNO)가 필요함) -->
-			
-				<!-- 버튼 -->
-				<input type="hidden" value="${cNo }" name="cNo">
-				<input type="hidden" value="${deptDTO.dSaup_no }" name="dSaup_no">
-				 <input type="button" class="ReviewWritingPage_SubmitButton ReviewWritingPage_calcelButton" data-dismiss="modal" value="취소"/>
-				<input type="button" id="submitBtn" class="ReviewWritingPage_SubmitButton ReviewWritingPage_SubmitButton_Deactive"  onclick="fn_insertReview(this.form)" value="리뷰 올리기" />
-			</div>
-		</div>
-	</form>
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
+
 
 </body>
 </html>
