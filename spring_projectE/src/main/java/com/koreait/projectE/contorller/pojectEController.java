@@ -31,6 +31,7 @@ import com.koreait.projectE.command.reviewWriteCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.BoardDAO;
 import com.koreait.projectE.dao.DateData;
+import com.koreait.projectE.dto.DepartmentDTO;
 import com.koreait.projectE.dto.ReviewDTO;
 
 
@@ -75,7 +76,7 @@ public class pojectEController {
 		model.addAttribute("mrequest", mrequest);
 		command = new ReviewInsertCommand();
 		command.execute(sqlSession, model);
-		return "redirect:index"; // 일단 index로 이동
+		return "redirect:viewPage?dSaup_no="+mrequest.getParameter("dSaup_no");
 	}
 	
 	//테스트용 
@@ -178,13 +179,17 @@ public class pojectEController {
 		model.addAttribute("dateList", dateList); // 달력 배열
 		model.addAttribute("today_info", today_info); // 오늘 날짜에 대한 정보
 
-		model.addAttribute("dSaup_no", request.getParameter("dSaup_no"));
+		String dSaup_no = request.getParameter("dSaup_no");
+		BoardDAO bDAO = sqlSession.getMapper(BoardDAO.class);
+		DepartmentDTO deptDTO = bDAO.DepartView(dSaup_no);
+		model.addAttribute("deptDTO", deptDTO);
 		model.addAttribute("cNo", request.getParameter("cNo"));
+		
+		System.out.println(deptDTO.getdSaup_no());
 		
 		return "board/bookPage"; // view
 	}
 	
-
 	// Modal test
 	@RequestMapping("test")
 		public String goTest() {	
