@@ -13,6 +13,9 @@ public interface adminDAO {
 	public ArrayList<DepartmentDTO> getDepartmentList();
 	
 	public CustomerDTO UpdateUserPage(int cNo);
+	
+	public ArrayList<CustomerDTO> getAjaxCutomer(String query); 
+	
 }
 
 

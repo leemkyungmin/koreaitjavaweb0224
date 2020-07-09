@@ -36,7 +36,13 @@
 	        container.hide();
 	    });
 	});
-
+	
+	function fn_logout() {
+		if(confirm('로그아웃하시겠습니까?')){
+			location.href = 'logout';
+		}
+	}
+	
 </script>
 
 <style>
@@ -64,7 +70,6 @@
 		}
 
 </style>
-
 </head>
 <body class="pt-5">
 
@@ -82,7 +87,13 @@
 					<a href="" class="nav-btn">맛집 리스트</a>
 				</li>
 				<li class="nav-user-wrap">
-					<a href="loginChoicePage" class="nav-btn"><i class="far fa-user"></i></a>
+					<c:if test="${cId eq null }">
+						<a href="loginChoicePage" class="nav-btn"><i class="far fa-user"></i></a> <!-- 로그인 안돼있으면 로그인페이지 돼어있으면 마이페이지 이동. -->
+					</c:if>	
+					<c:if test="${cId ne null }">
+						<a href="myPage" class="nav-btn"><i class="far fa-user"></i></a>
+						<input type="button" value="로그아웃"  onclick="fn_logout()" />
+					</c:if>
 				</li>
 		</ul>
 		<div class="nav-invisible" style="display: none">
