@@ -295,6 +295,12 @@
 			var date =$('#aDate_day_textbox').val();
 			var time = $('.select_aDate_hour').val();
 			
+			// Number.isInteger()사용시, 인터넷익스플로러에 적용되지 않으며, 정규식을 사용해야 적용됨.
+			if (Number.isInteger(aP_count*1) == false) {
+				alert('예약 인원을 확인해주세요.');
+				return;
+			}
+			
 			$.ajax({
 				url: 'getRemainSeat',
 				method: 'post',
@@ -332,7 +338,7 @@
 				<tr>
 					<td class="text_subject">인원 :</td>
 					<td class="text_desc selectAp_count">
-						<input id="aP_count_textbox" type="text" name="aP_count" placeholder="숫자만 입력" size="6" />
+						<input id="aP_count_textbox" type="text" name="aP_count" placeholder="숫자" size="1" /> 명
 					</td>
 				</tr>
 			</table>
