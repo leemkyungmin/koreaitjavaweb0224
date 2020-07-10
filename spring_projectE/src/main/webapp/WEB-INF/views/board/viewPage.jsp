@@ -241,7 +241,15 @@
 	                <tr class="only-desktop">
 	           
 	                  <th>주소</th>
-	                  <td>${deptDTO.dAddress}</td>
+	                  <td>
+	                  <c:if test="${fn:length(deptDTO.dAddress) >20}">
+	                  	${fn:substring(deptDTO.dAddress,0,20)}<br/>
+	                  	${fn:substring(deptDTO.dAddress,20,fn:length(deptDTO.dAddress)) }	
+	                  </c:if>
+	                  <c:if test="${fn:length(deptDTO.dAddress) <=20}">
+	                 	 ${deptDTO.dAddress}
+	                  </c:if>
+	                  </td>
 	                </tr>
 	
 	                <tr class="only-desktop">

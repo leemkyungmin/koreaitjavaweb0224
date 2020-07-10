@@ -43,13 +43,6 @@ public class pojectEController {
 	private Command command;
 
 
-	
-	@RequestMapping("index")
-	public String goIndex2() {
-		return "index";
-	}
-	
-
 	@RequestMapping(value="viewPage",method=RequestMethod.GET)
 	public String viewPage(HttpServletRequest request,Model model) {
 		
@@ -187,12 +180,6 @@ public class pojectEController {
 		model.addAttribute("cNo", request.getParameter("cNo"));
 		
 		return "board/bookPage"; // view
-	}
-	
-	// Modal test
-	@RequestMapping("test")
-		public String goTest() {	
-		return "board/testPage";
 	}
 	
 	@RequestMapping(value = "insertAppointment", method = RequestMethod.POST)

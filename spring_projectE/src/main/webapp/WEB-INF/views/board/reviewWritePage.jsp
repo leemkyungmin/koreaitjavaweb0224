@@ -333,7 +333,7 @@
 			</div>
 		</div>
 	</form>
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
+
 
 </body>
 </html>

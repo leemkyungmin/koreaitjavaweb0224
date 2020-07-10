@@ -19,6 +19,7 @@ public class boardViewCommand implements Command {
 	public void execute(SqlSession sqlSession, Model model) {
 		
 		BoardDAO bdao =sqlSession.getMapper(BoardDAO.class);
+		
 		Map<String,Object> map = model.asMap();
 				
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
