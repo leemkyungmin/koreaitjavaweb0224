@@ -133,7 +133,7 @@ public class LoginController {
 			request.getSession().setAttribute("cNickname", cDTO.getcNickname());
 			result = "1";
 		}
-				
+				 
 		return result;
 	}
 	
