@@ -30,4 +30,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE CEMAIL = #{param1}
 	</select>
 	
+	<select id="customerLogin" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM CUSTOMER
+		WHERE CID = #{param1} AND CPW = #{param2}
+	</select>
+	
 </mapper>

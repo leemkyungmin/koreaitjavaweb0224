@@ -219,11 +219,11 @@ public class pojectEController {
 		 // APPINTMENT 테이블에서 DSAUP_NO, ADATE가 같은 영업시간대별로 AP_COUNT를 모두 더해
 		 AppointmentDAO aDAO = sqlSession.getMapper(AppointmentDAO.class);
 		 
-		 String[] remainSeat = new String[dEnd-dStart]; // 12
+		 int[] remainSeat = new int[dEnd-dStart]; // 12
 		 
 		 String html ="<select class='select_aDate_hour' name='aDate_hour'>";
 		 for (int i=0; i<dEnd-dStart; i++) {
-			 remainSeat[i] = aDAO.selectAp_count(dSaup_no, aDate + " " + (dEnd-(12-i)) + "00") + "";
+			 remainSeat[i] = aDAO.selectAp_count(dSaup_no, aDate + " " + (dEnd-(12-i)) + "00");
 			 html += "<option value="+ (dEnd-(12-i)) + "00>";
 			 html += (dEnd-(12-i)) + ":00 (" +  remainSeat[i];
 			 html += "명)</option>";
@@ -236,11 +236,15 @@ public class pojectEController {
 	@RequestMapping(value="getRemainSeat", produces="text/html; charset=utf-8")
 	@ResponseBody
 	public String getRemainSeat(HttpServletRequest request) {
-		String html = "<select class='select_aP_count' name='aP_count'>";
-		html += "<option>1명</option>";
-		html += "</select>";
+		String dSaup_no = request.getParameter("dSaup_no");
+		String aDate = request.getParameter("aDate");
 		
-		return html;
+		AppointmentDAO aDAO = sqlSession.getMapper(AppointmentDAO.class);
+		String remainSeat = aDAO.selectAp_count(dSaup_no, aDate) + "";
+		
+		System.out.println(remainSeat);
+		
+		return remainSeat;
 	}
 
 }

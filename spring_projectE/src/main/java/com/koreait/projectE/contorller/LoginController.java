@@ -1,6 +1,8 @@
 package com.koreait.projectE.contorller;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,20 +106,36 @@ public class LoginController {
 		return command.execute(sqlSession, model) + "";
 	}
 	
-	@RequestMapping(value="singleUpload", method=RequestMethod.POST)
-	public String singleUpload(MultipartHttpServletRequest mr, Model model) {
+	
+	@RequestMapping(value="customerLogin", method=RequestMethod.POST,produces="text/html; charset=utf-8")
+	@ResponseBody
+	public String customerLogin(HttpServletRequest request) {
 		
-		// 1. 업로드 없는 경우 : HttpRequest request
-		// 2. 업로드 있는 경우 : MultipartHttpRequest request (mr)
+		String cId = request.getParameter("cId");
+		String cPw = request.getParameter("cPw");
 		
-		model.addAttribute("mr", mr);
-		//
-		command.execute(sqlSession, model);
+		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
+		int result = lDAO.customerLogin(cId, cPw);
 		
-		return "redirect:imageBoardListPage";
+		if (result > 0) {
+			request.getSession().setAttribute("cId", cId);
+		}
+				
+		return result + "";
 	}
 	
-	
+	@RequestMapping("logout")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String id = (String) request.getSession().getAttribute("cId");
+		
+		if (id != null) {
+			session.invalidate();
+		}
+		
+		return "index";
+		
+	}
 	
 }
 

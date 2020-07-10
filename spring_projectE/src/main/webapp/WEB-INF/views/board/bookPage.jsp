@@ -295,21 +295,32 @@
 				success: function(data){
 					$('.remainPerson').empty();
 					$('.remainPerson').html(data);
+					$('#aP_count_textbox').val('');
 				},
 				error:function(){
 					alert('ajax통신 실패');
 				}
 			});
+		}
+		
+		function aP_countCHK(form) {
+			var aP_count = $('#aP_count_textbox').val();
+			var date =$('#aDate_day_textbox').val();
+			var time = $('.select_aDate_hour').val();
 			
 			$.ajax({
 				url: 'getRemainSeat',
 				method: 'post',
-				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일'},
+				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': date + ' ' + time},
 				dataType: 'text',
-				async : false,
 				success: function (data) {
-					$('.selectAp_count').empty();
-					$('.selectAp_count').html(data);
+					if ((aP_count*1) > (1*data)) {
+						alert('예약 인원을 확인해주세요.');
+						$('#aP_count_textbox').val('');
+						return;
+					}
+					form.action = 'insertAppointment';
+					form.submit();
 				},
 				erreor: function() {
 					alert('ajax통신 실패');
@@ -319,12 +330,12 @@
 		
 	</script>
 	
-	<form name="appointment_form" method="post" action="insertAppointment">
+	<form name="appointment_form" method="post">
 		<div id="myForm" class="contents deactive">
 			<table class="appintment_table">
 				<tr>
 					<td class="text_subject">날짜 :</td>
-					<td class="text_desc"><input type="text" name="aDate_day" class="text_type1" readonly/></td>
+					<td class="text_desc"><input id="aDate_day_textbox" type="text" name="aDate_day" class="text_type1" readonly/></td>
 				</tr>
 				<tr>
 					<td class="text_subject">시간 :</td>
@@ -334,16 +345,17 @@
 				<tr>
 					<td class="text_subject">인원 :</td>
 					<td class="text_desc selectAp_count">
+						<input id="aP_count_textbox" type="text" name="aP_count" placeholder="숫자만 입력" size="6" />
 					</td>
 				</tr>
 			</table>
 			<div class="submit_btn_wrap">
-				<input class="submit_btn" type="submit" value="예약하기" />
+				<input class="submit_btn" type="button" value="예약하기" onclick="aP_countCHK(this.form)"/>
 				<input type="hidden" name="cNo" value="${cNo}" />
 				<input type="hidden" name="dSaup_no" value="${deptDTO.dSaup_no}" />
 			</div>
 		</div>
 	</form>
-	
+		
 </body>
 </html>
