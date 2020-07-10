@@ -24,14 +24,23 @@
 			margin: 0;
 		}
 		
+		.top_title {
+			width: 100%;
+			margin-left: 100px;
+			margin-top: 100px;
+			text-align: left;
+			font-size: 30px;
+			font-weight: bold;
+		}
+		
 		.calendar{
-			width:20%;
+			width:80%;
 			margin:auto;
 		}
 		
 		.navigation{
 			width: 100%;
-			margin-top:100px;
+			margin-top:30px;
 			margin-bottom:30px;
 			text-align: center;
 			font-size: 25px;
@@ -121,6 +130,11 @@
 			font-size: 12px;
 		}
 		
+		.notice {
+			color: red;
+			font-size: 12px;
+		}
+		
 		.click_day {
 			border:1px solid white;
 			height:50px;
@@ -130,7 +144,7 @@
 		}
 		
 		.contents {
-			width:20%;
+			width:50%;
 			margin:auto;
 		}
 		
@@ -140,6 +154,7 @@
 		
 		.appintment_table {
 			width: 100%;
+			margin-left: 100px;
 			margin-bottom: 20px;
 		}
 		
@@ -191,6 +206,10 @@
 
 		<input type="hidden" name="year" value="${today_info.search_year}" />
 		<input type="hidden" name="month" value="${today_info.search_month}" />
+		
+		<div class="top_title">
+			${deptDTO.dName} 예약
+		</div>
 
 		<div class="calendar" >
 			<div class="navigation">
@@ -246,6 +265,13 @@
 							</c:choose>
 						</c:forEach>
 				</tbody>
+				<tfoot>
+					<tr>
+						<td colspan="7" class="notice">
+							※ 예약을 원하시는 날짜를 클릭하세요.
+						</td>
+					</tr>
+				</tfoot>
 			</table>
 		</div>
 	</form>
@@ -326,26 +352,40 @@
 	
 	<form name="appointment_form" method="post">
 		<div id="myForm" class="contents deactive">
-			<table class="appintment_table">
-				<tr>
-					<td class="text_subject">날짜 :</td>
-					<td class="text_desc">
-						<input id="aDate_day_textbox" type="text" class="text_type1" readonly/>
-						<input id="aDate_day_hidden" type="hidden" name="aDate_day" />
-					</td>
-				</tr>
-				<tr>
-					<td class="text_subject">시간 :</td>
-					<td class="text_desc remainPerson">		
-					</td> 
-				</tr>
-				<tr>
-					<td class="text_subject">인원 :</td>
-					<td class="text_desc selectAp_count">
-						<input id="aP_count_textbox" type="text" name="aP_count" placeholder="숫자" size="1" /> 명
-					</td>
-				</tr>
-			</table>
+			<div>
+				<table>
+					<tr>
+						<td>예약자 :</td>
+						<td><input type="text" name="" value="" readonly/></td>
+					</tr>
+					<tr>
+						<td>연락처 :</td>
+						<td><input type="text" name="" value="" readonly/></td>
+					</tr>
+				</table>
+			</div>
+			<div>
+				<table class="appintment_table">
+					<tr>
+						<td class="text_subject">날짜 :</td>
+						<td class="text_desc">
+							<input id="aDate_day_textbox" type="text" class="text_type1" readonly/>
+							<input id="aDate_day_hidden" type="hidden" name="aDate_day" />
+						</td>
+					</tr>
+					<tr>
+						<td class="text_subject">시간 :</td>
+						<td class="text_desc remainPerson">		
+						</td> 
+					</tr>
+					<tr>
+						<td class="text_subject">인원 :</td>
+						<td class="text_desc selectAp_count">
+							<input id="aP_count_textbox" type="text" name="aP_count" placeholder="숫자" size="1" /> 명
+						</td>
+					</tr>
+				</table>
+			</div>
 			<div class="submit_btn_wrap">
 				<input class="submit_btn" type="button" value="예약하기" onclick="aP_countCHK(this.form)"/>
 				<input type="hidden" name="cNo" value="${cNo}" />
