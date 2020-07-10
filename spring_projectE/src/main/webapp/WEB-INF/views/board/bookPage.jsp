@@ -301,7 +301,7 @@
 				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': date + ' ' + time},
 				dataType: 'text',
 				success: function (data) {
-					if ((aP_count*1) > (1*data)) {
+					if ((aP_count*1) > (1*data) || $('#aP_count_textbox').val() == '') {
 						alert('예약 인원을 확인해주세요.');
 						$('#aP_count_textbox').val('');
 						return;
