@@ -300,7 +300,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
-                        <button type="submit" class="btn btn-primary" name="update" id="update">수정하기</button>
+                        <input type="button" value="돌아가기" class="btn btn-primary" onclick="index" />
                     </div>
                 </div>
             </form>
