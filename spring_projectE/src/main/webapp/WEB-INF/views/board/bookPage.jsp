@@ -30,12 +30,16 @@
 		}
 		
 		.navigation{
+			width: 100%;
 			margin-top:100px;
 			margin-bottom:30px;
 			text-align: center;
 			font-size: 25px;
 			vertical-align: middle;
 		}
+	
+		A:link { font-size:9pt; font-family:"돋움";color:#000000; text-decoration:none; }
+		A:hover { font-size:9pt; font-family:"돋움";color:red;text-decoration:none;}
 		
 		.before_after_month{
 			margin: 10px;
@@ -50,39 +54,43 @@
 			margin: 10px;
 		}
 		
-		.day{
-			width: 100px; 
+		
+		.calendar_body{
+			width:100%;
+			background-color: #FFFFFF;
+			border:1px solid white;
+			margin-bottom: 30px;
+			border-collapse: collapse;
+		}
+		
+		..calendar_body thead, .calendar_body thead tr {width: 100%;}
+		
+		.calendar_body thead tr .day{
+			width: 14%; 
 			height: 30px;
 			font-size: 15px;
 			font-weight: bold;
 			text-align: center;
 		}
 		
-		.sat{
+		.calendar_body thead tr .sat{
 			color:#529dbc;
 		}
 		
-		.sun{
+		.calendar_body thead tr .sun{
 			color:red;
-		}
-		
-		.calendar_body{
-			width:100%;
-			background-color: #FFFFFF;
-			border:1px solid white;
-			margin-bottom: 50px;
-			border-collapse: collapse;
 		}
 		
 		.dayCSS {
 			border:1px solid white;
+			width: 14%;
 			height:50px;
-			text-align:left;
 			vertical-align: top;
 			background-color:#EFEFEF;
 		}
 		
 		.date{
+			width: 100%;
 			font-weight: bold;
 			font-size: 15px;
 			padding-left: 3px;
@@ -90,6 +98,7 @@
 		}
 		
 		.sat{
+			width: 100%;
 			color: #529dbc; 
 			font-weight: bold;
 			font-size: 15px;
@@ -98,11 +107,18 @@
 		}
 		
 		.sun{
+			width: 100%;
 			color: red; 
 			font-weight: bold;
 			font-size: 15px;
 			padding-left: 3px;
 			padding-top: 3px;
+		}
+		
+		.today {
+			width: 100%;
+			text-align: center;
+			font-size: 12px;
 		}
 		
 		.click_day {
@@ -113,17 +129,13 @@
 			background-color: lightblue;
 		}
 		
-		.today {
-			text-align: center;
-			font-size: 10px;
-		}
-		
-		/* td {font-family: "돋움"; font-size: 9pt; color:#595959;} */
-		th {font-family: "돋움"; font-size: 9pt; color:#000000;}
-		
 		.contents {
 			width:20%;
 			margin:auto;
+		}
+		
+		.deactive {
+			display: none;
 		}
 		
 		.appintment_table {
@@ -152,17 +164,8 @@
 			border: 0;
 		}
 		
-		.deactive {
-			display: none;
-		}
-		
 		.select_aDate_hour {
 			width: 100px;
-			height: 20px;
-		}
-		
-		.select_aP_count {
-			width: 50px;
 			height: 20px;
 		}
 		
@@ -175,28 +178,7 @@
 			padding: 5px;
 			width: 50%;
 			border: 0;
-		}
-		
-		
-		select {font-family: "돋움"; font-size: 9pt; color:#595959;}
-
-		.divDotText {
-		overflow:hidden;
-		text-overflow:ellipsis;
-		}
-
-		A:link { font-size:9pt; font-family:"돋움";color:#000000; text-decoration:none; }
-		A:visited { font-size:9pt; font-family:"돋움";color:#000000; text-decoration:none; }
-		A:active { font-size:9pt; font-family:"돋움";color:red; text-decoration:none; }
-		A:hover { font-size:9pt; font-family:"돋움";color:red;text-decoration:none;}
-		
-		.today_button_div{
-			float: right;
-		}
-		.today_button{
-			width: 100px; 
-			height:30px;
-		}		
+		}	
 		
 	</style>
 	

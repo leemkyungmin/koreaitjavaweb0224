@@ -242,8 +242,6 @@ public class pojectEController {
 		AppointmentDAO aDAO = sqlSession.getMapper(AppointmentDAO.class);
 		String remainSeat = aDAO.selectAp_count(dSaup_no, aDate) + "";
 		
-		System.out.println(remainSeat);
-		
 		return remainSeat;
 	}
 
