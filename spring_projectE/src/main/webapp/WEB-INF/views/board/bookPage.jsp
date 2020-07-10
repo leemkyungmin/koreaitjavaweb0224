@@ -74,30 +74,22 @@
 			border-collapse: collapse;
 		}
 		
-		.calendar_body .today{
+		.dayCSS {
 			border:1px solid white;
 			height:50px;
-			background-color:#c9c9c9;
-			text-align: left;
+			text-align:left;
 			vertical-align: top;
+			background-color:#EFEFEF;
 		}
 		
-		.calendar_body .date{
+		.date{
 			font-weight: bold;
 			font-size: 15px;
 			padding-left: 3px;
 			padding-top: 3px;
 		}
 		
-		.calendar_body .sat_day{
-			border:1px solid white;
-			height:50px;
-			background-color:#EFEFEF;
-			text-align:left;
-			vertical-align: top;
-		}
-		
-		.calendar_body .sat_day .sat{
+		.sat{
 			color: #529dbc; 
 			font-weight: bold;
 			font-size: 15px;
@@ -105,15 +97,7 @@
 			padding-top: 3px;
 		}
 		
-		.calendar_body .sun_day{
-			border:1px solid white;
-			height:50px;
-			background-color:#EFEFEF;
-			text-align: left;
-			vertical-align: top;
-		}
-		
-		.calendar_body .sun_day .sun{
+		.sun{
 			color: red; 
 			font-weight: bold;
 			font-size: 15px;
@@ -121,15 +105,20 @@
 			padding-top: 3px;
 		}
 		
-		.calendar_body .normal_day{
+		.click_day {
 			border:1px solid white;
 			height:50px;
-			background-color:#EFEFEF;
+			text-align:left;
 			vertical-align: top;
-			text-align: left;
+			background-color: lightblue;
 		}
 		
-		td {font-family: "돋움"; font-size: 9pt; color:#595959;}
+		.today {
+			text-align: center;
+			font-size: 10px;
+		}
+		
+		/* td {font-family: "돋움"; font-size: 9pt; color:#595959;} */
 		th {font-family: "돋움"; font-size: 9pt; color:#000000;}
 		
 		.contents {
@@ -250,24 +239,25 @@
 						<c:forEach var="dateList" items="${dateList}" varStatus="date_status"> 
 							<c:choose>
 								<c:when test="${dateList.value=='today'}">
-									<td class="today click"  onclick="fn_a(${dateList.date})">
+									<td id="${dateList.date}" class="dayCSS"  onclick="fn_a(${dateList.date})">
 										<div class="date">${dateList.date}</div>
+										<div class="today">today</div>
 									</td>
 								</c:when>
 								<c:when test="${date_status.index%7==6}">
-									<td class="sat_day click"  onclick="fn_a(${dateList.date})">
+									<td id="${dateList.date}" class="dayCSS"  onclick="fn_a(${dateList.date})">
 										<div class="sat">${dateList.date}</div>
 									</td>
 								</c:when>
 								<c:when test="${date_status.index%7==0}">
 									</tr>
 									<tr>	
-										<td class="sun_day click" onclick="fn_a(${dateList.date})">
+										<td id="${dateList.date}" class="dayCSS" onclick="fn_a(${dateList.date})">
 											<div class="sun" >${dateList.date}</div>
 										</td>
 								</c:when>
 								<c:otherwise>
-									<td class="normal_day click"  onclick="fn_a(${dateList.date})">
+									<td id="${dateList.date}" class="dayCSS"  onclick="fn_a(${dateList.date})">
 										<div class="date">${dateList.date}</div>
 									</td>
 								</c:otherwise>
@@ -280,11 +270,26 @@
 	
 	<script type="text/javascript">
 		
+		var id = null;
+		
 		function fn_a(da) {
 			if (da == undefined) {
 			} else {
 				$('#myForm').removeClass('deactive');
 				$('.text_type1').val('${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일');
+				// 클릭한 해당 td 색 변하게
+				if (id == null) {
+					$('#' + da).removeClass('dayCSS');
+					$('#' + da).addClass('click_day');
+					id = da;					
+				} else {
+					$('#' + id).removeClass('click_day');
+					$('#' + id).addClass('dayCSS');
+					$('#' + da).removeClass('dayCSS');
+					$('#' + da).addClass('click_day');
+					id = da;
+				}
+				
 			}
 			
 			$.ajax({
