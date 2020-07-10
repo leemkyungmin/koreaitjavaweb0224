@@ -12,11 +12,10 @@ public class CustomerDTO {
 	
 	public CustomerDTO() {}
 
-
-
 	public CustomerDTO(int cNo, String cId, String cPw, String cName, String cNickname, String cPhone, String cEmail,
-			String cPoto, String cGrade, String cDept, String cGender, Date cRegdate) {
+			String cPoto, String cGrade, String cDept, String cGender, Date cRegdate) {			
 		super();
+
 		this.cNo = cNo;
 		this.cId = cId;
 		this.cPw = cPw;
@@ -116,12 +115,9 @@ public class CustomerDTO {
 	}
 
 
-
 	public String getcPoto() {
 		return cPoto;
 	}
-
-
 
 	public void setcPoto(String cPoto) {
 		this.cPoto = cPoto;
