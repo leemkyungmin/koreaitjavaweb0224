@@ -8,8 +8,6 @@ public class CustomerDTO {
 	private String cId,cPw,cName,cNickname,cPhone,cEmail,cPoto,cGrade,cDept,cGender;
 	private Date cRegdate;
 	
-	
-	
 	public CustomerDTO() {}
 
 	public CustomerDTO(int cNo, String cId, String cPw, String cName, String cNickname, String cPhone, String cEmail,

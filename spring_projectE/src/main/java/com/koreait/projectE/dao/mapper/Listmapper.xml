@@ -18,9 +18,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		group by substr(daddress,INSTR(DADDRESS,' ',1,1)+1,(INSTR(DADDRESS,' ',1,2)-1)-INSTR(DADDRESS,' ',1,1)+1)
 	</select> -->
 	
-	<select id="main_list" resultType="com.koreait.projectE.dto.MainListDTO">
+	<!-- <select id="main_list" resultType="com.koreait.projectE.dto.MainListDTO">
 		select substr(daddress,INSTR(DADDRESS,' ',1,1)+1,(INSTR(DADDRESS,' ',1,2)-1)-INSTR(DADDRESS,' ',1,1)+1)as dong,count(*) as count  from department_info 
 		group by substr(daddress,INSTR(DADDRESS,' ',1,1)+1,(INSTR(DADDRESS,' ',1,2)-1)-INSTR(DADDRESS,' ',1,1)+1)
+	</select> -->
+	<select id="main_list" resultType="com.koreait.projectE.dto.MainListDTO">
+		select substr(daddress,1,INSTR(DADDRESS,' ',1,1)-1) as dong,count(*) as count
+		from department_info 
+		group by substr(daddress,1,INSTR(DADDRESS,' ',1,1)-1)
 	</select>
 	
 	

@@ -278,6 +278,11 @@
 		});
 		
 		function fn_insertReview(form) {
+			if ($('#star').val()=='') {
+				alert('평점을 입력하세요.');
+				return;
+			}
+			
 			form.action='insertReview';
 			form.submit();
 		}
@@ -298,7 +303,7 @@
 				<img id="image3" onmouseover=show(3) onclick="mark(3)" onmouseout=noshow(3) alt="별" src="resources/assets/images/star-regular.svg">
 				<img id="image4" onmouseover=show(4) onclick="mark(4)" onmouseout=noshow(4) alt="별" src="resources/assets/images/star-regular.svg">
 				<img id="image5" onmouseover=show(5) onclick="mark(5)" onmouseout=noshow(5) alt="별" src="resources/assets/images/star-regular.svg">
-				<input type="hidden" name="rPoint"/>
+				<input id="star" type="hidden" name="rPoint"/>
 			</div>
 			<div class="ReviewWritenPage_ContentWrap">
 				<div class="ReviewWritenPage_FormWrap">
@@ -312,13 +317,6 @@
 						</p>
 					</div>
 				</div>
-<<<<<<< HEAD
-
-			</form>
-
-			
-
-=======
 				<div class="ReviewWritenPage_TextWrap">
 					<div class="ReviewWritenPage_PictureWrap">
 						<input type="file" id="input_file" name="rPoto" multiple />
@@ -333,7 +331,6 @@
 			</div>
 		</div>
 	</form>
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 
 </body>
 </html>
