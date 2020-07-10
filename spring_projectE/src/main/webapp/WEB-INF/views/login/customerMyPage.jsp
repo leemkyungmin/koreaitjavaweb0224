@@ -40,7 +40,7 @@
 			$('#cPwCheckBtn').click(function() {
 				$('#pwUpdate').css('display','block')		
 			});
-			
+			 
 			var NicknamePass = false;
            	$('#nickname').blur(function() {
         		$.ajax({
