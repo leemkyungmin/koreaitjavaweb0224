@@ -194,7 +194,8 @@
 	                  </button>
 	
 	                 
-	                    <button class="btn-type-icon favorite wannago_btn " onclick="fn_appointment()">
+	                    <button class="btn-type-icon favorite wannago_btn "  data-remote="calendar?dSaup_no=${deptDTO.dSaup_no}&cNo=1"
+	                    data-toggle="modal" data-target="#myModal">
 		                    <i class="far fa-calendar-check fa-3x"></i>
 		                    <p class="wannago_txt">예약하기</p>
 	                  	</button>
@@ -241,7 +242,15 @@
 	                <tr class="only-desktop">
 	           
 	                  <th>주소</th>
-	                  <td>${deptDTO.dAddress}</td>
+	                  <td>
+	                  <c:if test="${fn:length(deptDTO.dAddress) >20}">
+	                  	${fn:substring(deptDTO.dAddress,0,20)}<br/>
+	                  	${fn:substring(deptDTO.dAddress,20,fn:length(deptDTO.dAddress)) }	
+	                  </c:if>
+	                  <c:if test="${fn:length(deptDTO.dAddress) <=20}">
+	                 	 ${deptDTO.dAddress}
+	                  </c:if>
+	                  </td>
 	                </tr>
 	
 	                <tr class="only-desktop">

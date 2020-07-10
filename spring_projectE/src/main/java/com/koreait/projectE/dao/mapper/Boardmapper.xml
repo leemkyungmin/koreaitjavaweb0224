@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="DepartRatingUpdate">
 		Update DEPARTMENT_INFO 
-		set DRATING=(select avg(RPOINT) from review where DSAUP_NO =#{dSaup_no}) 
+		set DRATING=(select nvl(avg(RPOINT),0) from review where DSAUP_NO =#{dSaup_no}) 
 		where dSaup_no=#{dSaup_no}  
 	</update>
 	

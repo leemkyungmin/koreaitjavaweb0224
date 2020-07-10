@@ -77,7 +77,7 @@
 	<header class="Header" data-page="home">
 		<ul class="nav-wrap">
 				<li class="nav-logo-wrap">
-					<a href="index"><img alt="로고이미지" src="<c:url value="/resources/assets/images/logo01.png" />" class="logo"></a>
+					<a href="/"><img alt="로고이미지" src="<c:url value="/resources/assets/images/logo01.png" />" class="logo"></a>
 				</li>
 				<li class="nav-search-wrap" >
 					<div class="nav-icon-box"><i class="fab fa-searchengin"></i></div>

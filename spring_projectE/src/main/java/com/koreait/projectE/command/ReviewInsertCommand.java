@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.koreait.projectE.commom.Command;
+import com.koreait.projectE.dao.BoardDAO;
 import com.koreait.projectE.dao.ReviewDAO;
 
 public class ReviewInsertCommand implements Command {
@@ -72,6 +73,8 @@ public class ReviewInsertCommand implements Command {
 		} else { // 파일첨부 X
 			rDAO.insertReview(rTitle, rContent, rPoint, null, cNo, dSaup_no);
 		}
+		BoardDAO bdao =sqlSession.getMapper(BoardDAO.class);
+		bdao.DepartRatingUpdate(dSaup_no);
 	}
 
 }

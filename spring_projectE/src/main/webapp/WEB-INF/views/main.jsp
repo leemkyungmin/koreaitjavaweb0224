@@ -8,66 +8,9 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="resources/assets/style/MainList.css" rel="stylesheet" type="text/css">
-<script type="text/javascript">
-	$(function(){
-		/* $('#si').change(function(){
-			//Select Dong Change
-			
-			
-			$.ajax({
-				url:'main/changeDong',
-				method:'post',
-				data:'si='+$(this).val(),
-				success :function(data){
-					$('#dong').empty();
-					$('#dong').append(data);
-				},
-				error : function(){
-					alert('통신 실패');
-				}
-					
-			});
-			
-			
-			
-		}); */
-	});
-	
-	
-	function changedong(){
-		
-	}
-	function getAjax(query){
-		
-	}
-	
-</script>
 
 </head>
 <body>
-
-<!-- 
-
-	<c:forEach var="list" items="${list }">
-		            <li>
-		              <img class="center-croping" alt="밀면 맛집 베스트 15곳  사진" src="https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/9utfi6xa3yrqhdcq.png?fit=around|600:400&amp;crop=600:400;*,*&amp;output-format=jpg&amp;output-quality=80">
-		
-		              <a href="/top_lists/855_milmyeon" onclick="trackEvent('CLICK_TOPLIST', {&quot;section_position&quot;:0,&quot;section_title&quot;:&quot;믿고 보는 맛집 리스트&quot;,&quot;position&quot;:0,&quot;link_key&quot;:&quot;WQBIFOR&quot;});" tabindex="0">
-		                <figure class="ls-item">
-		                  <figcaption class="info">
-		                    <div class="info_inner_wrap">
-		                      <span class="title" data-ellipsis-id="1">${list.dong } 맛집 베스트 ${list.count } 곳 </span>
-		                      <p class="desc" data-ellipsis-id="31">"${list.dong } 맛집 베스트"</p>
-		                      
-		                    </div>
-		                  </figcaption>
-		                </figure>
-		              </a>
-		            </li>
-		            </c:forEach>
- -->
-
-
 	<main class="pg-main">
   <div class="black_screen"></div>
   <article class="contents main-padding">
@@ -87,15 +30,15 @@
         <div aria-live="polite" class="slick-list draggable">
         	<div class="slick-track" role="listbox" style="opacity: 1; width: 2000px; transform: translate3d(0px, 0px, 0px);">
         		<c:forEach var="list" items="${list }" varStatus="f">
-        		
+        		<c:set var="img_source" value="main_list_img"></c:set>
         		<c:if test="${f.count%2==1}">
         			<div class="under_line">
         			<ul class="list-toplist-slider slick-slide slick-current slick-active" style="width: 551px;" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide00">
         		</c:if>
             		<li>
-              			<img class="center-croping" alt="밀면 맛집 베스트 15곳  사진" src="https://mp-seoul-image-production-s3.mangoplate.com/keyword_search/meta/pictures/9utfi6xa3yrqhdcq.png?fit=around|600:400&amp;crop=600:400;*,*&amp;output-format=jpg&amp;output-quality=80">
+              			<img class="center-croping" alt="${img_source}${f.count}" src="${pageContext.request.contextPath }/resources/storage/main_img/${img_source}${f.count}.jpg">
 
-              			<a href="/top_lists/855_milmyeon" onclick="trackEvent('CLICK_TOPLIST', {&quot;section_position&quot;:0,&quot;section_title&quot;:&quot;믿고 보는 맛집 리스트&quot;,&quot;position&quot;:0,&quot;link_key&quot;:&quot;WQBIFOR&quot;});" tabindex="0">
+              			<a href="locationlist?location=${list.dong}"  tabindex="0">
 	                		<figure class="ls-item">
 		                 		<figcaption class="info">
 			                    	<div class="info_inner_wrap">
