@@ -130,7 +130,7 @@ public class LoginController {
 		if (cDTO != null) {
 			request.getSession().setAttribute("cId", cDTO.getcId());
 			request.getSession().setAttribute("cNo", cDTO.getcNo());
-			request.getSession().setAttribute("cNicknam", cDTO.getcNickname());
+			request.getSession().setAttribute("cNickname", cDTO.getcNickname());
 			result = "1";
 		}
 				
