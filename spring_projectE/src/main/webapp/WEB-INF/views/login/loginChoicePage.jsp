@@ -12,5 +12,7 @@
 	업체 로그인
 	<input type="button" value="업체 회원 로그인" onclick="location.href='deptLoginPage'" />
 	
+	
+	
 </body>
 </html>
