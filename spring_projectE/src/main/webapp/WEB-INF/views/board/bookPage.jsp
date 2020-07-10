@@ -30,12 +30,16 @@
 		}
 		
 		.navigation{
+			width: 100%;
 			margin-top:100px;
 			margin-bottom:30px;
 			text-align: center;
 			font-size: 25px;
 			vertical-align: middle;
 		}
+	
+		A:link { font-size:9pt; font-family:"돋움";color:#000000; text-decoration:none; }
+		A:hover { font-size:9pt; font-family:"돋움";color:red;text-decoration:none;}
 		
 		.before_after_month{
 			margin: 10px;
@@ -50,54 +54,51 @@
 			margin: 10px;
 		}
 		
-		.day{
-			width: 100px; 
+		
+		.calendar_body{
+			width:100%;
+			background-color: #FFFFFF;
+			border:1px solid white;
+			margin-bottom: 30px;
+			border-collapse: collapse;
+		}
+		
+		..calendar_body thead, .calendar_body thead tr {width: 100%;}
+		
+		.calendar_body thead tr .day{
+			width: 14%; 
 			height: 30px;
 			font-size: 15px;
 			font-weight: bold;
 			text-align: center;
 		}
 		
-		.sat{
+		.calendar_body thead tr .sat{
 			color:#529dbc;
 		}
 		
-		.sun{
+		.calendar_body thead tr .sun{
 			color:red;
 		}
 		
-		.calendar_body{
-			width:100%;
-			background-color: #FFFFFF;
+		.dayCSS {
 			border:1px solid white;
-			margin-bottom: 50px;
-			border-collapse: collapse;
-		}
-		
-		.calendar_body .today{
-			border:1px solid white;
+			width: 14%;
 			height:50px;
-			background-color:#c9c9c9;
-			text-align: left;
 			vertical-align: top;
+			background-color:#EFEFEF;
 		}
 		
-		.calendar_body .date{
+		.date{
+			width: 100%;
 			font-weight: bold;
 			font-size: 15px;
 			padding-left: 3px;
 			padding-top: 3px;
 		}
 		
-		.calendar_body .sat_day{
-			border:1px solid white;
-			height:50px;
-			background-color:#EFEFEF;
-			text-align:left;
-			vertical-align: top;
-		}
-		
-		.calendar_body .sat_day .sat{
+		.sat{
+			width: 100%;
 			color: #529dbc; 
 			font-weight: bold;
 			font-size: 15px;
@@ -105,15 +106,8 @@
 			padding-top: 3px;
 		}
 		
-		.calendar_body .sun_day{
-			border:1px solid white;
-			height:50px;
-			background-color:#EFEFEF;
-			text-align: left;
-			vertical-align: top;
-		}
-		
-		.calendar_body .sun_day .sun{
+		.sun{
+			width: 100%;
 			color: red; 
 			font-weight: bold;
 			font-size: 15px;
@@ -121,20 +115,27 @@
 			padding-top: 3px;
 		}
 		
-		.calendar_body .normal_day{
-			border:1px solid white;
-			height:50px;
-			background-color:#EFEFEF;
-			vertical-align: top;
-			text-align: left;
+		.today {
+			width: 100%;
+			text-align: center;
+			font-size: 12px;
 		}
 		
-		td {font-family: "돋움"; font-size: 9pt; color:#595959;}
-		th {font-family: "돋움"; font-size: 9pt; color:#000000;}
+		.click_day {
+			border:1px solid white;
+			height:50px;
+			text-align:left;
+			vertical-align: top;
+			background-color: lightblue;
+		}
 		
 		.contents {
 			width:20%;
 			margin:auto;
+		}
+		
+		.deactive {
+			display: none;
 		}
 		
 		.appintment_table {
@@ -163,17 +164,8 @@
 			border: 0;
 		}
 		
-		.deactive {
-			display: none;
-		}
-		
 		.select_aDate_hour {
 			width: 100px;
-			height: 20px;
-		}
-		
-		.select_aP_count {
-			width: 50px;
 			height: 20px;
 		}
 		
@@ -186,28 +178,7 @@
 			padding: 5px;
 			width: 50%;
 			border: 0;
-		}
-		
-		
-		select {font-family: "돋움"; font-size: 9pt; color:#595959;}
-
-		.divDotText {
-		overflow:hidden;
-		text-overflow:ellipsis;
-		}
-
-		A:link { font-size:9pt; font-family:"돋움";color:#000000; text-decoration:none; }
-		A:visited { font-size:9pt; font-family:"돋움";color:#000000; text-decoration:none; }
-		A:active { font-size:9pt; font-family:"돋움";color:red; text-decoration:none; }
-		A:hover { font-size:9pt; font-family:"돋움";color:red;text-decoration:none;}
-		
-		.today_button_div{
-			float: right;
-		}
-		.today_button{
-			width: 100px; 
-			height:30px;
-		}		
+		}	
 		
 	</style>
 	
@@ -250,24 +221,25 @@
 						<c:forEach var="dateList" items="${dateList}" varStatus="date_status"> 
 							<c:choose>
 								<c:when test="${dateList.value=='today'}">
-									<td class="today click"  onclick="fn_a(${dateList.date})">
+									<td id="${dateList.date}" class="dayCSS"  onclick="fn_a(${dateList.date})">
 										<div class="date">${dateList.date}</div>
+										<div class="today">today</div>
 									</td>
 								</c:when>
 								<c:when test="${date_status.index%7==6}">
-									<td class="sat_day click"  onclick="fn_a(${dateList.date})">
+									<td id="${dateList.date}" class="dayCSS"  onclick="fn_a(${dateList.date})">
 										<div class="sat">${dateList.date}</div>
 									</td>
 								</c:when>
 								<c:when test="${date_status.index%7==0}">
 									</tr>
 									<tr>	
-										<td class="sun_day click" onclick="fn_a(${dateList.date})">
+										<td id="${dateList.date}" class="dayCSS" onclick="fn_a(${dateList.date})">
 											<div class="sun" >${dateList.date}</div>
 										</td>
 								</c:when>
 								<c:otherwise>
-									<td class="normal_day click"  onclick="fn_a(${dateList.date})">
+									<td id="${dateList.date}" class="dayCSS"  onclick="fn_a(${dateList.date})">
 										<div class="date">${dateList.date}</div>
 									</td>
 								</c:otherwise>
@@ -280,17 +252,33 @@
 	
 	<script type="text/javascript">
 		
+		var id = null;
+		
 		function fn_a(da) {
 			if (da == undefined) {
 			} else {
 				$('#myForm').removeClass('deactive');
 				$('.text_type1').val('${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일');
+				$('#aDate_day_hidden').val('${today_info.search_year} ${today_info.search_month} ' + da);
+				// 클릭한 해당 td 색 변하게
+				if (id == null) {
+					$('#' + da).removeClass('dayCSS');
+					$('#' + da).addClass('click_day');
+					id = da;					
+				} else {
+					$('#' + id).removeClass('click_day');
+					$('#' + id).addClass('dayCSS');
+					$('#' + da).removeClass('dayCSS');
+					$('#' + da).addClass('click_day');
+					id = da;
+				}
+				
 			}
 			
 			$.ajax({
 				url: 'getRemainSeatANDTime',
 				method: 'post',
-				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일'},
+				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year} ${today_info.search_month} ' + da} ,
 				dataType: 'text',
 				success: function(data){
 					$('.remainPerson').empty();
@@ -308,13 +296,19 @@
 			var date =$('#aDate_day_textbox').val();
 			var time = $('.select_aDate_hour').val();
 			
+			// Number.isInteger()사용시, 인터넷익스플로러에 적용되지 않으며, 정규식을 사용해야 적용됨.
+			if (Number.isInteger(aP_count*1) == false) {
+				alert('예약 인원을 확인해주세요.');
+				return;
+			}
+			
 			$.ajax({
 				url: 'getRemainSeat',
 				method: 'post',
 				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': date + ' ' + time},
 				dataType: 'text',
 				success: function (data) {
-					if ((aP_count*1) > (1*data)) {
+					if ((aP_count*1) > (1*data) || $('#aP_count_textbox').val() == '') {
 						alert('예약 인원을 확인해주세요.');
 						$('#aP_count_textbox').val('');
 						return;
@@ -335,7 +329,10 @@
 			<table class="appintment_table">
 				<tr>
 					<td class="text_subject">날짜 :</td>
-					<td class="text_desc"><input id="aDate_day_textbox" type="text" name="aDate_day" class="text_type1" readonly/></td>
+					<td class="text_desc">
+						<input id="aDate_day_textbox" type="text" class="text_type1" readonly/>
+						<input id="aDate_day_hidden" type="hidden" name="aDate_day" />
+					</td>
 				</tr>
 				<tr>
 					<td class="text_subject">시간 :</td>
@@ -345,7 +342,7 @@
 				<tr>
 					<td class="text_subject">인원 :</td>
 					<td class="text_desc selectAp_count">
-						<input id="aP_count_textbox" type="text" name="aP_count" placeholder="숫자만 입력" size="6" />
+						<input id="aP_count_textbox" type="text" name="aP_count" placeholder="숫자" size="1" /> 명
 					</td>
 				</tr>
 			</table>

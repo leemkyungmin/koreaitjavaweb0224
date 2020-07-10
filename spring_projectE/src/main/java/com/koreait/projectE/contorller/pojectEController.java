@@ -29,7 +29,7 @@ import com.koreait.projectE.command.reviewWriteCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.AppointmentDAO;
 import com.koreait.projectE.dao.BoardDAO;
-import com.koreait.projectE.dao.DateData;
+import com.koreait.projectE.dto.DateData;
 import com.koreait.projectE.dto.DepartmentDTO;
 import com.koreait.projectE.dto.ReviewDTO;
 
@@ -131,11 +131,9 @@ public class pojectEController {
 		DateData calendarData;
 		
 		// 달력 페이지가 처음 실행되면,오늘 날짜로 date 생성
-		//검색 날짜
 		if(dateData.getDate().equals("")&&dateData.getMonth().equals("")){
 			dateData = new DateData(String.valueOf(cal.get(Calendar.YEAR)),String.valueOf(cal.get(Calendar.MONTH)),String.valueOf(cal.get(Calendar.DATE)),null);
 		}
-		//검색 날짜 end
 
 		// 이번달에 대한 모든 정보를 가져온다
 		Map<String, Integer> today_info =  dateData.today_info(dateData);
@@ -171,15 +169,13 @@ public class pojectEController {
 		model.addAttribute("dateList", dateList); // 달력 배열
 		model.addAttribute("today_info", today_info); // 오늘 날짜에 대한 정보
 		
-		// 업체 정보 검색
-		// 업체 정보, cNo 뷰에 전달
 		String dSaup_no = request.getParameter("dSaup_no");
 		BoardDAO bDAO = sqlSession.getMapper(BoardDAO.class);
 		DepartmentDTO deptDTO = bDAO.DepartView(dSaup_no);
 		model.addAttribute("deptDTO", deptDTO);
 		model.addAttribute("cNo", request.getParameter("cNo"));
 		
-		return "board/bookPage"; // view
+		return "board/bookPage";
 	}
 	
 	@RequestMapping(value = "insertAppointment", method = RequestMethod.POST)
@@ -190,20 +186,17 @@ public class pojectEController {
 		return "redirect:viewPage?dSaup_no="+request.getParameter("dSaup_no");
 	}
 	
-	// 예약 가능 인원 계산
 	@RequestMapping(value="getRemainSeatANDTime", produces="text/html; charset=utf-8")
 	@ResponseBody
 	public String getRemainSeatANDTime(HttpServletRequest request) {
 		 String dSaup_no = request.getParameter("dSaup_no");
 		 String aDate = request.getParameter("aDate");
 		 		 
-		 // 업체 영업시간, 좌석 수 검색
 		 BoardDAO bDAO = sqlSession.getMapper(BoardDAO.class);
 		 DepartmentDTO deptDTO = bDAO.DepartView(dSaup_no);
 		 int dStart = Integer.parseInt(deptDTO.getdStart().substring(0, 2));
 		 int dEnd = Integer.parseInt(deptDTO.getdEnd().substring(0, 2));
 		 
-		 // APPINTMENT 테이블에서 DSAUP_NO, ADATE가 같은 영업시간대별로 AP_COUNT를 모두 더해
 		 AppointmentDAO aDAO = sqlSession.getMapper(AppointmentDAO.class);
 		 
 		 int[] remainSeat = new int[dEnd-dStart]; // 12
@@ -228,8 +221,6 @@ public class pojectEController {
 		
 		AppointmentDAO aDAO = sqlSession.getMapper(AppointmentDAO.class);
 		String remainSeat = aDAO.selectAp_count(dSaup_no, aDate) + "";
-		
-		System.out.println(remainSeat);
 		
 		return remainSeat;
 	}

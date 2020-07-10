@@ -194,7 +194,8 @@
 	                  </button>
 	
 	                 
-	                    <button class="btn-type-icon favorite wannago_btn " onclick="fn_appointment()">
+	                    <button class="btn-type-icon favorite wannago_btn "  data-remote="calendar?dSaup_no=${deptDTO.dSaup_no}&cNo=1"
+	                    data-toggle="modal" data-target="#myModal">
 		                    <i class="far fa-calendar-check fa-3x"></i>
 		                    <p class="wannago_txt">예약하기</p>
 	                  	</button>
