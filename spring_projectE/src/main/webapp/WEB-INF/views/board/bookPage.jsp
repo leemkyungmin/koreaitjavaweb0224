@@ -259,7 +259,7 @@
 			} else {
 				$('#myForm').removeClass('deactive');
 				$('.text_type1').val('${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일');
-				$('#aDate_day_hidden').val('${today_info.search_year} ${today_info.search_month} ' + da);
+				$('#aDate_day_hidden').val('${today_info.search_year}${today_info.search_month}' + da);
 				// 클릭한 해당 td 색 변하게
 				if (id == null) {
 					$('#' + da).removeClass('dayCSS');
