@@ -259,6 +259,7 @@
 			} else {
 				$('#myForm').removeClass('deactive');
 				$('.text_type1').val('${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일');
+				$('#aDate_day_hidden').val('${today_info.search_year} ${today_info.search_month} ' + da);
 				// 클릭한 해당 td 색 변하게
 				if (id == null) {
 					$('#' + da).removeClass('dayCSS');
@@ -277,7 +278,7 @@
 			$.ajax({
 				url: 'getRemainSeatANDTime',
 				method: 'post',
-				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일'},
+				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year} ${today_info.search_month} ' + da} ,
 				dataType: 'text',
 				success: function(data){
 					$('.remainPerson').empty();
@@ -328,7 +329,10 @@
 			<table class="appintment_table">
 				<tr>
 					<td class="text_subject">날짜 :</td>
-					<td class="text_desc"><input id="aDate_day_textbox" type="text" name="aDate_day" class="text_type1" readonly/></td>
+					<td class="text_desc">
+						<input id="aDate_day_textbox" type="text" class="text_type1" readonly/>
+						<input id="aDate_day_hidden" type="hidden" name="aDate_day" />
+					</td>
 				</tr>
 				<tr>
 					<td class="text_subject">시간 :</td>

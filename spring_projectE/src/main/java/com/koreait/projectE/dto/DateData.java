@@ -1,4 +1,4 @@
-package com.koreait.projectE.dao;
+package com.koreait.projectE.dto;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,13 +11,6 @@ public class DateData {
 	String month = "";
 	String date = "";
 	String value = "";
-	//스케쥴 추가시 아래처럼 
-	//		1. 변수 추가
-	//		2. getter/setter 추가
-	//		3. 생성자 추가
-	//				하여 사용하면 보다 편리하고 깨끗하게 코드를 만들 수 있다.
-	String schedule = "";
-	String schedule_detail = "";
 
 	public String getYear() {
 		return year;
@@ -51,27 +44,11 @@ public class DateData {
 		this.value = value;
 	}
 
-	public String getSchedule() {
-		return schedule;
-	}
-
-	public void setSchedule(String schedule) {
-		this.schedule = schedule;
-	}
-
-	public String getSchedule_detail() {
-		return schedule_detail;
-	}
-
-	public void setSchedule_detail(String schedule_detail) {
-		this.schedule_detail = schedule_detail;
-	}
-
 	// 날짜에 관련된 달력정보를 가지는 메서드
 	public Map<String, Integer> today_info(DateData dateData) {
 		// 이번달 정보 Map에 담아
 		Map<String, Integer> today_Data = new HashMap<String, Integer>();
-		
+
 		// calendar 객체에 이번달 1일 세팅
 		Calendar cal = Calendar.getInstance();
 		cal.set(Integer.parseInt(dateData.getYear()), Integer.parseInt(dateData.getMonth()), 1);
@@ -84,7 +61,7 @@ public class DateData {
 		// calendar 객체에 오늘 날짜 세팅
 		Calendar todayCal = Calendar.getInstance();
 		SimpleDateFormat ysdf = new SimpleDateFormat("yyyy");
-		SimpleDateFormat msdf = new SimpleDateFormat("M");
+		SimpleDateFormat msdf = new SimpleDateFormat("MM");
 
 		// '오늘'에 해당하는 '년도', '월'을 simpleDateFormat을 이용해 구한다
 		int today_year = Integer.parseInt(ysdf.format(todayCal.getTime())); // getTime()은 시간을 밀리세컨드로 변환해서 숫자 데이터로 반환한다
@@ -105,9 +82,6 @@ public class DateData {
 		// 페이지 상단의 << < > >> 구현
 		Map<String, Integer> before_after_calendar = before_after_calendar(search_year,search_month);
 		
-		//날짜 관련
-	//	System.out.println("search_month : " + search_month);
-		// 캘린더 함수 end
 		today_Data.put("start", start); // 1일에 해당하는 요일
 		today_Data.put("startDay", startDay); // 1
 		today_Data.put("endDay", endDay); // 말일
@@ -146,18 +120,6 @@ public class DateData {
 		
 		return before_after_data;
 	}
-	
-	// 스케줄 사용시 사용될 생성자
-	public DateData(String year, String month, String date, String value, String schedule, String schedule_detail) {
-
-		this.year = year;
-		this.month = month;
-		this.date = date;
-		this.value = value;
-		this.schedule = schedule;
-		this.schedule_detail = schedule_detail;
-
-	}
 
 	// 달력만 사용시 사용될 생성자
 	public DateData(String year, String month, String date, String value) {
@@ -170,11 +132,6 @@ public class DateData {
 	}
 
 	public DateData() {
-	}
-
-	@Override
-	public String toString() {
-		return "DateData [year=" + year + ", month=" + month + ", date=" + date + ", value=" + value + "]";
 	}
 
 }
