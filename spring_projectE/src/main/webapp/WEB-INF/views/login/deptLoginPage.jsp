@@ -60,9 +60,9 @@
       <form class="form-signin" method="POST" onSubmit="logincall();return false">
         <h5 class="form-signin-heading">로그인 정보를 입력하세요</h5>
         <label for="inputEmail" class="sr-only">Your ID</label>
-        <input type="text" id="cId" class="form-control" placeholder="Your ID" required autofocus><BR>
+        <input type="text" id="dId" class="form-control" placeholder="Your ID" required autofocus><BR>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="cPw" class="form-control" placeholder="Password" required><br>
+        <input type="password" id="dPw" class="form-control" placeholder="Password" required><br>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> 기억하기

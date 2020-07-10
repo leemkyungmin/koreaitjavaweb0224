@@ -11,7 +11,8 @@
     <meta name="author" content="">
     
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <title>로그인 폼</title>
 	<style type="text/css">
 		@import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
@@ -49,30 +50,116 @@
   		font-size: 16px;
 	}
 	</style>
+	<script type="text/javascript">
+	
+		$(function(){
+			
+			$('#login').click(function(){
+				$.ajax({
+					url:'customerLogin',
+					type:'POST',
+					data: 'cId=' + $('#cId').val() + '&cPw=' + $('#cPw').val(),
+					success:function(data){
+						if (data == '1'){
+							alert('로그인 성공');
+							location.href = 'index';
+						} else {
+							alert('로그인 실패');
+						} 
+							
+					},
+					error:function() {
+						alert('AJAX 통신 실패');
+					}
+				});
+			}); // login.click
+		}); // function({})
+		
+		$(document).ready(function(){
+			
+			var savedID = getCookie("savedID");
+			$('#cId').val(savedID);
+			
+			if ($('#cId').val() != '') {
+				$('#saveIDCheck').attr('checked', true);
+			}
+			
+			$('#saveIDCheck').change(function(){
+				// 체크되어 있다
+				if ( $('#saveIDCheck').is(':checked') ) {
+					setCookie( "savedID", $('#cId').val(), 7 );  // 7일간 쿠키에 보관
+				} 
+				// 체크해제되어 있다.
+				else {
+					deleteCookie( "savedID" );
+				}
+			});
+			
+			$('#cId').keyup(function(){
+				// 체크되어 있다
+				if ( $('#saveIDCheck').is(':checked') ) {
+					setCookie( "savedID", $('#cId').val(), 7 );  // 7일간 쿠키에 보관
+				}
+			});
+			
+		});
+		
+		function setCookie( cookieName, value, exdays ) {
+		    var exdate = new Date();
+		    exdate.setDate(exdate.getDate() + exdays);
+		    var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+		    document.cookie = cookieName + "=" + cookieValue;
+		}
+
+		// 2. 쿠키 삭제
+		function deleteCookie( cookieName ) {
+		    var expireDate = new Date();
+		    expireDate.setDate(expireDate.getDate() - 1);
+		    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+		}
+
+		// 3. 쿠키 가져오기
+		function getCookie( cookieName ) {
+		    cookieName = cookieName + "=";
+		    var cookieData = document.cookie;
+		    var start = cookieData.indexOf(cookieName);
+		    var cookieValue = "";
+		    if ( start != -1 ){
+		        start += cookieName.length;
+		        var end = cookieData.indexOf(";", start);
+		        if(end == -1) {
+		            end = cookieData.length;
+		        }
+		        cookieValue = cookieData.substring(start, end);
+		    }
+		    return unescape(cookieValue);
+		}
+		
+	</script>
   </head>
-  <body cellpadding="0" cellspacing="0" marginleft="0" margintop="0" width="100%" height="100%" align="center">
+  <body>
 
 	<div class="wrap" style="width:20rem; border-radius:20px;">
 		<div class="card-title" style="margin-top:30px;">
 			<h2 class="card-title text-center" style="color:#113366;">일반회원 로그인</h2>
 		</div>
 		<div class="card-body">
-      <form class="form-signin" method="POST" onSubmit="logincall();return false">
+      <form class="form-signin" method="POST">
         <h5 class="form-signin-heading">로그인 정보를 입력하세요</h5>
         <label for="inputEmail" class="sr-only">Your ID</label>
-        <input type="text" id="cId" class="form-control" placeholder="Your ID" required autofocus><BR>
+        <input type="text" id="cId" name="cId" class="form-control" placeholder="Your ID" required autofocus><BR>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="cPw" class="form-control" placeholder="Password" required><br>
+        <input type="password" id="cPw" name="cPw" class="form-control" placeholder="Password" required><br>
         <div class="checkbox">
           <label>
-            <input type="checkbox" value="remember-me"> 기억하기
+            <input type="checkbox" value="true" id="saveIDCheck" name="saveIDCheck"> 기억하기
           </label>
         </div>
         <div style="text-align: center;">
         	<a href="#">아이디/비밀번호 찾기</a> <br/>
         	<a href="customerSignUp">회원가입</a>
         </div>
-        <button id="login" class="btn btn-lg btn-primary btn-block" type="submit">로 그 인</button>
+        <input id="login" name="login" class="btn btn-lg btn-primary btn-block" type="button" value="로 그 인" />
       </form>
       
 		</div>
@@ -82,8 +169,6 @@
 	</div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+    
   </body>
-</html>
+  </html>

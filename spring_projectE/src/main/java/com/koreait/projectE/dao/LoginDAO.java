@@ -16,4 +16,7 @@ public interface LoginDAO {
 	
 	// 일반 회원 이메일 중복체크
 	public int emailCheck(String cEmail);
+	
+	// 일반 회원 로그인
+	public int customerLogin(String cId, String cPw);
 }
