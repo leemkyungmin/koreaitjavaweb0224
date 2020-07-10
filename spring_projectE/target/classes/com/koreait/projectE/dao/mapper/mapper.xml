@@ -30,10 +30,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE CEMAIL = #{param1}
 	</select>
 	
-	<select id="customerLogin" parameterType="String" resultType="int">
-		SELECT COUNT(*)
+	<select id="customerLogin" parameterType="String" resultType="com.koreait.projectE.dto.CustomerDTO">
+		SELECT *
 		FROM CUSTOMER
 		WHERE CID = #{param1} AND CPW = #{param2}
 	</select>
+		
+	<select id="selectBycNo" resultType="com.koreait.projectE.dto.CustomerDTO">
+		SELECT *
+		FROM CUSTOMER
+		WHERE CNO = #{param1}
+	</select>
+	
+	<update id="pwUpdate">
+		UPDATE CUSTOMER
+		SET CPW = #{param1}
+		WHERE CNO = #{param2}
+	</update>
+	
+	<update id="nicknameUpdate">
+		UPDATE CUSTOMER
+		SET CNICKNAME = #{param1}
+		WHERE CNO = #{param2}
+	</update>
 	
 </mapper>

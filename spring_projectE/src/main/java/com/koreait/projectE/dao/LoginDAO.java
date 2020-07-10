@@ -1,5 +1,7 @@
 package com.koreait.projectE.dao;
 
+import com.koreait.projectE.dto.CustomerDTO;
+
 public interface LoginDAO {
    
 	// 일반 회원가입
@@ -18,5 +20,14 @@ public interface LoginDAO {
 	public int emailCheck(String cEmail);
 	
 	// 일반 회원 로그인
-	public int customerLogin(String cId, String cPw);
+	public CustomerDTO customerLogin(String cId, String cPw);
+	
+	// 일반 회원 마이홈
+	public CustomerDTO selectBycNo(int cNo);
+	
+	// 일반 회원 비밀번호 변경
+	public int pwUpdate(String cPw, int cNo);
+	
+	// 일반 회원 닉네임 변경
+	public int nicknameUpdate(String cNickname, int cNo );
 }

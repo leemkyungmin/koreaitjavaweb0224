@@ -1,6 +1,5 @@
 package com.koreait.projectE.contorller;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,10 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.koreait.projectE.command.CustomerEmailAuthCommand;
+import com.koreait.projectE.command.CustomerMyPageCommand;
 import com.koreait.projectE.command.CustomerSignUpCommand;
 import com.koreait.projectE.command.DeptSignUpCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.LoginDAO;
+import com.koreait.projectE.dto.CustomerDTO;
 
 
 @Controller
@@ -53,6 +54,14 @@ public class LoginController {
 	@RequestMapping("deptSignUpPage")
 	public String godeptSingUpPage() {
 		return "login/deptSignUpPage";
+	}
+	
+	@RequestMapping("myPage")
+	public String myPage(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new CustomerMyPageCommand();
+		command.execute(sqlSession, model);
+		return "login/customerMyPage";
 	}
 	
 	@RequestMapping(value="customerSignUp", method=RequestMethod.POST)
@@ -115,27 +124,46 @@ public class LoginController {
 		String cPw = request.getParameter("cPw");
 		
 		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
-		int result = lDAO.customerLogin(cId, cPw);
-		
-		if (result > 0) {
-			request.getSession().setAttribute("cId", cId);
+		CustomerDTO cDTO = new CustomerDTO();
+		cDTO = lDAO.customerLogin(cId, cPw);
+		String result = "0";
+		if (cDTO != null) {
+			request.getSession().setAttribute("cId", cDTO.getcId());
+			request.getSession().setAttribute("cNo", cDTO.getcNo());
+			request.getSession().setAttribute("cNicknam", cDTO.getcNickname());
+			result = "1";
 		}
 				
-		return result + "";
+		return result;
 	}
 	
 	@RequestMapping("logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		String id = (String) request.getSession().getAttribute("cId");
+		String cId = (String) request.getSession().getAttribute("cId");
 		
-		if (id != null) {
+		if (cId != null) {
 			session.invalidate();
 		}
 		
 		return "index";
 		
 	}
+	
+	@RequestMapping(value="pwUpdate", method=RequestMethod.POST, produces="text/html; charset=utf-8")
+	@ResponseBody
+	public String pwUpdate(@RequestParam("cPw") String cPw, @RequestParam("cNo")int cNo) {
+		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
+		return lDAO.pwUpdate(cPw, cNo) + "";
+	}
+	
+	@RequestMapping(value="nicknameUpdate", method=RequestMethod.POST, produces="text/html; charset=utf-8")
+	@ResponseBody
+	public String nicknameUpdate(@RequestParam("cNo")int cNo ,@RequestParam("cNickname") String cNickname) {
+		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
+		return lDAO.nicknameUpdate(cNickname, cNo) + "";
+	}
+	
 	
 }
 
