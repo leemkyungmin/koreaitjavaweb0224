@@ -5,16 +5,17 @@ import java.sql.Date;
 public class ReviewDTO {
 
 	private int rNo,rPoint,rDepth,rReportCount;
-	private String rTitle,rContent,rPoto, rAppointment, dSaup_no,cNickname;
+	private String rTitle,rContent,rPoto, rAppointment, dSaup_no,cNickname,cPoto;
 	private Date rWriter_date;
 	
 	public ReviewDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReviewDTO(int rNo, int rPoint, int rDepth, int rReportCount,String cNickname, String rTitle, String rContent,
+	public ReviewDTO(int rNo, int rPoint, int rDepth, int rReportCount,String cPoto,String cNickname, String rTitle, String rContent,
 			String rPoto, String rAppointment, String dSaup_no, Date rWriter_date) {
 		super();
+		this.cPoto = cPoto;
 		this.rNo = rNo;
 		this.rPoint = rPoint;
 		this.rDepth = rDepth;
@@ -26,6 +27,14 @@ public class ReviewDTO {
 		this.rAppointment = rAppointment;
 		this.dSaup_no = dSaup_no;
 		this.rWriter_date = rWriter_date;
+	}
+
+	public String getcPoto() {
+		return cPoto;
+	}
+
+	public void setcPoto(String cPoto) {
+		this.cPoto = cPoto;
 	}
 
 	public int getrNo() {

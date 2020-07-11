@@ -77,14 +77,14 @@
 	<header class="Header" data-page="home">
 		<ul class="nav-wrap">
 				<li class="nav-logo-wrap">
-					<a href="/"><img alt="로고이미지" src="<c:url value="/resources/assets/images/logo01.png" />" class="logo"></a>
+					<a href="index"><img alt="로고이미지" src="<c:url value="/resources/assets/images/logo01.png" />" class="logo"></a>
 				</li>
 				<li class="nav-search-wrap" >
 					<div class="nav-icon-box"><i class="fab fa-searchengin"></i></div>
 					<input class="nav-HomeSearchInput" name="nav-search" type="text" maxlength="50" placeholder="지역 또는 식당" autocomplete="off" onclick="">
 				</li>
 				<li class="nav-list-wrap">
-					<a href="" class="nav-btn">맛집 리스트</a>
+					<a href="main" class="nav-btn">맛집 리스트</a>
 				</li> 
 				<li class="nav-user-wrap">
 					<c:if test="${cId eq null }">

@@ -33,7 +33,8 @@ public class LoginController {
 	
 	@RequestMapping("index")
 	public String goIndex() {
-		return "index";
+		
+		return "redirect:/";
 	}
 	
 	@RequestMapping("loginChoicePage")

@@ -354,7 +354,7 @@
 				
 				        // 인포윈도우로 장소에 대한 설명을 표시합니다
 				        var infowindow = new kakao.maps.InfoWindow({
-				            content: '<div style="width:150px;text-align:center;padding:6px 0;">${deptDTO.dName}</div>'
+				            content: '<div style="width:150px;text-align:center;padding:6px 0;">${deptDTO.dName}<strong class="rate-point "><span>${deptDTO.dRating }</span></strong></div>'
 				        });
 				        infowindow.open(map, marker);
 				
@@ -454,7 +454,7 @@
 	    			<div class="RestaurantReviewItem__User">
 	       
 		      	<div class="RestaurantReviewItem__UserPictureWrap">
-		       		 <img class="RestaurantReviewItem__UserPicture loaded" data-src="https://mp-seoul-image-production-s3.mangoplate.com/1407183_1563215702669?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" alt="user profile picture" src="https://mp-seoul-image-production-s3.mangoplate.com/1407183_1563215702669?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true">
+		       		 <img class="RestaurantReviewItem__UserPicture loaded" alt="${review.cPoto }" src="${pageContext.request.contextPath }/resources/storage/user_img/${review.cPoto }"">
 		     	 </div>
 		      
 		     	  
@@ -477,15 +477,12 @@
 			         	 ${review.rContent }
 			        </p>
 					
-		       		 <span class="RestaurantReviewItem__ReviewDate">2020-02-22</span>
+		       		 <span class="RestaurantReviewItem__ReviewDate">${review.rWriter_date }</span>
 				      </div>
 				      
 			      
 			    </div>
-			
-			    <div class="RestaurantReviewItem__Rating RestaurantReviewItem__Rating--Ok">
-			      <span class="RestaurantReviewItem__RatingText">맛있다.</span>
-			    </div>
+		
 			     			    
 			  	</button>
 				</li>
@@ -499,9 +496,7 @@
 		              <span class="RestaurantReviewList__EmptyDescription">해당 식당의 첫 리뷰를 작성해주시겠어요?</span>
 		            </div>
 				</c:if>
-	            <div class="RestaurantReviewList__MoreReviewButton" role="button">
-	              더보기
-	            </div>
+	           
 	          </section>
 	      </div>
 	   </div>
