@@ -57,14 +57,15 @@
 				
 				if(data.length>0){
 					for(i=0; i<data.length; i++){
+						
 						html+='<li class="RestaurantReviewItem RestaurantReviewList__ReviewItem">';
 						html+='<button class="RestaurantReviewItem__Link" onclick="fn_reviewDetail(${review.rNo})">';
 		    			html+='<div class="RestaurantReviewItem__User">';
 		       
 		    			html+='<div class="RestaurantReviewItem__UserPictureWrap">';
-		    			html+='<img class="RestaurantReviewItem__UserPicture loaded" data-src="https://mp-seoul-image-production-s3.mangoplate.com/1407183_1563215702669?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" alt="user profile picture" src="https://mp-seoul-image-production-s3.mangoplate.com/1407183_1563215702669?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true">';
+		    			html+='<img class="RestaurantReviewItem__UserPicture loaded" alt='+data[i].cPoto+' src="${pageContext.request.contextPath }/resources/storage/user_img/'+data[i].cPoto+'">';
 		    			html+='</div>';
-			      
+			      		html +='<span class="RestaurantReviewItem__UserNickName">'+data[i].cNickname+'</span>';
 			     	
 		      
 				      	html+='</div>';
@@ -81,7 +82,6 @@
 				      	html+='</div>';
 				      	html+='</div>';
 				      	html+='<div class="RestaurantReviewItem__Rating RestaurantReviewItem__Rating--Ok">';
-				      	html+='<span class="RestaurantReviewItem__RatingText">괜찮다</span>';
 				      	html+='</div>';  
 				      	html+='</button>';
 				      	html+='</li>';	
@@ -156,7 +156,7 @@
 </head>
 
 <body>
-
+	
 	<c:set var="img" value="${deptDTO.dPhoto }"></c:set>
 	
 	<div class="top-image" style="position:relative;">
@@ -364,16 +364,6 @@
 				});    
 				</script>
 	            </div>
-				
-				<div class="modal fade" id='Modal' tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true" data-backdrop="static">
-					<div class="modal-dialog modal-xl" role="document" data-backdrop="static">
-			    		
-			    		<div class="modal-content" data-backdrop="static">
-			    		</div>
-			  		</div>
-			  		<div class="modal_layer" data-backdrop="static"></div>
-				</div>
-				
 				<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				 	<div class="modal-header" data-backdrop="static">
 				    	<!-- data-dismiss="modal" -->
@@ -396,14 +386,7 @@
 						var modal = $(this);
 						modal.find('.modal-body').load(button.data("remote"));
 					});
-					
-					
-					
-					
-					
-					
-					
-					
+		
 				</script>
 				
 				
@@ -450,11 +433,11 @@
 	              
 				<c:forEach var ="review" items="${reviewList }">
 					<li class="RestaurantReviewItem RestaurantReviewList__ReviewItem">
-	  				<button class="RestaurantReviewItem__Link" onclick="fn_reviewDetail(${review.rNo})">
+	  				<button class="RestaurantReviewItem__Link" data-remote="reviewDetail?rNo=${review.rNo }" data-toggle="modal" data-target="#myModal">
 	    			<div class="RestaurantReviewItem__User">
 	       
 		      	<div class="RestaurantReviewItem__UserPictureWrap">
-		       		 <img class="RestaurantReviewItem__UserPicture loaded" alt="${review.cPoto }" src="${pageContext.request.contextPath }/resources/storage/user_img/${review.cPoto }"">
+		       		 <img class="RestaurantReviewItem__UserPicture loaded" alt="${review.cPoto }" src="${pageContext.request.contextPath }/resources/storage/user_img/${review.cPoto }">
 		     	 </div>
 		      
 		     	  
@@ -489,14 +472,14 @@
 				</c:forEach>
 	            
 				</ul>
-				</div>
+				
 				<c:if test="${empty reviewList }">
 		            <div class="RestaurantReviewList__Empty">
 		              <span class="RestaurantReviewList__EmptyTitle">아직 작성된 리뷰가 없네요.</span>
 		              <span class="RestaurantReviewList__EmptyDescription">해당 식당의 첫 리뷰를 작성해주시겠어요?</span>
 		            </div>
 				</c:if>
-	           
+	           </div>
 	          </section>
 	      </div>
 	   </div>

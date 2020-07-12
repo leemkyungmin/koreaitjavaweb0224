@@ -25,6 +25,7 @@ public class ReviewDetailCommand implements Command {
 		ReviewDTO rdto =bdao.reivewDetail(rNo);
 		
 		model.addAttribute("rdto", rdto);
+		
 	}
 
 }

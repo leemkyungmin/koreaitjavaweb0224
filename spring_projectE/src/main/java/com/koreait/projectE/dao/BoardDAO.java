@@ -2,6 +2,7 @@ package com.koreait.projectE.dao;
 
 import java.util.ArrayList;
 
+import com.koreait.projectE.dto.CustomerDTO;
 import com.koreait.projectE.dto.DepartmentDTO;
 import com.koreait.projectE.dto.MenuDTO;
 import com.koreait.projectE.dto.ReviewDTO;
@@ -34,6 +35,7 @@ public interface BoardDAO {
 	public ArrayList<ReviewDTO> reviewNp(String dSaup_no);
 	
 	//ReviewDetail
-	
 	public ReviewDTO reivewDetail(int rNo);
+	
+	/*public CustomerDTO cdto = UserInfo()*/
 }

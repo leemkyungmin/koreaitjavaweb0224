@@ -39,13 +39,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- test -->
 	<select id="reviewAll" resultType="com.koreait.projectE.dto.ReviewDTO">
-		select * from review where RAPPOINTMENT >= 0 and dSaup_no=#{dSaup_no}
+		select r.rNo,r.rpoint,r.rdepth,r.REPORTCOUNT,c.cPoto,c.cnickname,r.rTitle,r.rcontent,r.rPoto,r.rwriter_date,r.rAppointment 
+		from review r,customer c 
+		where RAPPOINTMENT >= 0 and dSaup_no=#{dSaup_no} and r.cNo=c.cNo
 	</select>
 	<select id="reviewAp" resultType="com.koreait.projectE.dto.ReviewDTO">
-		select * from review where RAPPOINTMENT > 0 and dSaup_no=#{dSaup_no}
+		select r.rNo,r.rpoint,r.rdepth,r.REPORTCOUNT,c.cPoto,c.cnickname,r.rTitle,r.rcontent,r.rPoto,r.rwriter_date,r.rAppointment 
+		from review r,customer c 
+		where RAPPOINTMENT > 0 and dSaup_no=#{dSaup_no} and r.cNo=c.cNo
 	</select>
 	<select id="reviewNp" resultType="com.koreait.projectE.dto.ReviewDTO">
-		select * from review where RAPPOINTMENT = 0 and dSaup_no=#{dSaup_no}
+		select r.rNo,r.rpoint,r.rdepth,r.REPORTCOUNT,c.cPoto,c.cnickname,r.rTitle,r.rcontent,r.rPoto,r.rwriter_date,r.rAppointment 
+		from review r,customer c 
+		where RAPPOINTMENT = 0 and dSaup_no=#{dSaup_no} and r.cNo=c.cNo
 	</select>
 	<select id="reivewDetail" resultType="com.koreait.projectE.dto.ReviewDTO">
 		select  r.rNo,r.rpoint,r.rdepth,r.REPORTCOUNT,c.cPoto,c.cnickname,r.rTitle,r.rcontent,r.rPoto,r.rwriter_date,r.rAppointment 

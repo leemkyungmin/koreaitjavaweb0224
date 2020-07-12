@@ -72,15 +72,6 @@ public class pojectEController {
 		return "redirect:viewPage?dSaup_no="+mrequest.getParameter("dSaup_no");
 	}
 	
-	//테스트용 
-	@RequestMapping("insertPage")
-	public String insertPage(@RequestParam("dSaup_no") String dSaup_no,@RequestParam("cNo") int cNo,Model model) {
-		
-		model.addAttribute("dSaup_no", dSaup_no);
-		model.addAttribute("cNo", cNo);
-		
-		return "board/insertPage";
-	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value="getReview", produces="application/json; charset=utf-8")
@@ -111,6 +102,8 @@ public class pojectEController {
 				 re.put("rTitle",rdto.get(i).getrTitle());
 				 re.put("rContent", rdto.get(i).getrContent());
 				 re.put("rWriter_date", rdto.get(i).getrWriter_date());
+				 re.put("cNickname", rdto.get(i).getcNickname());
+				 re.put("cPoto", rdto.get(i).getcPoto());
 				 
 				 review_list.add(re);
 			 }
