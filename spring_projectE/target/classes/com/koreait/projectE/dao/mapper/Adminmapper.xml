@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="getAjaxCutomer" resultType="com.koreait.projectE.dto.CustomerDTO">
 		select * from customer 
-		where cId like '%' || #{query} || '%' or cName like '%' || #{query} || '%' or 
+		where cId like '%' || #{query} || '%' or cName like '%' || #{query} || '%' 
 	</select>
 	
 </mapper>
