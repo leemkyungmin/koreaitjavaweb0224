@@ -57,9 +57,9 @@
 				
 				if(data.length>0){
 					for(i=0; i<data.length; i++){
-						
+					
 						html+='<li class="RestaurantReviewItem RestaurantReviewList__ReviewItem">';
-						html+='<button class="RestaurantReviewItem__Link" onclick="fn_reviewDetail(${review.rNo})">';
+						html+='<button class="RestaurantReviewItem__Link" onclick="fnMove()" data-remote="reviewDetail?rNo='+${review.rNo }+'" data-toggle="modal" data-target="#myModal">';
 		    			html+='<div class="RestaurantReviewItem__User">';
 		       
 		    			html+='<div class="RestaurantReviewItem__UserPictureWrap">';
@@ -81,7 +81,19 @@
 				      	html+='<span class="RestaurantReviewItem__ReviewDate">'+data[i].rWriter_date+'</span>';
 				      	html+='</div>';
 				      	html+='</div>';
-				      	html+='<div class="RestaurantReviewItem__Rating RestaurantReviewItem__Rating--Ok">';
+				      	html+='<div class="RestaurantReviewItem__Rating RestaurantReviewItem__Rating--DoNotRecommend">';
+				    	html+='<span class="RestaurantReviewItem__RatingText">';
+						if(data[i].rPoint>=4){
+							html+='<i class="far fa-smile fa-3x"></i><span>좋다</span>';
+		
+						}else if(data[i].rPoint<=2){
+							html+='<i class="far fa-angry fa-3x"></i><span>별로</span>';
+						}else if(data[i].rPoint==3){
+							html+='<i class="far fa-smile fa-3x"></i><span>보통</span>';
+						}
+				    		
+						html+='</span></div>';
+							  
 				      	html+='</div>';  
 				      	html+='</button>';
 				      	html+='</li>';	
@@ -187,14 +199,14 @@
 	
 	                <div class="restaurant_action_button_wrap">
 	
-	                  <button class="review_writing_button" data-remote="reviewWritePage?dSaup_no=${deptDTO.dSaup_no}&cNo=1"
+	                  <button class="review_writing_button" onclick="fnMove()" data-remote="reviewWritePage?dSaup_no=${deptDTO.dSaup_no}&cNo=1"
 						data-toggle="modal" data-target="#myModal">
 	                    <i class="fas fa-pen fa-3x"></i>
 	                    <p class="review_writing_button_text">리뷰쓰기</p>
 	                  </button>
 	
 	                 
-	                    <button class="btn-type-icon favorite wannago_btn "  data-remote="calendar?dSaup_no=${deptDTO.dSaup_no}&cNo=1"
+	                    <button class="btn-type-icon favorite wannago_btn " onclick="fnMove()"  data-remote="calendar?dSaup_no=${deptDTO.dSaup_no}&cNo=1"
 	                    data-toggle="modal" data-target="#myModal">
 		                    <i class="far fa-calendar-check fa-3x"></i>
 		                    <p class="wannago_txt">예약하기</p>
@@ -386,7 +398,14 @@
 						var modal = $(this);
 						modal.find('.modal-body').load(button.data("remote"));
 					});
-		
+					function fnMove(){
+				        var offset = $("#reviewListFocusId" ).offset();
+				        var top =offset.top-200;  
+				        $('html,body ').animate({scrollTop : offset.top});
+				    }
+
+
+				
 				</script>
 				
 				
@@ -433,7 +452,7 @@
 	              
 				<c:forEach var ="review" items="${reviewList }">
 					<li class="RestaurantReviewItem RestaurantReviewList__ReviewItem">
-	  				<button class="RestaurantReviewItem__Link" data-remote="reviewDetail?rNo=${review.rNo }" data-toggle="modal" data-target="#myModal">
+	  				<button class="RestaurantReviewItem__Link" onclick="fnMove()"  data-remote="reviewDetail?rNo=${review.rNo }" data-toggle="modal" data-target="#myModal">
 	    			<div class="RestaurantReviewItem__User">
 	       
 		      	<div class="RestaurantReviewItem__UserPictureWrap">
@@ -465,7 +484,22 @@
 				      
 			      
 			    </div>
-		
+				<div class="RestaurantReviewItem__Rating RestaurantReviewItem__Rating--DoNotRecommend">
+			    	<span class="RestaurantReviewItem__RatingText">
+					<c:if test="${review.rPoint >=4 }">
+						<i class="far fa-smile fa-3x"></i>
+						<span>좋다</span>
+					</c:if>
+					<c:if test="${review.rPoint <=2 }">
+						<i class="far fa-angry fa-3x"></i>
+						<span>별로</span>
+					</c:if>
+					<c:if test="${ review.rPoint==3}">
+						<i class="far fa-smile fa-3x"></i>
+						<span>보통</span>
+					</c:if>
+				</span>
+			    </div>
 			     			    
 			  	</button>
 				</li>

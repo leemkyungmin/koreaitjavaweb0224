@@ -104,7 +104,7 @@ public class pojectEController {
 				 re.put("rWriter_date", rdto.get(i).getrWriter_date());
 				 re.put("cNickname", rdto.get(i).getcNickname());
 				 re.put("cPoto", rdto.get(i).getcPoto());
-				 
+				 re.put("rPoint",rdto.get(i).getrPoint());
 				 review_list.add(re);
 			 }
 			 
