@@ -85,7 +85,7 @@ public class DateData {
 		today_Data.put("start", start); // 1일에 해당하는 요일
 		today_Data.put("startDay", startDay); // 1
 		today_Data.put("endDay", endDay); // 말일
-		today_Data.put("today", today); // 오늘날짜 구분
+		today_Data.put("today", today); // 오늘날짜 dd
 		today_Data.put("search_year", search_year);
 		today_Data.put("search_month", search_month+1);
 		today_Data.put("before_year", before_after_calendar.get("before_year")); // 이전년도
