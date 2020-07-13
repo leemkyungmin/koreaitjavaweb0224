@@ -139,7 +139,7 @@
   </head>
   <body>
 
-	<div class="wrap" style="width:20rem; border-radius:20px;">
+	<div class="customerWrap" style="width:20rem; border-radius:20px;">
 		<div class="card-title" style="margin-top:30px;">
 			<h2 class="card-title text-center" style="color:#113366;">일반회원 로그인</h2>
 		</div>
@@ -164,6 +164,7 @@
       
 		</div>
 	</div>
+	
 
 	<div class="modal">
 	</div>

@@ -1,131 +1,200 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <!-- Bootstrap CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>로그인 폼</title>
+	<style type="text/css">
+		@import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
 	
-	.main-aside {
-		width: 200px;
-		border: 1px solid limegreen;
+	html {
+		height: 100%;
 	}
-	input:nth-of-type(1) { display: none; } /* input:nth-of-type(1) == input id=a */
-	input:nth-of-type(1) ~ div:nth-of-type(1) { display: none; } /* FRONT-END의 div class=tab-contents 숨김 */
-	input:nth-of-type(1):checked ~ div:nth-of-type(1) {display: block;} /* FRONT-END 클릭하면 FRONT-END의 div class=tab-contents 보여쥼 */
-	
-	input:nth-of-type(2) { display: none; } /* input:nth-of-type(2) == input id=b */
-	input:nth-of-type(2) ~ div:nth-of-type(2) { display: none; } /* BACK-END의 div class=tab-contents 숨김 */
-	input:nth-of-type(2):checked ~ div:nth-of-type(2) {display: block;} /* BACK-END 클릭하면 BACK-END의 div class=tab-contents 보여쥼 */
-	
-	.tab-buttons { display:flex; }
-	.tab-buttons > label {
-		display: block;
-		width: 100px;
-		height: 50px;
-		line-height: 50px;  /* height == line-height 이면 텍스트 세로 가운데 맞춤 */
-		text-align: center; /* 텍스트 가로 가운데 맞춤 */
-		background-color: limegreen;
-		color: white; 
+	div {
+		margin: auto;
 	}
-	input:nth-of-type(1):checked ~ section.tab-buttons > label:nth-of-type(1){
-		background: darkgreen;
-		font-weight: bold;
-		text-shadow: 2px 2px 1px gray;
-	}
-	input:nth-of-type(2):checked ~ section.tab-buttons > label:nth-of-type(2){
-		background: darkgreen;
-		font-weight: bold;
-		text-shadow: 2px 2px 1px gray;
+	body {
+	    width:100%;
+	    height:100%;
+	    margin: 0;
+  		padding-top: 80px;
+  		padding-bottom: 40px;
+  		font-family: "Nanum Gothic", arial, helvetica, sans-serif;
+  		background-repeat: no-repeat;
 	}
 	
-	.tab-content > ul {
-		list-style-type: none;
-		padding: 0;
-	}
-	.tab-content > ul > li.content {
-		overflow: hidden;
-		width: 180px;
-		padding: 10px;
-	}
-	.tab-content > ul > li.content div.thumbnail {
-		float: left;
-	}
-	.tab-content > ul > li.content div.description {
-		float: left;
-		margin-left: 10px;
+    .card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	}
 	
-</style>
-</head>
+	.form-signin .form-control {
+  		position: relative;
+  		height: auto;
+  		-webkit-box-sizing: border-box;
+     	-moz-box-sizing: border-box;
+        	 box-sizing: border-box;
+  		padding: 10px;
+  		font-size: 16px;
+	}
+	</style>
+	<script type="text/javascript">
+	
+		$(function(){
+			
+			$('#login').click(function(){
+				$.ajax({
+					url:'customerLogin',
+					type:'POST',
+					data: 'cId=' + $('#cId').val() + '&cPw=' + $('#cPw').val(),
+					success:function(data){
+						if (data == '1'){
+							alert('로그인 성공');
+							location.href = 'index';
+						} else {
+							alert('로그인 실패');
+						} 
+							
+					},
+					error:function() {
+						alert('AJAX 통신 실패');
+					}
+				});
+			}); // login.click
+		}); // function({})
+		
+		$(document).ready(function(){
+			
+			var savedID = getCookie("savedID");
+			$('#cId').val(savedID);
+			
+			if ($('#cId').val() != '') {
+				$('#saveIDCheck').attr('checked', true);
+			}
+			
+			$('#saveIDCheck').change(function(){
+				// 체크되어 있다
+				if ( $('#saveIDCheck').is(':checked') ) {
+					setCookie( "savedID", $('#cId').val(), 7 );  // 7일간 쿠키에 보관
+				} 
+				// 체크해제되어 있다.
+				else {
+					deleteCookie( "savedID" );
+				}
+			});
+			
+			$('#cId').keyup(function(){
+				// 체크되어 있다
+				if ( $('#saveIDCheck').is(':checked') ) {
+					setCookie( "savedID", $('#cId').val(), 7 );  // 7일간 쿠키에 보관
+				}
+			});
+			
+		});
+		
+		function setCookie( cookieName, value, exdays ) {
+		    var exdate = new Date();
+		    exdate.setDate(exdate.getDate() + exdays);
+		    var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+		    document.cookie = cookieName + "=" + cookieValue;
+		}
+
+		// 2. 쿠키 삭제
+		function deleteCookie( cookieName ) {
+		    var expireDate = new Date();
+		    expireDate.setDate(expireDate.getDate() - 1);
+		    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+		}
+
+		// 3. 쿠키 가져오기
+		function getCookie( cookieName ) {
+		    cookieName = cookieName + "=";
+		    var cookieData = document.cookie;
+		    var start = cookieData.indexOf(cookieName);
+		    var cookieValue = "";
+		    if ( start != -1 ){
+		        start += cookieName.length;
+		        var end = cookieData.indexOf(";", start);
+		        if(end == -1) {
+		            end = cookieData.length;
+		        }
+		        cookieValue = cookieData.substring(start, end);
+		    }
+		    return unescape(cookieValue);
+		}
+		
+	</script>
+  </head>
 <body>
 	
-	일반 회원가입
-	<input type="button" value="가입하기" onclick="location.href='customerSignUp'" /> <br/>
-	업체 회원가입
-	<input type="button" value="가입하기" onclick="location.href='deptSignUp'" /> <br/>
-	
-	<div class="main-aside">
-		<input id="a" type="radio" name="tab" checked />
-		<input id="b" type="radio" name="tab" />
-		<section class="tab-buttons">
-			<label for="a">FRONT-END</label>
-			<label for="b">BACK-END</label>
-		</section>
-		<div class="tab-content">
-			<ul>
-				<li class="content">
-					<a href="http://naver.com">
-						<div class="thumbnail">
-							<img alt="50X50"src="https://via.placeholder.com/50X50">
-						</div>
-						<div class="description">
-							<strong>HTML</strong><br/>
-							<p>HTML설명</p>
-						</div>
-					</a>
-				</li>
-				<li class="content">
-					<a href="#">
-						<div class="thumbnail">
-							<img alt="50X50"src="https://via.placeholder.com/50X50">
-						</div>
-						<div class="description">
-							<strong>CSS</strong><br/>
-							<p>CSS설명</p>
-						</div>
-					</a>
-				</li>
-			</ul>
+	<div class="customerWrap" style="width:20rem; border-radius:20px;">
+		<div class="card-title" style="margin-top:30px;">
+			<h2 class="card-title text-center" style="color:#113366;">일반회원 로그인</h2>
 		</div>
-		<div class="tab-content">
-			<ul>
-				<li class="content">
-					<a href="#">
-						<div class="thumbnail">
-							<img alt="50X50"src="https://via.placeholder.com/50X50">
-						</div>
-						<div class="description">
-							<strong>JSP</strong><br/>
-							<p>JSP설명</p>
-						</div>
-					</a>
-				</li>
-				<li class="content">
-					<a href="#">
-						<div class="thumbnail">
-							<img alt="50X50"src="https://via.placeholder.com/50X50">
-						</div>
-						<div class="description">
-							<strong>SPRING</strong><br/>
-							<p>SPRING 설명</p>
-						</div>
-					</a>
-				</li>
-			</ul>
+		<div class="card-body">
+      <form class="form-signin" method="POST">
+        <h5 class="form-signin-heading">로그인 정보를 입력하세요</h5>
+        <label for="inputEmail" class="sr-only">Your ID</label>
+        <input type="text" id="cId" name="cId" class="form-control" placeholder="Your ID" required autofocus><BR>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="cPw" name="cPw" class="form-control" placeholder="Password" required><br>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="true" id="saveIDCheck" name="saveIDCheck"> 기억하기
+          </label>
+        </div>
+        <div style="text-align: center;">
+        	<a href="#">아이디/비밀번호 찾기</a> <br/>
+        	<a href="customerSignUp">회원가입</a>
+        </div>
+        <input id="login" name="login" class="btn btn-lg btn-primary btn-block" type="button" value="로 그 인" />
+      </form>
+      
 		</div>
 	</div>
 	
-</body>
-</html>
+	<div class="departmentWrap" style="width:20rem; border-radius:20px;">
+		<div class="card-title" style="margin-top:30px;">
+			<h2 class="card-title text-center" style="color:#113366;">업체 로그인</h2>
+		</div>
+		<div class="card-body">
+      <form class="form-signin" method="POST" onSubmit="logincall();return false">
+        <h5 class="form-signin-heading">로그인 정보를 입력하세요</h5>
+        <label for="inputEmail" class="sr-only">Your ID</label>
+        <input type="text" id="dId" class="form-control" placeholder="Your ID" required autofocus><BR>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="dPw" class="form-control" placeholder="Password" required><br>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> 기억하기
+          </label>
+        </div>
+        <div style="text-align: center;">
+        	<a href="#">아이디/비밀번호 찾기</a> <br/>
+        	<a href="deptSignUpPage">업체 회원가입</a>
+        </div>
+        <button id="login" class="btn btn-lg btn-primary btn-block" type="submit">로 그 인</button>
+      </form>
+      
+		</div>
+	</div>
+	
+	<div class="modal">
+	</div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+  </body>
+  </html>

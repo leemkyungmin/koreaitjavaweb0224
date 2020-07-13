@@ -152,23 +152,22 @@
 			display: none;
 		}
 			
-		.Info_wrap {
+		/* .Info_wrap {
 			width: 100%;
 			height: 100px;
-			margin-bottom: 20px;
-		}
+		} */
 		
 		.custInfo {
 			float: left;
 		}
 		
 		.appointInfo {
-			float: right;
+			float: left;
 		}
 		
-		.submit_btn_wrap {
+		/* .submit_btn_wrap {
 			clear: left;
-		}
+		} */
 		
 		.appintment_table {
 			width: 100%;
@@ -201,7 +200,8 @@
 		}
 		
 		.submit_btn_wrap {
-			width: 100%;
+			float: left;
+			width: 100px;
 			text-align: center;
 		}
 		
@@ -301,7 +301,7 @@
 			} else {
 				$('#myForm').removeClass('deactive');
 				$('.text_type1').val('${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일');
-				$('#aDate_day_hidden').val('${today_info.search_year} ${today_info.search_month} ' + da);
+				$('#aDate_day_hidden').val('${today_info.search_year}${today_info.search_month}' + da);
 				// 클릭한 해당 td 색 변하게
 				if (id == null) {
 					$('#' + da).removeClass('dayCSS');
@@ -368,7 +368,6 @@
 	
 	<form name="appointment_form" method="post">
 		<div id="myForm" class="contents deactive">
-			<div class="Info_wrap">
 				<div class="custInfo">
 					<table>
 						<tr>
@@ -403,7 +402,6 @@
 						</tr>
 					</table>
 				</div>
-			</div>
 			<div class="submit_btn_wrap">
 				<input class="submit_btn" type="button" value="예약하기" onclick="aP_countCHK(this.form)"/>
 				<input type="hidden" name="cNo" value="${cNo}" />

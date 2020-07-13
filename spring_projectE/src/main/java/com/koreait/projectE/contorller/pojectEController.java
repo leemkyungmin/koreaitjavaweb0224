@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.koreait.projectE.command.AppointmentInsertCommand;
+import com.koreait.projectE.command.ReviewDetailCommand;
 import com.koreait.projectE.command.ReviewInsertCommand;
 import com.koreait.projectE.command.boardViewCommand;
 import com.koreait.projectE.command.reviewWriteCommand;
@@ -71,15 +72,6 @@ public class pojectEController {
 		return "redirect:viewPage?dSaup_no="+mrequest.getParameter("dSaup_no");
 	}
 	
-	//테스트용 
-	@RequestMapping("insertPage")
-	public String insertPage(@RequestParam("dSaup_no") String dSaup_no,@RequestParam("cNo") int cNo,Model model) {
-		
-		model.addAttribute("dSaup_no", dSaup_no);
-		model.addAttribute("cNo", cNo);
-		
-		return "board/insertPage";
-	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value="getReview", produces="application/json; charset=utf-8")
@@ -110,7 +102,9 @@ public class pojectEController {
 				 re.put("rTitle",rdto.get(i).getrTitle());
 				 re.put("rContent", rdto.get(i).getrContent());
 				 re.put("rWriter_date", rdto.get(i).getrWriter_date());
-				 
+				 re.put("cNickname", rdto.get(i).getcNickname());
+				 re.put("cPoto", rdto.get(i).getcPoto());
+				 re.put("rPoint",rdto.get(i).getrPoint());
 				 review_list.add(re);
 			 }
 			 
@@ -223,6 +217,16 @@ public class pojectEController {
 		String remainSeat = aDAO.selectAp_count(dSaup_no, aDate) + "";
 		
 		return remainSeat;
+	}
+	
+	//리뷰 Detail
+	@RequestMapping("reviewDetail")
+	public String reviewDetail(HttpServletRequest request,Model model) {
+		model.addAttribute("request", request);
+		command=new ReviewDetailCommand();
+		command.execute(sqlSession, model);
+		
+		return "board/reviewDetail";
 	}
 
 }

@@ -31,6 +31,11 @@ public class LoginController {
 	private Command command;
 	
 	
+	@RequestMapping("index")
+	public String goIndex() {
+		
+		return "redirect:/";
+	}
 	
 	@RequestMapping("loginChoicePage")
 	public String loginChoicePage() {

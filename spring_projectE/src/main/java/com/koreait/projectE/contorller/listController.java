@@ -4,7 +4,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -26,10 +25,11 @@ public class listController {
 		command.execute(sqlSession, model);
 		return "index";
 	}
+	
 	@RequestMapping("main")
 	public String goMain(Model model) {
-		/*command= new ListCommand();
-		command.execute(sqlSession, model);*/
+		command= new ListCommand();
+		command.execute(sqlSession, model);
 		
 		return "main";
 	}

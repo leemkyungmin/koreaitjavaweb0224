@@ -31,13 +31,13 @@ public class boardViewCommand implements Command {
 		bdao.DepartRatingUpdate(dSaup_no);
 		
 		//view 페이지 업체 정보 가져오기 
-		model.addAttribute("deptDTO", bdao.DepartView(dSaup_no));
+		DepartmentDTO deptDTO =bdao.DepartView(dSaup_no);
+		model.addAttribute("deptDTO", deptDTO);
 		
-		
-		String address =bdao.DepartView(dSaup_no).getdAddress();
+		String address =deptDTO.getdAddress();
 		String[] addr =address.split(" ");
 		
-		ArrayList<DepartmentDTO> side_list = bdao.getSide_list(addr[1]);
+		ArrayList<DepartmentDTO> side_list = bdao.getSide_list(addr[1],deptDTO.getdName());
 		model.addAttribute("side_list", side_list);
 		
 		//appointment(예약자 db)에서 총 예약 갯수 가져오기
