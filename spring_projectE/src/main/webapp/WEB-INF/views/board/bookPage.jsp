@@ -144,18 +144,29 @@
 		}
 		
 		.contents {
-			width:50%;
-			margin:auto;
+			width: 80%;
+			margin: auto;
 		}
 		
 		.deactive {
 			display: none;
 		}
 		
+		.custInfo {
+			float: left;
+			margin-left: 50px;
+		}
+		
+		.custInfo_textbox {
+			border: 0;
+		}
+		
+		.appointInfo {
+			float: left;
+		}
+		
 		.appintment_table {
 			width: 100%;
-			margin-left: 100px;
-			margin-bottom: 20px;
 		}
 		
 		.appintment_table tr {
@@ -185,13 +196,16 @@
 		}
 		
 		.submit_btn_wrap {
-			width: 100%;
+			float: right;
+			width: 200px;
 			text-align: center;
+			margin-right: 50px;
 		}
 		
 		.submit_btn {
 			padding: 5px;
-			width: 50%;
+			width: 100%;
+			height: 50px;
 			border: 0;
 		}	
 		
@@ -213,14 +227,12 @@
 
 		<div class="calendar" >
 			<div class="navigation">
-				<a class="before_after_year" href="calendar?year=${today_info.search_year-1}&month=${today_info.search_month-1}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;&lt;</a> 
-				<a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;</a> 
+				<a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;</a> 
 				<span class="this_month">
 					&nbsp;${today_info.search_year}. 
 					<c:if test="${today_info.search_month<10}">0</c:if>${today_info.search_month}
 				</span>
-				<a class="before_after_month" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;</a> 
-				<a class="before_after_year" href="calendar?year=${today_info.search_year+1}&month=${today_info.search_month-1}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;&gt;</a>
+				<a class="before_after_month" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;</a> 
 			</div>
 
 			<table class="calendar_body">
@@ -285,7 +297,7 @@
 			} else {
 				$('#myForm').removeClass('deactive');
 				$('.text_type1').val('${today_info.search_year}년 ${today_info.search_month}월 ' + da + '일');
-				$('#aDate_day_hidden').val('${today_info.search_year} ${today_info.search_month} ' + da);
+				$('#aDate_day_hidden').val('${today_info.search_year}${today_info.search_month}' + da);
 				// 클릭한 해당 td 색 변하게
 				if (id == null) {
 					$('#' + da).removeClass('dayCSS');
@@ -304,7 +316,7 @@
 			$.ajax({
 				url: 'getRemainSeatANDTime',
 				method: 'post',
-				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year} ${today_info.search_month} ' + da} ,
+				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year}${today_info.search_month}' + da} ,
 				dataType: 'text',
 				success: function(data){
 					$('.remainPerson').empty();
@@ -319,12 +331,16 @@
 		
 		function aP_countCHK(form) {
 			var aP_count = $('#aP_count_textbox').val();
-			var date =$('#aDate_day_textbox').val();
+			var date =$('#aDate_day_hidden').val();
 			var time = $('.select_aDate_hour').val();
 			
 			// Number.isInteger()사용시, 인터넷익스플로러에 적용되지 않으며, 정규식을 사용해야 적용됨.
 			if (Number.isInteger(aP_count*1) == false) {
 				alert('예약 인원을 확인해주세요.');
+				return;
+			}
+			
+			if (!confirm('예약하시겠습니까?')) {
 				return;
 			}
 			
@@ -352,43 +368,43 @@
 	
 	<form name="appointment_form" method="post">
 		<div id="myForm" class="contents deactive">
-			<div>
-				<table>
-					<tr>
-						<td>예약자 :</td>
-						<td><input type="text" name="" value="" readonly/></td>
-					</tr>
-					<tr>
-						<td>연락처 :</td>
-						<td><input type="text" name="" value="" readonly/></td>
-					</tr>
-				</table>
-			</div>
-			<div>
-				<table class="appintment_table">
-					<tr>
-						<td class="text_subject">날짜 :</td>
-						<td class="text_desc">
-							<input id="aDate_day_textbox" type="text" class="text_type1" readonly/>
-							<input id="aDate_day_hidden" type="hidden" name="aDate_day" />
-						</td>
-					</tr>
-					<tr>
-						<td class="text_subject">시간 :</td>
-						<td class="text_desc remainPerson">		
-						</td> 
-					</tr>
-					<tr>
-						<td class="text_subject">인원 :</td>
-						<td class="text_desc selectAp_count">
-							<input id="aP_count_textbox" type="text" name="aP_count" placeholder="숫자" size="1" /> 명
-						</td>
-					</tr>
-				</table>
-			</div>
+				<div class="custInfo">
+					<table>
+						<tr>
+							<td>예약자 :</td>
+							<td><input class="custInfo_textbox" type="text" name="" value="${cDTO.cName}" size="13" readonly/></td>
+						</tr>
+						<tr>
+							<td>연락처 :</td>
+							<td><input class="custInfo_textbox" type="text" name="" value="${cDTO.cPhone}" size="13" readonly/></td>
+						</tr>
+					</table>
+				</div>
+				<div class="appointInfo">
+					<table class="appintment_table">
+						<tr>
+							<td class="text_subject">날짜 :</td>
+							<td class="text_desc">
+								<input id="aDate_day_textbox" type="text" class="text_type1" readonly/>
+								<input id="aDate_day_hidden" type="hidden" name="aDate_day" />
+							</td>
+						</tr>
+						<tr>
+							<td class="text_subject">시간 :</td>
+							<td class="text_desc remainPerson">		
+							</td> 
+						</tr>
+						<tr>
+							<td class="text_subject">인원 :</td>
+							<td class="text_desc selectAp_count">
+								<input id="aP_count_textbox" type="text" name="aP_count" placeholder="숫자" size="1" /> 명
+							</td>
+						</tr>
+					</table>
+				</div>
 			<div class="submit_btn_wrap">
 				<input class="submit_btn" type="button" value="예약하기" onclick="aP_countCHK(this.form)"/>
-				<input type="hidden" name="cNo" value="${cNo}" />
+				<input type="hidden" name="cNo" value="${cDTO.cNo}" />
 				<input type="hidden" name="dSaup_no" value="${deptDTO.dSaup_no}" />
 			</div>
 		</div>

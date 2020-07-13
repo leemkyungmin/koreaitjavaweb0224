@@ -23,12 +23,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.koreait.projectE.command.AppointmentInsertCommand;
+import com.koreait.projectE.command.ReviewDetailCommand;
 import com.koreait.projectE.command.ReviewInsertCommand;
 import com.koreait.projectE.command.boardViewCommand;
 import com.koreait.projectE.command.reviewWriteCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.AppointmentDAO;
 import com.koreait.projectE.dao.BoardDAO;
+import com.koreait.projectE.dao.LoginDAO;
+import com.koreait.projectE.dto.CustomerDTO;
 import com.koreait.projectE.dto.DateData;
 import com.koreait.projectE.dto.DepartmentDTO;
 import com.koreait.projectE.dto.ReviewDTO;
@@ -71,15 +74,6 @@ public class pojectEController {
 		return "redirect:viewPage?dSaup_no="+mrequest.getParameter("dSaup_no");
 	}
 	
-	//테스트용 
-	@RequestMapping("insertPage")
-	public String insertPage(@RequestParam("dSaup_no") String dSaup_no,@RequestParam("cNo") int cNo,Model model) {
-		
-		model.addAttribute("dSaup_no", dSaup_no);
-		model.addAttribute("cNo", cNo);
-		
-		return "board/insertPage";
-	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value="getReview", produces="application/json; charset=utf-8")
@@ -110,7 +104,9 @@ public class pojectEController {
 				 re.put("rTitle",rdto.get(i).getrTitle());
 				 re.put("rContent", rdto.get(i).getrContent());
 				 re.put("rWriter_date", rdto.get(i).getrWriter_date());
-				 
+				 re.put("cNickname", rdto.get(i).getcNickname());
+				 re.put("cPoto", rdto.get(i).getcPoto());
+				 re.put("rPoint",rdto.get(i).getrPoint());
 				 review_list.add(re);
 			 }
 			 
@@ -170,10 +166,15 @@ public class pojectEController {
 		model.addAttribute("today_info", today_info); // 오늘 날짜에 대한 정보
 		
 		String dSaup_no = request.getParameter("dSaup_no");
+		int cNo = Integer.parseInt(request.getParameter("cNo"));
+		
 		BoardDAO bDAO = sqlSession.getMapper(BoardDAO.class);
 		DepartmentDTO deptDTO = bDAO.DepartView(dSaup_no);
 		model.addAttribute("deptDTO", deptDTO);
-		model.addAttribute("cNo", request.getParameter("cNo"));
+		
+		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
+		CustomerDTO cDTO = lDAO.selectBycNo(cNo);
+		model.addAttribute("cDTO", cDTO);
 		
 		return "board/bookPage";
 	}
@@ -190,7 +191,9 @@ public class pojectEController {
 	@ResponseBody
 	public String getRemainSeatANDTime(HttpServletRequest request) {
 		 String dSaup_no = request.getParameter("dSaup_no");
+		 System.out.println(dSaup_no);
 		 String aDate = request.getParameter("aDate");
+		 System.out.println(aDate);
 		 		 
 		 BoardDAO bDAO = sqlSession.getMapper(BoardDAO.class);
 		 DepartmentDTO deptDTO = bDAO.DepartView(dSaup_no);
@@ -223,6 +226,16 @@ public class pojectEController {
 		String remainSeat = aDAO.selectAp_count(dSaup_no, aDate) + "";
 		
 		return remainSeat;
+	}
+	
+	//리뷰 Detail
+	@RequestMapping("reviewDetail")
+	public String reviewDetail(HttpServletRequest request,Model model) {
+		model.addAttribute("request", request);
+		command=new ReviewDetailCommand();
+		command.execute(sqlSession, model);
+		
+		return "board/reviewDetail";
 	}
 
 }

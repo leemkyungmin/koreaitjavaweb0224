@@ -57,14 +57,15 @@
 				
 				if(data.length>0){
 					for(i=0; i<data.length; i++){
+					
 						html+='<li class="RestaurantReviewItem RestaurantReviewList__ReviewItem">';
-						html+='<button class="RestaurantReviewItem__Link" onclick="fn_reviewDetail(${review.rNo})">';
+						html+='<button class="RestaurantReviewItem__Link" onclick="fnMove()" data-remote="reviewDetail?rNo='+${review.rNo }+'" data-toggle="modal" data-target="#myModal">';
 		    			html+='<div class="RestaurantReviewItem__User">';
 		       
 		    			html+='<div class="RestaurantReviewItem__UserPictureWrap">';
-		    			html+='<img class="RestaurantReviewItem__UserPicture loaded" data-src="https://mp-seoul-image-production-s3.mangoplate.com/1407183_1563215702669?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" alt="user profile picture" src="https://mp-seoul-image-production-s3.mangoplate.com/1407183_1563215702669?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true">';
+		    			html+='<img class="RestaurantReviewItem__UserPicture loaded" alt='+data[i].cPoto+' src="${pageContext.request.contextPath }/resources/storage/user_img/'+data[i].cPoto+'">';
 		    			html+='</div>';
-			      
+			      		html +='<span class="RestaurantReviewItem__UserNickName">'+data[i].cNickname+'</span>';
 			     	
 		      
 				      	html+='</div>';
@@ -80,8 +81,19 @@
 				      	html+='<span class="RestaurantReviewItem__ReviewDate">'+data[i].rWriter_date+'</span>';
 				      	html+='</div>';
 				      	html+='</div>';
-				      	html+='<div class="RestaurantReviewItem__Rating RestaurantReviewItem__Rating--Ok">';
-				      	html+='<span class="RestaurantReviewItem__RatingText">괜찮다</span>';
+				      	html+='<div class="RestaurantReviewItem__Rating RestaurantReviewItem__Rating--DoNotRecommend">';
+				    	html+='<span class="RestaurantReviewItem__RatingText">';
+						if(data[i].rPoint>=4){
+							html+='<i class="far fa-smile fa-3x"></i><span>좋다</span>';
+		
+						}else if(data[i].rPoint<=2){
+							html+='<i class="far fa-angry fa-3x"></i><span>별로</span>';
+						}else if(data[i].rPoint==3){
+							html+='<i class="far fa-smile fa-3x"></i><span>보통</span>';
+						}
+				    		
+						html+='</span></div>';
+							  
 				      	html+='</div>';  
 				      	html+='</button>';
 				      	html+='</li>';	
@@ -156,7 +168,7 @@
 </head>
 
 <body>
-
+	
 	<c:set var="img" value="${deptDTO.dPhoto }"></c:set>
 	
 	<div class="top-image" style="position:relative;">
@@ -187,14 +199,14 @@
 	
 	                <div class="restaurant_action_button_wrap">
 	
-	                  <button class="review_writing_button" data-remote="reviewWritePage?dSaup_no=${deptDTO.dSaup_no}&cNo=1"
+	                  <button class="review_writing_button" onclick="fnMove()" data-remote="reviewWritePage?dSaup_no=${deptDTO.dSaup_no}&cNo=1"
 						data-toggle="modal" data-target="#myModal">
 	                    <i class="fas fa-pen fa-3x"></i>
 	                    <p class="review_writing_button_text">리뷰쓰기</p>
 	                  </button>
 	
 	                 
-	                    <button class="btn-type-icon favorite wannago_btn "  data-remote="calendar?dSaup_no=${deptDTO.dSaup_no}&cNo=1"
+	                    <button class="btn-type-icon favorite wannago_btn " onclick="fnMove()"  data-remote="calendar?dSaup_no=${deptDTO.dSaup_no}&cNo=1"
 	                    data-toggle="modal" data-target="#myModal">
 		                    <i class="far fa-calendar-check fa-3x"></i>
 		                    <p class="wannago_txt">예약하기</p>
@@ -354,7 +366,7 @@
 				
 				        // 인포윈도우로 장소에 대한 설명을 표시합니다
 				        var infowindow = new kakao.maps.InfoWindow({
-				            content: '<div style="width:150px;text-align:center;padding:6px 0;">${deptDTO.dName}</div>'
+				            content: '<div style="width:150px;text-align:center;padding:6px 0;">${deptDTO.dName}<strong class="rate-point "><span>${deptDTO.dRating }</span></strong></div>'
 				        });
 				        infowindow.open(map, marker);
 				
@@ -364,16 +376,6 @@
 				});    
 				</script>
 	            </div>
-				
-				<div class="modal fade" id='Modal' tabindex="-1" role="dialog" aria-labelledby="historyModalLabel" aria-hidden="true" data-backdrop="static">
-					<div class="modal-dialog modal-xl" role="document" data-backdrop="static">
-			    		
-			    		<div class="modal-content" data-backdrop="static">
-			    		</div>
-			  		</div>
-			  		<div class="modal_layer" data-backdrop="static"></div>
-				</div>
-				
 				<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				 	<div class="modal-header" data-backdrop="static">
 				    	<!-- data-dismiss="modal" -->
@@ -396,14 +398,14 @@
 						var modal = $(this);
 						modal.find('.modal-body').load(button.data("remote"));
 					});
-					
-					
-					
-					
-					
-					
-					
-					
+					function fnMove(){
+				        var offset = $("#reviewListFocusId" ).offset();
+				        var top =offset.top-200;  
+				        $('html,body ').animate({scrollTop : offset.top});
+				    }
+
+
+				
 				</script>
 				
 				
@@ -450,11 +452,11 @@
 	              
 				<c:forEach var ="review" items="${reviewList }">
 					<li class="RestaurantReviewItem RestaurantReviewList__ReviewItem">
-	  				<button class="RestaurantReviewItem__Link" onclick="fn_reviewDetail(${review.rNo})">
+	  				<button class="RestaurantReviewItem__Link" onclick="fnMove()"  data-remote="reviewDetail?rNo=${review.rNo }" data-toggle="modal" data-target="#myModal">
 	    			<div class="RestaurantReviewItem__User">
 	       
 		      	<div class="RestaurantReviewItem__UserPictureWrap">
-		       		 <img class="RestaurantReviewItem__UserPicture loaded" data-src="https://mp-seoul-image-production-s3.mangoplate.com/1407183_1563215702669?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" alt="user profile picture" src="https://mp-seoul-image-production-s3.mangoplate.com/1407183_1563215702669?fit=around|56:56&amp;crop=56:56;*,*&amp;output-format=jpg&amp;output-quality=80" data-was-processed="true">
+		       		 <img class="RestaurantReviewItem__UserPicture loaded" alt="${review.cPoto }" src="${pageContext.request.contextPath }/resources/storage/user_img/${review.cPoto }">
 		     	 </div>
 		      
 		     	  
@@ -477,14 +479,26 @@
 			         	 ${review.rContent }
 			        </p>
 					
-		       		 <span class="RestaurantReviewItem__ReviewDate">2020-02-22</span>
+		       		 <span class="RestaurantReviewItem__ReviewDate">${review.rWriter_date }</span>
 				      </div>
 				      
 			      
 			    </div>
-			
-			    <div class="RestaurantReviewItem__Rating RestaurantReviewItem__Rating--Ok">
-			      <span class="RestaurantReviewItem__RatingText">맛있다.</span>
+				<div class="RestaurantReviewItem__Rating RestaurantReviewItem__Rating--DoNotRecommend">
+			    	<span class="RestaurantReviewItem__RatingText">
+					<c:if test="${review.rPoint >=4 }">
+						<i class="far fa-smile fa-3x"></i>
+						<span>좋다</span>
+					</c:if>
+					<c:if test="${review.rPoint <=2 }">
+						<i class="far fa-angry fa-3x"></i>
+						<span>별로</span>
+					</c:if>
+					<c:if test="${ review.rPoint==3}">
+						<i class="far fa-smile fa-3x"></i>
+						<span>보통</span>
+					</c:if>
+				</span>
 			    </div>
 			     			    
 			  	</button>
@@ -492,16 +506,14 @@
 				</c:forEach>
 	            
 				</ul>
-				</div>
+				
 				<c:if test="${empty reviewList }">
 		            <div class="RestaurantReviewList__Empty">
 		              <span class="RestaurantReviewList__EmptyTitle">아직 작성된 리뷰가 없네요.</span>
 		              <span class="RestaurantReviewList__EmptyDescription">해당 식당의 첫 리뷰를 작성해주시겠어요?</span>
 		            </div>
 				</c:if>
-	            <div class="RestaurantReviewList__MoreReviewButton" role="button">
-	              더보기
-	            </div>
+	           </div>
 	          </section>
 	      </div>
 	   </div>
