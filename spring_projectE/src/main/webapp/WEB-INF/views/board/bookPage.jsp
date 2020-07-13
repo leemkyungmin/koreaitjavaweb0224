@@ -169,13 +169,15 @@
 		
 		.custInfo_textbox {
 			border: 0;
+			width: 100%;
+			font-size: 18px;
 		}
 		
 		.appointInfo {
 			float: left;
 		}
 		
-		.appintment_table {
+		.appointment_table {
 			width: 100%;
 		}
 		
@@ -184,14 +186,14 @@
 		}
 		
 		.text_subject{
-			width: 20%;
+			width: 35%;
 		    font-size: 18px;
 		    vertical-align: middle;
 		    text-align: center;
 		}
 		
 		.text_desc {
-			width: 80%;
+			width: 65%;
 		}
 		
 		.text_type1 {
@@ -411,19 +413,19 @@
 	<form name="appointment_form" method="get">
 		<div id="myForm" class="contents deactive">
 				<div class="custInfo">
-					<table>
+					<table class="appointment_table">
 						<tr>
-							<td>예약자 :</td>
-							<td><input class="custInfo_textbox" type="text" name="" value="${cDTO.cName}" size="13" readonly/></td>
+							<td class="text_subject">예약자 :</td>
+							<td class="text_desc"><input class="custInfo_textbox" type="text" name="" value="${cDTO.cName}" size="13" readonly/></td>
 						</tr>
 						<tr>
-							<td>연락처 :</td>
-							<td><input class="custInfo_textbox" type="text" name="" value="${cDTO.cPhone}" size="13" readonly/></td>
+							<td class="text_subject">연락처 :</td>
+							<td class="text_desc"><input class="custInfo_textbox" type="text" name="" value="${cDTO.cPhone}" size="13" readonly/></td>
 						</tr>
 					</table>
 				</div>
 				<div class="appointInfo">
-					<table class="appintment_table">
+					<table class="appointment_table">
 						<tr>
 							<td class="text_subject">날짜 :</td>
 							<td class="text_desc">

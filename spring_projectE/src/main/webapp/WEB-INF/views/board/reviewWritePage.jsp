@@ -53,11 +53,6 @@
 			margin-bottom: 10px;
 		}
 		
-		img {
-			width: 30px;
-			height: 30px;
-		}
-		
 		.ReviewWritenPage_FormWrap {
 			width: 687px;
 			position: relative;
@@ -102,6 +97,12 @@
 			width: 687px;
 			margin-bottom: 22px;
 			position: relative;
+		}
+		
+		.notice {
+			font-size: 12px;
+			color: red;
+			margin-bottom: 5px;
 		}
 		
 		.ReviewWritenPage_TextLength {
@@ -310,7 +311,8 @@
 				</div>
 				<div class="ReviewWritenPage_TextWrap">
 					<div class="ReviewWritenPage_PictureWrap">
-						<input type="file" id="input_file" name="rPoto" multiple />
+						<input type="file" id="input_file" name="rPoto" multiple /> 
+						<a class="notice">10MB이하의 파일만 업로드 가능합니다.</a>
 					</div>
 				</div>
 			</div>
