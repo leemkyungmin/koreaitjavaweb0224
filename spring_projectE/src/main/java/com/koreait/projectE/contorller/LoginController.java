@@ -41,7 +41,8 @@ public class LoginController {
 	}
 	
 	@RequestMapping("loginChoicePage")
-	public String loginChoicePage() {
+	public String loginChoicePage(HttpServletRequest request) {
+		
 		return "login/loginChoicePage";
 	}
 	
@@ -205,7 +206,7 @@ public class LoginController {
 			session.invalidate();
 		}
 		
-		return "index";
+		return "redirect:loginChoicePage";
 		
 	}
 	
@@ -228,6 +229,15 @@ public class LoginController {
 	public String nicknameUpdate(@RequestParam("cNo")int cNo ,@RequestParam("cNickname") String cNickname) {
 		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
 		return lDAO.nicknameUpdate(cNickname, cNo) + "";
+	}
+	
+	
+	//사용자 아이디 비밀번호 찾기 
+	
+	@RequestMapping("findUserIdPw")
+	public String goFindUserId() {
+		
+		return "login/findUserIdPw";
 	}
 	
 	

@@ -1,4 +1,4 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -28,50 +28,14 @@
 </style>
 
 <script type="text/javascript">
-	
-	$(document).on("click", "#checkAll", function(){
-		if( (! $('#checkAll').attr('checked')){
-			$('.checkSelect').attr('checked', false);
-		} else {
-			$('.checkSelect').attr('checked', 'checked');
-		});
-	});
-		
-	$(document).on("click", ".checkSelect", function(){
-		$("#checkAll").attr('checked', false);
-	});
-	
-	function fn_cus_list(){
-		document.getElementById("custom").style.display='block';
-		document.getElementById("dept").style.display='none';
-		
-	}
-	function fn_dept_list(){
-		document.getElementById("dept").style.display='block';
-		document.getElementById("custom").style.display='none';	
-	}
-	$(function(){
-		$('#RowCheck').click(function(){
-			alert($('#RowCheck').checked);
-			if($(this).checked==false){
-				$('#allCheck').checked=false;
+	$(function (){
+		$("#allCheck").click(function(){
+			if($("#allCheck").prop("checked")) {
+				$("input[type=checkbox]").prop("checked", true);
+			} else {
+				$("input[type=checkbox]").prop("checked",false);
 			}
 		});
-		
-		$('#searchBtn').click(function(){
-			ajax({
-				url:'searchQuery',
-				data:'query='+$('#query').val(),
-				success:function(data){
-					$('#user_info').empty();
-					$('#user_info').append(data);
-				},
-				error:function(){
-					alert('ajax통신 실패');
-				}
-			});
-		})
-		
 	});
 	
 	
@@ -85,12 +49,32 @@
 	<br/><br/>
 	
 	
-		
+	
+	<script type="text/javascript">
+	$('#deleteBtn').click(function(){
+		$('input:checkbox[name=test]:checked').each(function (){
+			alert($(this).val());
+				$.ajax({
+					type:"POST",
+					url:'deleteUser',
+					data:'cNo='+$(this).val(),
+					success:function(result){
+							
+					},error:function(){
+						
+					}
+				});
+			 
+		});
+	});
+	</script>
+	
+	
 	<div id="custom" style="display: block; width:760px; height:100px; margin: 0 auto; overflow:auto; ">
 	<table border="1">
-		<thead>
+		<thead id="user_info">
 			<tr>
-				<td><input id="checkAll" name="" type="checkbox" /></td>
+				<th><input type="checkbox" id="allCheck"/>
 				<td>아이디</td>
 				<td>번호</td>
 				<td>이름</td>
@@ -101,10 +85,10 @@
 				<td>등급</td>
 				<td>성별</td>
 			</tr>
-		</thead id="user_info">	
-			<c:forEach var="user" items="${cList }">
+		</thead>	
+			<c:forEach var="user" items="${cList }" >
 			<tr>	
-				<td><input name="chk_box" type="checkbox" class="checkSelect"/></td>
+				<td><input type="checkbox" id="test" name=test value="${user.cNo }"/></td>
 				<td><a href="UpdateUser?cNo=${user.cNo }">${user.cId }</a></td>			
 				<td>${user.cNo }</td>				
 				<td>${user.cName }</td>			
@@ -134,12 +118,14 @@
 			</c:forEach>
 	</table>
 	</div>
+	<button id="deleteBtn" style= "width:100px; height:20px; margin: 0 auto;" >삭제</button>
 	<br/><br/>
 	
 	<button id="dept_btn" onclick="fn_dept_list()" style="display: block; width:480px; margin: 0 auto;" ><h3>업체관리</h3></button>
 	<br/><br/>
 	
-	<div id="dept" style="display: block; width:750px; margin: 0 auto;" >	
+	
+	<div id="dept" style="display: block; width:750px; height:800px; margin: 0 auto; overflow:auto" >	
 		<table border="1">
 			<thead>
 				<tr>
@@ -147,23 +133,39 @@
 					<td>사업자 등록번호</td>
 					<td>사업체명</td>
 					<td>전화번호</td>
-					<td>주소</td>
-					<td>사업체 등급</td>
 				</tr>
 			</thead>
 			<c:forEach var="dept" items="${dList }">
-				<tr>
+				<tr>		
 					<td>${dept.dNo }</td>
-					<td>${dept.dSaup_no}</td>
+					<td><a href="UpdateDepartment?dNo=${dept.dNo }">${dept.dSaup_no }</a></td>
 					<td>${dept.dName }</td>
 					<td>${dept.dPhone }</td>
-					<td>${dept.dAddress }</td>
-					<td>${dept.dRating }</td>
-					
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
+	
+	
+	
+	<!-- 업체 승인 관리 -->
+	
+	<script type="text/javascript">
+	
+/* 		function deptAccpet() {
+			$.ajax({
+				url: 'deptAccept',
+				method: 'get',
+				dataType: 'text',
+				success: function (data) {
+					
+				}
+			});
+		} */
+	
+	</script>
+	
+	<button onclick="location.href='deptAccpet'">업체 승인 관리</button>
 	
 
 </body>

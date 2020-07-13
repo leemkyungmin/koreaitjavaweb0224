@@ -82,7 +82,8 @@
 	<script>
 		
 	function fn_goInput(f){
-		var a = document.getElementById("aa").innerText;
+
+		var a = document.getElementById("aa")).innerText;
 		document.getElementById("search-input").value=a;
 		};
 	
@@ -97,26 +98,33 @@
  		<div class="search-wrap">
 	 		<div class="main-search">
 				<div class="icon-box"><i class="fas fa-search"></i></div>
-				<form class="search-form" action="">
+				<form class="search-form" action="searchPage">
 				<input id="search-input" class="HomeSearchInput" name="main-search" type="text" maxlength="50" placeholder="지역, 식당 또는 음식" autocomplete="off" >
-				<input class="btn-search" type="submit" value="검색" onclick="">
+				<input class="btn-search" type="submit" value="검색">
+
     			</form>
 				<div class="invisible" style="display: none">
 			       <div class="item"><a href="#" onclick="fn_goInput(this.value)" id="aa">test</a></div>
+
     			</div>
 			</div>					
-		</div>		
+		</div>
+		
 		
 		<video autoplay loop muted>
 			<source src="<c:url value="/resources/assets/video/indexvideo01.mp4" />" type="video/mp4">
 		</video>
 	</div>
 	
+<<<<<<< HEAD
+=======
+	${sessionScope }
+	
+	
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 	<a href="viewPage?dSaup_no=11111111111">view페이지 테스트</a><br/><br/>
 
 	<a href="loginChoicePage">테스트용 로그인하러가기</a> <!-- 테스트용 수정하셔도 됩니다. -->
-	<br/>
-	<a href="calendar?&dSaup_no=11111111111&cNo=1">book페이지</a>
 	
 	<%@ include file="main.jsp" %>
 	

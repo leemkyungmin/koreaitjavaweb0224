@@ -53,11 +53,6 @@
 			margin-bottom: 10px;
 		}
 		
-		img {
-			width: 30px;
-			height: 30px;
-		}
-		
 		.ReviewWritenPage_FormWrap {
 			width: 687px;
 			position: relative;
@@ -102,6 +97,12 @@
 			width: 687px;
 			margin-bottom: 22px;
 			position: relative;
+		}
+		
+		.notice {
+			font-size: 12px;
+			color: red;
+			margin-bottom: 5px;
 		}
 		
 		.ReviewWritenPage_TextLength {
@@ -187,54 +188,34 @@
 			margin-bottom: 9px;
 		}
 		
+		#star_grade a{
+			display: inline-block;
+			font-size: 32px;
+       		text-decoration: none;
+    	    color: gray;
+    	    width: 32px;
+	    }
+	    
+	    #star_grade a.on{
+	        color: red;
+	    }
+		
+		
 	</style>
 	
 	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script type="text/javascript">
 	
-		// 별점 스크립트
-		var locked = 0;
-		
-		function show(star) {
-			if (locked)
-				return;
-			
-			var i;
-			var image;
-			var el;
-			
-			for (i=1; i<=star; i++) {
-				image = 'image' + i;
-				el = document.getElementById(image);
-				el.src = 'resources/assets/images/star-solid.svg';
-			}
-		}
-		
-		function noshow(star) {
-			if (locked)
-				return;
-			
-			var i;
-			var image;
-			var el;
-			
-			for (i=1; i<=star; i++) {
-				image='image' + i;
-				el = document.getElementById(image);
-				el.src = 'resources/assets/images/star-regular.svg';
-			}
-		}
-		
-		function lock(star) {
-			show(star);
-			locked = 1;
-		}
-		
+		// 별점 스크립트		
 		function mark(star) {
-			lock(star);
-			document.myForm.rPoint.value=star; // 평점 값 전송
+			document.myForm.star.value=star;
 		}
 		
+		$('#star_grade a').click(function(){
+            $(this).parent().children("a").removeClass("on"); /* 별점의 on 클래스 전부 제거 */ 
+            $(this).addClass("on").prevAll("a").addClass("on"); /* 클릭한 별과, 그 앞 까지 별점에 on 클래스 추가 */
+            return false;
+        });
 		
 		// 리뷰 글자수 계산 스크립트
 		// 제목/리뷰내용을 작성해야 버튼 활성화
@@ -291,28 +272,38 @@
 
 </head>
 <body>
-	<c:if test="${sessionScope.cId==null }">
+	<c:if test="${sessionScope.dSaup_No !=null }">
+		<script type="text/javascript">
+			alert('기업 회원은 리뷰 작성이 불가능합니다.');
+			location.href='viewPage?dSaup_no='+${deptDTO.dSaup_no};
+			
+		</script>
+	</c:if>	
+	<c:if test="${sessionScope.cId==null && sessionScope.dSaup_No ==null }">
 		<script type="text/javascript">
 		
-			alert('로그인후 리뷰 작성이 가능합니다 . 로그인 페이지로 이동합니다.');
-			location.href='loginChoicePage';
+			alert('로그인후 리뷰 작성이 가능합니다 . 로그인후 이용해주세요');
+			location.href='logout';
 			
 		</script>
 	</c:if>
-		
+	
    	<form name="myForm" method="post" enctype="multipart/form-data">
 		<div class="ReviewWritenpage_Container">
 			<div class="ReviewWritenpage_DeptName">
 				<strong class="DeptName">${deptDTO.dName }</strong>
 			</div>
-			<div class="ReviewPoint">
-				<img id="image1" onmouseover=show(1) onclick="mark(1)" onmouseout=noshow(1) alt="별" src="resources/assets/images/star-regular.svg">
-				<img id="image2" onmouseover=show(2) onclick="mark(2)" onmouseout=noshow(2) alt="별" src="resources/assets/images/star-regular.svg">
-				<img id="image3" onmouseover=show(3) onclick="mark(3)" onmouseout=noshow(3) alt="별" src="resources/assets/images/star-regular.svg">
-				<img id="image4" onmouseover=show(4) onclick="mark(4)" onmouseout=noshow(4) alt="별" src="resources/assets/images/star-regular.svg">
-				<img id="image5" onmouseover=show(5) onclick="mark(5)" onmouseout=noshow(5) alt="별" src="resources/assets/images/star-regular.svg">
+			<div class="ReviewPoint">				
+				<p id="star_grade">
+			        <a onclick="mark(1)">★</a>
+			        <a onclick="mark(2)">★</a>
+			        <a onclick="mark(3)">★</a>
+			        <a onclick="mark(4)">★</a>
+			        <a onclick="mark(5)">★</a>
+				</p>
 				<input id="star" type="hidden" name="rPoint"/>
 			</div>
+			
 			<div class="ReviewWritenPage_ContentWrap">
 				<div class="ReviewWritenPage_FormWrap">
 					<div class="ReviewWritenPage_Content">
@@ -327,7 +318,8 @@
 				</div>
 				<div class="ReviewWritenPage_TextWrap">
 					<div class="ReviewWritenPage_PictureWrap">
-						<input type="file" id="input_file" name="rPoto" multiple />
+						<input type="file" id="input_file" name="rPoto" multiple /> 
+						<a class="notice">10MB이하의 파일만 업로드 가능합니다.</a>
 					</div>
 				</div>
 			</div>
