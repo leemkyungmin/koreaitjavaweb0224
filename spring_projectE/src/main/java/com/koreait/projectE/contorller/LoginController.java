@@ -21,6 +21,8 @@ import com.koreait.projectE.command.DeptSignUpCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.LoginDAO;
 import com.koreait.projectE.dto.CustomerDTO;
+import com.koreait.projectE.dto.DepartmentLoginDTO;
+import com.koreait.projectE.dto.DepartmentDTO;
 
 
 @Controller
@@ -136,6 +138,26 @@ public class LoginController {
 			request.getSession().setAttribute("cId", cDTO.getcId());
 			request.getSession().setAttribute("cNo", cDTO.getcNo());
 			request.getSession().setAttribute("cNickname", cDTO.getcNickname());
+			result = "1";
+		}
+				 
+		return result;
+	}
+	
+	@RequestMapping(value="departmentLogin", method=RequestMethod.POST,produces="text/html; charset=utf-8")
+	@ResponseBody
+	public String departmentLogin(HttpServletRequest request) {
+		
+		String dId = request.getParameter("dId");
+		String dPw = request.getParameter("dPw");
+		
+		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
+		DepartmentLoginDTO dDTO = new DepartmentLoginDTO();
+		dDTO = lDAO.departmentLogin(dId, dPw);
+		String result = "0";
+		if (dDTO != null) {
+			request.getSession().setAttribute("dId", dDTO.getdId());
+			request.getSession().setAttribute("dSaup_No", dDTO.getdSaup_no());
 			result = "1";
 		}
 				 

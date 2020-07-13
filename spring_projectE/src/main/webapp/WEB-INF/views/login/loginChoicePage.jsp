@@ -52,7 +52,9 @@
 	}
 	</style>
 	<script type="text/javascript">
+		
 	
+		// 일반회원 로그인
 		$(function(){
 			
 			$('#login').click(function(){
@@ -75,6 +77,32 @@
 				});
 			}); // login.click
 		}); // function({})
+		
+		// 사업자 로그인
+		
+		$(function(){
+			
+			$('#login_dept').click(function(){
+				$.ajax({
+					url:'departmentLogin',
+					type:'POST',
+					data: 'dId=' + $('#dId').val() + '&dPw=' + $('#dPw').val(),
+					success:function(data){
+						if (data == '1'){
+							alert('로그인 성공');
+							location.href = 'index';
+						} else {
+							alert('로그인 실패');
+						} 
+							
+					},
+					error:function() {
+						alert('AJAX 통신 실패');
+					}
+				});
+			}); // login.click
+		}); // function({})
+		
 		
 		$(document).ready(function(){
 			
@@ -157,7 +185,7 @@
           </label>
         </div>
         <div style="text-align: center;">
-        	<a href="#">아이디/비밀번호 찾기</a> <br/>
+        	<a href="#">아이디</a>/<a href="#">비밀번호 찾기</a> <br/>
         	<a href="customerSignUp">회원가입</a>
         </div>
         <input id="login" name="login" class="btn btn-lg btn-primary btn-block" type="button" value="로 그 인" />
@@ -183,10 +211,10 @@
           </label>
         </div>
         <div style="text-align: center;">
-        	<a href="#">아이디/비밀번호 찾기</a> <br/>
+        	<a href="#">아이디</a>/<a href="#">비밀번호 찾기</a> <br/>
         	<a href="deptSignUpPage">업체 회원가입</a>
         </div>
-        <button id="login" class="btn btn-lg btn-primary btn-block" type="submit">로 그 인</button>
+        <input id="login_dept" name="login_dept" class="btn btn-lg btn-primary btn-block" type="button" value="로 그 인" />
       </form>
       
 		</div>
