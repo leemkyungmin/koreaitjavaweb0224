@@ -174,7 +174,7 @@ public class LoginController {
 			session.invalidate();
 		}
 		
-		return "redirect:/";
+		return "redirect:loginChoicePage";
 		
 	}
 	
@@ -190,6 +190,15 @@ public class LoginController {
 	public String nicknameUpdate(@RequestParam("cNo")int cNo ,@RequestParam("cNickname") String cNickname) {
 		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
 		return lDAO.nicknameUpdate(cNickname, cNo) + "";
+	}
+	
+	
+	//사용자 아이디 비밀번호 찾기 
+	
+	@RequestMapping("findUserIdPw")
+	public String goFindUserId() {
+		
+		return "login/findUserIdPw";
 	}
 	
 	
