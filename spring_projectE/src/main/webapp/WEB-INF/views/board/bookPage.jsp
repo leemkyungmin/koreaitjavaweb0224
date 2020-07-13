@@ -161,6 +161,10 @@
 			float: left;
 		}
 		
+		.custInfo_textbox {
+			border: 0;
+		}
+		
 		.appointInfo {
 			float: left;
 		}
@@ -229,14 +233,14 @@
 
 		<div class="calendar" >
 			<div class="navigation">
-				<a class="before_after_year" href="calendar?year=${today_info.search_year-1}&month=${today_info.search_month-1}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;&lt;</a> 
-				<a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;</a> 
+				<a class="before_after_year" href="calendar?year=${today_info.search_year-1}&month=${today_info.search_month-1}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;&lt;</a> 
+				<a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;</a> 
 				<span class="this_month">
 					&nbsp;${today_info.search_year}. 
 					<c:if test="${today_info.search_month<10}">0</c:if>${today_info.search_month}
 				</span>
-				<a class="before_after_month" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;</a> 
-				<a class="before_after_year" href="calendar?year=${today_info.search_year+1}&month=${today_info.search_month-1}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;&gt;</a>
+				<a class="before_after_month" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;</a> 
+				<a class="before_after_year" href="calendar?year=${today_info.search_year+1}&month=${today_info.search_month-1}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;&gt;</a>
 			</div>
 
 			<table class="calendar_body">
@@ -372,11 +376,11 @@
 					<table>
 						<tr>
 							<td>예약자 :</td>
-							<td><input type="text" name="" value="" readonly/></td>
+							<td><input class="custInfo_textbox" type="text" name="" value="${cDTO.cName}" readonly/></td>
 						</tr>
 						<tr>
 							<td>연락처 :</td>
-							<td><input type="text" name="" value="" readonly/></td>
+							<td><input class="custInfo_textbox" type="text" name="" value="${cDTO.cPhone}" readonly/></td>
 						</tr>
 					</table>
 				</div>
@@ -404,7 +408,7 @@
 				</div>
 			<div class="submit_btn_wrap">
 				<input class="submit_btn" type="button" value="예약하기" onclick="aP_countCHK(this.form)"/>
-				<input type="hidden" name="cNo" value="${cNo}" />
+				<input type="hidden" name="cNo" value="${cDTO.cNo}" />
 				<input type="hidden" name="dSaup_no" value="${deptDTO.dSaup_no}" />
 			</div>
 		</div>

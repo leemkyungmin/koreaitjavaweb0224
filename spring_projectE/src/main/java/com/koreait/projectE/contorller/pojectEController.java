@@ -30,6 +30,8 @@ import com.koreait.projectE.command.reviewWriteCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.AppointmentDAO;
 import com.koreait.projectE.dao.BoardDAO;
+import com.koreait.projectE.dao.LoginDAO;
+import com.koreait.projectE.dto.CustomerDTO;
 import com.koreait.projectE.dto.DateData;
 import com.koreait.projectE.dto.DepartmentDTO;
 import com.koreait.projectE.dto.ReviewDTO;
@@ -164,10 +166,15 @@ public class pojectEController {
 		model.addAttribute("today_info", today_info); // 오늘 날짜에 대한 정보
 		
 		String dSaup_no = request.getParameter("dSaup_no");
+		int cNo = Integer.parseInt(request.getParameter("cNo"));
+		
 		BoardDAO bDAO = sqlSession.getMapper(BoardDAO.class);
 		DepartmentDTO deptDTO = bDAO.DepartView(dSaup_no);
 		model.addAttribute("deptDTO", deptDTO);
-		model.addAttribute("cNo", request.getParameter("cNo"));
+		
+		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
+		CustomerDTO cDTO = lDAO.selectBycNo(cNo);
+		model.addAttribute("cDTO", cDTO);
 		
 		return "board/bookPage";
 	}
