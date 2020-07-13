@@ -265,10 +265,8 @@
                 <div class="form-group" id="divEmail">
                     <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
                     <div class="col-lg-10">
-                        <input type="email" class="form-control" id="email" name="cEmail" data-rule-required="true" value="${cDTO.cEmail }" maxlength="40"> <br/>
+                        <input type="email" class="form-control" id="email" name="cEmail" data-rule-required="true" value="${cDTO.cEmail }" maxlength="40" readonly> <br/>
                         <div id="temp-email" class="temp-email"></div><br/>
-                        <input type="button" id="emailCheck" name="emailCheck" value="이메일 중복체크" class="btn btn-primary" /> &nbsp;&nbsp;&nbsp;
-                        <input type="button" id="emailAuth" name="emailAuth" value="이메일 인증" class="btn btn-primary"  />
                     </div>
                 </div>
                 
@@ -301,6 +299,7 @@
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
                         <input type="button" value="돌아가기" class="btn btn-primary" onclick="index" />
+                        <input type="button" value="회원탈퇴" class="btn btn-primary" onclick="index" />
                     </div>
                 </div>
             </form>
