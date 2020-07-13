@@ -32,13 +32,8 @@
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="smtp.gmail.com"/>
 		<property name="port" value="587"/>
-<<<<<<< HEAD
-		<property name="username" value="a01073515482@gmail.com"/>
-		<property name="password" value="비밀번호"/>
-=======
 		<property name="username" value="kane9529spring@gmail.com"/>
 		<property name="password" value="jhk0308~"/>
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.smtp.au">true</prop>
