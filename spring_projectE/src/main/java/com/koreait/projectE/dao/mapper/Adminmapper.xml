@@ -23,4 +23,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where cId like '%' || #{query} || '%' or cName like '%' || #{query} || '%' 
 	</select>
 	
+	<select id="deptAcceptList" resultType="com.koreait.projectE.dto.DepartmentDTO">
+		SELECT * FROM DEPARTMENT_INFO WHERE DACCPET = 0
+	</select>
+	
 </mapper>
