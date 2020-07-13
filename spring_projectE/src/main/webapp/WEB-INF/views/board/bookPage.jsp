@@ -99,6 +99,15 @@
 			background-color:#EFEFEF;
 		}
 		
+		.notButton {
+			width: 100%;
+			color: lightgray;
+			font-weight: bold;
+			font-size: 15px;
+			padding-left: 3px;
+			padding-top: 3px;
+		}
+		
 		.date{
 			width: 100%;
 			font-weight: bold;
@@ -160,13 +169,15 @@
 		
 		.custInfo_textbox {
 			border: 0;
+			width: 100%;
+			font-size: 18px;
 		}
 		
 		.appointInfo {
 			float: left;
 		}
 		
-		.appintment_table {
+		.appointment_table {
 			width: 100%;
 		}
 		
@@ -175,14 +186,14 @@
 		}
 		
 		.text_subject{
-			width: 20%;
+			width: 35%;
 		    font-size: 18px;
 		    vertical-align: middle;
 		    text-align: center;
 		}
 		
 		.text_desc {
-			width: 80%;
+			width: 65%;
 		}
 		
 		.text_type1 {
@@ -216,13 +227,14 @@
 	
 </head>
 <body>
-	<c:if test="${sessionScope.cId ==null }">
-		<script type="text/javascript">
-			alert('로그인후 예약이 가능합니다 . 로그인 페이지로 이동합니다.');
-			location.href='loginChoicePage';
-		</script>
-	</c:if>
-	<form name="calendarFrm" id="calendarFrm" action="" method="GET">
+	
+	<form name="calendarFrm" id="calendarFrm" method="GET">
+		<c:if test="${sessionScope.cId ==null }">
+			<script type="text/javascript">
+				alert('로그인후 예약이 가능합니다 . 로그인 페이지로 이동합니다.');
+				location.href='loginChoicePage';
+			</script>
+		</c:if>
 
 		<input type="hidden" name="year" value="${today_info.search_year}" />
 		<input type="hidden" name="month" value="${today_info.search_month}" />
@@ -234,9 +246,10 @@
 		<div class="calendar" >
 			<div class="navigation">
 <<<<<<< HEAD
-				
+
 				 <a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;</a>  
 				
+
 =======
 				<a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;</a> 
 >>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
@@ -245,12 +258,10 @@
 					<c:if test="${today_info.search_month<10}">0</c:if>${today_info.search_month}
 				</span>
 <<<<<<< HEAD
-				<a class="before_after_month" id="test" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;</a> 
-				
-			
+				 
 =======
-				<a class="before_after_month" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;</a> 
 >>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
+				<a class="before_after_month" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;</a> 
 			</div>
 			<script type="text/javascript">
 				
@@ -272,29 +283,52 @@
 					<tr class="appointBtn">
 						<c:forEach var="dateList" items="${dateList}" varStatus="date_status"> 
 							<c:choose>
-								<c:when test="${dateList.value=='today'}">
+								<c:when test="${dateList.value eq 'notButton' and date_status.index%7==6}">
+									<td id="${dateList.date}" class="dayCSS">
+										<div class="notButton">${dateList.date}</div>
+									</td>
+								</c:when>
+								<c:when test="${dateList.value eq 'notButton' and date_status.index%7==0}">
+									</tr>
+									<tr>	
+										<td id="${dateList.date}" class="dayCSS">
+											<div class="notButton" >${dateList.date}</div>
+										</td>
+								</c:when>
+								<c:when test="${dateList.value eq 'notButton'}">
+									<td id="${dateList.date}" class="dayCSS">
+										<div class="notButton">${dateList.date}</div>
+									</td>
+								</c:when>							
+								<c:when test="${dateList.value eq'today'}">
 									<td id="${dateList.date}" class="dayCSS"  onclick="fn_a(${dateList.date})">
 										<div class="date">${dateList.date}</div>
 										<div class="today">today</div>
 									</td>
 								</c:when>
-								<c:when test="${date_status.index%7==6}">
+								
+								<c:when test="${dateList.value eq 'Button' and date_status.index%7==6}">
 									<td id="${dateList.date}" class="dayCSS"  onclick="fn_a(${dateList.date})">
 										<div class="sat">${dateList.date}</div>
 									</td>
 								</c:when>
-								<c:when test="${date_status.index%7==0}">
+								<c:when test="${dateList.value eq 'Button' and date_status.index%7==0}">
 									</tr>
-									<tr>	
-										<td id="${dateList.date}" class="dayCSS" onclick="fn_a(${dateList.date})">
-											<div class="sun" >${dateList.date}</div>
+									<tr>
+										<td id="${dateList.date}" class="dayCSS"  onclick="fn_a(${dateList.date})">
+											<div class="sun">${dateList.date}</div>
 										</td>
 								</c:when>
-								<c:otherwise>
+								<c:when test="${dateList.value eq 'Button'}">
 									<td id="${dateList.date}" class="dayCSS"  onclick="fn_a(${dateList.date})">
 										<div class="date">${dateList.date}</div>
 									</td>
-								</c:otherwise>
+								</c:when>
+								<c:otherwise>
+									<td id="${dateList.date}" class="dayCSS" >
+										<div class="notButton">${dateList.date}</div>
+									</td>
+								</c:otherwise>	
 							</c:choose>
 						</c:forEach>
 				</tbody>
@@ -336,7 +370,7 @@
 			
 			$.ajax({
 				url: 'getRemainSeatANDTime',
-				method: 'post',
+				method: 'get',
 				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year}${today_info.search_month}' + da} ,
 				dataType: 'text',
 				success: function(data){
@@ -367,7 +401,7 @@
 			
 			$.ajax({
 				url: 'getRemainSeat',
-				method: 'post',
+				method: 'get',
 				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': date + ' ' + time},
 				dataType: 'text',
 				success: function (data) {
@@ -387,22 +421,22 @@
 		
 	</script>
 	
-	<form name="appointment_form" method="post">
+	<form name="appointment_form" method="get">
 		<div id="myForm" class="contents deactive">
 				<div class="custInfo">
-					<table>
+					<table class="appointment_table">
 						<tr>
-							<td>예약자 :</td>
-							<td><input class="custInfo_textbox" type="text" name="" value="${cDTO.cName}" size="13" readonly/></td>
+							<td class="text_subject">예약자 :</td>
+							<td class="text_desc"><input class="custInfo_textbox" type="text" name="" value="${cDTO.cName}" size="13" readonly/></td>
 						</tr>
 						<tr>
-							<td>연락처 :</td>
-							<td><input class="custInfo_textbox" type="text" name="" value="${cDTO.cPhone}" size="13" readonly/></td>
+							<td class="text_subject">연락처 :</td>
+							<td class="text_desc"><input class="custInfo_textbox" type="text" name="" value="${cDTO.cPhone}" size="13" readonly/></td>
 						</tr>
 					</table>
 				</div>
 				<div class="appointInfo">
-					<table class="appintment_table">
+					<table class="appointment_table">
 						<tr>
 							<td class="text_subject">날짜 :</td>
 							<td class="text_desc">

@@ -104,7 +104,8 @@
 				</li>
 				<li class="nav-list-wrap">
 					<a href="main" class="nav-btn">맛집 리스트</a>
-				</li> 
+				</li>
+				
 				<li class="nav-user-wrap">
 					<c:if test="${cId eq null }">
 						<a href="loginChoicePage" class="nav-btn"><i class="far fa-user"></i></a> <!-- 로그인 안돼있으면 로그인페이지 돼어있으면 마이페이지 이동. -->

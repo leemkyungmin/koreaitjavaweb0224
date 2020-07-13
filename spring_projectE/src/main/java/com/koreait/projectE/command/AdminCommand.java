@@ -26,6 +26,8 @@ public class AdminCommand implements Command {
 		System.out.println(dList.size());
 		model.addAttribute("dList", dList);
 
+		
+		
 	}
 	
 	

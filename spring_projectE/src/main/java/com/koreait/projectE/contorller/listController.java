@@ -33,7 +33,6 @@ public class listController {
 	public String goMain(Model model) {
 		command= new ListCommand();
 		command.execute(sqlSession, model);
-		
 		return "main";
 	}
 	@RequestMapping("locationlist")
@@ -45,6 +44,7 @@ public class listController {
 		return "board/location_list";
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping("searchPage")
 	public String search_list(HttpServletRequest request, Model model) {
 		
@@ -54,5 +54,9 @@ public class listController {
 		
 		return "board/searchPage";
 	}
+=======
+	
+	
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 	
 }

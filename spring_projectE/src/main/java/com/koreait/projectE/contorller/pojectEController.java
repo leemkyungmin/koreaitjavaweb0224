@@ -128,7 +128,7 @@ public class pojectEController {
 		
 		// 달력 페이지가 처음 실행되면,오늘 날짜로 date 생성
 		if(dateData.getDate().equals("")&&dateData.getMonth().equals("")){
-			dateData = new DateData(String.valueOf(cal.get(Calendar.YEAR)),String.valueOf(cal.get(Calendar.MONTH)),String.valueOf(cal.get(Calendar.DATE)),null);
+			dateData = new DateData(String.valueOf(cal.get(Calendar.YEAR)),String.valueOf(cal.get(Calendar.MONTH)),String.valueOf(cal.get(Calendar.DATE)), null);
 		}
 
 		// 이번달에 대한 모든 정보를 가져온다
@@ -139,7 +139,7 @@ public class pojectEController {
 		
 		// 1일에 해당하는 요일까지 null 삽입
 		for(int i=1; i<today_info.get("start"); i++){
-			calendarData= new DateData(null, null, null, null);
+			calendarData= new DateData(null, null, null, "notButton");
 			dateList.add(calendarData);
 		}
 		
@@ -147,8 +147,10 @@ public class pojectEController {
 		for (int i = today_info.get("startDay"); i <= today_info.get("endDay"); i++) {
 			if(i==today_info.get("today")){
 				calendarData= new DateData(String.valueOf(dateData.getYear()), String.valueOf(dateData.getMonth()), String.valueOf(i), "today");
-			}else{
-				calendarData= new DateData(String.valueOf(dateData.getYear()), String.valueOf(dateData.getMonth()), String.valueOf(i), "normal_date");
+			}else if (i<today_info.get("today")){
+				calendarData= new DateData(String.valueOf(dateData.getYear()), String.valueOf(dateData.getMonth()), String.valueOf(i), "notButton");
+			}else {
+				calendarData= new DateData(String.valueOf(dateData.getYear()), String.valueOf(dateData.getMonth()), String.valueOf(i), "Button");
 			}
 			dateList.add(calendarData);
 		}
@@ -157,7 +159,7 @@ public class pojectEController {
 		int index = 7-dateList.size()%7;
 		if(dateList.size()%7!=0){
 			for (int i = 0; i < index; i++) {
-				calendarData= new DateData(null, null, null, null);
+				calendarData= new DateData(null, null, null, "notButton");
 				dateList.add(calendarData);
 			}
 		}
@@ -179,7 +181,7 @@ public class pojectEController {
 		return "board/bookPage";
 	}
 	
-	@RequestMapping(value = "insertAppointment", method = RequestMethod.POST)
+	@RequestMapping(value = "insertAppointment", method = RequestMethod.GET)
 	public String insertAppointment(HttpServletRequest request, Model model) {
 		model.addAttribute("request",request);
 		command= new AppointmentInsertCommand();
@@ -187,13 +189,11 @@ public class pojectEController {
 		return "redirect:viewPage?dSaup_no="+request.getParameter("dSaup_no");
 	}
 	
-	@RequestMapping(value="getRemainSeatANDTime", produces="text/html; charset=utf-8")
+	@RequestMapping(value="getRemainSeatANDTime", produces="text/html; charset=utf-8", method = RequestMethod.GET)
 	@ResponseBody
 	public String getRemainSeatANDTime(HttpServletRequest request) {
 		 String dSaup_no = request.getParameter("dSaup_no");
-		 System.out.println(dSaup_no);
 		 String aDate = request.getParameter("aDate");
-		 System.out.println(aDate);
 		 		 
 		 BoardDAO bDAO = sqlSession.getMapper(BoardDAO.class);
 		 DepartmentDTO deptDTO = bDAO.DepartView(dSaup_no);
@@ -216,7 +216,7 @@ public class pojectEController {
 		 return html;
 	}
 	
-	@RequestMapping(value="getRemainSeat", produces="text/html; charset=utf-8")
+	@RequestMapping(value="getRemainSeat", produces="text/html; charset=utf-8", method = RequestMethod.GET)
 	@ResponseBody
 	public String getRemainSeat(HttpServletRequest request) {
 		String dSaup_no = request.getParameter("dSaup_no");
