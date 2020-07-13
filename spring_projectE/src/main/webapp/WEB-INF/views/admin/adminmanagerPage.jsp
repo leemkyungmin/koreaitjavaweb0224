@@ -146,6 +146,27 @@
 		</table>
 	</div>
 	
+	
+	
+	<!-- 업체 승인 관리 -->
+	
+	<script type="text/javascript">
+	
+/* 		function deptAccpet() {
+			$.ajax({
+				url: 'deptAccept',
+				method: 'get',
+				dataType: 'text',
+				success: function (data) {
+					
+				}
+			});
+		} */
+	
+	</script>
+	
+	<button onclick="location.href='deptAccpet'">업체 승인 관리</button>
+	
 
 </body>
 </html>

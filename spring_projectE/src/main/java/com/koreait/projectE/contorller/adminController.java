@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.koreait.projectE.command.AdminCommand;
+import com.koreait.projectE.command.AdminDeptAcceptCommand;
 import com.koreait.projectE.command.AdminUpdateDepartmentCommand;
 import com.koreait.projectE.command.AdminUpdateUserCommand;
 import com.koreait.projectE.commom.Command;
@@ -70,9 +71,16 @@ public class adminController {
 
 	
 		
+	@RequestMapping(value="deptAccpet")
+	public String deptAccpet(Model model) {
 		
+		command = new AdminDeptAcceptCommand();
+		command.execute(sqlSession, model);
 		
+		return "admin/deptAcceptPage";
 	}
+		
+}
 	
 
 	
