@@ -340,6 +340,10 @@
 				return;
 			}
 			
+			if (!confirm('예약하시겠습니까?')) {
+				return;
+			}
+			
 			$.ajax({
 				url: 'getRemainSeat',
 				method: 'post',

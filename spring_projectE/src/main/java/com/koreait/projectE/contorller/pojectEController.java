@@ -191,7 +191,9 @@ public class pojectEController {
 	@ResponseBody
 	public String getRemainSeatANDTime(HttpServletRequest request) {
 		 String dSaup_no = request.getParameter("dSaup_no");
+		 System.out.println(dSaup_no);
 		 String aDate = request.getParameter("aDate");
+		 System.out.println(aDate);
 		 		 
 		 BoardDAO bDAO = sqlSession.getMapper(BoardDAO.class);
 		 DepartmentDTO deptDTO = bDAO.DepartView(dSaup_no);
