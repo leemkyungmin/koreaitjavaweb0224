@@ -87,4 +87,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (DEPARTMENT_SEQ.NEXTVAL, #{param1}, #{)
 	</insert>
 	
+	<select id="finduId" resultType="String">
+		select cId
+		from customer 
+		where cName = #{param1} and cEmail =#{param2}
+	</select>
+	<select id="finduPw" resultType="int">
+		select count(*)
+		from customer
+		where cId=#{param1} and cEmail =#{param2}
+	</select>
+	
+	<update id="UpdateTempPw">
+		update customer set cPw =#{param2} 
+		where cId=#{param1}
+	</update>
+	
 </mapper>
