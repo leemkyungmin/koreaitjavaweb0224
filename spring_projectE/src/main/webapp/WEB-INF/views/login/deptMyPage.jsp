@@ -29,12 +29,12 @@
 		
 	var color;
 	var ans;
-	var no = ${cDTO.cNo};
-	var pw = '${cDTO.cPw}';
+	var no = '${sessionScope.dSaup_no}';
+	var pw = '${sessionScope.dPw}';
 	var nickname = '${cDTO.cNickname}';
 	var PwUpdatePass = false;
 	
-	alert(nickname + '자폭 3초전');
+	
 		$(function() {
 			// 비밀번호 변경 버튼
 			$('#cPwCheckBtn').click(function() {
@@ -71,32 +71,10 @@
         		});
         	});
 			
-			$('#nicknameUpdate').click(function(){
-				
-				if(confirm('닉네임을 변경 하시겠습니까?')){
-					$.ajax({
-						url : 'nicknameUpdate',
-						type : 'POST',
-						data : 'cNo=' + no + '&cNickname=' + $('#nickname').val(),
-						success : function(data) {
-							if (data == '1'){
-								alert('변경되었습니다.');
-								location.href = 'myPage';
-							} else {
-								alert('변경 실패 하였습니다.');
-							}
-						},
-						error : function() {
-							alert('AJAX 오류 발생 자폭 5초전');
-						}
-					});
-				}	
-				
-			});
 			
-			$('#cPwUpdateBtn').click(function() {
+			$('#dPwUpdateBtn').click(function() {
 				
-				if ($('#cPw').val() == "") {
+				if ($('#dPw').val() == "") {
 					ans = '비밀번호를 입력하세요.';
 					color = 'red';
 					$('#temp').text(ans);
@@ -104,7 +82,7 @@
 					return;
 				}
 				
-				if ($('#cPwUpdate').val() == "") {
+				if ($('#dPwUpdate').val() == "") {
 					ans = '새로운 비밀번호를 입력하세요.';
 					color = 'red';
 					$('#temp').text(ans);
@@ -115,12 +93,12 @@
 				
 				
 				$.ajax({
-					url: 'pwUpdate',
+					url: 'deptpwUpdate',
 					type: 'POST',
-					data: 'cPw=' + $('#cPwUpdate').val() + '&cNo=' + no,
+					data: 'dPw=' + $('#dPwUpdate').val() + '&dSaup_no=' + no,
 					success: function (data) {
 						if (data == '1') {
-							if ($('#cPw').val() != pw) {
+							if ($('#dPw').val() != pw) {
 								ans = '비밀번호가 일치하지 않습니다.';
 								color = 'red';
 							} else if ($('#cPwUpdate').val() != $('#cPwCheck').val()) {
@@ -135,7 +113,7 @@
 								if (confirm('비밀번호를 변경 하시겠습니가?')){
 									PwUpdatePass = true;
 									alert('변경되었습니다.');
-									location.href = 'myPage';
+									location.href = 'deptmyPage';
 								} else {
 									alert('변경이 취소되었습니다.');
 									return false;
@@ -151,11 +129,26 @@
 				});
 			});
 				
-			
-			
-			
 		}); // function({})
-	
+		
+		function fileCheck(obj) {
+			   pathpoint = obj.value.lastIndexOf('.');
+			   filepoint = obj.value.substring(pathpoint+1,obj.length);
+			   filetype=filepoint.toLowerCase();
+			   if(filetype=='jpg' || filetype=='png' || filetype=='jpeg'){
+				   
+			   } else {
+				   alert('이미지 파일만 선택할 수 있습니다.');
+				   parentObj = obj.parentNode
+				   node = parentObj.replaceChild(obj.cloneNode(true),obj);
+				   return false;
+			   }
+			   
+		   }
+		function fn_multiUpload(f) {
+			f.action = 'deptUpdate';
+			f.submit();
+		}
 		
 	
 	</script>
@@ -220,25 +213,25 @@
                 
  
  
-            <form class="form-horizontal" id="loginForm" role="form" method="post" action="customerUpdate" enctype="multipart/form-data">
+            <form class="form-horizontal" id="loginForm" role="form" method="post"enctype="multipart/form-data">
                 <div class="form-group" id="divId">
-                	<h6>회원번호 : ${cDTO.cNo }</h6>
+                	<h6>회원번호 : ${dDTO.dNo }</h6>
                     <label for="inputId" class="col-lg-2 control-label">아이디 *수정불가</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control onlyAlphabetAndNumber" name="cId" id="id" data-rule-required="true" readonly value="${cDTO.cId }"maxlength="30"><br/>
+                        <input type="text" class="form-control onlyAlphabetAndNumber" name="dId" id="id" data-rule-required="true" readonly value="${sessionScope.dId}"maxlength="30"><br/>
                     </div>
                     <div class="check-font" id="id_check">
                     	&nbsp;&nbsp;
                     	<input type="button" class="btn btn-primary" value="비밀번호 변경하기" id="cPwCheckBtn" name="cPwCheckBtn" />
                     	<div id="pwUpdate" class="pw_font">
                     		기존 비밀번호 입력 <br/>
-                    		<input type="password" placeholder="기존 비밀번호 입력" id="cPw" name="cPw" /> <br/>
+                    		<input type="password" placeholder="기존 비밀번호 입력" id="dPw" name="dPw" /> <br/>
                     		새로운 비밀번호 입력 <br/>
-                    		<input type="password" placeholder="새로운 비밀번호 입력" id="cPwUpdate" name="cPwUpdate" /> <br/>
+                    		<input type="password" placeholder="새로운 비밀번호 입력" id="dPwUpdate" name="dPwUpdate" /> <br/>
                     		새로운 비밀번호 확인 <br/>
-                    		<input type="password" placeholder="비밀번호 확인" id="cPwCheck" name="cPwCheck" /> <br/>
+                    		<input type="password" placeholder="비밀번호 확인" id="dPwCheck" name="dPwCheck" /> <br/>
                     		<div id="temp" class="temp"></div> <br/>
-                    		<input type="button" value="비밀번호 변경" class="btn btn-primary" id="cPwUpdateBtn" name="cPwUpdateBtn" />
+                    		<input type="button" value="비밀번호 변경" class="btn btn-primary" id="dPwUpdateBtn" name="dPwUpdateBtn" />
                     	</div>
                     </div>
                 </div>
@@ -246,58 +239,101 @@
                         <input type="hidden"id="password" name="password" value="${cDTO.cPw }">
                     </div>
                 <div class="form-group" id="divName">
-                    <label for="inputName" class="col-lg-2 control-label">이름 *수정불가</label>
+                    <label for="inputName" class="col-lg-2 control-label">음식점 이름</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control onlyHangul" name="cName" id="name" data-rule-required="true" value="${cDTO.cName }" readonly />
+                        <input type="text" class="form-control" name="dName" id="name" data-rule-required="true" value="${dDTO.dName }"  />
+                    </div>
+                </div>
+                <div class="form-group" id="divName">
+                    <label for="inputName" class="col-lg-2 control-label">음식점 주소</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" name="dAddress" id="name" data-rule-required="true" value="${dDTO.dAddress}"  />
+                    </div>
+                </div>
+                <div class="form-group" id="divPhoneNumber">
+                    <label for="inputPhoneNumber" class="col-lg-2 control-label">음식점 전화번호</label>
+                    <div class="col-lg-10">
+                        <input type="tel" class="form-control onlyNumber" id="phoneNumber" name="dPhone" data-rule-required="true" value="${dDTO.dPhone }" placeholder="숫자만 입력 가능합니다." maxlength="11">
                     </div>
                 </div>
                 
-                <div class="form-group" id="divNickname">
-                    <label for="inputNickname" class="col-lg-2 control-label">별명</label>
+                <div class="form-group" id="divPhoneNumber">
+                    <label for="inputPhoneNumber" class="col-lg-2 control-label">음식점 좌석수</label>
                     <div class="col-lg-10">
-                        <input type="text" class="form-control" id="nickname" name="cNickname" data-rule-required="true" value="${cDTO.cNickname }" maxlength="15"><br/>
-                        <input type="button" id="nicknameUpdate" value="별명 변경" class="btn btn-primary" />
-                        <div id="temp-nickname" class="temp-nickname"></div>
+                        <input type="tel" class="form-control onlyNumber" id="phoneNumber" name="dSeat" data-rule-required="true" value="${dDTO.dSeat }" placeholder="숫자만 입력 가능합니다." maxlength="5">
                     </div>
                 </div>
                 
-                
-                <div class="form-group" id="divEmail">
-                    <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
-                    <div class="col-lg-10">
-                        <input type="email" class="form-control" id="email" name="cEmail" data-rule-required="true" value="${cDTO.cEmail }" maxlength="40" readonly> <br/>
-                        <div id="temp-email" class="temp-email"></div><br/>
-                    </div>
+				<div>
+					<label for="inputPhoneNumber" class="col-lg-2 control-label">음식점 시작 시간</label>
+					<div>
+						<input id="dStart" type="text" placeholder="00:00"  maxlength="5" class="form-control" />
+					</div>
+				</div>	
+				<div>
+					<label for="inputPhoneNumber" class="col-lg-2 control-label">음식점 마감 시간</label>
+					<div>
+						<input id="dEnd" type="text" placeholder="00:00"  maxlength="5" class="form-control" />
+					</div>
+				</div>
+				<script type="text/javascript">
+				$(function(){
+					
+					$('#dStart').keyup(function(){
+						if($('#dStart').val().length==2){
+							if(($('#dStart').val()>24)){
+								alert('잘못된 입력입니다.');
+								$('#dStart').val('');
+							}else{
+								$('#dStart').val($('#dStart').val()+":");								
+							}
+						}
+					});
+				});
+				</script>	                
+				                
+                <div>
+                	<label for="#" class="col-lg-2 control-label">음식점 종류</label>
+                	<div>
+                		<input type="text" id="dType" name="dType" placeholder="일식/양식/한식" class="form-control"/>
+                	</div>
                 </div>
-                
                 
                 <div class="form-group" id="divPhoto">
                 	<label for="inputPhoto" class="col-lg-2 control-label">프로필 사진</label><br/> &nbsp;&nbsp;&nbsp;
                 	<div id="photoBox" style="width:50; height:50;">
-                		<input type="file" id="cPhoto" name="cPhoto" onchange="fileCheck(this)" accept="image/jpeg,image/png,image/jpg" /> 
+                		<input type="file" id="dPhoto" name="dPhoto" onchange="fileCheck(this)" accept="image/jpeg,image/png,image/jpg" multiple="multiple" /> 
                 	</div>
                 </div>
+                
                 <div class="form-group" id="divPhoneNumber">
-                    <label for="inputPhoneNumber" class="col-lg-2 control-label">휴대폰 번호</label>
+                    <label for="inputPhoneNumber" class="col-lg-2 control-label">사업자 번호</label>
                     <div class="col-lg-10">
-                        <input type="tel" class="form-control onlyNumber" id="phoneNumber" name="cPhone" data-rule-required="true" value="${cDTO.cPhone }" readonly="readonly" maxlength="11">
+                        <input type="tel" class="form-control onlyNumber" id="phoneNumber" name="cPhone" data-rule-required="true" value="${sessionScope.dSaup_no }" readonly="readonly" maxlength="11">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPhoneNumber" class="col-lg-2 control-label">성별</label>
+                    <label for="inputPhoneNumber" class="col-lg-2 control-label">주차 여부</label>
                     <div class="col-lg-10">
-                        <select class="form-control" id="gender" name="cGender">
-                        	<c:if test="${cDTO.cGender eq '1' }">
-                            <option value="1">남</option>
+                        <select class="form-control" id="gender" name="dParking">
+                        	<c:if test="${dDTO.dParking eq '1' }">
+                            <option value="1" selected>가능</option>
+                            <option value="2">불가</option>
                         	</c:if>
-                        	<c:if test="${cDTO.cGender eq '2' }">
-                            <option value="2">여</option>
+                        	<c:if test="${dDTO.dParking eq '2' }">
+                        	<option value="1">가능</option>
+                            <option value="2" selected>불가</option>
+                        	</c:if>
+                        	<c:if test="${dDTO.dParking eq null }">
+                        	<option value="1" selected>가능</option>
+                            <option value="2">불가</option>
                         	</c:if>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
+                    	<input type="button" value="수정하기" onclick="fn_multiUpload(this.form)" />
                         <input type="button" value="돌아가기" class="btn btn-primary" onclick="index" />
                         <input type="button" value="회원탈퇴" class="btn btn-primary" onclick="index" />
                     </div>

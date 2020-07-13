@@ -86,7 +86,7 @@
 		<div class="title">
 			<span class="title_content">제목</span>${rdto.rTitle }
 		</div>
-			${rdto.rContent }
+			<pre>${rdto.rContent }</pre>
 		</div>
 		<div class="image-Content">
 			<div class="image_wrap">
