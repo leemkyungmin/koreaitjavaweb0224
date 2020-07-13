@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -291,7 +291,15 @@
 
 </head>
 <body>
-	
+	<c:if test="${sessionScope.cId==null }">
+		<script type="text/javascript">
+		
+			alert('로그인후 리뷰 작성이 가능합니다 . 로그인 페이지로 이동합니다.');
+			location.href='loginChoicePage';
+			
+		</script>
+	</c:if>
+		
    	<form name="myForm" method="post" enctype="multipart/form-data">
 		<div class="ReviewWritenpage_Container">
 			<div class="ReviewWritenpage_DeptName">
@@ -331,7 +339,7 @@
 			</div>
 		</div>
 	</form>
-
+	
 
 </body>
 </html>

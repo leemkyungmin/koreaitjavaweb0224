@@ -59,7 +59,7 @@
 					for(i=0; i<data.length; i++){
 					
 						html+='<li class="RestaurantReviewItem RestaurantReviewList__ReviewItem">';
-						html+='<button class="RestaurantReviewItem__Link" onclick="fnMove()" data-remote="reviewDetail?rNo='+${review.rNo }+'" data-toggle="modal" data-target="#myModal">';
+						html+='<button class="RestaurantReviewItem__Link" onclick="fnMove()" data-remote="reviewDetail?rNo='+data[i].rNo+'" data-toggle="modal" data-target="#myModal">';
 		    			html+='<div class="RestaurantReviewItem__User">';
 		       
 		    			html+='<div class="RestaurantReviewItem__UserPictureWrap">';
@@ -74,8 +74,8 @@
 				      	html+='<div class="RestaurantReviewItem__ReviewTextWrap">';
 								
 				      	html+='<p class="RestaurantReviewItem__ReviewText">'
-				      	html+=data[i].rTitle+'<br/>';
-				      	html+=data[i].rContent;
+				      	html+='<pre>'+data[i].rTitle+'</pre><br/>';
+				      	html+='<pre>'+data[i].rContent+'</pre>';
 				      	html+='</p>';
 								
 				      	html+='<span class="RestaurantReviewItem__ReviewDate">'+data[i].rWriter_date+'</span>';
@@ -206,7 +206,7 @@
 	                  </button>
 	
 	                 
-	                    <button class="btn-type-icon favorite wannago_btn " onclick="fnMove()"  data-remote="calendar?dSaup_no=${deptDTO.dSaup_no}&cNo=1"
+	                    <button class="btn-type-icon favorite wannago_btn " id="appoint_btn" onclick="fnMove()"  data-remote="calendar?dSaup_no=${deptDTO.dSaup_no}&cNo=1"
 	                    data-toggle="modal" data-target="#myModal">
 		                    <i class="far fa-calendar-check fa-3x"></i>
 		                    <p class="wannago_txt">예약하기</p>
@@ -400,8 +400,9 @@
 					});
 					function fnMove(){
 				        var offset = $("#reviewListFocusId" ).offset();
-				        var top =offset.top-200;  
-				        $('html,body ').animate({scrollTop : offset.top});
+				        var top =offset.top-100; 
+				      
+				        $('html,body ').animate({scrollTop :top});
 				    }
 
 
@@ -475,8 +476,8 @@
 			      <div class="RestaurantReviewItem__ReviewTextWrap">
 					
 			        <p class="RestaurantReviewItem__ReviewText">
-			        	${review.rTitle }<br/>
-			         	 ${review.rContent }
+			        	<pre>${review.rTitle }<br/></pre>
+			         	 <pre>${review.rContent }</pre>
 			        </p>
 					
 		       		 <span class="RestaurantReviewItem__ReviewDate">${review.rWriter_date }</span>

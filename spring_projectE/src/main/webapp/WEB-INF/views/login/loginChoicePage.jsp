@@ -137,9 +137,51 @@
 		}
 		
 	</script>
+	<script type="text/javascript">
+		$(function(){
+			$('.departmentWrap').css('display','none');
+			$('.dept').css('background','gray');
+			$('.customer').click(function(){
+				$('.departmentWrap').css('display','none');
+				$('.customerWrap').css('display','block');
+				$('.customer').css('background','#007bff');
+				$('.dept').css('background','gray');
+			});
+			$('.dept').click(function(){
+				$('.customerWrap').css('display','none');
+				$('.departmentWrap').css('display','block');
+				$('.customer').css('background','gray');
+				$('.dept').css('background','007bff');
+			});
+		});
+		
+	</script>
+	<style>
+		.selectButton{
+			display: block;
+			margin:auto;
+			text-align: center;
+		}
+		.customer,.dept{
+			width:150px;
+			height:60px;
+			line-height:60px;
+			display:inline-block;
+			text-align: center;
+			background: #007bff;
+			border-radius: .3rem;;
+		}
+	</style>
   </head>
 <body>
-	
+	<div class="selectButton">
+		<div class="customer">
+			일반 회원 로그인
+		</div>
+		<div class="dept">
+			업체 회원 로그인
+		</div>
+	</div>
 	<div class="customerWrap" style="width:20rem; border-radius:20px;">
 		<div class="card-title" style="margin-top:30px;">
 			<h2 class="card-title text-center" style="color:#113366;">일반회원 로그인</h2>

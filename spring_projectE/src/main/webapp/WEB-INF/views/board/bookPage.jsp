@@ -7,6 +7,7 @@
 
 <html lang="ko">
 <head>
+ 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> 
 	<title>예약 페이지</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
 	<script type="text/javaScript" language="javascript"></script>
@@ -201,7 +202,12 @@
 	
 </head>
 <body>
-	
+	<c:if test="${sessionScope.cId ==null }">
+		<script type="text/javascript">
+			alert('로그인후 예약이 가능합니다 . 로그인 페이지로 이동합니다.');
+			location.href='loginChoicePage';
+		</script>
+	</c:if>
 	<form name="calendarFrm" id="calendarFrm" action="" method="GET">
 
 		<input type="hidden" name="year" value="${today_info.search_year}" />
@@ -213,15 +219,20 @@
 
 		<div class="calendar" >
 			<div class="navigation">
-				<a class="before_after_year" href="calendar?year=${today_info.search_year-1}&month=${today_info.search_month-1}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;&lt;</a> 
-				<a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;</a> 
+				
+				 <a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;</a>  
+				
 				<span class="this_month">
 					&nbsp;${today_info.search_year}. 
 					<c:if test="${today_info.search_month<10}">0</c:if>${today_info.search_month}
 				</span>
-				<a class="before_after_month" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;</a> 
-				<a class="before_after_year" href="calendar?year=${today_info.search_year+1}&month=${today_info.search_month-1}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;&gt;</a>
+				<a class="before_after_month" id="test" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;</a> 
+				
+			
 			</div>
+			<script type="text/javascript">
+				
+			</script>
 
 			<table class="calendar_body">
 				<thead>
