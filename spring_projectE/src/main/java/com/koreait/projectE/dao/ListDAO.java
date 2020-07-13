@@ -16,10 +16,8 @@ public interface ListDAO {
 	public ArrayList<DepartmentDTO> location_list(String location);
 	
 	public MainListDTO get_locationCount(String location);
-<<<<<<< HEAD
 	
 	public ArrayList<DepartmentDTO> search_list(String query);
-=======
+
 		
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 }

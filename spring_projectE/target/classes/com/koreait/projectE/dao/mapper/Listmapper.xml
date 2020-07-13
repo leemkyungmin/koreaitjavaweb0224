@@ -38,7 +38,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		group by substr(daddress,1,INSTR(DADDRESS,' ',1,1)-1)
 	</select>
 	
-<<<<<<< HEAD
 	<select id="search_list" resultType="com.koreait.projectE.dto.DepartmentDTO">
 		select *
 		from department_info
@@ -46,6 +45,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	
-=======
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
+
 </mapper>
