@@ -316,7 +316,7 @@
 			$.ajax({
 				url: 'getRemainSeatANDTime',
 				method: 'post',
-				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year} ${today_info.search_month} ' + da} ,
+				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year}${today_info.search_month}' + da} ,
 				dataType: 'text',
 				success: function(data){
 					$('.remainPerson').empty();
@@ -331,7 +331,7 @@
 		
 		function aP_countCHK(form) {
 			var aP_count = $('#aP_count_textbox').val();
-			var date =$('#aDate_day_textbox').val();
+			var date =$('#aDate_day_hidden').val();
 			var time = $('.select_aDate_hour').val();
 			
 			// Number.isInteger()사용시, 인터넷익스플로러에 적용되지 않으며, 정규식을 사용해야 적용됨.
