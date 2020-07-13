@@ -30,7 +30,6 @@ public class listController {
 	public String goMain(Model model) {
 		command= new ListCommand();
 		command.execute(sqlSession, model);
-		
 		return "main";
 	}
 	@RequestMapping("locationlist")
@@ -42,20 +41,7 @@ public class listController {
 		return "board/location_list";
 	}
 	
-	/*@RequestMapping(value="main/changeDong",method=RequestMethod.POST, produces="text/html; charset=utf-8")
-	@ResponseBody
-	public String getDong(@RequestParam("si") String si) {
-		
-		ListDAO ldao = sqlSession.getMapper(ListDAO.class);
-		System.out.println(si);
-		String[] dong_list =ldao.dong_list(si);
-		String html="<option value=''>::지역 선택::</option>";
-		for(int i=0; i<dong_list.length;i++) {
-			html +="<option value="+dong_list[i]+">"+dong_list[i]+"</option>";
-		}
-		
-		return html;
 	
-	}*/
+	
 	
 }

@@ -40,7 +40,8 @@ public class LoginController {
 	}
 	
 	@RequestMapping("loginChoicePage")
-	public String loginChoicePage() {
+	public String loginChoicePage(HttpServletRequest request) {
+		
 		return "login/loginChoicePage";
 	}
 	
@@ -173,7 +174,7 @@ public class LoginController {
 			session.invalidate();
 		}
 		
-		return "index";
+		return "redirect:/";
 		
 	}
 	

@@ -233,24 +233,16 @@
 
 		<div class="calendar" >
 			<div class="navigation">
-<<<<<<< HEAD
-				
+
 				 <a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;</a>  
 				
-=======
-				<a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;</a> 
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
+
 				<span class="this_month">
 					&nbsp;${today_info.search_year}. 
 					<c:if test="${today_info.search_month<10}">0</c:if>${today_info.search_month}
 				</span>
-<<<<<<< HEAD
-				<a class="before_after_month" id="test" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;</a> 
-				
-			
-=======
+				 
 				<a class="before_after_month" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;</a> 
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 			</div>
 			<script type="text/javascript">
 				
