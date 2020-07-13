@@ -199,14 +199,14 @@
 	
 	                <div class="restaurant_action_button_wrap">
 	
-	                  <button class="review_writing_button" onclick="fnMove()" data-remote="reviewWritePage?dSaup_no=${deptDTO.dSaup_no}&cNo=1"
+	                  <button class="review_writing_button" onclick="fnMove()" data-remote="reviewWritePage?dSaup_no=${deptDTO.dSaup_no}&cNo=${sessionScope.cNo !=null ? sessionScope.cNo : 1  }"
 						data-toggle="modal" data-target="#myModal">
 	                    <i class="fas fa-pen fa-3x"></i>
 	                    <p class="review_writing_button_text">리뷰쓰기</p>
 	                  </button>
 	
 	                 
-	                    <button class="btn-type-icon favorite wannago_btn " id="appoint_btn" onclick="fnMove()"  data-remote="calendar?dSaup_no=${deptDTO.dSaup_no}&cNo=1"
+	                    <button class="btn-type-icon favorite wannago_btn " id="appoint_btn" onclick="fnMove()"  data-remote="calendar?dSaup_no=${deptDTO.dSaup_no}&cNo=${sessionScope.cNo}"
 	                    data-toggle="modal" data-target="#myModal">
 		                    <i class="far fa-calendar-check fa-3x"></i>
 		                    <p class="wannago_txt">예약하기</p>

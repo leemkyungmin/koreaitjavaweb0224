@@ -16,10 +16,13 @@ public interface adminDAO {
 	
 	public ArrayList<CustomerDTO> getAjaxCutomer(String query);
 	
+	public DepartmentDTO UpdateDepartmentPage(String dNo);
+	
+	public void deleteUser(String cNo);
+	public void deleteReview(String cNo);
 	
 	// 승인 받아야 하는 업체리스트
 	public ArrayList<DepartmentDTO> deptAcceptList();
-	
 }
 
 
