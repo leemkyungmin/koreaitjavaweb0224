@@ -151,14 +151,10 @@
 		.deactive {
 			display: none;
 		}
-			
-		/* .Info_wrap {
-			width: 100%;
-			height: 100px;
-		} */
 		
 		.custInfo {
 			float: left;
+			margin-left: 50px;
 		}
 		
 		.custInfo_textbox {
@@ -168,10 +164,6 @@
 		.appointInfo {
 			float: left;
 		}
-		
-		/* .submit_btn_wrap {
-			clear: left;
-		} */
 		
 		.appintment_table {
 			width: 100%;
@@ -204,14 +196,16 @@
 		}
 		
 		.submit_btn_wrap {
-			float: left;
-			width: 100px;
+			float: right;
+			width: 200px;
 			text-align: center;
+			margin-right: 50px;
 		}
 		
 		.submit_btn {
 			padding: 5px;
-			width: 50%;
+			width: 100%;
+			height: 50px;
 			border: 0;
 		}	
 		
@@ -233,14 +227,12 @@
 
 		<div class="calendar" >
 			<div class="navigation">
-				<a class="before_after_year" href="calendar?year=${today_info.search_year-1}&month=${today_info.search_month-1}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;&lt;</a> 
 				<a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;</a> 
 				<span class="this_month">
 					&nbsp;${today_info.search_year}. 
 					<c:if test="${today_info.search_month<10}">0</c:if>${today_info.search_month}
 				</span>
 				<a class="before_after_month" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;</a> 
-				<a class="before_after_year" href="calendar?year=${today_info.search_year+1}&month=${today_info.search_month-1}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;&gt;</a>
 			</div>
 
 			<table class="calendar_body">
@@ -376,11 +368,11 @@
 					<table>
 						<tr>
 							<td>예약자 :</td>
-							<td><input class="custInfo_textbox" type="text" name="" value="${cDTO.cName}" readonly/></td>
+							<td><input class="custInfo_textbox" type="text" name="" value="${cDTO.cName}" size="13" readonly/></td>
 						</tr>
 						<tr>
 							<td>연락처 :</td>
-							<td><input class="custInfo_textbox" type="text" name="" value="${cDTO.cPhone}" readonly/></td>
+							<td><input class="custInfo_textbox" type="text" name="" value="${cDTO.cPhone}" size="13" readonly/></td>
 						</tr>
 					</table>
 				</div>
