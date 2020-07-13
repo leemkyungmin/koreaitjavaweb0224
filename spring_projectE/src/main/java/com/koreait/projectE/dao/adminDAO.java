@@ -14,7 +14,12 @@ public interface adminDAO {
 	
 	public CustomerDTO UpdateUserPage(int cNo);
 	
+	public DepartmentDTO UpdateDepartmentPage(String dNo);
+	
 	public ArrayList<CustomerDTO> getAjaxCutomer(String query); 
+	
+	public void deleteUser(String cNo);
+	public void deleteReview(String cNo);
 	
 }
 
