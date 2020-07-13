@@ -42,6 +42,11 @@
 			location.href = 'logout';
 		}
 	}
+	function fn_deptlogout() {
+		if(confirm('로그아웃하시겠습니까?')){
+			location.href = 'deptlogout';
+		}
+	}
 	
 </script>
 
@@ -87,13 +92,18 @@
 					<a href="main" class="nav-btn">맛집 리스트</a>
 				</li> 
 				<li class="nav-user-wrap">
-					<c:if test="${cId eq null }">
+					<c:if test="${sessionScope.cId eq null and sessionScope.dId eq null }">
 						<a href="loginChoicePage" class="nav-btn"><i class="far fa-user"></i></a> <!-- 로그인 안돼있으면 로그인페이지 돼어있으면 마이페이지 이동. -->
 					</c:if>	
-					<c:if test="${cId ne null }">
+					<c:if test="${sessionScope.cId ne null}">
 						<a href="myPage" class="nav-btn"><i class="far fa-user"></i></a>
 						<input type="button" value="로그아웃"  onclick="fn_logout()" />
 					</c:if>
+					<c:if test="${sessionScope.dId ne null }">
+						<a href="deptmyPage" class="nav-btn"><i class="far fa-user"></i></a>
+						<input type="button" value="로그아웃"  onclick="fn_logout()" />
+					</c:if>
+					
 				</li>
 		</ul>
 		<div class="nav-invisible" style="display: none">
