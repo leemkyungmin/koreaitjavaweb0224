@@ -16,5 +16,8 @@ public interface ListDAO {
 	public ArrayList<DepartmentDTO> location_list(String location);
 	
 	public MainListDTO get_locationCount(String location);
+	
+	public ArrayList<DepartmentDTO> search_list(String query);
+
 		
 }

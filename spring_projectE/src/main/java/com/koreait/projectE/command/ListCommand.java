@@ -20,8 +20,6 @@ public class ListCommand implements Command {
 		System.out.println(list.get(0).getCount());
 		model.addAttribute("list", list);
 		 
-		
-		
 	}
 
 }
