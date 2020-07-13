@@ -98,15 +98,10 @@
  		<div class="search-wrap">
 	 		<div class="main-search">
 				<div class="icon-box"><i class="fas fa-search"></i></div>
-<<<<<<< HEAD
 				<form class="search-form" action="searchPage">
 				<input id="search-input" class="HomeSearchInput" name="main-search" type="text" maxlength="50" placeholder="지역, 식당 또는 음식" autocomplete="off" >
 				<input class="btn-search" type="submit" value="검색">
-=======
-				<form class="search-form" action="searchResult" method="post" >
-				<input id="search-input" class="HomeSearchInput" name="main-search"  type="text" maxlength="50" placeholder="지역, 식당 또는 음식" autocomplete="off" >
-				<input class="btn-search" type="submit" value="검색" >
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
+
     			</form>
 				<div class="invisible" style="display: none">
 			       <div class="item"><a href="#" onclick="fn_goInput(this.value)" id="aa">test</a></div>
