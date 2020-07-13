@@ -98,6 +98,15 @@
 			background-color:#EFEFEF;
 		}
 		
+		.notButton {
+			width: 100%;
+			color: lightgray;
+			font-weight: bold;
+			font-size: 15px;
+			padding-left: 3px;
+			padding-top: 3px;
+		}
+		
 		.date{
 			width: 100%;
 			font-weight: bold;
@@ -216,7 +225,7 @@
 </head>
 <body>
 	
-	<form name="calendarFrm" id="calendarFrm" action="" method="GET">
+	<form name="calendarFrm" id="calendarFrm" method="GET">
 
 		<input type="hidden" name="year" value="${today_info.search_year}" />
 		<input type="hidden" name="month" value="${today_info.search_month}" />
@@ -251,29 +260,52 @@
 					<tr class="appointBtn">
 						<c:forEach var="dateList" items="${dateList}" varStatus="date_status"> 
 							<c:choose>
-								<c:when test="${dateList.value=='today'}">
+								<c:when test="${dateList.value eq 'notButton' and date_status.index%7==6}">
+									<td id="${dateList.date}" class="dayCSS">
+										<div class="notButton">${dateList.date}</div>
+									</td>
+								</c:when>
+								<c:when test="${dateList.value eq 'notButton' and date_status.index%7==0}">
+									</tr>
+									<tr>	
+										<td id="${dateList.date}" class="dayCSS">
+											<div class="notButton" >${dateList.date}</div>
+										</td>
+								</c:when>
+								<c:when test="${dateList.value eq 'notButton'}">
+									<td id="${dateList.date}" class="dayCSS">
+										<div class="notButton">${dateList.date}</div>
+									</td>
+								</c:when>							
+								<c:when test="${dateList.value eq'today'}">
 									<td id="${dateList.date}" class="dayCSS"  onclick="fn_a(${dateList.date})">
 										<div class="date">${dateList.date}</div>
 										<div class="today">today</div>
 									</td>
 								</c:when>
-								<c:when test="${date_status.index%7==6}">
+								
+								<c:when test="${dateList.value eq 'Button' and date_status.index%7==6}">
 									<td id="${dateList.date}" class="dayCSS"  onclick="fn_a(${dateList.date})">
 										<div class="sat">${dateList.date}</div>
 									</td>
 								</c:when>
-								<c:when test="${date_status.index%7==0}">
+								<c:when test="${dateList.value eq 'Button' and date_status.index%7==0}">
 									</tr>
-									<tr>	
-										<td id="${dateList.date}" class="dayCSS" onclick="fn_a(${dateList.date})">
-											<div class="sun" >${dateList.date}</div>
+									<tr>
+										<td id="${dateList.date}" class="dayCSS"  onclick="fn_a(${dateList.date})">
+											<div class="sun">${dateList.date}</div>
 										</td>
 								</c:when>
-								<c:otherwise>
+								<c:when test="${dateList.value eq 'Button'}">
 									<td id="${dateList.date}" class="dayCSS"  onclick="fn_a(${dateList.date})">
 										<div class="date">${dateList.date}</div>
 									</td>
-								</c:otherwise>
+								</c:when>
+								<c:otherwise>
+									<td id="${dateList.date}" class="dayCSS" >
+										<div class="notButton">${dateList.date}</div>
+									</td>
+								</c:otherwise>	
 							</c:choose>
 						</c:forEach>
 				</tbody>
@@ -315,7 +347,7 @@
 			
 			$.ajax({
 				url: 'getRemainSeatANDTime',
-				method: 'post',
+				method: 'get',
 				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': '${today_info.search_year}${today_info.search_month}' + da} ,
 				dataType: 'text',
 				success: function(data){
@@ -346,7 +378,7 @@
 			
 			$.ajax({
 				url: 'getRemainSeat',
-				method: 'post',
+				method: 'get',
 				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': date + ' ' + time},
 				dataType: 'text',
 				success: function (data) {
@@ -366,7 +398,7 @@
 		
 	</script>
 	
-	<form name="appointment_form" method="post">
+	<form name="appointment_form" method="get">
 		<div id="myForm" class="contents deactive">
 				<div class="custInfo">
 					<table>
