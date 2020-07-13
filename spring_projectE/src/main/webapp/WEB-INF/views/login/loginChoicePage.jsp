@@ -179,10 +179,10 @@
 				$('.customerWrap').css('display','none');
 				$('.departmentWrap').css('display','block');
 				$('.customer').css('background','gray');
-				$('.dept').css('background','007bff');
+				$('.dept').css('background','#007bff');
 			});
 		});
-		
+		 
 	</script>
 	<style>
 		.selectButton{
@@ -227,7 +227,7 @@
           </label>
         </div>
         <div style="text-align: center;">
-        	<a href="#">아이디</a>/<a href="#">비밀번호 찾기</a> <br/>
+        	<a href="findUserIdPw">아이디/비밀번호 찾기</a> <br/>
         	<a href="customerSignUp">회원가입</a>
         </div>
         <input id="login" name="login" class="btn btn-lg btn-primary btn-block" type="button" value="로 그 인" />
@@ -267,5 +267,5 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     
-  </body>
-  </html>
+	
+<%@ include file="../template/footer.jsp" %>

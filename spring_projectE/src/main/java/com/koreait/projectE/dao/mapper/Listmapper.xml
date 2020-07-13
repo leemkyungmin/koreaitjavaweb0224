@@ -38,4 +38,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		group by substr(daddress,1,INSTR(DADDRESS,' ',1,1)-1)
 	</select>
 	
+	<select id="search_list" resultType="com.koreait.projectE.dto.DepartmentDTO">
+		select *
+		from department_info
+		where DNAME like '%' || #{query} || '%' or daddress like '%' || #{query} ||'%'
+	</select>
+	
+	
+
 </mapper>

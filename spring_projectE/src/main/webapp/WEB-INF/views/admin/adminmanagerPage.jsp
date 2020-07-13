@@ -48,7 +48,7 @@
 	
 	<br/><br/>
 	
-	<button id="deleteBtn">삭제</button>
+	
 	
 	<script type="text/javascript">
 	$('#deleteBtn').click(function(){
@@ -68,6 +68,7 @@
 		});
 	});
 	</script>
+	
 	
 	<div id="custom" style="display: block; width:760px; height:100px; margin: 0 auto; overflow:auto; ">
 	<table border="1">
@@ -117,6 +118,7 @@
 			</c:forEach>
 	</table>
 	</div>
+	<button id="deleteBtn" style= "width:100px; height:20px; margin: 0 auto;" >삭제</button>
 	<br/><br/>
 	
 	<button id="dept_btn" onclick="fn_dept_list()" style="display: block; width:480px; margin: 0 auto;" ><h3>업체관리</h3></button>
