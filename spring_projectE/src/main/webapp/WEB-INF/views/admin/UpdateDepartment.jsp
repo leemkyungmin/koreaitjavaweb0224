@@ -52,7 +52,7 @@
 			<td>${dDTO.dRating }</td>
 		</tr>
 		<tr>
-			<td>날짜</td>
+			<td>오픈날짜</td>
 			<td>${dDTO.dReg_date }</td>
 		</tr>
 	</table>
