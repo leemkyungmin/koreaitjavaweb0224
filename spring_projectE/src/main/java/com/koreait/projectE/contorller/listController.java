@@ -1,5 +1,7 @@
 package com.koreait.projectE.contorller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.koreait.projectE.command.ListCommand;
 import com.koreait.projectE.command.LocationListCommand;
+import com.koreait.projectE.command.SearchCommand;
 import com.koreait.projectE.commom.Command;
 
 @Controller
@@ -42,20 +45,14 @@ public class listController {
 		return "board/location_list";
 	}
 	
-	/*@RequestMapping(value="main/changeDong",method=RequestMethod.POST, produces="text/html; charset=utf-8")
-	@ResponseBody
-	public String getDong(@RequestParam("si") String si) {
+	@RequestMapping("searchPage")
+	public String search_list(HttpServletRequest request, Model model) {
 		
-		ListDAO ldao = sqlSession.getMapper(ListDAO.class);
-		System.out.println(si);
-		String[] dong_list =ldao.dong_list(si);
-		String html="<option value=''>::지역 선택::</option>";
-		for(int i=0; i<dong_list.length;i++) {
-			html +="<option value="+dong_list[i]+">"+dong_list[i]+"</option>";
-		}
+		model.addAttribute("request", request);
+		command = new SearchCommand();
+		command.execute(sqlSession, model);
 		
-		return html;
-	
-	}*/
+		return "board/searchPage";
+	}
 	
 }
