@@ -1,6 +1,7 @@
 package com.koreait.projectE.dao;
 
 import com.koreait.projectE.dto.CustomerDTO;
+import com.koreait.projectE.dto.DepartmentLoginDTO;
 
 public interface LoginDAO {
    
@@ -30,4 +31,8 @@ public interface LoginDAO {
 	
 	// 일반 회원 닉네임 변경
 	public int nicknameUpdate(String cNickname, int cNo );
+	
+	// 사업자 로그인
+	public DepartmentLoginDTO departmentLogin(String dId,String dPw);
+	
 }

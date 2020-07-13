@@ -54,4 +54,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE CNO = #{param2}
 	</update>
 	
+	<select id="departmentLogin" parameterType="String" resultType="com.koreait.projectE.dto.DepartmentLoginDTO">
+		SELECT *
+		FROM DEPARTMENT
+		WHERE DID = #{param1} AND DPW = #{param2}
+	</select>
 </mapper>
