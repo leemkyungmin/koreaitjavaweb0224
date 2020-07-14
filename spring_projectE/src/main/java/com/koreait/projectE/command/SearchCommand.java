@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
+import org.json.JSONObject;
 import org.springframework.ui.Model;
 
 import com.koreait.projectE.commom.Command;
@@ -29,18 +30,24 @@ public class SearchCommand implements Command {
 		model.addAttribute("list", list);
 		model.addAttribute("size", list.size());
 		
-		Cookie[] cookies = request.getCookies();
+		/*Cookie[] cookies = request.getCookies();
 		String addr="";
+		JSONObject obj =new JSONObject();
 		for(Cookie cook :cookies) {
 			if(cook.getName().equals("query")) {
 				System.out.println(cook.getValue());
-				addr =cook.getValue()+">"+query;
+				obj.put("query", cook.getValue()) ;
+			}else {
+				obj.put("query",query);
 			}
 		}
-		System.out.println(addr);
-		Cookie setCookie = new Cookie("query", addr);
+		
+		
+
+		System.out.println(obj);
+		Cookie setCookie = new Cookie("query", obj.toString());
 		setCookie.setMaxAge(60*60*24*7); 
-		response.addCookie(setCookie);
+		response.addCookie(setCookie);*/
 
 	}
 
