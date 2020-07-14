@@ -17,19 +17,20 @@
 		var q = '<%=main_search%>';
 		var url ='searchPage?main-search='+q;
 		if(size != 0){
-			alert(q);
 			if(Cookies.get('query') === undefined || Cookies.get('query') == '[null]'){
 				
-				Cookies.set('query', "{\"name\":\""+q+"\",\"url\" : "+"searchPage?main-search="+q+"}" );
+				Cookies.set('query', "[{\"name\":\""+q+"\",\"url\" : searchPage?main-search="+q+"}]");
 				alert("성공"); 
 			}else{
 				var cookieArr = new Array(Cookies.getJSON('query'));
 				alert(typeof(cookieArr));
-				cookieArr.push({
-					name: q,
-					url:'searchPage?main-search=${param.main-search}'
+			
+				cookieArr.push({ 
+						name: q,
+						url:'searchPage?main-search='+q
 				});
-				Cookies.set('query', cookieArr);
+				alert(JSON.stringify(cookieArr));
+				Cookies.set('query', JSON.stringify(cookieArr));
 			}
 		
 		}else{ 

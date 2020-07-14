@@ -51,8 +51,8 @@
 	</script>
 	
 	<script>
-		var cookieList = new Array(Cookies.getJSON('query'));
-		alert(cookieList(2));
+		var cookieList = Cookies.getJSON('query');
+		alert(cookieList);
 		
 	</script>
 	
