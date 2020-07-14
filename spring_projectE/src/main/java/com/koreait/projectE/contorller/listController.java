@@ -1,6 +1,7 @@
 package com.koreait.projectE.contorller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,11 +47,13 @@ public class listController {
 	
 
 	@RequestMapping("searchPage")
-	public String search_list(HttpServletRequest request, Model model) {
+	public String search_list(HttpServletRequest request, Model model, HttpServletResponse response) {
 		
 		model.addAttribute("request", request);
+		model.addAttribute("response", response);
 		command = new SearchCommand();
 		command.execute(sqlSession, model);
+		
 		
 		return "board/searchPage";
 	}

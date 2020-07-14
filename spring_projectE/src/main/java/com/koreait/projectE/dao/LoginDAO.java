@@ -41,6 +41,9 @@ public interface LoginDAO {
 	// 일반 회원 닉네임 변경
 	public int nicknameUpdate(String cNickname, int cNo );
 	
+	// 일반 회원 프로필 변경
+	public int cPhotoUpdate(String cPhoto, int cNo);
+	
 	// 사업자 로그인
 	public DepartmentLoginDTO departmentLogin(String dId,String dPw);
 	
@@ -50,6 +53,12 @@ public interface LoginDAO {
 	// 사업자 비밀번호 변경
 	public int deptpwUpdate(String dPw, String dSaup_no);
 	
+	// 사업자 정보수정 승인요청
+	public void departInsert(String dSeat,String dSaup_no,String dPhone,String dName,String dAddress, String dStart, String dEnd, String dParking, String dType, String amuguna );
+	
+	public void departUpdate(String dSeat,String dSaup_no,String dPhone,String dName,String dAddress, String dStart, String dEnd, String dParking, String dType, String amuguna, String dNo );
+	
+	public int goDb(String dSaup_no);
 	// 사업자 정보수정
 	public void departUpdate(String dSeat,String dPhone,String dName,String dAddress, String dStart, String dEnd, String dParking, String dType );
 
@@ -61,4 +70,23 @@ public interface LoginDAO {
 	
 	//사용자 임시 비밀번호 저장
 	public void UpdateTempPw(String cId,String auth);
+	
+	//업체 아이디 찾기 
+	public String find_dept_id(String dSaup_no,String dPhone);
+	
+	//업체 비밀번호 찾기 
+	public int findDeptPw(String dId,String dSaup_no);
+	
+	// 업체 회원 탈퇴
+	public void deptSignOut1(String dSaup_no);
+	public void deptSignOut2(String dSaup_no);
+	public void deptSignOut3(String dSaup_no);
+	public void deptSignOut4(String dSaup_no);
+	public void deptSignOut5(String dSaup_no);
+
+	// 일반 회원 탈퇴
+	public void customerSignOut1(String cNo);
+	public void customerSignOut2(String cNo);
+	public void customerSignOut3(String cNo);
+	
 }

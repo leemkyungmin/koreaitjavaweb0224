@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
 <% request.setCharacterEncoding("utf-8"); %>
 
 <%@ include file="template/header.jsp" %>
@@ -49,6 +50,12 @@
 	
 	</script>
 	
+	<script>
+		var cookieList = new Array(Cookies.getJSON('query'));
+		alert(cookieList(2));
+		
+	</script>
+	
 	
 	<style>
 		.invisible {
@@ -79,15 +86,6 @@
 
 	</style>
 	
-	<script>
-		
-	function fn_goInput(f){
-
-		var a = document.getElementById("aa")).innerText;
-		document.getElementById("search-input").value=a;
-		};
-	
-	</script>
 	
 	<div class="header-wrap">
 		<div class="title-wrap">
@@ -104,7 +102,8 @@
 
     			</form>
 				<div class="invisible" style="display: none">
-			       <div class="item"><a href="#" onclick="fn_goInput(this.value)" id="aa">test</a></div>
+			       
+			       <div class="item"><a href="searchPage?main-search=" ></a></div>
 
     			</div>
 			</div>					

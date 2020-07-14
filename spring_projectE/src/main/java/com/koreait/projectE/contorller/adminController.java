@@ -1,28 +1,26 @@
 package com.koreait.projectE.contorller;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.koreait.projectE.command.AdminCommand;
-import com.koreait.projectE.command.AdminDeptAcceptCommand;
-import com.koreait.projectE.command.AdminUpdateDepartmentCommand;
-import com.koreait.projectE.command.AdminUpdateUserCommand;
+import com.koreait.projectE.command.Admin.AdminCommand;
+import com.koreait.projectE.command.Admin.AdminDeptAcceptCommand;
+import com.koreait.projectE.command.Admin.AdminDeptAcceptListCommand;
+import com.koreait.projectE.command.Admin.AdminDeptAcceptViewCommand;
+import com.koreait.projectE.command.Admin.AdminDeptDeleteCommand;
+import com.koreait.projectE.command.Admin.AdminUpdateDepartmentCommand;
+import com.koreait.projectE.command.Admin.AdminUpdateUserCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.adminDAO;
+import com.koreait.projectE.dto.CustomerDTO;
 
 
 
@@ -41,8 +39,8 @@ public class adminController {
 		return "admin/adminmanagerPage";	
 	}
 	
-	@RequestMapping(value="UpdateUser", method=RequestMethod.GET)
-	public String UpdateUser(HttpServletRequest request, Model model) {
+	@RequestMapping(value="UpdateUserPage", method=RequestMethod.GET)
+	public String UpdateUserPage(HttpServletRequest request, Model model) {
 		
 		model.addAttribute("request", request);
 		
@@ -71,15 +69,56 @@ public class adminController {
 
 	
 		
-	@RequestMapping(value="deptAccpet")
-	public String deptAccpet(Model model) {
+	@RequestMapping(value="deptAccpetPage")
+	public String deptAccpetPage(Model model) {
 		
-		command = new AdminDeptAcceptCommand();
+		command = new AdminDeptAcceptListCommand();
 		command.execute(sqlSession, model);
 		
 		return "admin/deptAcceptPage";
 	}
+	
+
+	@RequestMapping("UpdateUser")
+	public String UpdateUser(HttpServletRequest request,Model model) {
+		String cGrade = request.getParameter("cGrade");
+		String cNo =request.getParameter("cNo");
+		adminDAO aDAO = sqlSession.getMapper(adminDAO.class);
+		aDAO.UpdateUser(cGrade,cNo);
+		return "redirect:adminmanagePage";
+	}
+	
+	
+	
+	
+
+	@RequestMapping(value="deptAcceptView")
+	public String deptAcceptView(HttpServletRequest request, Model model) {
 		
+		model.addAttribute("request", request);
+		command = new AdminDeptAcceptViewCommand();
+		command.execute(sqlSession, model);
+		
+		return "admin/deptAcceptViewPage";
+	}
+	
+	@RequestMapping(value="deptAccept", method=RequestMethod.POST)
+	public String deptAccept(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new AdminDeptAcceptCommand();
+		command.execute(sqlSession, model);
+		return "redirect:deptAccpetPage";
+	}
+	
+	@RequestMapping(value="deptReject", method=RequestMethod.POST)
+	public String deptReject(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new AdminDeptDeleteCommand();
+		command.execute(sqlSession, model);
+		return "redirect:deptAccpetPage";
+	}
+		
+
 }
 	
 
