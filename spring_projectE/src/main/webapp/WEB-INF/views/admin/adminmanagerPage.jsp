@@ -148,7 +148,7 @@
 	<li><h2>관리자페이지</h2></li>
 	<li><button id="cus_btn" onclick="fn_cus_list()" >회원관리</button></li>
 	<li><button id="dept_btn" onclick="fn_dept_list()">업체관리</button></li>
-	<li><button id="Acc_btn"onclick="location.href='deptAccpet'">업체 승인 관리</button><li>
+	<li><button id="Acc_btn"onclick="location.href='deptAccpetPage'">업체 승인 관리</button><li>
 </ul>
 
 	<script type="text/javascript">
@@ -265,11 +265,9 @@
 		} */
 	
 	</script>
+
 	
-<<<<<<< HEAD
-=======
-	<button onclick="location.href='deptAccpetPage'">업체 승인 관리</button>
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
+
 	
 
 </body>
