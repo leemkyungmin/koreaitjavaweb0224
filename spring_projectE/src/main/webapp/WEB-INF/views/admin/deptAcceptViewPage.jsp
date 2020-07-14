@@ -13,20 +13,35 @@
 	<form method="">
 		<table>
 			<tr>
-				<td>사업자번호</td>
 				<td>상호명</td>
-				<td>전화번호</td>
-				<td>업종</td>
-				<td>등록일</td>
+				<td>${deptDTO.dName}(${deptDTO.dSaup_no})</td>
 			</tr>
 			<tr>
-				<td>${deptDTO.dSaup_no}</td>
-				<td>${deptDTO.dName}</td>
-				<td>${fn:substring(deptDTO.dPhone, 0, 3)}-${fn:substring(deptDTO.dPhone, 3, 7)}-${fn:substring(deptDTO.dPhone, 7, 11)}</td>
+				<td>업종</td>
 				<td>${deptDTO.dType}</td>
-				<td>${deptDTO.dReg_date}</td>
+			</tr>
+			<tr>
+				<td>주소</td>
+				<td>${deptDTO.dAddress}</td>
+			</tr>
+			<tr>
+				<td>전화번호</td>
+				<td>${fn:substring(deptDTO.dPhone, 0, 3)}-${fn:substring(deptDTO.dPhone, 3, 7)}-${fn:substring(deptDTO.dPhone, 7, 11)}</td>
+			</tr>
+			<tr>
+				<td>영업시간</td>
+				<td>${fn:substring(deptDTO.dStart, 0, 2)}:${fn:substring(deptDTO.dStart, 2, 4)} ~ ${fn:substring(deptDTO.dEnd,0,2)}:${fn:substring(deptDTO.dEnd,2,4)}(${deptDTO.dSeat}석)</td>
+			</tr>
+			<tr>
+				<td>주차</td>
+				<td>${dept.dParking ==1 ? '주차 가능' : '주차 불가' }</td>
 			</tr>
 		</table>
+		
+		<input type="hidden" name="dSaup_no" value="${deptDTO.dSaup_no}" />
+		<input type="submit" value="승인" /> 
+		<input type="button" value="거절" /> 
+		
 	</form>
 
 </body>
