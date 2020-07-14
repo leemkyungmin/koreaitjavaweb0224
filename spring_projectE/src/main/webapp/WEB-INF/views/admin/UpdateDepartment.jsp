@@ -21,43 +21,108 @@
 	table {
 		margin: 0 auto;
 	}	
+	ul {
+	    list-style-type: none;
+	    margin: 0;
+	    padding: 0;
+	    background-color: #333;
+	}	
+	ul:after{
+	    content:'';
+	    display: block;
+	    clear:both;
+	}	
+	h2	{
+    	color: white;
+    	float: left;
+    	margin-left:100px;
+    	margin-right:100px;
+    }
+    #listbtn {
+		float: left;
+		border-top-left-radius: 5px; 
+		border-bottom-left-radius: 5px;
+		border-top-right-radius: 5px; 
+		border-bottom-right-radius: 5px;
+		margin-right:10px;
+	}
+	button	{ 
+	    border: 1px solid skyblue; 
+	    background-color: rgba(0,0,0,0); 
+	    color: skyblue; 
+	    padding: 5px; 
+	    width:80px;
+	    height:78px
+	}
+	button:hover{ 
+		color:white; 
+		background-color: skyblue; 
+	}
+	table.user {
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-left: 3px solid #369;
+ 	 margin : 20px 10px;
+	}
+	table.user th {
+	    width: 147px;
+	    padding: 10px;
+	    font-weight: bold;
+	    vertical-align: top;
+	    color: #153d73;
+	    border-right: 1px solid #ccc;
+	    border-bottom: 1px solid #ccc;
+		background: #efefef;
+	}
+	table.user td {
+	    width: 349px;
+	    padding: 10px;
+	    vertical-align: top;
+	    border-right: 1px solid #ccc;
+	    border-bottom: 1px solid #ccc;
+	}
 </style>
 </head>
 <body>
 
-	<input style="display: block; width:80px; margin: 0 auto;" type="button" class="btn_list" value="리스트 보기" onclick="goBack()"/>
+	<ul>
+	<li><h2>관리자페이지</h2></li>
+	<li><button id="listbtn" style="display: block; width:80px; margin: 0 auto;" type="button" class="btn_list" onclick="goBack()">업체리스트</button></li>
+	</ul>	
 	<br/><br/>
 	
 	
-	<table border="1">
+	<table border="1" class="user">
 		
 		<tr>
-			<td>사업자 등록번호</td>
+			<th>사업자 등록번호</th>
 			<td>${dDTO.dSaup_no }</td>
 		</tr>
 		<tr>
-			<td>사업체명</td>
+			<th>사업체명</th>
 			<td>${dDTO.dName}</td>
 		</tr>
 		<tr>
-			<td>전화번호</td>
+			<th>전화번호</th>
 			<td>${dDTO.dPhone }</td>
 		</tr>
 		<tr>
-			<td>주소</td>
+			<th>주소</th>
 			<td>${dDTO.dAddress }</td>
 		</tr>
 		<tr>
-			<td>별점</td>
+			<th>별점</th>
 			<td>${dDTO.dRating }</td>
 		</tr>
 		<tr>
-			<td>오픈날짜</td>
+			<th>오픈날짜</th>
 			<td>${dDTO.dReg_date }</td>
 		</tr>
 	</table>
-	<br/>
-	<input style="display: block; width:100px; margin: 0 auto;" type="button" value="수정완료" onclick="" /> 
+	<br/> 
 
 </body>
 </html>

@@ -23,6 +23,7 @@ import com.koreait.projectE.command.AdminUpdateDepartmentCommand;
 import com.koreait.projectE.command.AdminUpdateUserCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.adminDAO;
+import com.koreait.projectE.dto.CustomerDTO;
 
 
 
@@ -41,8 +42,8 @@ public class adminController {
 		return "admin/adminmanagerPage";	
 	}
 	
-	@RequestMapping(value="UpdateUser", method=RequestMethod.GET)
-	public String UpdateUser(HttpServletRequest request, Model model) {
+	@RequestMapping(value="UpdateUserPage", method=RequestMethod.GET)
+	public String UpdateUserPage(HttpServletRequest request, Model model) {
 		
 		model.addAttribute("request", request);
 		
@@ -79,7 +80,19 @@ public class adminController {
 		
 		return "admin/deptAcceptPage";
 	}
-		
+	
+	@RequestMapping("UpdateUser")
+	public String UpdateUser(HttpServletRequest request,Model model) {
+		String cGrade = request.getParameter("cGrade");
+		String cNo =request.getParameter("cNo");
+		adminDAO aDAO = sqlSession.getMapper(adminDAO.class);
+		aDAO.UpdateUser(cGrade,cNo);
+		return "redirect:adminmanagePage";
+	}
+	
+	
+	
+	
 }
 	
 

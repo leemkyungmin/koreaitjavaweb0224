@@ -11,19 +11,108 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
+
+
 <style>
-	table >thead >tr{
-		background-color: Lightgray;
-		color: blue;
-	}
+	table th {
+      color: #168;
+      background: #f0f6f9;
+      text-align: center;
+    }
+    table tr, .table td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+    table tr:first-child, table td:first-child {
+      border-left: 0;
+    }
+    table tr:last-child, .table td:last-child {
+      border-right: 0;
+    }
 	table{
 		text-align: center;
 		border-collapse: collapse;
 		height: 100px;
 		width: 750px;
+	    border-top: 3px solid #168;
 	}
 	#custom{
 		display: 'block';
+	}
+	div{
+		margin: auto;
+		overflow: auto;
+	}
+	ul {
+	    list-style-type: none;
+	    margin: 0;
+	    padding: 0;
+	    background-color: #333;
+    }    
+    ul:after{
+	    content:'';
+	    display: block;
+	    clear:both;
+	}	
+    h2	{
+    	color: white;
+    	float: left;
+    	margin-left:100px;
+    	margin-right:100px;
+    }
+    li >button	{ 
+	    border: 1px solid skyblue; 
+	    background-color: rgba(0,0,0,0); 
+	    color: skyblue; 
+	    padding: 5px; 
+	    width:80px;
+	    height:78px
+	}
+	button:hover{ 
+		color:white; 
+		background-color: skyblue; 
+	}
+	#cus_btn{
+		float: left;
+		border-top-left-radius: 5px; 
+		border-bottom-left-radius: 5px;
+		border-top-right-radius: 5px; 
+		border-bottom-right-radius: 5px;
+		margin-right:10px;
+	}
+	#dept_btn{
+		float: left;
+		border-top-left-radius: 5px; 
+		border-bottom-left-radius: 5px;
+		border-top-right-radius: 5px; 
+		border-bottom-right-radius: 5px;
+		margin-right:10px;
+	}
+	#Acc_btn{
+	
+		float: left;
+		border-top-left-radius: 5px; 
+		border-bottom-left-radius: 5px;
+		border-top-right-radius: 5px; 
+		border-bottom-right-radius: 5px;
+	}
+	#deleteBtn{
+		margin:auto;
+		border-top-left-radius: 5px; 
+		border-bottom-left-radius: 5px;
+		border-top-right-radius: 5px; 
+		border-bottom-right-radius: 5px;
+		border: 1px solid black; 
+	    background-color: rgba(0,0,0,0); 
+	    color: black; 
+	    padding: 5px; 
+	    width:100px;
+	    height:30px
+	}
+	.del{
+		width: 750px;
+		display: block;
+		
 	}
 </style>
 
@@ -37,19 +126,31 @@
 			}
 		});
 	});
-	
+	function fn_cus_list(){
+		document.getElementById("custom").style.display='block';
+		document.getElementById("del").style.display='block';
+		
+		document.getElementById("dept").style.display='none';
+		
+	}
+	function fn_dept_list(){
+		document.getElementById("dept").style.display='block';
+		document.getElementById("custom").style.display='none';
+		document.getElementById("del").style.display='none';
+		
+	}
 	
 	
 </script>
 
 <body>
-	
-	<button id="cus_btn" onclick="fn_cus_list()" style="display: block; width:480px; margin: 0 auto;" ><h3>회원관리</h3></button>
-	
-	<br/><br/>
-	
-	
-	
+<ul>
+	<li><h2>관리자페이지</h2></li>
+	<li><button id="cus_btn" onclick="fn_cus_list()" >회원관리</button></li>
+	<li><button id="dept_btn" onclick="fn_dept_list()">업체관리</button></li>
+	<li><button id="Acc_btn"onclick="location.href='deptAccpet'">업체 승인 관리</button><li>
+</ul>
+
 	<script type="text/javascript">
 	$('#deleteBtn').click(function(){
 		$('input:checkbox[name=test]:checked').each(function (){
@@ -68,28 +169,28 @@
 		});
 	});
 	</script>
+	<br/>
 	
-	
-	<div id="custom" style="display: block; width:760px; height:100px; margin: 0 auto; overflow:auto; ">
+	<div id="custom" style="width:760px; height:100px; ">
 	<table border="1">
 		<thead id="user_info">
 			<tr>
-				<th><input type="checkbox" id="allCheck"/>
-				<td>아이디</td>
-				<td>번호</td>
-				<td>이름</td>
-				<td>닉네임</td>
-				<td>비밀번호</td>
-				<td>휴대폰번호</td>
-				<td>이메일</td>
-				<td>등급</td>
-				<td>성별</td>
+				<th><input type="checkbox" id="allCheck"/></th>
+				<th>아이디</th>
+				<th>no.</th>
+				<th>이름</th>
+				<th>닉네임</th>
+				<th>비밀번호</th>
+				<th>휴대폰번호</th>
+				<th>Email</th>
+				<th>등급</th>
+				<th>성별</th>
 			</tr>
 		</thead>	
 			<c:forEach var="user" items="${cList }" >
 			<tr>	
 				<td><input type="checkbox" id="test" name=test value="${user.cNo }"/></td>
-				<td><a href="UpdateUser?cNo=${user.cNo }">${user.cId }</a></td>			
+				<td><a href="UpdateUserPage?cNo=${user.cNo }">${user.cId }</a></td>			
 				<td>${user.cNo }</td>				
 				<td>${user.cName }</td>			
 				<td>${user.cNickname }</td>						
@@ -116,23 +217,23 @@
 				<td>성별${user.cGender }</td>	
 			</tr>
 			</c:forEach>
+		
 	</table>
 	</div>
-	<button id="deleteBtn" style= "width:100px; height:20px; margin: 0 auto;" >삭제</button>
-	<br/><br/>
+		<div id="del" class="del">
+		
+			<button id="deleteBtn">회원삭제</button>
+		</div>
+<br/>
 	
-	<button id="dept_btn" onclick="fn_dept_list()" style="display: block; width:480px; margin: 0 auto;" ><h3>업체관리</h3></button>
-	<br/><br/>
-	
-	
-	<div id="dept" style="display: block; width:750px; height:800px; margin: 0 auto; overflow:auto" >	
+	<div id="dept" style="width:760px; height:800px;" >	
 		<table border="1">
 			<thead>
 				<tr>
-					<td>번호</td>
-					<td>사업자 등록번호</td>
-					<td>사업체명</td>
-					<td>전화번호</td>
+					<th>no.</th>
+					<th>사업자 등록번호</th>
+					<th>사업체명</th>
+					<th>전화번호</th>
 				</tr>
 			</thead>
 			<c:forEach var="dept" items="${dList }">
@@ -165,7 +266,6 @@
 	
 	</script>
 	
-	<button onclick="location.href='deptAccpet'">업체 승인 관리</button>
 	
 
 </body>
