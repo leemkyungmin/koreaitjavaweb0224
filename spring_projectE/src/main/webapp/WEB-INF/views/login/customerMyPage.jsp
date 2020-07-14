@@ -34,7 +34,6 @@
 	var nickname = '${cDTO.cNickname}';
 	var PwUpdatePass = false;
 	
-	alert(nickname + '자폭 3초전');
 		$(function() {
 			// 비밀번호 변경 버튼
 			$('#cPwCheckBtn').click(function() {
@@ -91,6 +90,29 @@
 						}
 					});
 				}	
+				
+			});
+			
+			$('#cPhotoUpdate').click(function() {
+				
+				if(confirm('프로필 사진을 변경하시겠습니까?')){
+					$.ajax({
+						url : 'cPhotoUpdate',
+						type : 'POST',
+						data : 'cPhoto=' + $('#cPhoto').val() + '&cNo=' + no,
+						success : function(data) {
+							if (data == '1') {
+								alert('변경되었습니다.');
+								location.href = 'myPage';
+							} else {
+								alert('변경에 실패했습니다.');
+							}
+						},
+						error : function() {
+							alert('AJAX 오류 발생 자폭 3초전');
+						}
+					});
+				}
 				
 			});
 			
@@ -156,7 +178,12 @@
 			
 		}); // function({})
 	
-		
+		function fn_customerSignOut(f) {
+			if (confirm('정말 탈퇴하시겠습니까?')){
+				f.action = 'customerSignOut';
+				f.submit();
+			}
+		}
 	
 	</script>
 
@@ -165,14 +192,8 @@
         <div class="container"><!-- 좌우측의 공간 확보 -->
             <!-- 헤더 들어가는 부분 -->
             
-            <div class="row">
-                <p></p>
-                <div class="col-md-12">
-                    <small>
-                    <a href="loginPage">로그인</a> | <a href="#">회원가입</a>
-                    </small>
-                </div>
-            </div>
+            <%@ include file="../template/header.jsp" %>
+            
             <!--// 헤더 들어가는 부분 -->
             <!-- 모달창 -->
             <div class="modal fade" id="defaultModal">
@@ -223,6 +244,7 @@
             <form class="form-horizontal" id="loginForm" role="form" method="post" action="customerUpdate" enctype="multipart/form-data">
                 <div class="form-group" id="divId">
                 	<h6>회원번호 : ${cDTO.cNo }</h6>
+                	<input type="hidden" value="${cDTO.cNo }" name="cNo" />
                     <label for="inputId" class="col-lg-2 control-label">아이디 *수정불가</label>
                     <div class="col-lg-10">
                         <input type="text" class="form-control onlyAlphabetAndNumber" name="cId" id="id" data-rule-required="true" readonly value="${cDTO.cId }"maxlength="30"><br/>
@@ -274,7 +296,8 @@
                 <div class="form-group" id="divPhoto">
                 	<label for="inputPhoto" class="col-lg-2 control-label">프로필 사진</label><br/> &nbsp;&nbsp;&nbsp;
                 	<div id="photoBox" style="width:50; height:50;">
-                		<input type="file" id="cPhoto" name="cPhoto" onchange="fileCheck(this)" accept="image/jpeg,image/png,image/jpg" /> 
+                		<input type="file" id="cPhoto" name="cPhoto" onchange="fileCheck(this)" accept="image/jpeg,image/png,image/jpg" /> <br/>
+                		<input type="button" value="업로드 하기" class="btn btn-primary" id="cPhotoUpdate"  />
                 	</div>
                 </div>
                 <div class="form-group" id="divPhoneNumber">
@@ -299,7 +322,7 @@
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
                         <input type="button" value="돌아가기" class="btn btn-primary" onclick="index" />
-                        <input type="button" value="회원탈퇴" class="btn btn-primary" onclick="index" />
+                        <input type="button" value="회원탈퇴" class="btn btn-primary" onclick="fn_customerSignOut(this.form)" />
                     </div>
                 </div>
             </form>
@@ -642,16 +665,7 @@
         </script>
                 <!--// 본문 들어가는 부분 -->
             <hr/>
-            <!-- 푸터 들어가는 부분 -->
-            
-            <div>
-                <p class="text-center">
-                    <small><strong>업체명</strong></small><br>
-                    <small>대표 : 홍길동 ㆍ 주소 :  사거리 ㆍ 사업자등록번호:123-12-12345 ㆍ 전화 : 02-123-1234</small><br>
-                    <small>Copyrightⓒ test.com All rights reserved.</small>
-                </p>
-            </div>
-            <!--// 푸터 들어가는 부분 -->
         </div>
+        <%@ include file="../template/footer.jsp" %>
     </body>
 </html>

@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -25,8 +24,10 @@ public class DepartmentUpdateCommand implements Command {
 		Map<String, Object> map = model.asMap();
 		
 		MultipartHttpServletRequest mr = (MultipartHttpServletRequest) map.get("mr");
+		HttpSession session = mr.getSession();
 		
 		String dSeat = mr.getParameter("dSeat");
+		String dSaup_no = (String) session.getAttribute("dSaup_no");
 		String dPhone = mr.getParameter("dPhone");
 		String dName = mr.getParameter("dName");
 		String dAddress = mr.getParameter("dAddress");
@@ -34,19 +35,16 @@ public class DepartmentUpdateCommand implements Command {
 		String dEnd = mr.getParameter("dEnd");
 		String dParking = mr.getParameter("dParking");
 		String dType = mr.getParameter("dType");
-		HttpSession session = mr.getSession();
-		System.out.println(session.getAttribute("dSaup_no"));
+		String dNo = mr.getParameter("dNo");
 		
+		dStart = (dStart.substring(0, 2) + dStart.substring(3,4)+1);
+		dEnd = (dEnd.substring(0,2) + dEnd.substring(3,4)+1);
 		
-		
-		dStart = dStart.substring(0, 1) + dStart.substring(3, 4);
-		
-		
-		dEnd = dEnd.substring(0,1) + dEnd.substring(3,4);
 		
 		
 		List<MultipartFile> fileList = mr.getFiles("dPhoto");
-		
+		String saveFilename = "";
+		String amuguna = "";
 		if (fileList != null && fileList.size() > 0) {
 			
 			for (MultipartFile file : fileList) {
@@ -55,14 +53,18 @@ public class DepartmentUpdateCommand implements Command {
 					
 					String extName = originFilename.substring(originFilename.lastIndexOf(".") +1 );
 					
-					String saveFilename = null;
+					
 					
 					try {
 						saveFilename = originFilename.substring(0, originFilename.lastIndexOf(".")) +
 								"_"+
 								System.currentTimeMillis() + 
 								"." + extName;
-					
+						if(amuguna == "") {
+							amuguna = saveFilename;
+						} else {
+							amuguna += ","+saveFilename;
+						}
 						String realPath = mr.getSession().getServletContext().getRealPath("/resources/storage");
 						
 						File directory = new File(realPath);
@@ -74,7 +76,7 @@ public class DepartmentUpdateCommand implements Command {
 						
 						file.transferTo(saveFile);
 						
-						lDAO.departUpdate(dSeat, dPhone, dName, dAddress, dStart, dEnd, dParking, dType);
+						
 						
 						
 					}catch (Exception e) {
@@ -86,7 +88,16 @@ public class DepartmentUpdateCommand implements Command {
 			
 		}
 		
+		int result = lDAO.goDb(dSaup_no);
 		
+		
+		if (result > 0) {
+			lDAO.departUpdate(dSeat, dSaup_no, dPhone, dName, dAddress, dStart, dEnd, dParking, dType, amuguna, dNo);
+		} else {
+			lDAO.departInsert(dSeat, dSaup_no, dPhone, dName, dAddress, dStart, dEnd, dParking, dType, amuguna);
+		}
 	}
-
+	
+	
+	
 }

@@ -38,7 +38,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where cNo = #{cNo}
 	</delete>
 	
-	
+	<update id="UpdateUser">
+		update  customer
+		set cGrade = #{param1}
+		where cNo = #{param2}
+	</update>
 	
 	
 	<select id="deptAcceptList" resultType="com.koreait.projectE.dto.DepartmentDTO">

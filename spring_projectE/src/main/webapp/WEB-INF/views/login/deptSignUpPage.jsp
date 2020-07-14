@@ -48,6 +48,9 @@
             			}
             		});
             	}); // 아이디 중복 체크
+            	$('#id').blur(function() {
+            		idPass=false;
+            	});
         		var dSaup_noPass = false;
             	$('#dSaup_no').keyup(function() {
             		

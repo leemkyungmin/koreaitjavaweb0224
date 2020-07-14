@@ -19,9 +19,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.koreait.projectE.command.Login.CustomerEmailAuthCommand;
 import com.koreait.projectE.command.Login.CustomerFindIdPwCommand;
 import com.koreait.projectE.command.Login.CustomerMyPageCommand;
+import com.koreait.projectE.command.Login.CustomerSignOutCommand;
 import com.koreait.projectE.command.Login.CustomerSignUpCommand;
 import com.koreait.projectE.command.Login.DepartmentMyPageCommand;
 import com.koreait.projectE.command.Login.DepartmentUpdateCommand;
+import com.koreait.projectE.command.Login.DeptSignOutCommand;
 import com.koreait.projectE.command.Login.DeptSignUpCommand;
 import com.koreait.projectE.command.Login.deptFindIdPwCommand;
 import com.koreait.projectE.commom.Command;
@@ -221,6 +223,14 @@ public class LoginController {
 		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
 		return lDAO.pwUpdate(cPw, cNo) + "";
 	}
+	
+	@RequestMapping(value="cPhotoUpdate", method=RequestMethod.POST, produces="text/html; charset=utf-8")
+	@ResponseBody
+	public String cPhotoUpdate(@RequestParam("cPhoto") String cPhoto, @RequestParam("cNo")int cNo) {
+		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
+		return lDAO.cPhotoUpdate(cPhoto, cNo) + "";
+	}
+	
 	@RequestMapping(value="deptpwUpdate", method=RequestMethod.POST, produces="text/html; charset=utf-8")
 	@ResponseBody
 	public String deptpwUpdate(@RequestParam("dPw") String dPw, @RequestParam("dSaup_no")String dSaup_no) {
@@ -364,6 +374,36 @@ public class LoginController {
 		
 		return message;
 	}
+	
+	@RequestMapping("deptSignOut")
+	public String deptSignOut(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new DeptSignOutCommand();
+		command.execute(sqlSession, model);
+		
+		HttpSession session = request.getSession();
+		
+		if (session != null) {
+			session.invalidate();
+		}
+		
+		return "redirect:index";
+	}
+	
+	@RequestMapping("customerSignOut")
+	public String customerSignOut(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new CustomerSignOutCommand();
+		command.execute(sqlSession, model);
+		HttpSession session = request.getSession();
+		
+		if (session != null) {
+			session.invalidate();
+		}
+		return "redirect:index";
+	}
+	
+	
 }
 
 
