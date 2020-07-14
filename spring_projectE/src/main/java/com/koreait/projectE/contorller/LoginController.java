@@ -1,5 +1,7 @@
 package com.koreait.projectE.contorller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,12 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.koreait.projectE.command.CustomerEmailAuthCommand;
-import com.koreait.projectE.command.CustomerMyPageCommand;
-import com.koreait.projectE.command.CustomerSignUpCommand;
-import com.koreait.projectE.command.DepartmentMyPageCommand;
-import com.koreait.projectE.command.DepartmentUpdateCommand;
-import com.koreait.projectE.command.DeptSignUpCommand;
+import com.koreait.projectE.command.Login.CustomerEmailAuthCommand;
+import com.koreait.projectE.command.Login.CustomerFindIdPwCommand;
+import com.koreait.projectE.command.Login.CustomerMyPageCommand;
+import com.koreait.projectE.command.Login.CustomerSignUpCommand;
+import com.koreait.projectE.command.Login.DepartmentMyPageCommand;
+import com.koreait.projectE.command.Login.DepartmentUpdateCommand;
+import com.koreait.projectE.command.Login.DeptSignUpCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.LoginDAO;
 import com.koreait.projectE.dto.CustomerDTO;
@@ -240,6 +243,59 @@ public class LoginController {
 		return "login/findUserIdPw";
 	}
 	
+	//사용자 아이디 찾기 
+	@RequestMapping(value="find_user_id", method=RequestMethod.POST, produces="text/html; charset=utf-8")
+	@ResponseBody
+	public String find_uId(HttpServletRequest request,Model model) {
+		String cName  = request.getParameter("cName");
+		String cEmail  = request.getParameter("cEmail");
+		
+		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
+		String cId =lDAO.finduId(cName, cEmail);
+		String message ="";
+		
+		if(cId !=null) {
+			model.addAttribute("cId", cId);
+			model.addAttribute("cName", cName);
+			model.addAttribute("cEmail", cEmail);
+			model.addAttribute("type", "id");
+			model.addAttribute("mailSender", mailSender);
+			CustomerFindIdPwCommand cmd =new CustomerFindIdPwCommand();
+			 cmd.execute(sqlSession, model);
+			
+			message ="등록된 이메일로 아이디를 보냈습니다.";
+		}else {
+			message ="등록된 사용자가 없습니다. 다시 확인해주세요";
+		}
+		
+		return message;
+	}
+	//유저 비밀번호 찾기 
+	@RequestMapping(value="find_user_pw", method=RequestMethod.POST, produces="text/html; charset=utf-8")
+	@ResponseBody
+	public String find_uPw(HttpServletRequest request,Model model) {
+		String cId  = request.getParameter("cId");
+		String cEmail  = request.getParameter("cEmail");
+		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
+		int count =lDAO.finduPw(cId, cEmail);
+		System.out.println(count);
+		String message ="";
+		if(count>0) {
+			model.addAttribute("cId", cId);
+			//model.addAttribute("cName", cName);
+			model.addAttribute("cEmail", cEmail);
+			model.addAttribute("type", "pw");
+			model.addAttribute("mailSender", mailSender);
+			CustomerFindIdPwCommand cmd =new CustomerFindIdPwCommand();
+			String emailAuth = (String) cmd.execute(sqlSession, model);
+			lDAO.UpdateTempPw(cId,emailAuth);
+			message ="등록된 이메일로 임시 비밀번호를 보냈습니다.";
+		}else {
+			message ="등록된 사용자가 없습니다. 다시 확인해주세요";
+		}
+		
+		return message;
+	}
 	
 }
 

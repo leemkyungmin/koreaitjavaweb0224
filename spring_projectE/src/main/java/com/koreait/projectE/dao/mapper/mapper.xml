@@ -87,6 +87,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (DEPARTMENT_INFO_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7},#{param8}, #{param9},#{param10}, 0, 0.0, 0, SYSDATE)
 	</insert>
 	
+<<<<<<< HEAD
 	<update id="departUpdate">
 		UPDATE DEPARTMENT_INFO
 		SET DSEAT = #{param1}, DSAUP_NO = #{param2}, DPHONE = #{param3}, DNAME = #{param4}, DADDRESS = #{param5}, DSTART = #{param6}, DEND = #{param7}, DPARKING = #{param8}, DTYPE = #{param9}, DPHOTO = #{param10}
@@ -97,4 +98,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM DEPARTMENT_INFO
 		WHERE DSAUP_NO = #{param1}
 	</select>
+=======
+	<select id="finduId" resultType="String">
+		select cId
+		from customer 
+		where cName = #{param1} and cEmail =#{param2}
+	</select>
+	<select id="finduPw" resultType="int">
+		select count(*)
+		from customer
+		where cId=#{param1} and cEmail =#{param2}
+	</select>
+	
+	<update id="UpdateTempPw">
+		update customer set cPw =#{param2} 
+		where cId=#{param1}
+	</update>
+	
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 </mapper>

@@ -165,7 +165,7 @@
 	
 	</script>
 	
-	<button onclick="location.href='deptAccpet'">업체 승인 관리</button>
+	<button onclick="location.href='deptAccpetPage'">업체 승인 관리</button>
 	
 
 </body>

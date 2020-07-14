@@ -53,12 +53,62 @@
 		background: #007bff;
 		border-radius: .3rem;;
 	}
-	
+	.findPwWrap{
+		display:none;
+	}
+	.findPw{
+		background:gray;
+	}
 	</style>
 	<script>
 	$(function(){
-		$('.findPwWrap').css('display','none');
+		
+		$('.findId').click(function(){
+			$('.findPwWrap').css('display','none');
+			$('.findIdWrap').css('display','block');
+			$('.findId').css('background','#007bff');
+			$('.findPw').css('background','gray');
+		});
+		$('.findPw').click(function(){
+			$('.findIdWrap').css('display','none');
+			$('.findPwWrap').css('display','block');
+			$('.findId').css('background','gray');
+			$('.findPw').css('background','#007bff');
+		});
 	});
+	function fn_findcId(f){
+		
+		$.ajax({
+			url:"find_user_id",
+			type:"POST",
+			data:{
+					"cName" : f.cName.value,
+					"cEmail" : f.cEmail.value
+			},
+			success :function(data){
+				alert(data);
+			},
+			error :function(){
+				alert('통신 실패');
+			}
+		});
+	}
+	function fn_findPw(f){
+		$.ajax({
+			url:"find_user_pw",
+			type:"POST",
+			data:{
+					"cId" : f.cId.value,
+					"cEmail" : f.cEmail.value
+			},
+			success :function(data){
+				alert(data);
+			},
+			error :function(){
+				alert('통신 실패');
+			}
+		});
+	}
 		
 	</script>
 </head>
@@ -76,13 +126,13 @@
 			<h2 class="card-title text-center" style="color:#113366;">아이디 찾기</h2>
 		</div>
 		<div class="card-body">
-      <form class="form-signin" method="POST">
+      <form class="form-signin"  method="POST">
         <h5 class="form-signin-heading">성명,이메일 입력해주세요</h5>
         <label for="cName" class="sr-only">Name</label>
         <input type="text" id="cName" name="cName" class="form-control" placeholder="Name" required autofocus><BR>
         <label for="cEmail" class="sr-only">Email</label>
-        <input type="password" id="cEmail" name="cEmail" class="form-control" placeholder="Email" required><br>
-        <input id="findUId" name="findUId" class="btn btn-lg btn-primary btn-block" type="button" value="아이디 찾기"  />
+        <input type="text" id="cEmail" name="cEmail" class="form-control" placeholder="Email" required><br>
+        <input id="findUId" name="findUId" class="btn btn-lg btn-primary btn-block" type="button" onclick="fn_findcId(this.form)" value="아이디 찾기"  />
       </form>
       
 		</div>
@@ -98,9 +148,9 @@
         <label for="cId" class="sr-only">Your ID</label>
         <input type="text" id="cId" class="form-control" placeholder="ID" required autofocus><BR>
         <label for="inputPassword" class="sr-only">이메일</label>
-        <input type="password" id="cEmail" class="form-control" placeholder="Email" required><br>
+        <input type="text" id="cEmail" class="form-control" placeholder="Email" required><br>
         
-        <input id="login_dept" name="login_dept" class="btn btn-lg btn-primary btn-block" type="button" value="비밀번호 찾기" />
+        <input id="login_dept" name="login_dept" class="btn btn-lg btn-primary btn-block" type="button" onclick="fn_findPw(this.form)" value="비밀번호 찾기" />
       </form>
       
 		</div>

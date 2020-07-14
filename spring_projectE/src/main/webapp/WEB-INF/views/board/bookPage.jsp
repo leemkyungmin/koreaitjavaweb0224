@@ -43,6 +43,7 @@
 			width: 100%;
 			margin-top:30px;
 			margin-bottom:30px;
+			padding-left: 15px;
 			text-align: center;
 			font-size: 25px;
 			vertical-align: middle;
@@ -255,12 +256,7 @@
 		<div class="calendar" >
 			<div class="navigation">
 
-
-				 <a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;</a>  
-				
-
-
-				<a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;</a> 
+				<%-- <a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;</a>  --%>
 				<span class="this_month">
 					&nbsp;${today_info.search_year}. 
 					<c:if test="${today_info.search_month<10}">0</c:if>${today_info.search_month}
@@ -436,7 +432,7 @@
 						</tr>
 						<tr>
 							<td class="text_subject">연락처 :</td>
-							<td class="text_desc"><input class="custInfo_textbox" type="text" name="" value="${cDTO.cPhone}" size="13" readonly/></td>
+							<td class="text_desc"><input class="custInfo_textbox" type="text" name="" value="${fn:substring(cDTO.cPhone, 0, 3)}-${fn:substring(cDTO.cPhone, 3, 7)}-${fn:substring(cDTO.cPhone, 7, 11)}" size="13" readonly/></td>
 						</tr>
 					</table>
 				</div>
