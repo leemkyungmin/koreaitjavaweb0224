@@ -48,4 +48,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="deptAcceptList" resultType="com.koreait.projectE.dto.DepartmentDTO">
 		SELECT * FROM DEPARTMENT_INFO WHERE DACCPET = 0
 	</select>
+	
+	<select id="deptAcceptView" resultType="com.koreait.projectE.dto.DepartmentDTO">
+		SELECT * FROM DEPARTMENT_INFO WHERE DNO = #{dNo}
+	</select>
+	
+	<update id="deptAccept">
+		UPDATE DEPARTMENT_INFO SET DACCPET = 1 WHERE DNO = #{dNo}
+	</update>
+	
+	<delete id="deptReject">
+		DELETE FROM DEPARTMENT_INFO WHERE DNO = #{dNo}
+	</delete>
+	
 </mapper>

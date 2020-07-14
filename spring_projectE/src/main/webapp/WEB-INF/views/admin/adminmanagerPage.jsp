@@ -266,6 +266,10 @@
 	
 	</script>
 	
+<<<<<<< HEAD
+=======
+	<button onclick="location.href='deptAccpetPage'">업체 승인 관리</button>
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 	
 
 </body>

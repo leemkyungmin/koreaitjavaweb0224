@@ -79,14 +79,6 @@
 
 	</style>
 	
-	<script>
-		
-	function fn_goInput(f){
-		var a = document.getElementById("aa").innerText;
-		document.getElementById("search-input").value=a;
-		};
-	
-	</script>
 	
 	<div class="header-wrap">
 		<div class="title-wrap">
@@ -97,12 +89,15 @@
  		<div class="search-wrap">
 	 		<div class="main-search">
 				<div class="icon-box"><i class="fas fa-search"></i></div>
-				<form class="search-form" action="searchResult" method="post" >
-				<input id="search-input" class="HomeSearchInput" name="main-search"  type="text" maxlength="50" placeholder="지역, 식당 또는 음식" autocomplete="off" >
-				<input class="btn-search" type="submit" value="검색" >
+				<form class="search-form" action="searchPage">
+				<input id="search-input" class="HomeSearchInput" name="main-search" type="text" maxlength="50" placeholder="지역, 식당 또는 음식" autocomplete="off" >
+				<input class="btn-search" type="submit" value="검색">
+
     			</form>
 				<div class="invisible" style="display: none">
-			       <div class="item"><a href="#" onclick="fn_goInput(this.value)" id="aa">test</a></div>
+			       
+			       <div class="item"><a href="searchPage?main-search=" ></a></div>
+
     			</div>
 			</div>					
 		</div>
@@ -113,8 +108,8 @@
 		</video>
 	</div>
 	
+
 	${sessionScope }
-	
 	
 	<a href="viewPage?dSaup_no=11111111111">view페이지 테스트</a><br/><br/>
 

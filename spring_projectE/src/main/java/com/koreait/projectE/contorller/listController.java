@@ -1,14 +1,20 @@
 package com.koreait.projectE.contorller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.koreait.projectE.command.ListCommand;
 import com.koreait.projectE.command.LocationListCommand;
+import com.koreait.projectE.command.Login.SearchCommand;
 import com.koreait.projectE.commom.Command;
 
 @Controller
@@ -41,7 +47,19 @@ public class listController {
 		return "board/location_list";
 	}
 	
-	
-	
+
+	@RequestMapping("searchPage")
+	public String search_list(HttpServletRequest request, Model model, HttpServletResponse response) {
+		
+		model.addAttribute("request", request);
+		model.addAttribute("response", response);
+		command = new SearchCommand();
+		command.execute(sqlSession, model);
+		
+		
+		return "board/searchPage";
+	}
+
+
 	
 }

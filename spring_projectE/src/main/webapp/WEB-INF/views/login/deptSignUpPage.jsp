@@ -15,6 +15,97 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <!-- Respond.js 으로 IE8 에서 반응형 기능을 활성화하세요 (https://github.com/scottjehl/Respond) -->
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        
+        <script type="text/javascript">
+        
+        	$(function() {
+        		
+        		var idPass = false;
+        		$('#idCheckBtn').click(function() {
+            		$.ajax({
+            			url: 'deptidCheck',
+            			type: 'POST',
+            			data: 'dId=' + $('#id').val(),
+            			success: function(data) {
+            				var color;
+            				var ans;
+            				if(data == '1'){
+            					ans='이미있는아이디입니다.';
+            					color='red';
+            				}else if ($('#id').val() != '' && data == '0'){
+            					ans='가입 가능한 아이디입니다.';
+            					color='blue';
+            					idPass=true;
+            				} else {
+            					ans='아이디를 입력하세요';
+            					color='red';
+            				}	
+            				$('#temp').text(ans);
+            				$('#temp').css('color',color);
+            			},
+            			error: function () {
+            				alert('AJAX 통신 실패');
+            			}
+            		});
+            	}); // 아이디 중복 체크
+            	$('#id').blur(function() {
+            		idPass=false;
+            	});
+        		var dSaup_noPass = false;
+            	$('#dSaup_no').keyup(function() {
+            		
+            		$.ajax({
+            			url : 'dSaup_noCheck',
+            			type: 'POST',
+            			data: 'dSaup_no=' + $('#dSaup_no').val(),
+            			success: function (data) {
+            				var color;
+            				var ans;
+            				if(data == '1'){
+            					ans='중복된 사업자 번호입니다.';
+            					color ='red';
+            				} else if ($('#dSaup_no').val() != '' && data == '0'&& ($('#dSaup_no').val().length == 11)) {
+            					ans='가입 가능한 사업자 번호입니다.';
+            					color='blue';
+            					dSaup_noPass = true;
+            				} else if (($('#dSaup_no').val() != 11)) {
+            					ans='사업자 번호는 11자리입니다.';
+            					color='red';
+            				}
+            				$('#temp2').text(ans);
+            				$('#temp2').css('color', color);
+            			},
+            			error:function() {
+            				alert('AJAX 통신 실패');
+            			}
+            		}); 
+            		
+            	});
+            	
+            	
+        		$('#signUp').click(function() {
+            			
+            		
+            		if(idPass == false) {
+                        $('#id').focus();
+                        alert('아이디 중복 체크를 해주세요');
+                        return false;
+            		}
+            		if(dSaup_noPass == false) {
+            			$('#dSaup_no').focus();
+            			alert('사업자 번호를 확인하세요.');
+            			return false;
+            		}
+    	        	return true;
+            		
+            	}); 
+            	
+            	
+        	});
+        
+        </script>
+        
+        
     </head>
     <body>
         <div class="container"><!-- 좌우측의 공간 확보 -->
@@ -106,6 +197,12 @@
                     <label for="inputId" class="col-lg-2 control-label">아이디</label>
                     <div class="col-lg-10">
                         <input type="text" class="form-control onlyAlphabetAndNumber" name="dId" id="id" data-rule-required="true" placeholder="30자이내의 알파벳, 언더스코어(_), 숫자만 입력 가능합니다." maxlength="30">
+                        <div id="temp" class="temp"></div>
+                    </div>
+                    <div class="check-font" id="id_check">
+                    	&nbsp;&nbsp;
+                    	<input type="button" class="btn btn-primary" value="중복체크" id="idCheckBtn" name="idCheckBtn" />
+                    	<div id="idCheck" class="check_font"></div>
                     </div>
                 </div>
                 <div class="form-group" id="divPassword">
@@ -125,12 +222,13 @@
                 <div class="form-group" id="divPhoneNumber">
                     <label for="inputPhoneNumber" class="col-lg-2 control-label">사업자 번호</label>
                     <div class="col-lg-10">
-                        <input type="tel" class="form-control onlyNumber" id="phoneNumber" name="dSaup_no" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="10">
+                        <input type="tel" class="form-control onlyNumber" id="dSaup_no" name="dSaup_no" data-rule-required="true" placeholder="-를 제외하고 숫자만 입력하세요." maxlength="11">
+                        <div id="temp2" class="temp2"></div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
-                        <button type="submit" class="btn btn-primary">가입하기</button>
+                         <button type="submit" class="btn btn-primary" name="signUp" id="signUp">가입하기</button>
                     </div>
                 </div>
             </form>
@@ -301,13 +399,13 @@
                     }
                     
                     //아이디 검사
-                    if($('#cId').val()==""){
+                    if($('#id').val()==""){
                         modalContents.text("아이디를 입력하여 주시기 바랍니다.");
                         modal.modal('show');
                         
                         divId.removeClass("has-success");
                         divId.addClass("has-error");
-                        $('#cId').focus();
+                        $('#id').focus();
                         return false;
                     }else{
                         divId.removeClass("has-error");
@@ -315,7 +413,7 @@
                     }
                     
                     //패스워드 검사
-                    if($('#cPw').val()==""){
+                    if($('#password').val()==""){
                         modalContents.text("패스워드를 입력하여 주시기 바랍니다.");
                         modal.modal('show');
                         
@@ -343,7 +441,7 @@
                     }
                     
                     //패스워드 비교
-                    if($('#cPw').val()!=$('#passwordCheck').val() || $('#passwordCheck').val()==""){
+                    if($('#password').val()!=$('#passwordCheck').val() || $('#passwordCheck').val()==""){
                         modalContents.text("패스워드가 일치하지 않습니다.");
                         modal.modal('show');
                         divPasswordCheck.removeClass("has-success");

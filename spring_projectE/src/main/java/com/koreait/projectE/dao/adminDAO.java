@@ -26,6 +26,16 @@ public interface adminDAO {
 	// �듅�씤 諛쏆븘�빞 �븯�뒗 �뾽泥대━�뒪�듃
 	public ArrayList<DepartmentDTO> deptAcceptList();
 	
+
 	public void UpdateUser(String cGrade,String cNo);
+
+	// 승인 업체 view
+	public DepartmentDTO deptAcceptView(long dNo);
+	
+	// 업체 승인
+	public void deptAccept(int dNo);
+	
+	// 업체 거절 -> 삭제
+	public void deptReject(int dNo);
 
 }

@@ -43,6 +43,7 @@
 			width: 100%;
 			margin-top:30px;
 			margin-bottom:30px;
+			padding-left: 15px;
 			text-align: center;
 			font-size: 25px;
 			vertical-align: middle;
@@ -227,14 +228,23 @@
 	
 </head>
 <body>
-	
+	<c:if test="${sessionScope.dSaup_No !=null }">
+		<script type="text/javascript">
+			alert('기업 회원은 예약이 불가능합니다.');
+			location.href='viewPage?dSaup_no='+${deptDTO.dSaup_no};
+			
+		</script>
+	</c:if>	
+	<c:if test="${sessionScope.cId==null && sessionScope.dSaup_No ==null }">
+		<script type="text/javascript">
+		
+			alert('로그인후 예약이 가능합니다 . 로그인후 이용해주세요');
+			location.href='logout';
+			
+		</script>
+	</c:if>
 	<form name="calendarFrm" id="calendarFrm" method="GET">
-		<c:if test="${sessionScope.cId ==null }">
-			<script type="text/javascript">
-				alert('로그인후 예약이 가능합니다 . 로그인 페이지로 이동합니다.');
-				location.href='loginChoicePage';
-			</script>
-		</c:if>
+		
 
 		<input type="hidden" name="year" value="${today_info.search_year}" />
 		<input type="hidden" name="month" value="${today_info.search_month}" />
@@ -245,22 +255,13 @@
 
 		<div class="calendar" >
 			<div class="navigation">
-<<<<<<< HEAD
 
-				 <a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;</a>  
-				
-
-=======
-				<a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;</a> 
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
+				<%-- <a class="before_after_month" href="calendar?year=${today_info.before_year}&month=${today_info.before_month}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&lt;</a>  --%>
 				<span class="this_month">
 					&nbsp;${today_info.search_year}. 
 					<c:if test="${today_info.search_month<10}">0</c:if>${today_info.search_month}
 				</span>
-<<<<<<< HEAD
-				 
-=======
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
+
 				<a class="before_after_month" href="calendar?year=${today_info.after_year}&month=${today_info.after_month}&cNo=${cDTO.cNo}&dSaup_no=${deptDTO.dSaup_no}">&gt;</a> 
 			</div>
 			<script type="text/javascript">
@@ -395,6 +396,7 @@
 				return;
 			}
 			
+			
 			if (!confirm('예약하시겠습니까?')) {
 				return;
 			}
@@ -410,6 +412,7 @@
 						$('#aP_count_textbox').val('');
 						return;
 					}
+					alert('예약되었습니다.');
 					form.action = 'insertAppointment';
 					form.submit();
 				},
@@ -431,7 +434,7 @@
 						</tr>
 						<tr>
 							<td class="text_subject">연락처 :</td>
-							<td class="text_desc"><input class="custInfo_textbox" type="text" name="" value="${cDTO.cPhone}" size="13" readonly/></td>
+							<td class="text_desc"><input class="custInfo_textbox" type="text" name="" value="${fn:substring(cDTO.cPhone, 0, 3)}-${fn:substring(cDTO.cPhone, 3, 7)}-${fn:substring(cDTO.cPhone, 7, 11)}" size="13" readonly/></td>
 						</tr>
 					</table>
 				</div>

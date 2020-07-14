@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="customerSignUp">
 		INSERT INTO CUSTOMER (CNO, CID, CPW, CNAME, CNICKNAME, CPHONE,CEMAIL,CPOTO,CGRADE,CDEPT,CGENDER,CREGDATE)
-		VALUES (CUSTOMER_SEQ.NEXTVAL, #{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},'1','일반',#{param8},SYSDATE)
+		VALUES (CUSTOMER_SEQ.NEXTVAL, #{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},'1','1',#{param8},SYSDATE)
 	</insert>
 	
 	<insert id="deptSignUp">
@@ -54,9 +54,107 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE CNO = #{param2}
 	</update>
 	
+	<update id="cPhotoUpdate">
+		UPDATE CUSTOMER
+		SET CPOTO = #{param1}
+		WHERE CNO = #{param2}
+	</update>
+	
 	<select id="departmentLogin" parameterType="String" resultType="com.koreait.projectE.dto.DepartmentLoginDTO">
 		SELECT *
 		FROM DEPARTMENT
 		WHERE DID = #{param1} AND DPW = #{param2}
 	</select>
+	
+	<select id="selectBydSaup_no" parameterType="String" resultType="com.koreait.projectE.dto.DepartmentDTO">
+	SELECT *
+	FROM DEPARTMENT_INFO
+	WHERE DSAUP_NO = #{param1}
+	</select>
+	
+	<update id="deptpwUpdate">
+		UPDATE DEPARTMENT
+		SET DPW = #{param1}
+		WHERE DSAUP_NO = #{param2}
+	</update>
+	
+	<select id="deptidCheck" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM DEPARTMENT 
+		WHERE DID = #{param1} 
+	</select> 
+	
+	<select id="dSaup_noCheck" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM DEPARTMENT
+		WHERE DSAUP_NO = #{param1}
+	</select>
+	
+	<insert id="departInsert">
+		INSERT INTO DEPARTMENT_INFO
+		VALUES (DEPARTMENT_INFO_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7},#{param8}, #{param9},#{param10}, 0, 0.0, 0, SYSDATE)
+	</insert>
+	
+	<update id="departUpdate">
+		UPDATE DEPARTMENT_INFO
+		SET DSEAT = #{param1}, DSAUP_NO = #{param2}, DPHONE = #{param3}, DNAME = #{param4}, DADDRESS = #{param5}, DSTART = #{param6}, DEND = #{param7}, DPARKING = #{param8}, DTYPE = #{param9}, DPHOTO = #{param10}
+		WHERE DNO = #{param11}
+	</update>
+	<select id="goDb" resultType="int" parameterType="String">
+		SELECT COUNT(*)
+		FROM DEPARTMENT_INFO
+		WHERE DSAUP_NO = #{param1}
+	</select>
+	<select id="finduId" resultType="String">
+		select cId
+		from customer 
+		where cName = #{param1} and cEmail =#{param2}
+	</select>
+	<select id="finduPw" resultType="int">
+		select count(*)
+		from customer
+		where cId=#{param1} and cEmail =#{param2}
+	</select>
+	
+	<update id="UpdateTempPw">
+		update customer set cPw =#{param2} 
+		where cId=#{param1}
+	</update>
+	
+	<select id="find_dept_id" resultType="String">
+		select d.DID 
+		from department_Info di,department d
+		where di.dSaup_no = #{param1} and di.dPhone =#{param2} and di.dSaup_no = d.dSaup_no
+	</select>
+	
+	<select id="findDeptPw" resultType="int">
+		select count(*)
+		from department 
+		where did=#{param1} and dSaup_no =#{param2}
+	</select>
+	
+	<delete id="deptSignOut1">
+		DELETE REVIEW WHERE DSAUP_NO=#{param1}
+	</delete>
+	<delete id="deptSignOut2">
+		DELETE APPOINTMENT WHERE DSAUP_NO=#{param1}
+	</delete>
+	<delete id="deptSignOut3">
+		DELETE MENU_INFO WHERE DSAUP_NO=#{param1}
+	</delete>
+	<delete id="deptSignOut4">
+		DELETE DEPARTMENT_INFO WHERE DSAUP_NO=#{param1}
+	</delete>
+	<delete id="deptSignOut5">
+		DELETE DEPARTMENT WHERE DSAUP_NO=#{param1}
+	</delete>
+	
+	<delete id="customerSignOut1">
+		DELETE REVIEW WHERE CNO = #{param1}
+	</delete>
+	<delete id="customerSignOut2">
+		DELETE APPOINTMENT WHERE CNO = #{param1}
+	</delete>
+	<delete id="customerSignOut3">
+		DELETE CUSTOMER WHERE CNO = #{param1}
+	</delete>
+	
 </mapper>
