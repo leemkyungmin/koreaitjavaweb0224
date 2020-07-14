@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.koreait.projectE.command.ListCommand;
 import com.koreait.projectE.command.LocationListCommand;
-import com.koreait.projectE.command.SearchCommand;
+import com.koreait.projectE.command.Login.SearchCommand;
 import com.koreait.projectE.commom.Command;
 
 @Controller

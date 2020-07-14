@@ -108,8 +108,8 @@
 		</video>
 	</div>
 	
+
 	${sessionScope }
-	
 	
 	<a href="viewPage?dSaup_no=11111111111">view페이지 테스트</a><br/><br/>
 
