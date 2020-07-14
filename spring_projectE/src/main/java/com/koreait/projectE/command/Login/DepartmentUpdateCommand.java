@@ -35,6 +35,7 @@ public class DepartmentUpdateCommand implements Command {
 		String dParking = mr.getParameter("dParking");
 		String dType = mr.getParameter("dType");
 		HttpSession session = mr.getSession();
+		String dNo = mr.getParameter("dNo");
 		System.out.println(session.getAttribute("dSaup_no"));
 		
 		
