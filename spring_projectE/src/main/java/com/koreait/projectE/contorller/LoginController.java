@@ -100,7 +100,7 @@ public class LoginController {
 		model.addAttribute("mr", mr);
 		command = new DepartmentUpdateCommand();
 		command.execute(sqlSession, model);
-		return "redirect:index"; 
+		return "redirect:deptmyPage"; 
 	}
 	
 	@RequestMapping(value="deptSignUp", method=RequestMethod.POST)
