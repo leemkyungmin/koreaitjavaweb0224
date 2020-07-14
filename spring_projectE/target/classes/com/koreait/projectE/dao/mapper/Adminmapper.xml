@@ -50,7 +50,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="deptAccept">
-		UPDATE DEPARTMENT_INFO SET DACCPET = 1 WHERE DSAUP_NO = #{dSaup_no}
+		UPDATE DEPARTMENT_INFO SET DACCPET = 1 WHERE DNO = #{dNo}
 	</update>
+	
+	<delete id="deptReject">
+		DELETE FROM DEPARTMENT_INFO WHERE DNO = #{dNo}
+	</delete>
 	
 </mapper>

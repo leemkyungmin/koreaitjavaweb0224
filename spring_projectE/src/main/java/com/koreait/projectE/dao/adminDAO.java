@@ -28,7 +28,10 @@ public interface adminDAO {
 	public DepartmentDTO deptAcceptView(long dNo);
 	
 	// 업체 승인
-	public void deptAccept(String dSaup_no);
+	public void deptAccept(int dNo);
+	
+	// 업체 거절 -> 삭제
+	public void deptReject(int dNo);
 }
 
 

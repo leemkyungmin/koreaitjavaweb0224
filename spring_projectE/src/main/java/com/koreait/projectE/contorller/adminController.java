@@ -15,6 +15,7 @@ import com.koreait.projectE.command.AdminDeptAcceptViewCommand;
 import com.koreait.projectE.command.Admin.AdminCommand;
 import com.koreait.projectE.command.Admin.AdminDeptAcceptCommand;
 import com.koreait.projectE.command.Admin.AdminDeptAcceptListCommand;
+import com.koreait.projectE.command.Admin.AdminDeptDeleteCommand;
 import com.koreait.projectE.command.Admin.AdminUpdateDepartmentCommand;
 import com.koreait.projectE.command.Admin.AdminUpdateUserCommand;
 import com.koreait.projectE.commom.Command;
@@ -97,7 +98,8 @@ public class adminController {
 	@RequestMapping(value="deptReject", method=RequestMethod.POST)
 	public String deptReject(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		
+		command = new AdminDeptDeleteCommand();
+		command.execute(sqlSession, model);
 		return "redirect:deptAccpetPage";
 	}
 		

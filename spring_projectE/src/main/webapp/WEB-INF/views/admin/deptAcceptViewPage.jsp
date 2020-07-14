@@ -87,7 +87,7 @@
 			</tr>
 		</table>
 		<div>
-			<input type="hidden" name="dSaup_no" value="${deptDTO.dSaup_no}" />
+			<input type="hidden" name="dNo" value="${deptDTO.dNo}" />
 			<input type="button" value="승인" onclick="endorse(this.form)"/> 
 			<input type="button" value="거절" onclick="reject(this.form)"/> 
 		</div>
