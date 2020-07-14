@@ -103,4 +103,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where cId=#{param1}
 	</update>
 	
+	<select id="find_dept_id" resultType="String">
+		select d.DID 
+		from department_Info di,department d
+		where di.dSaup_no = #{param1} and di.dPhone =#{param2} and di.dSaup_no = d.dSaup_no
+	</select>
+	
+	<select id="findDeptPw" resultType="int">
+		select count(*)
+		from department 
+		where did=#{param1} and dSaup_no =#{param2}
+	</select>
+	
 </mapper>

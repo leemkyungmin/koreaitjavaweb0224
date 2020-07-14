@@ -253,7 +253,7 @@
           </label>
         </div>
         <div style="text-align: center;">
-        	<a href="#">아이디</a>/<a href="#">비밀번호 찾기</a> <br/>
+        	<a href="findDeptIdPw">아이디 / 비밀번호 찾기</a> <br/>
         	<a href="deptSignUpPage">업체 회원가입</a>
         </div>
         <input id="login_dept" name="login_dept" class="btn btn-lg btn-primary btn-block" type="button" value="로 그 인" />
