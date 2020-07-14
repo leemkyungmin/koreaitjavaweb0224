@@ -16,7 +16,7 @@
 </script>
 
 	<style type="text/css">
-<<<<<<< HEAD
+
 	
 		table th {
 	      color: #168;
@@ -39,7 +39,7 @@
 			height: 100px;
 			width: 750px;
 		    border-top: 3px solid #168;
-=======
+
 		
 		* {
 			margin: 0;
@@ -74,7 +74,7 @@
 			text-decoration: none;
 			color: black;
 			font-weight: bold;
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
+
 		}
 		ul {
 	    list-style-type: none;
@@ -117,7 +117,7 @@
 
 </head>
 <body>
-<<<<<<< HEAD
+
 
 	<ul>
 	<li><h2>관리자페이지</h2></li>
@@ -126,22 +126,16 @@
 	<br/><br/>
 	
 	<table border="1">
-=======
-	
-	<table>
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
+
 		<tr>
-<<<<<<< HEAD
 			<th>상호명</th>
 			<th>등록일</th>
 			<th>승인상태</th>
-=======
 			<th>사업자번호</th>
 			<th>상호명</th>
 			<th>전화번호</th>
 			<th>업종</th>
 			<th>등록일</th>
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 		</tr>
 		<c:if test="${empty deptList}">
 			<tr>
