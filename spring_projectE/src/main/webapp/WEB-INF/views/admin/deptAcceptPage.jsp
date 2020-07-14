@@ -18,7 +18,7 @@
 		table {
 			margin: auto;
 			margin-top: 50px;
-			width: 600px;
+			width: 700px;
 			border-collapse: collapse;
 		}
 		

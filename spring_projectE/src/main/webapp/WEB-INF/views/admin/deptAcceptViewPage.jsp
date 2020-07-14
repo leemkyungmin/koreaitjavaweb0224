@@ -7,40 +7,90 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+	<style type="text/css">
+	
+		* {
+			margin: 0;
+			border: 0;
+		}
+		
+		table {
+			margin: auto;
+			margin-top: 50px;
+			margin-bottom: 10px;
+			width: 500px;
+			border-collapse: collapse;
+		}
+		
+		th {
+			padding: 10px 0;
+			background: #F9F9F9;
+			font-size: 15px;
+			letter-spacing: -0.1em;
+		}
+		
+		td {
+			text-align: left;
+			padding: 5px;
+			padding-left: 15px;
+		}
+		
+		tr:first-of-type {
+			border-top: 1px solid #868686;
+		}
+		tr:last-of-type {
+			border-bottom: 1px solid #868686;
+		}
+		
+		div {
+			margin: auto;
+			text-align: center;
+		}
+		
+		input {
+			padding: 5px;
+			display: inline-block;
+			width: 100px;
+		}
+	
+	</style>
+
 </head>
 <body>
 
 	<form action="deptAccept">
 		<table>
 			<tr>
-				<td>상호명</td>
+				<th>상호명</th>
 				<td>${deptDTO.dName}(${deptDTO.dSaup_no})</td>
 			</tr>
 			<tr>
-				<td>업종</td>
+				<th>업종</th>
 				<td>${deptDTO.dType}</td>
 			</tr>
 			<tr>
-				<td>주소</td>
+				<th>주소</th>
 				<td>${deptDTO.dAddress}</td>
 			</tr>
 			<tr>
-				<td>전화번호</td>
+				<th>전화번호</th>
 				<td>${fn:substring(deptDTO.dPhone, 0, 3)}-${fn:substring(deptDTO.dPhone, 3, 7)}-${fn:substring(deptDTO.dPhone, 7, 11)}</td>
 			</tr>
 			<tr>
-				<td>영업시간</td>
+				<th>영업시간</th>
 				<td>${fn:substring(deptDTO.dStart, 0, 2)}:${fn:substring(deptDTO.dStart, 2, 4)} ~ ${fn:substring(deptDTO.dEnd,0,2)}:${fn:substring(deptDTO.dEnd,2,4)}(${deptDTO.dSeat}석)</td>
 			</tr>
 			<tr>
-				<td>주차</td>
+				<th>주차</th>
 				<td>${deptDTO.dParking ==1 ? '주차 가능' : '주차 불가' }</td>
 			</tr>
 		</table>
-		
-		<input type="hidden" name="dSaup_no" value="${deptDTO.dSaup_no}" />
-		<input type="submit" value="승인" /> 
-		<input type="button" value="거절" onclick=""/> 
+		<div>
+			<input type="hidden" name="dSaup_no" value="${deptDTO.dSaup_no}" />
+			<input type="submit" value="승인" /> 
+			<input type="button" value="거절" onclick=""/> 
+		</div>
 		
 	</form>
 
