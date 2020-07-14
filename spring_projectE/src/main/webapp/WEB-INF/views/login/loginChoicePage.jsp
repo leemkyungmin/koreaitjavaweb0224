@@ -179,7 +179,7 @@
 				$('.customerWrap').css('display','none');
 				$('.departmentWrap').css('display','block');
 				$('.customer').css('background','gray');
-				$('.dept').css('background','007bff');
+				$('.dept').css('background','#007bff');
 			});
 		});
 		 
