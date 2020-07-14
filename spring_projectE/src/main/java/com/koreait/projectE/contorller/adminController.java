@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.koreait.projectE.command.AdminCommand;
-import com.koreait.projectE.command.AdminDeptAcceptCommand;
-import com.koreait.projectE.command.AdminUpdateDepartmentCommand;
-import com.koreait.projectE.command.AdminUpdateUserCommand;
+import com.koreait.projectE.command.Admin.AdminCommand;
+import com.koreait.projectE.command.Admin.AdminDeptAcceptCommand;
+import com.koreait.projectE.command.Admin.AdminUpdateDepartmentCommand;
+import com.koreait.projectE.command.Admin.AdminUpdateUserCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.adminDAO;
 
