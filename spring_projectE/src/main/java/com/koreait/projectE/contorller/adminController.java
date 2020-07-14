@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.koreait.projectE.command.AdminDeptAcceptViewCommand;
 import com.koreait.projectE.command.Admin.AdminCommand;
 import com.koreait.projectE.command.Admin.AdminDeptAcceptCommand;
+import com.koreait.projectE.command.Admin.AdminDeptAcceptListCommand;
 import com.koreait.projectE.command.Admin.AdminUpdateDepartmentCommand;
 import com.koreait.projectE.command.Admin.AdminUpdateUserCommand;
 import com.koreait.projectE.commom.Command;
@@ -66,10 +67,10 @@ public class adminController {
 
 	
 		
-	@RequestMapping(value="deptAccpet")
-	public String deptAccpet(Model model) {
+	@RequestMapping(value="deptAccpetPage")
+	public String deptAccpetPage(Model model) {
 		
-		command = new AdminDeptAcceptCommand();
+		command = new AdminDeptAcceptListCommand();
 		command.execute(sqlSession, model);
 		
 		return "admin/deptAcceptPage";
@@ -83,6 +84,14 @@ public class adminController {
 		command.execute(sqlSession, model);
 		
 		return "admin/deptAcceptViewPage";
+	}
+	
+	@RequestMapping(value="deptAccept")
+	public String deptAccept(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new AdminDeptAcceptCommand();
+		command.execute(sqlSession, model);
+		return "redirect:deptAccpetPage";
 	}
 		
 }

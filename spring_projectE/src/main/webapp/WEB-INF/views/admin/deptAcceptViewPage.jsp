@@ -10,7 +10,7 @@
 </head>
 <body>
 
-	<form method="">
+	<form action="deptAccept">
 		<table>
 			<tr>
 				<td>상호명</td>
@@ -34,7 +34,7 @@
 			</tr>
 			<tr>
 				<td>주차</td>
-				<td>${dept.dParking ==1 ? '주차 가능' : '주차 불가' }</td>
+				<td>${deptDTO.dParking ==1 ? '주차 가능' : '주차 불가' }</td>
 			</tr>
 		</table>
 		
