@@ -32,7 +32,7 @@
 				Cookies.set('query', cookieArr);
 			}
 		
-		}else{
+		}else{ 
 			
 		}
 	});
