@@ -54,6 +54,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE CNO = #{param2}
 	</update>
 	
+	<update id="cPhotoUpdate">
+		UPDATE CUSTOMER
+		SET CPOTO = #{param1}
+		WHERE CNO = #{param2}
+	</update>
+	
 	<select id="departmentLogin" parameterType="String" resultType="com.koreait.projectE.dto.DepartmentLoginDTO">
 		SELECT *
 		FROM DEPARTMENT
@@ -90,7 +96,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="departUpdate">
 		UPDATE DEPARTMENT_INFO
 		SET DSEAT = #{param1}, DSAUP_NO = #{param2}, DPHONE = #{param3}, DNAME = #{param4}, DADDRESS = #{param5}, DSTART = #{param6}, DEND = #{param7}, DPARKING = #{param8}, DTYPE = #{param9}, DPHOTO = #{param10}
-		WHERE DNO =1
+		WHERE DNO = #{param11}
 	</update>
 	<select id="goDb" resultType="int" parameterType="String">
 		SELECT COUNT(*)
@@ -124,5 +130,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from department 
 		where did=#{param1} and dSaup_no =#{param2}
 	</select>
+	
+	<delete id="deptSignOut1">
+		DELETE REVIEW WHERE DSAUP_NO=#{param1}
+	</delete>
+	<delete id="deptSignOut2">
+		DELETE APPOINTMENT WHERE DSAUP_NO=#{param1}
+	</delete>
+	<delete id="deptSignOut3">
+		DELETE MENU_INFO WHERE DSAUP_NO=#{param1}
+	</delete>
+	<delete id="deptSignOut4">
+		DELETE DEPARTMENT_INFO WHERE DSAUP_NO=#{param1}
+	</delete>
+	<delete id="deptSignOut5">
+		DELETE DEPARTMENT WHERE DSAUP_NO=#{param1}
+	</delete>
+	
+	<delete id="customerSignOut1">
+		DELETE REVIEW WHERE CNO = #{param1}
+	</delete>
+	<delete id="customerSignOut2">
+		DELETE APPOINTMENT WHERE CNO = #{param1}
+	</delete>
+	<delete id="customerSignOut3">
+		DELETE CUSTOMER WHERE CNO = #{param1}
+	</delete>
 	
 </mapper>
