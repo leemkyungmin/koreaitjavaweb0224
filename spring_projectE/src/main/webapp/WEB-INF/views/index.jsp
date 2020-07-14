@@ -79,15 +79,6 @@
 
 	</style>
 	
-	<script>
-		
-	function fn_goInput(f){
-
-		var a = document.getElementById("aa")).innerText;
-		document.getElementById("search-input").value=a;
-		};
-	
-	</script>
 	
 	<div class="header-wrap">
 		<div class="title-wrap">
@@ -104,7 +95,8 @@
 
     			</form>
 				<div class="invisible" style="display: none">
-			       <div class="item"><a href="#" onclick="fn_goInput(this.value)" id="aa">test</a></div>
+			       
+			       <div class="item"><a href="searchPage?main-search=" ></a></div>
 
     			</div>
 			</div>					

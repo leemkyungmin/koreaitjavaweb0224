@@ -23,6 +23,7 @@ import com.koreait.projectE.command.Login.CustomerSignUpCommand;
 import com.koreait.projectE.command.Login.DepartmentMyPageCommand;
 import com.koreait.projectE.command.Login.DepartmentUpdateCommand;
 import com.koreait.projectE.command.Login.DeptSignUpCommand;
+import com.koreait.projectE.command.Login.deptFindIdPwCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.LoginDAO;
 import com.koreait.projectE.dto.CustomerDTO;
@@ -235,12 +236,12 @@ public class LoginController {
 	}
 	
 	
-	//사용자 아이디 비밀번호 찾기 
+	//사용자 아이디 비밀번호 찾기 페이지
 	
 	@RequestMapping("findUserIdPw")
 	public String goFindUserId() {
 		
-		return "login/findUserIdPw";
+		return "login/customerfindUserIdPw";
 	}
 	
 	//사용자 아이디 찾기 
@@ -297,6 +298,72 @@ public class LoginController {
 		return message;
 	}
 	
+	//업체 아이디 비밀번호 찾기 페이지 
+	@RequestMapping("findDeptIdPw")
+	public String findDeptIdPw() {
+		
+		return "login/deptfindIdPw";
+	}
+	
+	//업체 아이디 찾기 
+	@RequestMapping(value="find_dept_id", method=RequestMethod.POST, produces="text/html; charset=utf-8")
+	@ResponseBody
+	public String find_dept_id(HttpServletRequest request,Model model) {
+		
+		String dId =null;
+		String message =null;
+		String dSaup_no = request.getParameter("dSaup_no");
+		String dPhone =request.getParameter("dPhone");
+		String dEmail=request.getParameter("dEmail");
+		System.out.println(dEmail);
+		LoginDAO ldao = sqlSession.getMapper(LoginDAO.class);
+		dId =ldao.find_dept_id(dSaup_no, dPhone);
+		System.out.println(dId);
+		if(dId !=null) {
+			model.addAttribute("dSaup_no", dSaup_no);
+			model.addAttribute("dId", dId);
+			model.addAttribute("dEmail", dEmail);
+			model.addAttribute("type", "id");
+			model.addAttribute("mailSender", mailSender);
+			deptFindIdPwCommand cmd =new deptFindIdPwCommand();
+			 cmd.execute(sqlSession, model);
+			message = "입력하신 메일에서 아이디를 확인해주세요.";
+		}else {
+			message = "입력하신 정보는 없습니다 .";
+		}
+		
+		return message;
+	}
+	@RequestMapping(value="find_dept_pw", method=RequestMethod.POST, produces="text/html; charset=utf-8")
+	@ResponseBody
+	public String find_deptPw(HttpServletRequest request,Model model) {
+		
+		String dId = request.getParameter("dId");
+		String dSaup_no = request.getParameter("dSaup_no");
+		String dEmail = request.getParameter("dEmail");
+		
+		String message ="";
+		
+		LoginDAO ldao = sqlSession.getMapper(LoginDAO.class);
+		int count =ldao.findDeptPw(dId, dSaup_no);
+		
+		
+		if(count>0) {
+			model.addAttribute("dId", dId);
+			//model.addAttribute("cName", cName);
+			model.addAttribute("dEmail", dEmail);
+			model.addAttribute("type", "pw");
+			model.addAttribute("mailSender", mailSender);
+			deptFindIdPwCommand cmd =new deptFindIdPwCommand();
+			String emailAuth = (String) cmd.execute(sqlSession, model);
+			ldao.deptpwUpdate(emailAuth, dSaup_no);
+			message ="등록된 이메일로 임시 비밀번호를 보냈습니다.";
+		}else {
+			message ="등록된 정보가 틀립니다. 다시 확인해주세요";
+		}
+		
+		return message;
+	}
 }
 
 

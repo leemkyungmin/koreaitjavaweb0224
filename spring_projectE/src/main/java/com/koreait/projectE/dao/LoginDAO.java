@@ -67,4 +67,11 @@ public interface LoginDAO {
 	
 	//사용자 임시 비밀번호 저장
 	public void UpdateTempPw(String cId,String auth);
+	
+	//업체 아이디 찾기 
+	public String find_dept_id(String dSaup_no,String dPhone);
+	
+	//업체 비밀번호 찾기 
+	public int findDeptPw(String dId,String dSaup_no);
+	
 }
