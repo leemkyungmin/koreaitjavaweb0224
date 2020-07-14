@@ -50,14 +50,12 @@ public interface LoginDAO {
 	// 사업자 비밀번호 변경
 	public int deptpwUpdate(String dPw, String dSaup_no);
 	
-<<<<<<< HEAD
 	// 사업자 정보수정 승인요청
 	public void departInsert(String dSeat,String dSaup_no,String dPhone,String dName,String dAddress, String dStart, String dEnd, String dParking, String dType, String amuguna );
 	
 	public void departUpdate(String dSeat,String dSaup_no,String dPhone,String dName,String dAddress, String dStart, String dEnd, String dParking, String dType, String amuguna );
 	
 	public int goDb(String dSaup_no);
-=======
 	// 사업자 정보수정
 	public void departUpdate(String dSeat,String dPhone,String dName,String dAddress, String dStart, String dEnd, String dParking, String dType );
 
@@ -69,5 +67,4 @@ public interface LoginDAO {
 	
 	//사용자 임시 비밀번호 저장
 	public void UpdateTempPw(String cId,String auth);
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 }
