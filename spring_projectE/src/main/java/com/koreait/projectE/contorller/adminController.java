@@ -86,11 +86,18 @@ public class adminController {
 		return "admin/deptAcceptViewPage";
 	}
 	
-	@RequestMapping(value="deptAccept")
+	@RequestMapping(value="deptAccept", method=RequestMethod.POST)
 	public String deptAccept(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		command = new AdminDeptAcceptCommand();
 		command.execute(sqlSession, model);
+		return "redirect:deptAccpetPage";
+	}
+	
+	@RequestMapping(value="deptReject", method=RequestMethod.POST)
+	public String deptReject(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		
 		return "redirect:deptAccpetPage";
 	}
 		

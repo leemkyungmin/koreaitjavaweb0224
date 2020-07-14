@@ -59,11 +59,11 @@
 </head>
 <body>
 
-	<form action="deptAccept">
+	<form method="post">
 		<table>
 			<tr>
 				<th>상호명</th>
-				<td>${deptDTO.dName}(${deptDTO.dSaup_no})</td>
+				<td>${deptDTO.dName} (${deptDTO.dSaup_no})</td>
 			</tr>
 			<tr>
 				<th>업종</th>
@@ -79,7 +79,7 @@
 			</tr>
 			<tr>
 				<th>영업시간</th>
-				<td>${fn:substring(deptDTO.dStart, 0, 2)}:${fn:substring(deptDTO.dStart, 2, 4)} ~ ${fn:substring(deptDTO.dEnd,0,2)}:${fn:substring(deptDTO.dEnd,2,4)}(${deptDTO.dSeat}석)</td>
+				<td>${fn:substring(deptDTO.dStart, 0, 2)}:${fn:substring(deptDTO.dStart, 2, 4)} ~ ${fn:substring(deptDTO.dEnd,0,2)}:${fn:substring(deptDTO.dEnd,2,4)} (${deptDTO.dSeat}석)</td>
 			</tr>
 			<tr>
 				<th>주차</th>
@@ -88,11 +88,30 @@
 		</table>
 		<div>
 			<input type="hidden" name="dSaup_no" value="${deptDTO.dSaup_no}" />
-			<input type="submit" value="승인" /> 
-			<input type="button" value="거절" onclick=""/> 
+			<input type="button" value="승인" onclick="endorse(this.form)"/> 
+			<input type="button" value="거절" onclick="reject(this.form)"/> 
 		</div>
-		
 	</form>
-
+		
+		<script type="text/javascript">
+		
+			function endorse(form) {
+				if (!confirm('승인하시겠습니까?')) {
+					return;
+				}
+				form.action='deptAccept';
+				form.submit();
+			}
+		
+			function reject(form) {
+				if (!confirm('거절하시겠습니까?')) {
+					return;
+				}
+				form.action='deptReject';
+				form.submit();
+			}
+		
+		</script>
+		
 </body>
 </html>
