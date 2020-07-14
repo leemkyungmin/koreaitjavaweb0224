@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="customerSignUp">
 		INSERT INTO CUSTOMER (CNO, CID, CPW, CNAME, CNICKNAME, CPHONE,CEMAIL,CPOTO,CGRADE,CDEPT,CGENDER,CREGDATE)
-		VALUES (CUSTOMER_SEQ.NEXTVAL, #{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},'1','일반',#{param8},SYSDATE)
+		VALUES (CUSTOMER_SEQ.NEXTVAL, #{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},'1','1',#{param8},SYSDATE)
 	</insert>
 	
 	<insert id="deptSignUp">
@@ -82,9 +82,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE DSAUP_NO = #{param1}
 	</select>
 	
-	<insert id="departUpdate">
+	<insert id="departInsert">
 		INSERT INTO DEPARTMENT_INFO
-		VALUES (DEPARTMENT_SEQ.NEXTVAL, #{param1}, #{)
+		VALUES (DEPARTMENT_INFO_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7},#{param8}, #{param9},#{param10}, 0, 0.0, 0, SYSDATE)
 	</insert>
 	
+	<update id="departUpdate">
+		UPDATE DEPARTMENT_INFO
+		SET DSEAT = #{param1}, DSAUP_NO = #{param2}, DPHONE = #{param3}, DNAME = #{param4}, DADDRESS = #{param5}, DSTART = #{param6}, DEND = #{param7}, DPARKING = #{param8}, DTYPE = #{param9}, DPHOTO = #{param10}
+		WHERE DNO =1
+	</update>
+	<select id="goDb" resultType="int" parameterType="String">
+		SELECT COUNT(*)
+		FROM DEPARTMENT_INFO
+		WHERE DSAUP_NO = #{param1}
+	</select>
 </mapper>

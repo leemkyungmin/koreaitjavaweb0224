@@ -185,29 +185,6 @@
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
             <!--// 모달창 -->
-            <!-- 모달창 -->
-            <div class="modal fade" id="defaultModal2">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title">인증</h4>
-                        </div>
-                        <form>
-                        <div class="modal-body">
-                            <p class="modal-contents"></p><br/>
-                        	<input type="text" id="emailAuthNum" name="emailAuthNum" placeholder="인증번호를 입력하세요.">
-							<input type="button" id="emailAuthBtn" value="인증하기"  />	                    
-							<!-- onclick="fn_emailAuthConfirm(this.form)" -->    	
-                        </div>
-                        </form>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-            <!--// 모달창 -->
             <hr/>
             <!-- 본문 들어가는 부분 -->
                 
@@ -216,6 +193,8 @@
             <form class="form-horizontal" id="loginForm" role="form" method="post"enctype="multipart/form-data">
                 <div class="form-group" id="divId">
                 	<h6>회원번호 : ${dDTO.dNo }</h6>
+                	<input type="hidden" value="${dDTO.dNo }" name="dNo" id="dNo"/>
+                	<c:if test="${dDTO.dAccpet eq '0' }"><h2 style="color:red; margin-left: 20px;">가입승인 대기중입니다. 관리자 승인을 기다려 주세요.</h2></c:if>
                     <label for="inputId" class="col-lg-2 control-label">아이디 *수정불가</label>
                     <div class="col-lg-10">
                         <input type="text" class="form-control onlyAlphabetAndNumber" name="dId" id="id" data-rule-required="true" readonly value="${sessionScope.dId}"maxlength="30"><br/>
@@ -235,9 +214,6 @@
                     	</div>
                     </div>
                 </div>
-                    <div class="col-lg-10">
-                        <input type="hidden"id="password" name="password" value="${cDTO.cPw }">
-                    </div>
                 <div class="form-group" id="divName">
                     <label for="inputName" class="col-lg-2 control-label">음식점 이름</label>
                     <div class="col-lg-10">
@@ -267,13 +243,13 @@
 				<div>
 					<label for="inputPhoneNumber" class="col-lg-2 control-label">음식점 시작 시간</label>
 					<div>
-						<input id="dStart" type="text" placeholder="00:00"  maxlength="5" class="form-control" />
+						<input id="dStart" name="dStart" type="text" placeholder="00:00"  maxlength="5" class="form-control" value="${dDTO.dStart }" />
 					</div>
 				</div>	
 				<div>
 					<label for="inputPhoneNumber" class="col-lg-2 control-label">음식점 마감 시간</label>
 					<div>
-						<input id="dEnd" type="text" placeholder="00:00"  maxlength="5" class="form-control" />
+						<input id="dEnd" name="dEnd" type="text" placeholder="00:00"  maxlength="5" class="form-control" value="${dDTO.dEnd }" />
 					</div>
 				</div>
 				<script type="text/javascript">
@@ -289,27 +265,39 @@
 							}
 						}
 					});
+					
+					$('#dEnd').keyup(function(){
+						if($('#dEnd').val().length==2){
+							if(($('#dEnd').val()>24)){
+								alert('잘못된 입력입니다.');
+								$('#dEnd').val('');
+							}else{
+								$('#dEnd').val($('#dEnd').val()+":");								
+							}
+						}
+					});
+					
 				});
 				</script>	                
 				                
                 <div>
                 	<label for="#" class="col-lg-2 control-label">음식점 종류</label>
                 	<div>
-                		<input type="text" id="dType" name="dType" placeholder="일식/양식/한식" class="form-control"/>
+                		<input type="text" id="dType" name="dType" placeholder="일식/양식/한식" class="form-control" value="${dDTO.dType }"/>
                 	</div>
                 </div>
                 
                 <div class="form-group" id="divPhoto">
                 	<label for="inputPhoto" class="col-lg-2 control-label">프로필 사진</label><br/> &nbsp;&nbsp;&nbsp;
                 	<div id="photoBox" style="width:50; height:50;">
-                		<input type="file" id="dPhoto" name="dPhoto" onchange="fileCheck(this)" accept="image/jpeg,image/png,image/jpg" multiple="multiple" /> 
+                		<input type="file" id="dPhoto" name="dPhoto" onchange="fileCheck(this)" accept="image/jpeg,image/png,image/jpg" multiple="multiple" value="${dDTP.dPhoto }" /> 
                 	</div>
                 </div>
                 
                 <div class="form-group" id="divPhoneNumber">
                     <label for="inputPhoneNumber" class="col-lg-2 control-label">사업자 번호</label>
                     <div class="col-lg-10">
-                        <input type="tel" class="form-control onlyNumber" id="phoneNumber" name="cPhone" data-rule-required="true" value="${sessionScope.dSaup_no }" readonly="readonly" maxlength="11">
+                        <input type="tel" class="form-control onlyNumber" id="phoneNumber" name="dSaup_no" data-rule-required="true" value="${sessionScope.dSaup_no }" readonly="readonly" maxlength="11">
                     </div>
                 </div>
                 <div class="form-group">
@@ -333,7 +321,12 @@
                 </div>
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
-                    	<input type="button" value="수정하기" onclick="fn_multiUpload(this.form)" />
+                    	<c:if test="${dDTO.dNo eq null }">
+	                    	<input type="button" value="승인 요청하기." class="btn btn-primary" onclick="fn_multiUpload(this.form)" />
+                    	</c:if>
+                    	<c:if test="${dDTO.dNo ne null }">
+	                    	<input type="button" value="정보 수정하기." class="btn btn-primary" onclick="fn_multiUpload(this.form)" />
+                    	</c:if>
                         <input type="button" value="돌아가기" class="btn btn-primary" onclick="index" />
                         <input type="button" value="회원탈퇴" class="btn btn-primary" onclick="index" />
                     </div>
