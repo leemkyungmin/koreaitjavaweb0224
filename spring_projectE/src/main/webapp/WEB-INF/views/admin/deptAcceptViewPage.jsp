@@ -40,7 +40,7 @@
 		
 		<input type="hidden" name="dSaup_no" value="${deptDTO.dSaup_no}" />
 		<input type="submit" value="승인" /> 
-		<input type="button" value="거절" /> 
+		<input type="button" value="거절" onclick=""/> 
 		
 	</form>
 

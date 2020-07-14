@@ -49,4 +49,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM DEPARTMENT_INFO WHERE DNO = #{dNo}
 	</select>
 	
+	<update id="deptAccept">
+		UPDATE DEPARTMENT_INFO SET DACCPET = 1 WHERE DSAUP_NO = #{dSaup_no}
+	</update>
+	
 </mapper>
