@@ -10,7 +10,7 @@
    
   	<style>
 	table th {
-	  border-collapse:collapse;
+	  border-collapse:collapse;  
       color: #168;
       background: #f0f6f9;
       text-align: center;
