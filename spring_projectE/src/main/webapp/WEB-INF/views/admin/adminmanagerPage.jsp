@@ -109,6 +109,7 @@
 	    width:100px;
 	    height:30px
 	}
+
 	button, button::after {
 	  -webkit-transition: all 0.3s;
 		-moz-transition: all 0.3s;
@@ -179,6 +180,7 @@
 	  top: 0;
 	  width: 100%;
 	}
+
 	.del{
 		width: 750px;
 		display: block;
@@ -186,6 +188,7 @@
 	}
 
 </style>
+
 
 
 
@@ -231,7 +234,7 @@
         <div class="sidebar-brand-text mx-3">관리자 페이지</div>
       </a>
 
-<<<<<<< HEAD
+
 <body>
 <div class="left-menu">
 <ul>
