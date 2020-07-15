@@ -8,99 +8,39 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-	function goBack() {
-		window.history.back();
-	}
-	
-</script>
 
 	<style type="text/css">
 
-	
-		table th {
-	      color: #168;
-	      background: #f0f6f9;
-	      text-align: center;
-	    }
-	    table tr, .table td {
-	      padding: 10px;
-	      border: 1px solid #ddd;
-	    }
-	    table tr:first-child, table td:first-child {
-	      border-left: 0;
-	    }
-	    table tr:last-child, .table td:last-child {
-	      border-right: 0;
-	    }
-		table{
-			text-align: center;
-			border-collapse: collapse;
-			height: 100px;
-			width: 750px;
-		    border-top: 3px solid #168;
-
-		
 		* {
 			margin: 0;
 		}
-		
-		table {
-			margin: auto;
-			margin-top: 50px;
-			width: 700px;
-			border-collapse: collapse;
-		}
-		
-		th {
-			padding: 10px 0;
-			border-top: 1px solid #868686;
-			border-bottom: 1px solid #E5E5E5;
-			background: #F9F9F9;
-			font-size: 1.2em;
-			letter-spacing: -0.1em;
-		}
-		
-		td {
-			text-align: center;
-			padding: 5px;
-		}
-		
-		tr:last-of-type {
-			border-bottom: 1px solid #868686;
-		}
-		
-		a {
-			text-decoration: none;
-			color: black;
-			font-weight: bold;
-
-		}
+	
 		ul {
-	    list-style-type: none;
-	    margin: 0;
-	    padding: 0;
-	    background-color: #333;
-		}	
+		    list-style-type: none;
+		    margin: 0;
+		    padding: 0;
+		    background-color: #333;
+		}
+		
 		ul:after{
 		    content:'';
 		    display: block;
 		    clear:both;
-		}	
+		}
+		
 		h2	{
 	    	color: white;
 	    	float: left;
 	    	margin-left:100px;
 	    	margin-right:100px;
 	    }
-	    #listbtn {
+	    
+	    .top_button {
 			float: left;
-			border-top-left-radius: 5px; 
-			border-bottom-left-radius: 5px;
-			border-top-right-radius: 5px; 
-			border-bottom-right-radius: 5px;
+			border-radius: 5px;
 			margin-right:10px;
 		}
+		
 		button	{ 
 		    border: 1px solid skyblue; 
 		    background-color: rgba(0,0,0,0); 
@@ -109,28 +49,66 @@
 		    width:80px;
 		    height:78px
 		}
+		
 		button:hover{ 
 			color:white; 
 			background-color: skyblue; 
 		}
+	    
+		table{
+			margin: auto;
+			margin-top: 10px;
+		    border-top: 3px solid #168;
+			width: 700px;
+			border-collapse: collapse;
+		}
+		
+		table th {
+			padding: 10px 0;
+			color: #168;
+			background: #f0f6f9;
+			text-align: center;
+			border: 1px solid #ddd;
+			border-top: 1px solid #868686;
+			font-size: 1.2em;
+			letter-spacing: -0.1em;
+	    }
+		
+		table td {
+			text-align: center;
+			padding: 5px;
+			border: 1px solid #ddd;
+		}
+		
+		a {
+			text-decoration: none;
+			color: black;
+			font-weight: bold;
+		}
+		
 	</style>
+	
+	<script type="text/javascript">
+	
+		function goBack() {
+			window.history.back();
+		}
+	
+	</script>
 
 </head>
 <body>
 
-
 	<ul>
-	<li><h2>관리자페이지</h2></li>
-	<li><button id="listbtn" style="display: block; width:80px; margin: 0 auto;" type="button" class="btn_list" onclick="goBack()">업체리스트</button></li>
+		<li><h2>관리자페이지</h2></li>
+		<li><button class="top_button" onclick="fn_cus_list()" >회원관리</button></li>
+		<li><button class="top_button" onclick="fn_dept_list()">업체관리</button></li>
+		<li><button class="top_button" onclick="location.href='deptAccpetPage'">업체 승인 관리</button><li>
 	</ul>
 	<br/><br/>
 	
 	<table border="1">
-
 		<tr>
-			<th>상호명</th>
-			<th>등록일</th>
-			<th>승인상태</th>
 			<th>사업자번호</th>
 			<th>상호명</th>
 			<th>전화번호</th>
