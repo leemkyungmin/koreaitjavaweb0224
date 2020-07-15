@@ -2,17 +2,55 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+<%@ include file="../template/header.jsp" %>
 	<link href="resources/assets/style/locationlist.css" rel="stylesheet" type="text/css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
-	
-<%@ include file="../template/header.jsp" %>
-
 <% String main_search = request.getParameter("main-search"); %>
 
 	<script>
 		
+	
+	
 	$(function(){
+		//넣어주기 버튼에 클릭 이벤트 달아줌 
+			var q ='<%=main_search%>';
+			
+			if(Cookies.get('query') === undefined|| // 쿠키에 key로 list 가 존재하지 않거나
+					Cookies.get('query') == '[null]'){ // 안에 값이 다 삭제가되어 [null] 인 경우
+				Cookies.set('query', "[{\"name\":\""+'<%=main_search%>'+"\"}]");
+				
+			}else{
+				var count =0;
+				var json_list = Cookies.getJSON('query');
+				
+				 for(var i=0; i<json_list.length; i++){
+					for(key in json_list[i]){
+						if(json_list[i][key]=='<%=main_search%>'){
+							delete json_list[i];
+							json_list=JSON.parse(JSON.stringify(json_list).replace(/(,null|null,)/g,''));
+							console.log(json_list);
+							break;
+						}
+					}
+				}
+					
+				json_list.push({
+					name: '<%=main_search%>',
+				}); 
+				Cookies.set('query', json_list); 
+				
+			} 
+	
+		
+	 });
+
+		
+	
+	
+	
+	  <%-- $(function(){
 		var size ='${size}';
 		var q = '<%=main_search%>';
 		var url ='searchPage?main-search='+q;
@@ -20,23 +58,26 @@
 			if(Cookies.get('query') === undefined || Cookies.get('query') == '[null]'){
 				
 				Cookies.set('query', "[{\"name\":\""+q+"\",\"url\" : searchPage?main-search="+q+"}]");
-				alert("성공"); 
+				alert("성공");
+				
 			}else{
+				
 				var cookieArr = new Array(Cookies.getJSON('query'));
-				alert(typeof(cookieArr));
-			
-				cookieArr.push({ 
+				
+				alert(JSON.stringify(cookieArr));				
+				cookieArr.push(
 						name: q,
-						url:'searchPage?main-search='+q
-				});
-				alert(JSON.stringify(cookieArr));
-				Cookies.set('query', JSON.stringify(cookieArr));
+						url:"searchPage?main-search="+q	
+				);
+				
+				
+				Cookies.set('query',JSON.stringify(cookieArr));
 			}
 		
 		}else{ 
 			
 		}
-	});
+	});   --%>
 	
 	</script>
 	

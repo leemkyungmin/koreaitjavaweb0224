@@ -24,7 +24,7 @@
   </div>
   <div class="slider-container toplist-slider">
     <button class="btn-nav prev slick-arrow slick-disabled" aria-disabled="true" style="display: inline-block;"></button>
-    <button class="btn-nav next slick-arrow" aria-disabled="false" style="display: block;"></button>
+    
 
     <div class="top_list_slide slick-initialized slick-slider slick-dotted" role="toolbar">
         <div aria-live="polite" class="slick-list draggable">
@@ -33,7 +33,7 @@
         		<c:set var="img_source" value="main_list_img"></c:set>
         		<c:if test="${f.count%2==1}">
         			<div class="under_line">
-        			<ul class="list-toplist-slider slick-slide slick-current slick-active" style="width: 551px;" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide00">
+        			<ul class="list-toplist-slider slick-slide slick-current slick-active" style="width: 551px;height:501px"; data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide00">
         		</c:if>
             		<li>
               			<img class="center-croping" alt="${img_source}${f.count}" src="${pageContext.request.contextPath }/resources/storage/main_img/${img_source}${f.count}.jpg">
