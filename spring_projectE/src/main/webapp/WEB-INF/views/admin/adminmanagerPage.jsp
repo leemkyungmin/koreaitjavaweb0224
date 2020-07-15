@@ -35,6 +35,43 @@
 	#custom{
 		display: 'block';
 	}
+	.left-menu {
+		position: fixed;
+		top: 50px;
+		bottom: 50px;
+		left: 0;
+		width: 300px;
+		background: gray;
+	}
+	ul {
+	    list-style-type: none;
+	    margin: 0;
+	    padding: 0;
+	    background-color: #333;
+    }    
+    ul:after{
+	    content:'';
+	    display: block;
+	    clear:both;
+	}	
+    h2	{
+    	color: white;
+    	float: left;
+    	margin-left:100px;
+    	margin-right:100px;
+    }
+    li >button	{ 
+	    border: 1px solid skyblue; 
+	    background-color: rgba(0,0,0,0); 
+	    color: skyblue; 
+	    padding: 5px; 
+	    width:80px;
+	    height:78px
+	}
+	button:hover{ 
+		color:white; 
+		background-color: skyblue; 
+	}
 	#cus_btn{
 		float: left;
 		border-top-left-radius: 5px; 
@@ -72,6 +109,7 @@
 	    width:100px;
 	    height:30px
 	}
+
 	button, button::after {
 	  -webkit-transition: all 0.3s;
 		-moz-transition: all 0.3s;
@@ -142,15 +180,48 @@
 	  top: 0;
 	  width: 100%;
 	}
+
 	.del{
 		width: 750px;
 		display: block;
 		
 	}
-  </style>
+
+</style>
+
+
+
+
+<script type="text/javascript">
+	$(function (){
+		$("#allCheck").click(function(){
+			if($("#allCheck").prop("checked")) {
+				$("input[type=checkbox]").prop("checked", true);
+			} else {
+				$("input[type=checkbox]").prop("checked",false);
+			}
+		});
+	});
+	function fn_cus_list(){
+		document.getElementById("custom").style.display='block';
+		document.getElementById("del").style.display='block';
+		
+		document.getElementById("dept").style.display='none';
+		
+	}
+	function fn_dept_list(){
+		document.getElementById("dept").style.display='block';
+		document.getElementById("custom").style.display='none';
+		document.getElementById("del").style.display='none';
+		
+	}
+	
+	
+</script>
 
   <!-- Page Wrapper -->
   <div id="wrapper">
+
 
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -162,6 +233,28 @@
         </div>
         <div class="sidebar-brand-text mx-3">관리자 페이지</div>
       </a>
+
+
+
+	<script type="text/javascript">
+	$('#deleteBtn').click(function(){
+		$('input:checkbox[name=test]:checked').each(function (){
+			alert($(this).val());
+				$.ajax({
+					type:"POST",
+					url:'deleteUser',
+					data:'cNo='+$(this).val(),
+					success:function(result){
+							
+					},error:function(){
+						
+					}
+				});
+			 
+		});
+	});
+	</script>
+
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
@@ -226,7 +319,7 @@
               <!-- Area Chart -->
               <div class="card shadow mb-4"  style="height: 100%;">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">111</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">회원리스트</h6>
                 </div>
                 <div class="card-body"  style="height: 100%;">
                   <div class="chart-area"  style="height: 100%;">
@@ -277,6 +370,7 @@
 					<td>성별${user.cGender }</td>	
 				</tr>
 				</c:forEach>
+
 		
 	</table>
 	</div>
