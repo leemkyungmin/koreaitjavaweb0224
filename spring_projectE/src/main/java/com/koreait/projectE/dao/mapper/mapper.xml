@@ -10,6 +10,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (CUSTOMER_SEQ.NEXTVAL, #{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},'1','1',#{param8},SYSDATE)
 	</insert>
 	
+	<update id="customerPhotoUpdate">
+		UPDATE CUSTOMER
+		SET CPOTO = #{param2}
+		WHERE CNO = #{param1}
+	</update>
+	
 	<insert id="deptSignUp">
 		INSERT INTO DEPARTMENT(DSAUP_NO, DID, DPW)
 		VALUES (#{param1}, #{param2}, #{param3})
