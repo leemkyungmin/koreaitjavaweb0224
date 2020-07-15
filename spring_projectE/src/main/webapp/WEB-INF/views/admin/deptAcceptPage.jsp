@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
+<%@ include file="../template/header.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,6 +35,8 @@
 	    	float: left;
 	    	margin-left:100px;
 	    	margin-right:100px;
+	    	height:78px;
+	    	line-height: 78px;
 	    }
 	    
 	    .top_button {
@@ -80,7 +84,7 @@
 			border: 1px solid #ddd;
 		}
 		
-		a {
+		.tag_a {
 			text-decoration: none;
 			color: black;
 			font-weight: bold;
@@ -124,7 +128,7 @@
 			<c:forEach var="deptDTO" items="${deptList}">
 				<tr>
 					<td>${deptDTO.dSaup_no}</td>
-					<td><a href="deptAcceptView?dNo=${deptDTO.dNo}">${deptDTO.dName}</a></td>
+					<td><a class="tag_a"href="deptAcceptView?dNo=${deptDTO.dNo}">${deptDTO.dName}</a></td>
 					<td>${fn:substring(deptDTO.dPhone, 0, 3)}-${fn:substring(deptDTO.dPhone, 3, 7)}-${fn:substring(deptDTO.dPhone, 7, 11)}</td>
 					<td>${deptDTO.dType}</td>
 					<td>${deptDTO.dReg_date}</td>

@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
+<%@ include file="../template/header.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +14,6 @@
 	
 		* {
 			margin: 0;
-			border: 0;
 		}
 		
 		ul {
@@ -25,7 +26,7 @@
 		ul:after{
 		    content:'';
 		    display: block;
-		    clear:both;
+		    clear: both;
 		}
 		
 		h2	{
@@ -33,27 +34,23 @@
 	    	float: left;
 	    	margin-left:100px;
 	    	margin-right:100px;
+	    	height:78px;
+	    	line-height: 78px;
 	    }
 	    
 	    .top_button {
 			float: left;
-			border-top-left-radius: 5px; 
-			border-bottom-left-radius: 5px;
-			border-top-right-radius: 5px; 
-			border-bottom-right-radius: 5px;
+			border-radius: 5px;
 			margin-right:10px;
-		}
-		
-		button	{ 
 		    border: 1px solid skyblue; 
 		    background-color: rgba(0,0,0,0); 
 		    color: skyblue; 
 		    padding: 5px; 
 		    width:80px;
-		    height:78px
+		    height:78px;
 		}
 		
-		button:hover{ 
+		.top_button:hover{ 
 			color:white; 
 			background-color: skyblue; 
 		}
@@ -91,13 +88,14 @@
 			text-align: center;
 		}
 		
-		input {
+		.btn {
 			padding: 5px;
 			display: inline-block;
 			width: 100px;
 			color: white;
 			background: #168;
 			border-radius: 5px;
+			border: 0;
 		}
 	
 	</style>
@@ -141,9 +139,9 @@
 			</tr>
 		</table>
 		<div>
-			<input type="hidden" name="dNo" value="${deptDTO.dNo}" />
-			<input type="button" value="승인" onclick="endorse(this.form)"/> 
-			<input type="button" value="거절" onclick="reject(this.form)"/> 
+			<input class="btn" type="hidden" name="dNo" value="${deptDTO.dNo}" />
+			<input class="btn" type="button" value="승인" onclick="endorse(this.form)"/> 
+			<input class="btn" type="button" value="거절" onclick="reject(this.form)"/> 
 		</div>
 	</form>
 		
