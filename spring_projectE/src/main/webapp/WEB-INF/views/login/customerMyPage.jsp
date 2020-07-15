@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%> 
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
@@ -96,12 +96,15 @@
 			});
 			
 			$('#cPhotoUpdate').click(function() {
+				var p =$('#cPhoto').val();
+				var photo = p.substring($('#cPhoto').val().lastIndexOf("\\")+1,p.length-1); 
+				console.log(photo);
 				
 				if(confirm('프로필 사진을 변경하시겠습니까?')){
 					$.ajax({
 						url : 'cPhotoUpdate',
 						type : 'POST',
-						data : 'cPhoto=' + $('#cPhoto').val() + '&cNo=' + no,
+						data : 'cPhoto=' + photo + '&cNo=' + no,
 						success : function(data) {
 							if (data == '1') {
 								alert('변경되었습니다.');
@@ -295,7 +298,7 @@
                 <div class="form-group" id="divPhoto">
                 	<label for="inputPhoto" class="col-lg-2 control-label">프로필 사진</label><br/> &nbsp;&nbsp;&nbsp;
                 	<div id="photoBox" style="width:50; height:50;">
-                		<input type="file" id="cPhoto" name="cPhoto" onchange="fileCheck(this)" accept="image/jpeg,image/png,image/jpg" /> <br/>
+                		<input type="file" id="cPhoto" name="cPhoto"  accept="image/jpeg,image/png,image/jpg" /> <br/>
                 		<input type="button" value="업로드 하기" class="btn btn-primary" id="cPhotoUpdate"  />
                 	</div>
                 </div>
