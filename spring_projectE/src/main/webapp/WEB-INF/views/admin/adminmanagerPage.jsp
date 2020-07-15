@@ -254,54 +254,7 @@
 		});
 	});
 	</script>
-	<br/>
-	
-	<div id="custom" style="width:760px; height:100px; margin: auto; overflow: auto; ">
-	<table border="1">
-		<thead id="user_info">
-			<tr>
-				<th><input type="checkbox" id="allCheck"/></th>
-				<th>아이디</th>
-				<th>no.</th>
-				<th>이름</th>
-				<th>닉네임</th>
-				<th>비밀번호</th>
-				<th>휴대폰번호</th>
-				<th>Email</th>
-				<th>등급</th>
-				<th>성별</th>
-			</tr>
-		</thead>	
-			<c:forEach var="user" items="${cList }" >
-			<tr>	
-				<td><input type="checkbox" id="test" name=test value="${user.cNo }"/></td>
-				<td><a href="UpdateUserPage?cNo=${user.cNo }">${user.cId }</a></td>			
-				<td>${user.cNo }</td>				
-				<td>${user.cName }</td>			
-				<td>${user.cNickname }</td>						
-				<td>${user.cPw }</td>				
-				<td>${user.cPhone }</td>			
-				<td>${user.cEmail }</td>			
-				<td>
-					<c:if test="${user.cGrade ==1 }">
-						브론즈
-					</c:if>			
-					<c:if test="${user.cGrade ==2 }">
-						실버
-					</c:if>			
-					<c:if test="${user.cGrade ==3 }">
-						다이아
-					</c:if>			
-					<c:if test="${user.cGrade ==4 }">
-						vip
-					</c:if>			
-					<c:if test="${user.cGrade ==5	 }">
-						관리자
-					</c:if>
-				</td>								
-				<td>성별${user.cGender }</td>	
-			</tr>
-			</c:forEach>
+
 
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
@@ -366,7 +319,7 @@
               <!-- Area Chart -->
               <div class="card shadow mb-4"  style="height: 100%;">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">111</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">회원리스트</h6>
                 </div>
                 <div class="card-body"  style="height: 100%;">
                   <div class="chart-area"  style="height: 100%;">
