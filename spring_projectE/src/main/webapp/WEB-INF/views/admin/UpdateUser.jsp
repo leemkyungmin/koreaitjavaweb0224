@@ -106,8 +106,6 @@
 }
 
 
-
-출처: https://nimolove.tistory.com/44 [Chaeni_vlog 🌈]
 	
 </style>
 </head>
