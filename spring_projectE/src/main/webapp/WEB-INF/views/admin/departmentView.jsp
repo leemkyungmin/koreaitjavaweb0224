@@ -2,101 +2,152 @@
     pageEncoding="UTF-8"%>
 	<%@ include file="../template/header.jsp" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn"%>
 	  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 	
 	  <!-- Custom styles for this template-->
 	  <link href="resources/assets/style/admin/sb-admin-2.min.css" rel="stylesheet">
 
   
-  	<style type="text/css">
-
-		* {
-			margin: 0;
-		}
+  	<style>
+	table th {
+	  border-collapse:collapse;
+      color: #168;
+      background: #f0f6f9;
+      text-align: center;
+    }
+    table tr, .table td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+    table tr:first-child, table td:first-child {
+      border-left: 0;
+    }
+    table tr:last-child, .table td:last-child {
+      border-right: 0;
+    }
+	table{
+		text-align: center;
+		border-collapse: collapse;
+		height: 100px;
+		width: 750px;
+	    border-top: 3px solid #168;
+	}
+	#custom{
+		display: 'block';
+	}
+	#cus_btn{
+		float: left;
+		border-top-left-radius: 5px; 
+		border-bottom-left-radius: 5px;
+		border-top-right-radius: 5px; 
+		border-bottom-right-radius: 5px;
+		margin-right:10px;
+	}
+	#dept_btn{
+		float: left;
+		border-top-left-radius: 5px; 
+		border-bottom-left-radius: 5px;
+		border-top-right-radius: 5px; 
+		border-bottom-right-radius: 5px;
+		margin-right:10px;
+	}
+	#Acc_btn{
 	
-		ul {
-		    list-style-type: none;
-		    margin: 0;
-		    padding: 0;
-		    background-color: #333;
-		}
-		
-		ul:after{
-		    content:'';
-		    display: block;
-		    clear:both;
-		}
-		
-		h2	{
-	    	color: white;
-	    	float: left;
-	    	margin-left:100px;
-	    	margin-right:100px;
-	    	height:78px;
-	    	line-height: 78px;
-	    }
-	    
-	    .top_button {
-			float: left;
-			border-radius: 5px;
-			margin-right:10px;
-		}
-		
-		button	{ 
-		    border: 1px solid skyblue; 
-		    background-color: rgba(0,0,0,0); 
-		    color: skyblue; 
-		    padding: 5px; 
-		    width:80px;
-		    height:78px
-		}
-		
-		button:hover{ 
-			color:white; 
-			background-color: skyblue; 
-		}
-	    
-		table{
-			margin: auto;
-			margin-top: 10px;
-		    border-top: 3px solid #168;
-			width: 700px;
-			border-collapse: collapse;
-		}
-		
-		table th {
-			padding: 10px 0;
-			color: #168;
-			background: #f0f6f9;
-			text-align: center;
-			border: 1px solid #ddd;
-			border-top: 1px solid #868686;
-			font-size: 1.2em;
-			letter-spacing: -0.1em;
-	    }
-		
-		table td {
-			text-align: center;
-			padding: 5px;
-			border: 1px solid #ddd;
-		}
-		
-		.tag_a {
-			text-decoration: none;
-			color: black;
-			font-weight: bold;
-		}
-		
-	</style>
+		float: left;
+		border-top-left-radius: 5px; 
+		border-bottom-left-radius: 5px;
+		border-top-right-radius: 5px; 
+		border-bottom-right-radius: 5px;
+	}
+	#deleteBtn{
+		margin:auto;
+		border-top-left-radius: 5px; 
+		border-bottom-left-radius: 5px;
+		border-top-right-radius: 5px; 
+		border-bottom-right-radius: 5px;
+		border: 1px solid black; 
+	    background-color: rgba(0,0,0,0); 
+	    color: black; 
+	    padding: 5px; 
+	    width:100px;
+	    height:30px
+	}
+	button, button::after {
+	  -webkit-transition: all 0.3s;
+		-moz-transition: all 0.3s;
+	  -o-transition: all 0.3s;
+		transition: all 0.3s;
+	}
 	
-	<script type="text/javascript">
+	button {
+	  background: none;
+	  border: 3px solid #fff;
+	  border-radius: 5px;
+	  color: #fff;
+	  display: block;
+	  font-weight: bold;
+	  margin: 1em auto;
+	  padding: 2em 6em;
+	  position: relative;
+	  text-transform: uppercase;
+	}
 	
-		function goBack() {
-			window.history.back();
-		}
+	button::before,
+	button::after {
+	  background: #fff;
+	  content: '';
+	  position: absolute;
+	  z-index: -1;
+	}
 	
-	</script>
+	button:hover {
+	  color: #2ecc71;
+	}
+	
+	/* BUTTON 1 */
+	.btn-1::after {
+	  height: 0;
+	  left: 0;
+	  top: 0;
+	  width: 100%;
+	}
+	
+	.btn-1:hover:after {
+	  height: 100%;
+	}
+	
+	/* BUTTON 2 */
+	.btn-2::after {
+	  height: 100%;
+	  left: 0;
+	  top: 0;
+	  width: 0;
+	}
+	
+	.btn-2:hover:after {
+	  width: 100%;
+	}
+	
+	/* BUTTON 3 */
+	.btn-3::after {
+	  height: 0;
+	  left: 50%;
+	  top: 50%;
+	  width: 0;
+	}
+	
+	.btn-3:hover:after {
+	  height: 100%;
+	  left: 0;
+	  top: 0;
+	  width: 100%;
+	}
+	.del{
+		width: 750px;
+		display: block;
+		
+	}
+  </style>
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -181,31 +232,26 @@
                   <div class="chart-area"  style="height: 100%;">
                   	<!-- 내용 부분 -->
                     <div id="custom" style="width:760px; margin: auto;">
-					<table border="1">
-		<tr>
-			<th>사업자번호</th>
-			<th>상호명</th>
-			<th>전화번호</th>
-			<th>업종</th>
-			<th>등록일</th>
-		</tr>
-		<c:if test="${empty deptList}">
-			<tr>
-				<td colspan="5">승인 대기중인 업체가 없습니다.</td>
-			</tr>
-		</c:if>
-		<c:if test="${not empty deptList}">
-			<c:forEach var="deptDTO" items="${deptList}">
+				<div id="dept" style="width:760px; height:800px; margin: auto; overflow: auto;" >	
+		<table border="1">
+			<thead>
 				<tr>
-					<td>${deptDTO.dSaup_no}</td>
-					<td><a class="tag_a"href="deptAcceptView?dNo=${deptDTO.dNo}">${deptDTO.dName}</a></td>
-					<td>${fn:substring(deptDTO.dPhone, 0, 3)}-${fn:substring(deptDTO.dPhone, 3, 7)}-${fn:substring(deptDTO.dPhone, 7, 11)}</td>
-					<td>${deptDTO.dType}</td>
-					<td>${deptDTO.dReg_date}</td>
+					<th>no.</th>
+					<th>사업자 등록번호</th>
+					<th>사업체명</th>
+					<th>전화번호</th>
+				</tr>
+			</thead>
+			<c:forEach var="dept" items="${dList }">
+				<tr>		
+					<td>${dept.dNo }</td>
+					<td><a href="UpdateDepartment?dNo=${dept.dNo }">${dept.dSaup_no }</a></td>
+					<td>${dept.dName }</td>
+					<td>${dept.dPhone }</td>
 				</tr>
 			</c:forEach>
-		</c:if>
-	</table>
+		</table>
+	</div>
     </div>
     </div>
     

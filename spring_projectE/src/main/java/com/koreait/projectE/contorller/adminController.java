@@ -31,13 +31,7 @@ public class adminController {
 	private SqlSession sqlSession;
 	private Command command;
 	
-	//Test 
 	
-	@RequestMapping("adminPage")
-	public String adminPage() {
-		
-		return "admin/adminPage";
-	}
 	
 	@RequestMapping("adminmanagePage") 
 	public String adminmagePage(Model model) {
@@ -124,6 +118,13 @@ public class adminController {
 		command = new AdminDeptDeleteCommand();
 		command.execute(sqlSession, model);
 		return "redirect:deptAccpetPage";
+	}
+	@RequestMapping("departmentView")
+	public String departmentView(Model model) {
+
+		command=new AdminCommand();
+		command.execute(sqlSession, model);
+		return "admin/departmentView";	
 	}
 		
 

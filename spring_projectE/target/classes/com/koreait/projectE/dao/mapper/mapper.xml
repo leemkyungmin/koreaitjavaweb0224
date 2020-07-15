@@ -42,6 +42,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE CNO = #{param1}
 	</select>
 	
+	<select id="customerMyReview" resultType="com.koreait.projectE.dto.ReviewDTO">
+		SELECT *
+		FROM REVIEW
+		WHERE CNO = #{param1}
+	</select>
+	
+	<select id="customerMyAppointment" resultType="com.koreait.projectE.dto.AppointmentDTO">
+		SELECT *
+		FROM APPOINTMENT
+		WHERE CNO = #{param1}
+	</select>
+	
+	<select id="deptName" resultType="String">
+		SELECT DNAME 
+		FROM DEPARTMENT_INFO
+		WHERE DSAUP_NO = #{param1}
+	</select>
+	
+	<select id="deptPhone" resultType="String">
+		SELECT DPHONE
+		FROM DEPARTMENT_INFO
+		WHERE DSAUP_NO = #{param1}
+	</select>
+	
 	<update id="pwUpdate">
 		UPDATE CUSTOMER
 		SET CPW = #{param1}

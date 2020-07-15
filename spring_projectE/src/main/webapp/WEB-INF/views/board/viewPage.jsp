@@ -389,7 +389,7 @@
 				  </div>
 				  
 				  <div class="modal_layer" data-backdrop="static"></div>
-				</div>
+				</div>  
 				
 				<script type="text/javascript">
 					
