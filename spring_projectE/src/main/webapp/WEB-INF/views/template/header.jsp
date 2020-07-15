@@ -107,6 +107,12 @@
 					<input class="nav-search-submit" type="submit" value="전송">
 					</form>
 				</li>
+				<c:if test="${sessionScope !=null && sessionScope.cGrede==5 }">
+					<li class="nav-list-wrap">
+						<a href="adminmanagePage" class="nav-btn">관리자 페이지로 이동하기</a>
+					</li>
+				</c:if>
+				
 				<li class="nav-list-wrap">
 					<a href="main" class="nav-btn">맛집 리스트</a>
 				</li>
