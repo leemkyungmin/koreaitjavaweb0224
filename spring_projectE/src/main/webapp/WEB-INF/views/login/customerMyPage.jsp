@@ -186,7 +186,27 @@
 		}
 	
 	</script>
-
+	
+	<style type="text/css">
+	
+		table {
+			width: 1000px;
+			height: 100px;
+			text-align: center;
+		}
+		
+		table > thead {
+			background: lightgray;
+			font-weight: bold; 
+		}
+		
+		table > tbody > tr:hover{
+			background-color: lightpink;
+		}
+		
+		
+	</style>
+	
 </head>
 <body>
         <div class="container"><!-- 좌우측의 공간 확보 -->
@@ -206,29 +226,6 @@
                         <div class="modal-body">
                             <p class="modal-contents"></p>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-            <!--// 모달창 -->
-            <!-- 모달창 -->
-            <div class="modal fade" id="defaultModal2">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title">인증</h4>
-                        </div>
-                        <form>
-                        <div class="modal-body">
-                            <p class="modal-contents"></p><br/>
-                        	<input type="text" id="emailAuthNum" name="emailAuthNum" placeholder="인증번호를 입력하세요.">
-							<input type="button" id="emailAuthBtn" value="인증하기"  />	                    
-							<!-- onclick="fn_emailAuthConfirm(this.form)" -->    	
-                        </div>
-                        </form>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
                         </div>
@@ -319,6 +316,77 @@
                         </select>
                     </div>
                 </div>
+                <div>
+                	내가 쓴 리뷰 (클릭하면 리뷰로 이동합니다.)
+                	<div class="border">
+					     <table border="1">
+							<thead>
+								<tr>
+									<td>업체</td>
+									<td>제목</td>
+									<td>내용</td>
+									<td>별점</td>
+								<tr>	
+							</thead>		 
+							<tbody>
+								<c:if test="${empty list }">
+									<tr>
+										<td colspan="4">
+											없음
+										</td>
+									</tr>
+								</c:if>
+								<c:if test="${not empty list }">
+									<c:forEach var="rDTO" items="${list }" varStatus="name">
+										<tr>
+											<td>${dList.get(name.count-1)}</td>
+											<td>${rDTO.rTitle }</td>
+											<td>${rDTO.rContent }</td>
+											<td>${rDTO.rPoint }</td>
+										</tr>
+									</c:forEach>
+								</c:if>
+							</tbody>
+						</table>		
+                	</div>
+                </div>
+                <div>
+                	예약 현황 (클릭하면 예약한 업체로 이동합니다.)
+                	<div class="border2">
+					     <table border="1">
+							<thead>
+								<tr>
+									<td>업체</td>
+									<td>업체 전화번호</td>
+									<td>예약일</td>
+									<td>인원</td>
+								<tr>	
+							</thead>		 
+							<tbody>
+								<c:if test="${empty list2 }">
+									<tr>
+										<td colspan="3">
+											없음
+										</td>
+									</tr>
+								</c:if>
+								<c:if test="${not empty list2 }">
+									<c:forEach var="aDTO" items="${list2 }" varStatus="name">
+										<tr onclick="location.href='viewPage?dSaup_no=' + ${aDTO.dSaup_no}">
+											<td>${dList2.get(name.index*2)}</td>
+											<td>${dList2.get(name.index*2+1) }</td>
+											<td>${aDTO.aDate }</td>
+											<td>${aDTO.aP_count}</td>
+										</tr>
+									</c:forEach>
+								</c:if>
+							</tbody>
+						</table>		
+                	</div>
+                </div>
+                
+                <br/><br/>
+                
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
                         <input type="button" value="돌아가기" class="btn btn-primary" onclick="index" />

@@ -1,7 +1,5 @@
 package com.koreait.projectE.contorller;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -176,6 +174,7 @@ public class LoginController {
 			request.getSession().setAttribute("cId", cDTO.getcId());
 			request.getSession().setAttribute("cNo", cDTO.getcNo());
 			request.getSession().setAttribute("cNickname", cDTO.getcNickname());
+			request.getSession().setAttribute("cGrede", cDTO.getcGrade());
 			result = "1";
 		}
 				 
