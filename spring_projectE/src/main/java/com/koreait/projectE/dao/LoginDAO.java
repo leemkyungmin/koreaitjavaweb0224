@@ -16,6 +16,9 @@ public interface LoginDAO {
 	// 업체 회원가입
 	public void deptSignUp(String dSaup_no, String dId, String dPw );
 	
+	// 일반 회원 사진 업데이트
+	public void customerPhotoUpdate(String cNo, String saveFilename);
+	
 	// 일반 회원 아이디 중복체크
 	public int idCheck(String cId);
 	

@@ -93,28 +93,6 @@
 				
 			});
 			
-			$('#cPhotoUpdate').click(function() {
-				
-				if(confirm('프로필 사진을 변경하시겠습니까?')){
-					$.ajax({
-						url : 'cPhotoUpdate',
-						type : 'POST',
-						data : 'cPhoto=' + $('#cPhoto').val() + '&cNo=' + no,
-						success : function(data) {
-							if (data == '1') {
-								alert('변경되었습니다.');
-								location.href = 'myPage';
-							} else {
-								alert('변경에 실패했습니다.');
-							}
-						},
-						error : function() {
-							alert('AJAX 오류 발생 자폭 3초전');
-						}
-					});
-				}
-				
-			});
 			
 			$('#cPwUpdateBtn').click(function() {
 				
@@ -184,7 +162,15 @@
 				f.submit();
 			}
 		}
-	
+		
+		function fn_PhotoUpdate(f) {
+			if (confirm('프로필 사진을 업데이트 하시겠습니까?')){
+				f.action = 'cPhotoUpdate';
+				f.submit();
+			}
+		}
+		
+		
 	</script>
 	
 	<style type="text/css">
@@ -233,6 +219,21 @@
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
             <!--// 모달창 -->
+            <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				 	<div class="modal-header" data-backdrop="static">
+				    	<!-- data-dismiss="modal" -->
+				    	
+				    	<button type="button" class="close"  data-dismiss="modal" aria-hidden="true">
+							<i class="fas fa-times fa-3x"></i>
+						</button>
+				  	</div>
+				  <div class="modal-body" data-backdrop="static">
+				    
+				  </div>
+				  
+				  <div class="modal_layer" data-backdrop="static"></div>
+			</div>  
+            
             <hr/>
             <!-- 본문 들어가는 부분 -->
                 
@@ -294,7 +295,7 @@
                 	<label for="inputPhoto" class="col-lg-2 control-label">프로필 사진</label><br/> &nbsp;&nbsp;&nbsp;
                 	<div id="photoBox" style="width:50; height:50;">
                 		<input type="file" id="cPhoto" name="cPhoto" onchange="fileCheck(this)" accept="image/jpeg,image/png,image/jpg" /> <br/>
-                		<input type="button" value="업로드 하기" class="btn btn-primary" id="cPhotoUpdate"  />
+                		<input type="button" value="업로드 하기" class="btn btn-primary" id="cPhotoUpdate" onclick="fn_PhotoUpdate(this.form)"  />
                 	</div>
                 </div>
                 <div class="form-group" id="divPhoneNumber">
@@ -343,6 +344,7 @@
 											<td>${rDTO.rTitle }</td>
 											<td>${rDTO.rContent }</td>
 											<td>${rDTO.rPoint }</td>
+											<td><input type="hidden" value="${rDTO.rNo }" name="rNo" id="rNo"/></td>
 										</tr>
 									</c:forEach>
 								</c:if>

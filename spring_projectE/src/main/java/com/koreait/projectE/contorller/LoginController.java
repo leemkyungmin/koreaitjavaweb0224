@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.koreait.projectE.command.Login.CustomerEmailAuthCommand;
 import com.koreait.projectE.command.Login.CustomerFindIdPwCommand;
 import com.koreait.projectE.command.Login.CustomerMyPageCommand;
+import com.koreait.projectE.command.Login.CustomerMyPagePhotoUpdateCommand;
 import com.koreait.projectE.command.Login.CustomerSignOutCommand;
 import com.koreait.projectE.command.Login.CustomerSignUpCommand;
 import com.koreait.projectE.command.Login.DepartmentMyPageCommand;
@@ -93,7 +94,14 @@ public class LoginController {
 		return "redirect:loginChoicePage"; 
 	}
 	
-	
+	@RequestMapping(value="cPhotoUpdate", method=RequestMethod.POST)
+	@ResponseBody
+	public String cPhotoUpdate(MultipartHttpServletRequest mr, Model model) {
+		model.addAttribute("mr", mr);
+		command = new CustomerMyPagePhotoUpdateCommand();
+		command.execute(sqlSession, model);
+		return "redirect:customerMyPage";
+	}
 	
 	@RequestMapping(value="deptUpdate", method=RequestMethod.POST)
 	public String deptUpdate(MultipartHttpServletRequest mr, Model model) {
@@ -223,12 +231,7 @@ public class LoginController {
 		return lDAO.pwUpdate(cPw, cNo) + "";
 	}
 	
-	@RequestMapping(value="cPhotoUpdate", method=RequestMethod.POST, produces="text/html; charset=utf-8")
-	@ResponseBody
-	public String cPhotoUpdate(@RequestParam("cPhoto") String cPhoto, @RequestParam("cNo")int cNo) {
-		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
-		return lDAO.cPhotoUpdate(cPhoto, cNo) + "";
-	}
+	
 	
 	@RequestMapping(value="deptpwUpdate", method=RequestMethod.POST, produces="text/html; charset=utf-8")
 	@ResponseBody
