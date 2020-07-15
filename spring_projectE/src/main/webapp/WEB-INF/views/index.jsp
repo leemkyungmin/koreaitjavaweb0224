@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
 <% request.setCharacterEncoding("utf-8"); %>
 
 <%@ include file="template/header.jsp" %>
@@ -47,6 +48,12 @@
 		    });
 		});
 	
+	</script>
+	
+	<script>
+		var cookieList = Cookies.getJSON('query');
+		alert(cookieList);
+		
 	</script>
 	
 	

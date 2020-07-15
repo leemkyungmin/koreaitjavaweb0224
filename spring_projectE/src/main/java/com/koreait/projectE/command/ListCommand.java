@@ -17,7 +17,6 @@ public class ListCommand implements Command {
 		ListDAO ldao = sqlSession.getMapper(ListDAO.class);
 		
 		ArrayList<MainListDTO> list = ldao.main_list();
-		System.out.println(list.get(0).getCount());
 		model.addAttribute("list", list);
 		 
 	}

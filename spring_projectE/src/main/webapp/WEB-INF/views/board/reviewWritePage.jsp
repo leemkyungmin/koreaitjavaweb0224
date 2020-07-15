@@ -276,15 +276,12 @@
 		<script type="text/javascript">
 			alert('기업 회원은 리뷰 작성이 불가능합니다.');
 			location.href='viewPage?dSaup_no='+${deptDTO.dSaup_no};
-			
 		</script>
 	</c:if>	
 	<c:if test="${sessionScope.cId==null && sessionScope.dSaup_No ==null }">
 		<script type="text/javascript">
-		
 			alert('로그인후 리뷰 작성이 가능합니다 . 로그인후 이용해주세요');
 			location.href='logout';
-			
 		</script>
 	</c:if>
 	
