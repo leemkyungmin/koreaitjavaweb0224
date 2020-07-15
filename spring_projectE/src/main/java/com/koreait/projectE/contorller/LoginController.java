@@ -174,6 +174,7 @@ public class LoginController {
 			request.getSession().setAttribute("cId", cDTO.getcId());
 			request.getSession().setAttribute("cNo", cDTO.getcNo());
 			request.getSession().setAttribute("cNickname", cDTO.getcNickname());
+			request.getSession().setAttribute("cGrede", cDTO.getcGrade());
 			result = "1";
 		}
 				 
