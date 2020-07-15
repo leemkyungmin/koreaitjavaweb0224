@@ -7,10 +7,10 @@
 	  <!-- Custom styles for this template-->
 	  <link href="resources/assets/style/admin/sb-admin-2.min.css" rel="stylesheet">
 
-  
+   
   	<style>
 	table th {
-	  border-collapse:collapse;
+	  border-collapse:collapse;  
       color: #168;
       background: #f0f6f9;
       text-align: center;
