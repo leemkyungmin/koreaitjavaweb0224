@@ -55,10 +55,31 @@
 			background-color: skyblue; 
 		}
 		
+		.wrap {
+			width: 600px;
+			margin: auto;
+			margin-top: 10px;
+		}
+		
+		.back_btn {
+			text-align: left;
+			margin-bottom: 10px;
+			margin-left: 50px;
+		}
+		
+		.small_btn {
+			padding: 5px;
+			display: inline-block;
+			width: 50px;
+			color: white;
+			background: #168;
+			border-radius: 5px;
+			border: 0;
+		}
+		
 		table {
 			width: 500px;
 			margin: auto;
-			margin-top: 10px;
 			margin-bottom: 10px;
 			border-top: 3px solid #168;
 			border-bottom: 3px solid #168;
@@ -83,7 +104,7 @@
 			border: 1px solid #ddd;
 		}
 		
-		div {
+		.btn_wrap {
 			margin: auto;
 			text-align: center;
 		}
@@ -110,40 +131,45 @@
 		<li><button class="top_button" onclick="location.href='deptAccpetPage'">업체 승인 관리</button><li>
 	</ul>
 	<br/><br/>
-
-	<form method="post">
-		<table>
-			<tr>
-				<th>상호명</th>
-				<td>${deptDTO.dName} (${deptDTO.dSaup_no})</td>
-			</tr>
-			<tr>
-				<th>업종</th>
-				<td>${deptDTO.dType}</td>
-			</tr>
-			<tr>
-				<th>주소</th>
-				<td>${deptDTO.dAddress}</td>
-			</tr>
-			<tr>
-				<th>전화번호</th>
-				<td>${fn:substring(deptDTO.dPhone, 0, 3)}-${fn:substring(deptDTO.dPhone, 3, 7)}-${fn:substring(deptDTO.dPhone, 7, 11)}</td>
-			</tr>
-			<tr>
-				<th>영업시간</th>
-				<td>${fn:substring(deptDTO.dStart, 0, 2)}:${fn:substring(deptDTO.dStart, 2, 4)} ~ ${fn:substring(deptDTO.dEnd,0,2)}:${fn:substring(deptDTO.dEnd,2,4)} (${deptDTO.dSeat}석)</td>
-			</tr>
-			<tr>
-				<th>주차</th>
-				<td>${deptDTO.dParking ==1 ? '주차 가능' : '주차 불가' }</td>
-			</tr>
-		</table>
-		<div>
-			<input class="btn" type="hidden" name="dNo" value="${deptDTO.dNo}" />
-			<input class="btn" type="button" value="승인" onclick="endorse(this.form)"/> 
-			<input class="btn" type="button" value="거절" onclick="reject(this.form)"/> 
+	
+	<div class="wrap">
+		<div class="back_btn">
+			<input class="small_btn" type="button" value="목록" onclick="location.href='deptAccpetPage'"/> 
 		</div>
-	</form>
+		<form method="post">
+			<table>
+				<tr>
+					<th>상호명</th>
+					<td>${deptDTO.dName} (${deptDTO.dSaup_no})</td>
+				</tr>
+				<tr>
+					<th>업종</th>
+					<td>${deptDTO.dType}</td>
+				</tr>
+				<tr>
+					<th>주소</th>
+					<td>${deptDTO.dAddress}</td>
+				</tr>
+				<tr>
+					<th>전화번호</th>
+					<td>${fn:substring(deptDTO.dPhone, 0, 3)}-${fn:substring(deptDTO.dPhone, 3, 7)}-${fn:substring(deptDTO.dPhone, 7, 11)}</td>
+				</tr>
+				<tr>
+					<th>영업시간</th>
+					<td>${fn:substring(deptDTO.dStart, 0, 2)}:${fn:substring(deptDTO.dStart, 2, 4)} ~ ${fn:substring(deptDTO.dEnd,0,2)}:${fn:substring(deptDTO.dEnd,2,4)} (${deptDTO.dSeat}석)</td>
+				</tr>
+				<tr>
+					<th>주차</th>
+					<td>${deptDTO.dParking ==1 ? '주차 가능' : '주차 불가' }</td>
+				</tr>
+			</table>
+			<div class="btn_wrap">
+				<input class="btn" type="hidden" name="dNo" value="${deptDTO.dNo}" />
+				<input class="btn" type="button" value="승인" onclick="endorse(this.form)"/> 
+				<input class="btn" type="button" value="거절" onclick="reject(this.form)"/> 
+			</div>
+		</form>
+	</div>
 		
 		<script type="text/javascript">
 		
