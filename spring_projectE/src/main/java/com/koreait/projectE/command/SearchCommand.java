@@ -36,13 +36,12 @@ public class SearchCommand implements Command {
 		for(Cookie cook :cookies) {
 			if(cook.getName().equals("query")) {
 				System.out.println(cook.getValue());
-				obj.put("query", cook.getValue()) ;
+				obj.put("query", cook.getValue() ;
 			}else {
 				obj.put("query",query);
 			}
 		}
-		
-		
+			
 
 		System.out.println(obj);
 		Cookie setCookie = new Cookie("query", obj.toString());

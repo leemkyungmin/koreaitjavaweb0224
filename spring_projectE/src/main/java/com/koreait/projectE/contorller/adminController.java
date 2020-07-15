@@ -31,6 +31,14 @@ public class adminController {
 	private SqlSession sqlSession;
 	private Command command;
 	
+	//Test 
+	
+	@RequestMapping("adminPage")
+	public String adminPage() {
+		
+		return "admin/adminPage";
+	}
+	
 	@RequestMapping("adminmanagePage") 
 	public String adminmagePage(Model model) {
 
