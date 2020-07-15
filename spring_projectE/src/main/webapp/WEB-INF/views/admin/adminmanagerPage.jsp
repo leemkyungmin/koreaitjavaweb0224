@@ -235,15 +235,7 @@
       </a>
 
 
-<body>
-<div class="left-menu">
-<ul>
-	<li><h2 style=text-align:left;>관리자페이지</h2></li>
-	<li><button id="cus_btn" onclick="fn_cus_list()" >회원관리</button></li>
-	<li><button id="dept_btn" onclick="fn_dept_list()">업체관리</button></li>
-	<li><button id="Acc_btn"onclick="location.href='deptAccpetPage'">업체 승인 관리</button><li>
-</ul>
-</div>
+
 	<script type="text/javascript">
 	$('#deleteBtn').click(function(){
 		$('input:checkbox[name=test]:checked').each(function (){
