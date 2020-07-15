@@ -232,59 +232,29 @@
                   <div class="chart-area"  style="height: 100%;">
                   	<!-- 내용 부분 -->
                     <div id="custom" style="width:760px; margin: auto;">
-			<table border="1">
-				<thead id="user_info">
-					<tr>
-						<th><input type="checkbox" id="allCheck"/></th>
-						<th>아이디</th>
-						<th>no.</th>
-						<th>이름</th>
-						<th>닉네임</th>
-						<th>비밀번호</th>
-						<th>휴대폰번호</th>
-						<th>Email</th>
-						<th>등급</th>
-						<th>성별</th>
-					</tr>
-				</thead>	
-				<c:forEach var="user" items="${cList }" >
-				<tr>	
-					<td><input type="checkbox" id="test" name=test value="${user.cNo }"/></td>
-					<td><a href="UpdateUserPage?cNo=${user.cNo }">${user.cId }</a></td>			
-					<td>${user.cNo }</td>				
-					<td>${user.cName }</td>			
-					<td>${user.cNickname }</td>						
-					<td>${user.cPw }</td>				
-					<td>${user.cPhone }</td>			
-					<td>${user.cEmail }</td>			
-					<td>
-						<c:if test="${user.cGrade ==1 }">
-							브론즈
-						</c:if>			
-						<c:if test="${user.cGrade ==2 }">
-							실버
-						</c:if>			
-						<c:if test="${user.cGrade ==3 }">
-							다이아
-						</c:if>			
-						<c:if test="${user.cGrade ==4 }">
-							vip
-						</c:if>			
-						<c:if test="${user.cGrade ==5	 }">
-							관리자
-						</c:if>
-					</td>								
-					<td>성별${user.cGender }</td>	
+				<div id="dept" style="width:760px; height:800px; margin: auto; overflow: auto;" >	
+		<table border="1">
+			<thead>
+				<tr>
+					<th>no.</th>
+					<th>사업자 등록번호</th>
+					<th>사업체명</th>
+					<th>전화번호</th>
 				</tr>
-				</c:forEach>
-		
-	</table>
+			</thead>
+			<c:forEach var="dept" items="${dList }">
+				<tr>		
+					<td>${dept.dNo }</td>
+					<td><a href="UpdateDepartment?dNo=${dept.dNo }">${dept.dSaup_no }</a></td>
+					<td>${dept.dName }</td>
+					<td>${dept.dPhone }</td>
+				</tr>
+			</c:forEach>
+		</table>
 	</div>
-		<div id="del" class="del" style="margin: auto;">
-		
-			<button id="deleteBtn">회원삭제</button>
-		</div>
     </div>
+    </div>
+    
                  
                  
                 </div>
