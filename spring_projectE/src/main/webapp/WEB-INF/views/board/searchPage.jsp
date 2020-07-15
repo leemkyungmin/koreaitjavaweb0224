@@ -3,10 +3,42 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<link href="resources/assets/style/locationlist.css" rel="stylesheet" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
+	
 <%@ include file="../template/header.jsp" %>
 
 <% String main_search = request.getParameter("main-search"); %>
 
+	<script>
+		
+	$(function(){
+		var size ='${size}';
+		var q = '<%=main_search%>';
+		var url ='searchPage?main-search='+q;
+		if(size != 0){
+			if(Cookies.get('query') === undefined || Cookies.get('query') == '[null]'){
+				
+				Cookies.set('query', "[{\"name\":\""+q+"\",\"url\" : searchPage?main-search="+q+"}]");
+				alert("성공"); 
+			}else{
+				var cookieArr = new Array(Cookies.getJSON('query'));
+				alert(typeof(cookieArr));
+			
+				cookieArr.push({ 
+						name: q,
+						url:'searchPage?main-search='+q
+				});
+				alert(JSON.stringify(cookieArr));
+				Cookies.set('query', JSON.stringify(cookieArr));
+			}
+		
+		}else{ 
+			
+		}
+	});
+	
+	</script>
 	
 	<main class="mn-toplist pg-toplist">
 	<article class="contents">
