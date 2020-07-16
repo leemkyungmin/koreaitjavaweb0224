@@ -16,6 +16,7 @@ import com.koreait.projectE.command.Admin.AdminDeptAcceptCommand;
 import com.koreait.projectE.command.Admin.AdminDeptAcceptListCommand;
 import com.koreait.projectE.command.Admin.AdminDeptAcceptViewCommand;
 import com.koreait.projectE.command.Admin.AdminDeptDeleteCommand;
+import com.koreait.projectE.command.Admin.AdminDeptViewCommand;
 import com.koreait.projectE.command.Admin.AdminUpdateDepartmentCommand;
 import com.koreait.projectE.command.Admin.AdminUpdateUserCommand;
 import com.koreait.projectE.commom.Command;
@@ -39,6 +40,14 @@ public class adminController {
 		command=new AdminCommand();
 		command.execute(sqlSession, model);
 		return "admin/adminmanagerPage";	
+	}
+	
+	@RequestMapping("departmentView")
+	public String departmentView(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command=new AdminDeptViewCommand();
+		command.execute(sqlSession, model);
+		return "admin/departmentView";	
 	}
 	
 	@RequestMapping(value="UpdateUserPage", method=RequestMethod.GET)
@@ -118,13 +127,6 @@ public class adminController {
 		command = new AdminDeptDeleteCommand();
 		command.execute(sqlSession, model);
 		return "redirect:deptAccpetPage";
-	}
-	@RequestMapping("departmentView")
-	public String departmentView(Model model) {
-
-		command=new AdminCommand();
-		command.execute(sqlSession, model);
-		return "admin/departmentView";	
 	}
 		
 

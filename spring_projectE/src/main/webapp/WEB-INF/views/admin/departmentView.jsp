@@ -79,6 +79,16 @@
 			display: block;
 			
 		}
+		
+		.pageView {
+			width: 100%;
+			text-align: center;
+		}
+		.totalDept {
+			display: inline-block;
+			margin-bottom: 5px;
+		}
+		
 	</style>
 
 	<!-- Page Wrapper -->
@@ -149,6 +159,7 @@
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
 										<div id="custom" style="width:760px; margin: auto;">
+											<saan class="totalDept">전체 업체 수 : ${totalRecord}</saan>
 											<div id="dept" style="width:760px; height:800px; margin: auto; overflow: auto;" >	
 												<table border="1">
 													<thead>
@@ -159,15 +170,28 @@
 															<th>전화번호</th>
 														</tr>
 													</thead>
-													<c:forEach var="dept" items="${dList }">
-														<tr>		
-															<td>${dept.dNo }</td>
-															<td><a href="UpdateDepartment?dNo=${dept.dNo }">${dept.dSaup_no }</a></td>
-															<td>${dept.dName }</td>
-															<td>${fn:substring(dept.dPhone, 0, 3)}-${fn:substring(dept.dPhone, 3, 7)}-${fn:substring(dept.dPhone, 7, 11)}</td>
-														</tr>
-													</c:forEach>
+													<tbody>
+														<c:if test="${empty dList}">
+															<tr>
+																<th colspan="4">업체가 존재하지 않습니다.</th>
+															</tr>
+														</c:if>
+														<c:if test="${not empty dList}">
+															<c:forEach var="dept" items="${dList}">
+																<tr>		
+																	<td>${dept.dNo }</td>
+																	<td><a href="UpdateDepartment?dNo=${dept.dNo }">${dept.dSaup_no }</a></td>
+																	<td>${dept.dName }</td>
+																	<td>${fn:substring(dept.dPhone, 0, 3)}-${fn:substring(dept.dPhone, 3, 7)}-${fn:substring(dept.dPhone, 7, 11)}</td>
+																</tr>
+															</c:forEach>
+														</c:if>
+													</tbody>
 												</table>
+												<div class="pageView">
+													<!-- 페이지 뷰 -->
+													${pageView}
+											</div>
 											</div>
 										</div>
 									</div>           

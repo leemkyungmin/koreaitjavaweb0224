@@ -16,7 +16,11 @@ public interface adminDAO {
 	// 전체 회원 수
 	public int getTotelRecord();
 	
-	public ArrayList<DepartmentDTO> getDepartmentList();
+	// 한 페이지에 보여줄 업체 리스트
+	public ArrayList<DepartmentDTO> getDepartmentList(Map<String, Integer> record);
+	
+	// 전체 업체 수
+	public int getTotelDept();
 	
 	public CustomerDTO UpdateUserPage(int cNo);
 	
