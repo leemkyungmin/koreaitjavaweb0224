@@ -16,8 +16,8 @@
 
 	<style type="text/css">
 		table {
-			margin: auto;
-			width: 500px;
+			width: 800px;
+			height: 700px;
 			border: 1px solid;
 			border-collapse: collapse;	
 		    border-top: 1px solid #ccc;
@@ -31,11 +31,13 @@
 		    color: #153d73;
 		    border: 1px solid #ccc;
 			background: #efefef;
+			font-size: 120%;
 		}
 		td {
 		    width: 349px;
 		    padding: 10px;
 		    border: 1px solid #ccc;
+		    font-size: 100%;
 		}
 		#btnUpdate {
 			width:100px;

@@ -11,7 +11,7 @@
    
 	<style>
 		table{
-			width: 750px;
+			width: 1000px;
 			margin: auto;
 			margin-bottom: 10px;
 			border-collapse: collapse;
@@ -241,13 +241,13 @@
 							<!-- Area Chart -->
 							<div class="card shadow mb-4"  style="height: 100%;">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">111</h6>
+									<h6 class="m-0 font-weight-bold text-primary">회원 리스트</h6>
 								</div>
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
-										<saan class="totalCustomer">전체 회원 수 : ${totalRecord}명</saan>
-										<div id="custom" style="width:760px; margin: auto;">
+										<saan class="totalCustomer" style= "margin: auto">전체 회원 수 : ${totalRecord}명</saan>
+										<div id="custom" style="width:1300px;">
 											<table border="1">
 												<thead id="user_info">
 													<tr>

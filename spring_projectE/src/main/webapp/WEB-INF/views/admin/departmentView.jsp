@@ -11,7 +11,7 @@
   
 	<style>
 		table{
-			width: 750px;
+			width: 950px;
 			margin: auto;
 			margin-bottom: 10px;
 			border-collapse: collapse;
@@ -152,21 +152,21 @@
 				<!-- Begin Page Content -->
 				<div class="container-fluid"  style="height: 100%;">
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">회원 관리</h1>
+					<h1 class="h3 mb-2 text-gray-800">업체 관리</h1>
 					<!-- Content Row -->
 					<div class="row" style="height: 100%;">
 						<div class="col-xl-8 col-lg-7"  style="height: 100%;">
 							<!-- Area Chart -->
 							<div class="card shadow mb-4"  style="height: 100%;">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">111</h6>
+									<h6 class="m-0 font-weight-bold text-primary">업체 리스트</h6>
 								</div>
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
-										<div id="custom" style="width:760px; margin: auto;">
+										<div id="custom" style="width:760px;">
 											<saan class="totalDept">전체 업체 수 : ${totalRecord}</saan>
-											<div id="dept" style="width:760px; height:800px; margin: auto; overflow: auto;" >	
+											<div id="dept" style="width:1300px; height:800px; margin: auto;" >	
 												<table border="1">
 													<thead>
 														<tr>
