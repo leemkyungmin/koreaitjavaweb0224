@@ -42,44 +42,6 @@
 			display: 'block';
 		}
 				
-		/* BUTTON 1 */
-		.btn-1::after {
-		  height: 0;
-		  left: 0;
-		  top: 0;
-		  width: 100%;
-		}
-		
-		.btn-1:hover:after {
-		  height: 100%;
-		}
-		
-		/* BUTTON 2 */
-		.btn-2::after {
-		  height: 100%;
-		  left: 0;
-		  top: 0;
-		  width: 0;
-		}
-		
-		.btn-2:hover:after {
-		  width: 100%;
-		}
-		
-		/* BUTTON 3 */
-		.btn-3::after {
-		  height: 0;
-		  left: 50%;
-		  top: 50%;
-		  width: 0;
-		}
-		
-		.btn-3:hover:after {
-		  height: 100%;
-		  left: 0;
-		  top: 0;
-		  width: 100%;
-		}
 		.del{
 			width: 750px;
 			display: block;
