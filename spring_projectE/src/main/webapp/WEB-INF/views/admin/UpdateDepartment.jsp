@@ -14,7 +14,8 @@
 	<style type="text/css">
 		table {
 			margin: auto;
-			width: 500px;
+			width: 750px;
+			height: 700px;
 			border: 1px solid;
 			border-collapse: collapse;	
 		    border-top: 1px solid #ccc;
@@ -28,11 +29,13 @@
 		    color: #153d73;
 		    border: 1px solid #ccc;
 			background: #efefef;
+			font-size: 130%;
 		}
 		td {
 		    width: 349px;
 		    padding: 10px;
 		    border: 1px solid #ccc;
+		    font-size: 120%;
 		}
 	
 		ul {
@@ -66,8 +69,9 @@
 		    color: skyblue; 
 		    padding: 5px; 
 		    width:80px;
-		    height:78px
+		    height:78px;
 		}
+		
 	</style>
 
 	<!-- Page Wrapper -->
@@ -137,7 +141,7 @@
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
-										<div id="custom" style="width:760px; margin: auto;">
+										<div id="custom" style="width:760px;">
 											<table border="1" class="user">
 												<tr>
 													<th>사업자 등록번호</th>
