@@ -95,35 +95,7 @@
 				
 			});
 			
-<<<<<<< HEAD
-			$('#cPhotoUpdate').click(function() {
-				var p =$('#cPhoto').val();
-				var photo = p.substring($('#cPhoto').val().lastIndexOf("\\")+1,p.length-1); 
-				console.log(photo);
-				
-				if(confirm('프로필 사진을 변경하시겠습니까?')){
-					$.ajax({
-						url : 'cPhotoUpdate',
-						type : 'POST',
-						data : 'cPhoto=' + photo + '&cNo=' + no,
-						success : function(data) {
-							if (data == '1') {
-								alert('변경되었습니다.');
-								location.href = 'myPage';
-							} else {
-								alert('변경에 실패했습니다.');
-							}
-						},
-						error : function() {
-							alert('AJAX 오류 발생 자폭 3초전');
-						}
-					});
-				}
-				
-			});
-=======
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
-			
+
 			$('#cPwUpdateBtn').click(function() {
 				
 				if ($('#cPw').val() == "") {
@@ -231,42 +203,40 @@
             <%@ include file="../template/header.jsp" %>
             
             <!--// 헤더 들어가는 부분 -->
+            <!-- 본문 들어가는 부분 -->
             <!-- 모달창 -->
-            <div class="modal fade" id="defaultModal">
-                <div class="modal-dialog">
+            <div class="modal fade" id="myModal">
+               
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title">알림</h4>
                         </div>
                         <div class="modal-body">
-                            <p class="modal-contents"></p>
+                          
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                        </div>
+                        <div class="modal_layer" data-backdrop="static"></div>
                     </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
+                
             </div><!-- /.modal -->
             <!--// 모달창 -->
-            <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				 	<div class="modal-header" data-backdrop="static">
-				    	<!-- data-dismiss="modal" -->
-				    	
-				    	<button type="button" class="close"  data-dismiss="modal" aria-hidden="true">
-							<i class="fas fa-times fa-3x"></i>
-						</button>
-				  	</div>
-				  <div class="modal-body" data-backdrop="static">
-				    
-				  </div>
-				  
-				  <div class="modal_layer" data-backdrop="static"></div>
-			</div>  
-            
+            <!-- 모달창 --> 
+              
+            <script type="text/javascript">
+					
+					
+					$('.reviewdetail').click(function(){
+						console.log('111111');
+						
+						var modal = $('#myModal');
+						modal.find('.modal-body').load($('.reviewdetail').data("remote"));
+					})
+					
+
+
+				
+				</script>
             <hr/>
-            <!-- 본문 들어가는 부분 -->
-                
+              
  
  
             <form class="form-horizontal" id="loginForm" role="form" method="post" action="customerUpdate" enctype="multipart/form-data">
@@ -324,13 +294,8 @@
                 <div class="form-group" id="divPhoto">
                 	<label for="inputPhoto" class="col-lg-2 control-label">프로필 사진</label><br/> &nbsp;&nbsp;&nbsp;
                 	<div id="photoBox" style="width:50; height:50;">
-<<<<<<< HEAD
-                		<input type="file" id="cPhoto" name="cPhoto"  accept="image/jpeg,image/png,image/jpg" /> <br/>
-                		<input type="button" value="업로드 하기" class="btn btn-primary" id="cPhotoUpdate"  />
-=======
                 		<input type="file" id="cPhoto" name="cPhoto" onchange="fileCheck(this)" accept="image/jpeg,image/png,image/jpg" /> <br/>
                 		<input type="button" value="업로드 하기" class="btn btn-primary" id="cPhotoUpdate" onclick="fn_PhotoUpdate(this.form)"  />
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
                 	</div>
                 </div>
                 <div class="form-group" id="divPhoneNumber">
@@ -352,7 +317,20 @@
                         </select>
                     </div>
                 </div>
-                <div>
+                
+               
+                
+                <br/><br/>
+                
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <input type="button" value="돌아가기" class="btn btn-primary" onclick="index" />
+                        <input type="button" value="회원탈퇴" class="btn btn-primary" onclick="fn_customerSignOut(this.form)" />
+                    </div>
+                    
+                </div>
+            </form>
+        	<div>
                 	내가 쓴 리뷰 (클릭하면 리뷰로 이동합니다.)
                 	<div class="border">
 					     <table border="1">
@@ -367,19 +345,19 @@
 							<tbody>
 								<c:if test="${empty list }">
 									<tr>
-										<td colspan="4">
+										<td colspan="5">
 											없음
 										</td>
 									</tr>
 								</c:if>
 								<c:if test="${not empty list }">
 									<c:forEach var="rDTO" items="${list }" varStatus="name">
-										<tr>
+										<tr class="reviewdetail" data-remote="reviewDetail?rNo=${rDTO.rNo}" onclick="fn_load(${rDTO.rNo})"	data-toggle="modal" data-target="#myModal">
+											
 											<td>${dList.get(name.count-1)}</td>
 											<td>${rDTO.rTitle }</td>
 											<td>${rDTO.rContent }</td>
-											<td>${rDTO.rPoint }</td>
-											<td><input type="hidden" value="${rDTO.rNo }" name="rNo" id="rNo"/></td>
+											<td>${rDTO.rPoint }<input type="hidden" value="${rDTO.rNo }" name="rNo" id="rNo"/></td>
 										</tr>
 									</c:forEach>
 								</c:if>
@@ -402,7 +380,7 @@
 							<tbody>
 								<c:if test="${empty list2 }">
 									<tr>
-										<td colspan="3">
+										<td colspan="4">
 											없음
 										</td>
 									</tr>
@@ -420,19 +398,7 @@
 							</tbody>
 						</table>		
                 	</div>
-                </div>
-                
-                <br/><br/>
-                
-                <div class="form-group">
-                    <div class="col-lg-offset-2 col-lg-10">
-                        <input type="button" value="돌아가기" class="btn btn-primary" onclick="index" />
-                        <input type="button" value="회원탈퇴" class="btn btn-primary" onclick="fn_customerSignOut(this.form)" />
-                    </div>
-                </div>
-            </form>
-        
-        
+        	 </div>
         <script>
         	
         $(function(){

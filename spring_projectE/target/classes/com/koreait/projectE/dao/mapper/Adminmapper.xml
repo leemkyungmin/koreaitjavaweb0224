@@ -59,6 +59,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM DEPARTMENT_INFO WHERE DACCPET = 0
 	</select>
 	
+	<select id="deptAcceptCount" resultType="int">
+		SELECT COUNT(*) FROM DEPARTMENT_INFO WHERE DACCPET = 0
+	</select>
+	
 	<select id="deptAcceptView" resultType="com.koreait.projectE.dto.DepartmentDTO">
 		SELECT * FROM DEPARTMENT_INFO WHERE DNO = #{dNo}
 	</select>

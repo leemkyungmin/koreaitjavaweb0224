@@ -20,7 +20,7 @@ public class ReviewDetailCommand implements Command {
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request =(HttpServletRequest) map.get("request");
 		int rNo= Integer.parseInt(request.getParameter("rNo"));
-		
+		System.out.println(rNo);
 		BoardDAO bdao = sqlSession.getMapper(BoardDAO.class);
 		ReviewDTO rdto =bdao.reivewDetail(rNo);
 		

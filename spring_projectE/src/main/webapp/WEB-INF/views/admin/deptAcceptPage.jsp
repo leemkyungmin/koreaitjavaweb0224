@@ -19,6 +19,7 @@
 			width: 800px;
 			margin: auto;
 			margin-top: 10px;
+			margin-bottom: 10px;
 		    border-top: 3px solid #168;
 			border-collapse: collapse;
 			fint-size: 130%;
@@ -45,6 +46,11 @@
 			text-decoration: none;
 			color: black;
 			font-weight: bold;
+		}
+		
+		.pageView {
+			width: 100%;
+			text-align: center;
 		}
 		
 	</style>
@@ -152,6 +158,10 @@
 													</c:forEach>
 												</c:if>
 											</table>
+											<div class="pageView">
+												<!-- 페이지 뷰 -->
+												${pageView}
+											</div>
     									</div>
     								</div>
     							</div>
