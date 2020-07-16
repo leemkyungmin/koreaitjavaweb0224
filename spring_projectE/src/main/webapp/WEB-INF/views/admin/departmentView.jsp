@@ -148,25 +148,23 @@
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Main Content -->
-			<div id="content" style="height: 100%;">
+			<div id="content" style="height: 90%;">
 				<!-- Begin Page Content -->
 				<div class="container-fluid"  style="height: 100%;">
-					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">업체 관리</h1>
 					<!-- Content Row -->
-					<div class="row" style="height: 100%;">
-						<div class="col-xl-8 col-lg-7"  style="height: 100%;">
+					<div class="row" style="height: 100%; width:100%;">
+						<div class="col-xl-8" style="flex: 0 0 100%; max-width: 100%; margin-top: 20px;">
 							<!-- Area Chart -->
-							<div class="card shadow mb-4"  style="height: 100%;">
+							<div class="card shadow mb-4"  style="height: 90%; width:100%;">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">업체 리스트</h6>
+									<h6 class="m-0 font-weight-bold text-primary">업체 정보 관리</h6>
 								</div>
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
 										<div id="custom" style="width:760px;">
-											<saan class="totalDept">전체 업체 수 : ${totalRecord}</saan>
-											<div id="dept" style="width:1300px; height:800px; margin: auto;" >	
+											<span class="totalDept">전체 업체 수 : ${totalRecord}</saan>
+											<div id="dept" style="width:760px; height:800px; margin: auto;" >	
 												<table border="1">
 													<thead>
 														<tr>
@@ -199,7 +197,7 @@
 												<div class="pageView">
 													<!-- 페이지 뷰 -->
 													${pageView}
-											</div>
+												</div>
 											</div>
 										</div>
 									</div>           
