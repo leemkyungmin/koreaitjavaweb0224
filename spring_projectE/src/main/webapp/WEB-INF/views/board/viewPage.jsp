@@ -457,7 +457,7 @@
 	    			<div class="RestaurantReviewItem__User">
 	       
 		      	<div class="RestaurantReviewItem__UserPictureWrap">
-		       		 <img class="RestaurantReviewItem__UserPicture loaded" alt="${review.cPoto }" src="${pageContext.request.contextPath }/resources/storage/user_img/${review.cPoto }">
+		       		 <img class="RestaurantReviewItem__UserPicture loaded" alt="${review.cPoto }" src="${pageContext.request.contextPath }/resources/storage/user_img/${review.cPoto }" style="width:60px;height:60px;">
 		     	 </div>
 		      
 		     	  
