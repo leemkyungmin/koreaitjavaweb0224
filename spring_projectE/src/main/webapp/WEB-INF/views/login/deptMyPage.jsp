@@ -146,7 +146,19 @@
 			   }
 			   
 		   }
+		
+		
 		function fn_multiUpload(f) {
+			
+			var x = document.getElementById("dPhoto");
+			if ('files' in x) {
+				if (x.files.length > 5){
+					alert("사진은 최대 5장입니다.");
+					document.getElementById("dPhoto").value = "";
+					return false;
+				}
+			}
+			
 			
 			if ($('#dName').val() == '') {
 				alert('업체명을 입력하세요.');
@@ -183,6 +195,9 @@
 				f.action = 'deptUpdate';
 				f.submit();
 			}
+			
+			
+			
 			
 		}
 		
@@ -328,7 +343,7 @@
                 <div class="form-group" id="divPhoto">
                 	<h4>음식점 사진 </h4><h4 style="color:red;">(*최대 5장입니다.)</h4>
                 	<div id="photoBox" style="width:50; height:50;">
-                		<input type="file" id="dPhoto" name="dPhoto" onchange="fileCheck(this)" accept="image/jpeg,image/png,image/jpg" multiple="multiple" value="${dDTP.dPhoto }" /> 
+                		<input type="file" maxlength="5" id="dPhoto" name="dPhoto" onchange="fileCheck(this)" accept="image/jpeg,image/png,image/jpg" multiple="multiple" value="${dDTP.dPhoto }" /> 
                 	</div>
                 </div>
                 <br/><br/>
