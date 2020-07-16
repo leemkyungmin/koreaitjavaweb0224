@@ -6,11 +6,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="resources/assets/style/MainList.css" rel="stylesheet" type="text/css">
 
 </head>
-<body>
+<body class="main-body">
 	<main class="pg-main">
   <div class="black_screen"></div>
   <article class="contents main-padding">
@@ -67,6 +68,5 @@
 
 
 </main>
-
 </body>
 </html>

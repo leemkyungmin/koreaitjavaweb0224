@@ -12,9 +12,11 @@ import org.springframework.ui.Model;
 import com.koreait.projectE.command.PageMaker;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.adminDAO;
+import com.koreait.projectE.dto.CustomerDTO;
 import com.koreait.projectE.dto.DepartmentDTO;
+import com.koreait.projectE.dto.DepartmentLoginDTO;
 
-public class AdminDeptAcceptListCommand implements Command {
+public class AdminDeptViewCommand implements Command {
 
 	@Override
 	public void execute(SqlSession sqlSession, Model model) {
@@ -22,7 +24,7 @@ public class AdminDeptAcceptListCommand implements Command {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-		// 업체승인 목록 페이지 구현
+		// 회원정보 페이지 구현
 		String pageStr = request.getParameter("page"); // 현재 페이지
 		if (pageStr == null || pageStr.isEmpty()) {
 			pageStr = "1";
@@ -39,17 +41,23 @@ public class AdminDeptAcceptListCommand implements Command {
 		record.put("endRecord", endRecord);
 		
 		// 업체 리스트 가져오기
-		adminDAO aDAO = sqlSession.getMapper(adminDAO.class);
-		ArrayList<DepartmentDTO> deptList = aDAO.deptAcceptList();
+		adminDAO adao = sqlSession.getMapper(adminDAO.class);
+		ArrayList<DepartmentDTO> dList = adao.getDepartmentList(record);
 		
-		int totalRecord = aDAO.deptAcceptCount();
+		// 업체 아이디 가져오기
+		
+		// 전체 회원 수 구하기
+		int totalRecord = adao.getTotelDept();
 		
 		// 페이지 뷰 생성
-		String pageView = PageMaker.getPageView("deptAccpetPage", page, recordPerPage, totalRecord);
-				
+		String pageView = PageMaker.getPageView("departmentView", page, recordPerPage, totalRecord);
+		
+		// 데이터 MODEL에 담아 VIEW에 전달
 		model.addAttribute("page", page);
-		model.addAttribute("deptList", deptList);
+		model.addAttribute("totalRecord", totalRecord);
+		model.addAttribute("dList", dList);
 		model.addAttribute("pageView", pageView);
+
 	}
 
 }

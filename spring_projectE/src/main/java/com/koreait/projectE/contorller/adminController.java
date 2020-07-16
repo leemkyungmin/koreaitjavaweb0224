@@ -16,6 +16,7 @@ import com.koreait.projectE.command.Admin.AdminDeptAcceptCommand;
 import com.koreait.projectE.command.Admin.AdminDeptAcceptListCommand;
 import com.koreait.projectE.command.Admin.AdminDeptAcceptViewCommand;
 import com.koreait.projectE.command.Admin.AdminDeptDeleteCommand;
+import com.koreait.projectE.command.Admin.AdminDeptViewCommand;
 import com.koreait.projectE.command.Admin.AdminUpdateDepartmentCommand;
 import com.koreait.projectE.command.Admin.AdminUpdateUserCommand;
 import com.koreait.projectE.commom.Command;
@@ -34,11 +35,19 @@ public class adminController {
 	
 	
 	@RequestMapping("adminmanagePage") 
-	public String adminmagePage(Model model) {
-
+	public String adminmagePage(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
 		command=new AdminCommand();
 		command.execute(sqlSession, model);
 		return "admin/adminmanagerPage";	
+	}
+	
+	@RequestMapping("departmentView")
+	public String departmentView(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command=new AdminDeptViewCommand();
+		command.execute(sqlSession, model);
+		return "admin/departmentView";	
 	}
 	
 	@RequestMapping(value="UpdateUserPage", method=RequestMethod.GET)
@@ -69,18 +78,6 @@ public class adminController {
 		
 	}
 
-	
-		
-	@RequestMapping(value="deptAccpetPage")
-	public String deptAccpetPage(Model model) {
-		
-		command = new AdminDeptAcceptListCommand();
-		command.execute(sqlSession, model);
-		
-		return "admin/deptAcceptPage";
-	}
-	
-
 	@RequestMapping("UpdateUser")
 	public String UpdateUser(HttpServletRequest request,Model model) {
 		String cGrade = request.getParameter("cGrade");
@@ -89,10 +86,15 @@ public class adminController {
 		aDAO.UpdateUser(cGrade,cNo);
 		return "redirect:adminmanagePage";
 	}
-	
-	
-	
-	
+		
+	@RequestMapping(value="deptAccpetPage")
+	public String deptAccpetPage(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new AdminDeptAcceptListCommand();
+		command.execute(sqlSession, model);
+		
+		return "admin/deptAcceptPage";
+	}
 
 	@RequestMapping(value="deptAcceptView")
 	public String deptAcceptView(HttpServletRequest request, Model model) {
@@ -118,13 +120,6 @@ public class adminController {
 		command = new AdminDeptDeleteCommand();
 		command.execute(sqlSession, model);
 		return "redirect:deptAccpetPage";
-	}
-	@RequestMapping("departmentView")
-	public String departmentView(Model model) {
-
-		command=new AdminCommand();
-		command.execute(sqlSession, model);
-		return "admin/departmentView";	
 	}
 		
 
