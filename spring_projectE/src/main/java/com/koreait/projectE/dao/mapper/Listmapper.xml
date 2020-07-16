@@ -5,43 +5,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.projectE.dao.ListDAO">
 	
-	<!-- <select id="si_list" resultType="String">
-		select substr(daddress,1,INSTR(DADDRESS,' ',1,1)-1) 
-		from department_info 
-		group by substr(daddress,1,INSTR(DADDRESS,' ',1,1)-1)
-	</select>
 	
-	<select id="dong_list" resultType="String">
-		select substr(daddress,INSTR(DADDRESS,' ',1,1)+1,(INSTR(DADDRESS,' ',1,2)-1)-INSTR(DADDRESS,' ',1,1)+1) as dong 
-		from department_info 
-		where DADDRESS LIKE #{si} || '%' 
-		group by substr(daddress,INSTR(DADDRESS,' ',1,1)+1,(INSTR(DADDRESS,' ',1,2)-1)-INSTR(DADDRESS,' ',1,1)+1)
-	</select> -->
-	
-	<!-- <select id="main_list" resultType="com.koreait.projectE.dto.MainListDTO">
-		select substr(daddress,INSTR(DADDRESS,' ',1,1)+1,(INSTR(DADDRESS,' ',1,2)-1)-INSTR(DADDRESS,' ',1,1)+1)as dong,count(*) as count  from department_info 
-		group by substr(daddress,INSTR(DADDRESS,' ',1,1)+1,(INSTR(DADDRESS,' ',1,2)-1)-INSTR(DADDRESS,' ',1,1)+1)
-	</select> -->
 	<select id="main_list" resultType="com.koreait.projectE.dto.MainListDTO">
 		select substr(daddress,1,INSTR(DADDRESS,' ',1,1)-1) as dong,count(*) as count
 		from department_info 
+		where DACCPET =1
 		group by substr(daddress,1,INSTR(DADDRESS,' ',1,1)-1)
 	</select>
 	<select id="location_list" 	resultType="com.koreait.projectE.dto.DepartmentDTO">
 		select * from department_info 
-		where daddress like '%' || #{location} ||'%' order by dRating desc	
+		where daddress like '%' || #{location} ||'%' and DACCPET=1 order by dRating desc	
 	</select>
 	<select id="get_locationCount" resultType="com.koreait.projectE.dto.MainListDTO">
 		select substr(daddress,1,INSTR(DADDRESS,' ',1,1)-1) as dong,count(*) as count
 		from department_info 
-		where daddress like '%' || #{location} ||'%'
+		where daddress like '%' || #{location} ||'%' and DACCPET=1
 		group by substr(daddress,1,INSTR(DADDRESS,' ',1,1)-1)
 	</select>
 	
 	<select id="search_list" resultType="com.koreait.projectE.dto.DepartmentDTO">
 		select *
 		from department_info
-		where DNAME like '%' || #{query} || '%' or daddress like '%' || #{query} ||'%'
+		where DNAME like '%' || #{query} || '%' or daddress like '%' || #{query} ||'%' and DACCPET=1
 	</select>
 	
 	

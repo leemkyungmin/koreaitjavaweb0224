@@ -65,7 +65,7 @@ public class DepartmentUpdateCommand implements Command {
 						} else {
 							amuguna += ","+saveFilename;
 						}
-						String realPath = mr.getSession().getServletContext().getRealPath("/resources/storage/user_img");
+						String realPath = mr.getSession().getServletContext().getRealPath("/resources/storage/department_img");
 						
 						File directory = new File(realPath);
 						if (!directory.exists()) {
@@ -75,7 +75,6 @@ public class DepartmentUpdateCommand implements Command {
 						File saveFile = new File(realPath, saveFilename);
 						
 						file.transferTo(saveFile);
-						
 						
 						
 						

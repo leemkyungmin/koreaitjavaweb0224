@@ -70,6 +70,11 @@ public class LoginController {
 		return "login/deptSignUpPage";
 	}
 	
+	@RequestMapping("customerMyPage")
+	public String custoemrMyPage() {
+		return "login/customerMyPage";
+	}
+	
 	@RequestMapping("myPage")
 	public String myPage(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
@@ -95,12 +100,11 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="cPhotoUpdate", method=RequestMethod.POST)
-	@ResponseBody
 	public String cPhotoUpdate(MultipartHttpServletRequest mr, Model model) {
 		model.addAttribute("mr", mr);
 		command = new CustomerMyPagePhotoUpdateCommand();
 		command.execute(sqlSession, model);
-		return "redirect:customerMyPage";
+		return "redirect:myPage";
 	}
 	
 	@RequestMapping(value="deptUpdate", method=RequestMethod.POST)

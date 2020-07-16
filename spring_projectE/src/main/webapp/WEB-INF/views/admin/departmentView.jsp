@@ -2,152 +2,67 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../template/header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn"%>
 
 <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 <!-- Custom styles for this template-->
 <link href="resources/assets/style/admin/sb-admin-2.min.css" rel="stylesheet">
 
   
-  	<style>
-	table th {
-	  border-collapse:collapse;
-      color: #168;
-      background: #f0f6f9;
-      text-align: center;
-    }
-    table tr, .table td {
-      padding: 10px;
-      border: 1px solid #ddd;
-    }
-    table tr:first-child, table td:first-child {
-      border-left: 0;
-    }
-    table tr:last-child, .table td:last-child {
-      border-right: 0;
-    }
-	table{
-		text-align: center;
-		border-collapse: collapse;
-		height: 100px;
-		width: 750px;
-	    border-top: 3px solid #168;
-	}
-	#custom{
-		display: 'block';
-	}
-	#cus_btn{
-		float: left;
-		border-top-left-radius: 5px; 
-		border-bottom-left-radius: 5px;
-		border-top-right-radius: 5px; 
-		border-bottom-right-radius: 5px;
-		margin-right:10px;
-	}
-	#dept_btn{
-		float: left;
-		border-top-left-radius: 5px; 
-		border-bottom-left-radius: 5px;
-		border-top-right-radius: 5px; 
-		border-bottom-right-radius: 5px;
-		margin-right:10px;
-	}
-	#Acc_btn{
-	
-		float: left;
-		border-top-left-radius: 5px; 
-		border-bottom-left-radius: 5px;
-		border-top-right-radius: 5px; 
-		border-bottom-right-radius: 5px;
-	}
-	#deleteBtn{
-		margin:auto;
-		border-top-left-radius: 5px; 
-		border-bottom-left-radius: 5px;
-		border-top-right-radius: 5px; 
-		border-bottom-right-radius: 5px;
-		border: 1px solid black; 
-	    background-color: rgba(0,0,0,0); 
-	    color: black; 
-	    padding: 5px; 
-	    width:100px;
-	    height:30px
-	}
-	button, button::after {
-	  -webkit-transition: all 0.3s;
-		-moz-transition: all 0.3s;
-	  -o-transition: all 0.3s;
-		transition: all 0.3s;
-	}
-	
-	button {
-	  background: none;
-	  border: 3px solid #fff;
-	  border-radius: 5px;
-	  color: #fff;
-	  display: block;
-	  font-weight: bold;
-	  margin: 1em auto;
-	  padding: 2em 6em;
-	  position: relative;
-	  text-transform: uppercase;
-	}
-	
-	button::before,
-	button::after {
-	  background: #fff;
-	  content: '';
-	  position: absolute;
-	  z-index: -1;
-	}
-	
-	button:hover {
-	  color: #2ecc71;
-	}
-	
-	/* BUTTON 1 */
-	.btn-1::after {
-	  height: 0;
-	  left: 0;
-	  top: 0;
-	  width: 100%;
-	}
-	
-	.btn-1:hover:after {
-	  height: 100%;
-	}
-	
-	/* BUTTON 2 */
-	.btn-2::after {
-	  height: 100%;
-	  left: 0;
-	  top: 0;
-	  width: 0;
-	}
-	
-	.btn-2:hover:after {
-	  width: 100%;
-	}
-	
-	/* BUTTON 3 */
-	.btn-3::after {
-	  height: 0;
-	  left: 50%;
-	  top: 50%;
-	  width: 0;
-	}
-	
-	.btn-3:hover:after {
-	  height: 100%;
-	  left: 0;
-	  top: 0;
-	  width: 100%;
-	}
-	.del{
-		width: 750px;
-		display: block;
+	<style>
+		table{
+			width: 950px;
+			margin: auto;
+			margin-bottom: 10px;
+			border-collapse: collapse;
+		    border-top: 3px solid #168;
+		}
+		table th {
+		    padding: 10px 5px;
+		    color: #168;
+		    background: #f0f6f9;
+		    text-align: center;
+		    border: 1px solid #ddd;
+			border-top: 1px solid #868686;
+			font-size: 15px;
+			letter-spacing: -0.1em;
+		}
+		table td {
+		    padding: 5px;
+		    border: 1px solid #ddd;
+		    text-align: center;
+		}
+		td:nth-of-type(1) { width: 5%;}
+		td:nth-of-type(2) { width: 15%;}
+		td:nth-of-type(3) { width: 45%;}
+		td:nth-of-type(4) { width: 20%;}
+		td:nth-of-type(5) { width: 15%;}
 		
-	}
-  </style>
+		#custom{
+			display: 'block';
+		}
+				
+		.del{
+			width: 750px;
+			display: block;
+			
+		}
+		
+		.pageView {
+			width: 100%;
+			text-align: center;
+		}
+		.totalDept {
+			display: inline-block;
+			margin-bottom: 5px;
+		}
+		.center {
+			width: 950px;
+			text-align: left;
+			margin: auto;
+		}
+		
+	</style>
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -200,24 +115,25 @@
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Main Content -->
-			<div id="content" style="height: 100%;">
+			<div id="content" style="height: 90%;">
 				<!-- Begin Page Content -->
 				<div class="container-fluid"  style="height: 100%;">
-					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">회원 관리</h1>
 					<!-- Content Row -->
-					<div class="row" style="height: 100%;">
-						<div class="col-xl-8 col-lg-7"  style="height: 100%;">
+					<div class="row" style="height: 100%; width:100%;">
+						<div class="col-xl-8" style="flex: 0 0 100%; max-width: 100%; margin-top: 20px;">
 							<!-- Area Chart -->
-							<div class="card shadow mb-4"  style="height: 100%;">
+							<div class="card shadow mb-4"  style="height: 90%; width:100%;">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">111</h6>
+									<h6 class="m-0 font-weight-bold text-primary">업체 정보 관리</h6>
 								</div>
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
-										<div id="custom" style="width:760px; margin: auto;">
-											<div id="dept" style="width:760px; height:800px; margin: auto; overflow: auto;" >	
+										<div id="custom" style="width:950px; margin: auto;">
+											<div class="center">
+												<span class="totalDept">전체 업체 수 : ${totalRecord}</span>
+											</div>
+											<div id="dept" style="width:950px; margin: auto;" >	
 												<table border="1">
 													<thead>
 														<tr>
@@ -225,17 +141,32 @@
 															<th>사업자 등록번호</th>
 															<th>사업체명</th>
 															<th>전화번호</th>
+															<th>승인상태</th>
 														</tr>
 													</thead>
-													<c:forEach var="dept" items="${dList }">
-														<tr>		
-															<td>${dept.dNo }</td>
-															<td><a href="UpdateDepartment?dNo=${dept.dNo }">${dept.dSaup_no }</a></td>
-															<td>${dept.dName }</td>
-															<td>${dept.dPhone }</td>
-														</tr>
-													</c:forEach>
+													<tbody>
+														<c:if test="${empty dList}">
+															<tr>
+																<th colspan="4">업체가 존재하지 않습니다.</th>
+															</tr>
+														</c:if>
+														<c:if test="${not empty dList}">
+															<c:forEach var="dept" items="${dList}">
+																<tr>		
+																	<td>${dept.dNo }</td>
+																	<td><a href="UpdateDepartment?dNo=${dept.dNo }">${dept.dSaup_no }</a></td>
+																	<td>${dept.dName }</td>
+																	<td>${fn:substring(dept.dPhone, 0, 3)}-${fn:substring(dept.dPhone, 3, 7)}-${fn:substring(dept.dPhone, 7, 11)}</td>
+																	<td>${dept.dAccpet==1 ? '승인완료' : '승인대기'}</td>
+																</tr>
+															</c:forEach>
+														</c:if>
+													</tbody>
 												</table>
+												<div class="pageView">
+													<!-- 페이지 뷰 -->
+													${pageView}
+												</div>
 											</div>
 										</div>
 									</div>           

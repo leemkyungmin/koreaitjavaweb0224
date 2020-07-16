@@ -1412,8 +1412,8 @@ pre code {
     max-width: 58.33333%;
   }
   .col-xl-8 {
-    flex: 0 0 66.66667%;
-    max-width: 66.66667%;
+    flex: 0 0 100%;
+    max-width: 100%;
   }
   .col-xl-9 {
     flex: 0 0 75%;
@@ -6632,10 +6632,6 @@ button.bg-dark:focus {
   display: table-cell !important;
 }
 
-.d-flex {
-  display: flex !important;
-}
-
 .d-inline-flex {
   display: inline-flex !important;
 }
@@ -6835,10 +6831,6 @@ button.bg-dark:focus {
 
 .flex-row {
   flex-direction: row !important;
-}
-
-.flex-column {
-  flex-direction: column !important;
 }
 
 .flex-row-reverse {
@@ -9778,7 +9770,6 @@ a:focus {
 #wrapper #content-wrapper {
   background-color: #f8f9fc;
   width: 100%;
-  overflow-x: hidden;
 }
 
 #wrapper #content-wrapper #content {
@@ -10295,7 +10286,7 @@ a:focus {
 
 .sidebar {
   width: 6.5rem;
-  min-height: 100vh;
+  min-height: 100%;
 }
 
 .sidebar .nav-item {
