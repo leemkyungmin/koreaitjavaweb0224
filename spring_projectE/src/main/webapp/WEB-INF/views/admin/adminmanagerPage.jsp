@@ -81,46 +81,6 @@
 		  text-transform: uppercase;
 		}
 		
-		
-		/* BUTTON 1 */
-		.btn-1::after {
-		  height: 0;
-		  left: 0;
-		  top: 0;
-		  width: 100%;
-		}
-		
-		.btn-1:hover:after {
-		  height: 100%;
-		}
-		
-		/* BUTTON 2 */
-		.btn-2::after {
-		  height: 100%;
-		  left: 0;
-		  top: 0;
-		  width: 0;
-		}
-		
-		.btn-2:hover:after {
-		  width: 100%;
-		}
-		
-		/* BUTTON 3 */
-		.btn-3::after {
-		  height: 0;
-		  left: 50%;
-		  top: 50%;
-		  width: 0;
-		}
-		
-		.btn-3:hover:after {
-		  height: 100%;
-		  left: 0;
-		  top: 0;
-		  width: 100%;
-		}
-		
 		.del{
 			width: 750px;
 			display: block;
@@ -128,26 +88,37 @@
 		}
 	
 		#deleteBtn{
-			margin:auto;
-			border-top-left-radius: 5px; 
-			border-bottom-left-radius: 5px;
-			border-top-right-radius: 5px; 
-			border-bottom-right-radius: 5px;
-			border: 1px solid black; 
-		    background-color: rgba(0,0,0,0); 
-		    color: black; 
-		    padding: 5px; 
-		    width:100px;
-		    height:30px
+			background: none;
+		    border: 3px solid gray;
+		    border-radius: 5px;
+		    color: gray;
+		    display: inline-block;
+		    font-weight: bold;
+		    margin: 1em auto;
+		    padding: 0em 1em;
+		    position: relative;
+		    right: 0;
+		    text-transform: uppercase;
 		}
 		
 		.pageView {
 			width: 100%;
 			text-align: center;
 		}
-		.totalCustomer {
-			display: inline-block;
-			margin-left: 135px;
+		
+		.test{
+			
+			margin: auto;
+		}
+		.test2{
+			text-align: right;
+			position: relative;
+		}
+		
+		.center {
+			width: 1000px;
+			text-align: left;
+			margin: auto;
 			margin-bottom: 5px;
 		}
 	</style>
@@ -175,7 +146,33 @@
 			document.getElementById("del").style.display='none';
 			
 		}
-		
+		// 회원삭제버튼
+		$('#deleteBtn').click(function(){
+			$('input:checkbox[name=test]:checked').each(function (){
+				alert($(this).val());
+					$.ajax({
+						type:"POST",
+						url:'deleteUser',
+						data:'cNo='+$(this).val(),
+						success:function(result){
+								
+						},error:function(){
+							
+						}
+					});
+				 
+			});
+		});
+		// 체크박스
+		$(function (){
+			$("#allCheck").click(function(){
+				if($("#allCheck").prop("checked")) {
+					$("input[type=checkbox]").prop("checked", true);
+				} else {
+					$("input[type=checkbox]").prop("checked",false);
+				}
+			});
+		});
 		
 	</script>
 
@@ -230,27 +227,28 @@
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Main Content -->
-			<div id="content" style="height: 100%;">
+			<div id="content" style="height: 90%;">
 				<!-- Begin Page Content -->
 				<div class="container-fluid"  style="height: 100%;">
-					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">회원 관리</h1>
 					<!-- Content Row -->
-					<div class="row" style="height: 100%;">
-						<div class="col-xl-8 col-lg-7"  style="height: 100%;">
+					<div class="row" style="height: 100%;  width:100%;">
+						<div class="col-xl-8" style="flex: 0 0 100%; max-width: 100%; margin-top: 20px;">
 							<!-- Area Chart -->
-							<div class="card shadow mb-4"  style="height: 100%;">
+							<div class="card shadow mb-4" style="height: 95%; width:100%;">
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">회원 리스트</h6>
 								</div>
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
-										<saan class="totalCustomer" style= "margin: auto">전체 회원 수 : ${totalRecord}명</saan>
-										<div id="custom" style="width:1300px;">
+										<div id="custom" style="width:100%;">
+											<div class="center">
+												<span class="totalCustomer" style= "margin: auto;">전체 회원 수 : ${totalRecord}명</span>
+											</div>
 											<table border="1">
 												<thead id="user_info">
 													<tr>
+														<th><input type="checkbox" id="allCheck"/></th>
 														<th>아이디</th>
 														<th>이름</th>
 														<th>닉네임</th>
@@ -269,7 +267,8 @@
 													</c:if>
 													<c:if test="${not empty cList}">
 														<c:forEach var="user" items="${cList }" >
-															<tr>	
+															<tr>
+																<td><input type="checkbox" id="test" name=test value="${user.cNo }"/></td>	
 																<td><a href="UpdateUserPage?cNo=${user.cNo }">${user.cId }</a></td>							
 																<td>${user.cName }</td>			
 																<td>${user.cNickname }</td>						
@@ -289,9 +288,14 @@
 													</c:if>
 												</tbody>
 											</table>
+											<div class="test" style="width:1000px">
+											<div class="test2">
+												<button type="button"  id="deleteBtn" >회원 삭제</button>
+											</div>
 											<div class="pageView">
 												<!-- 페이지 뷰 -->
 												${pageView}
+											</div>
 											</div>
 										</div>
 									</div>
