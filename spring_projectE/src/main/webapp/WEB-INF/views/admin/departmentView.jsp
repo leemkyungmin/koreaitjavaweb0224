@@ -94,6 +94,11 @@
 			display: inline-block;
 			margin-bottom: 5px;
 		}
+		.center {
+			width: 950px;
+			text-align: left;
+			margin: auto;
+		}
 		
 	</style>
 
@@ -162,9 +167,11 @@
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
-										<div id="custom" style="width:760px;">
-											<span class="totalDept">전체 업체 수 : ${totalRecord}</saan>
-											<div id="dept" style="width:760px; height:800px; margin: auto;" >	
+										<div id="custom" style="width:950px; margin: auto;">
+											<div class="center">
+												<span class="totalDept">전체 업체 수 : ${totalRecord}</span>
+											</div>
+											<div id="dept" style="width:950px; margin: auto;" >	
 												<table border="1">
 													<thead>
 														<tr>
