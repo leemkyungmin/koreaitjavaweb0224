@@ -91,7 +91,7 @@
 			text-align: center;
 			border: 1px solid #ddd;
 			border-top: 1px solid #868686;
-			font-size: 1.2em;
+			font-size: 15px;
 			letter-spacing: -0.1em;
 		}
 		

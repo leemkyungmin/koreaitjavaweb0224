@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ include file="../template/header.jsp" %>
 
-	<%@ include file="../template/header.jsp" %>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	  
-	  <link href="resources/assets/style/admin/sb-admin-2.min.css" rel="stylesheet">
+<link href="resources/assets/style/admin/sb-admin-2.min.css" rel="stylesheet">
 
   	<script type="text/javascript">
 
@@ -14,94 +12,56 @@
 		window.history.back();
 	}
 	
-</script>
-<style type="text/css">
-	table {
-		border: 1px solid;
-		border-collapse: collapse;	
-	}
-	tr, td {
-		border: 1px solid;
-	}
-	table {
-		margin: 0 auto;
-	}	
-	ul {
-	    list-style-type: none;
-	    margin: 0;
-	    padding: 0;
-	    background-color: #333;
-	}	
-	ul:after{
-	    content:'';
-	    display: block;
-	    clear:both;
-	}	
-	h2	{
-    	color: white;
-    	float: left;
-    	margin-left:100px;
-    	margin-right:100px;
-    }
-    #listbtn {
-		float: left;
-		border-top-left-radius: 5px; 
-		border-bottom-left-radius: 5px;
-		border-top-right-radius: 5px; 
-		border-bottom-right-radius: 5px;
-		margin-right:10px;
-	}
-	li>button	{ 
-	    border: 1px solid skyblue; 
-	    background-color: rgba(0,0,0,0); 
-	    color: skyblue; 
-	    padding: 5px; 
-	    width:80px;
-	    height:78px
-	}
-	li>button:hover{ 
-		color:white; 
-		background-color: skyblue; 
-	}
-	table.user {
-    border-collapse: collapse;
-    border-spacing: 1px;
-    text-align: left;
-    line-height: 1.5;
-    border-top: 1px solid #ccc;
-    border-left: 3px solid #369;
- 	 margin : 20px 10px;
-	}
-	table.user th {
-	    width: 147px;
-	    padding: 10px;
-	    font-weight: bold;
-	    vertical-align: top;
-	    color: #153d73;
-	    border-right: 1px solid #ccc;
-	    border-bottom: 1px solid #ccc;
-		background: #efefef;
-	}
-	table.user td {
-	    width: 349px;
-	    padding: 10px;
-	    vertical-align: top;
-	    border-right: 1px solid #ccc;
-	    border-bottom: 1px solid #ccc;
-	}
-	button {
-		width:100px;
-	    background-color: #f8585b;
-	    border: none;
-	    padding: 15px 0;
-	    color:#fff;
-	    text-align: center;
-	    text-decoration: none;
-	    display: inline-block;
-	    font-size: 15px;
-	    margin: 4px;
-	    cursor: pointer;
-	}
+	</script>
+
+	<style type="text/css">
+		table {
+			margin: auto;
+			width: 500px;
+			border: 1px solid;
+			border-collapse: collapse;	
+		    border-top: 1px solid #ccc;
+		    border-left: 3px solid #369;
+		}
+		th {
+		    width: 147px;
+		    padding: 10px;
+		    font-weight: bold;
+			text-align: left;
+		    color: #153d73;
+		    border: 1px solid #ccc;
+			background: #efefef;
+		}
+		td {
+		    width: 349px;
+		    padding: 10px;
+		    border: 1px solid #ccc;
+		}
+		#btnUpdate {
+			width:100px;
+		    background-color: #f8585b;
+		    border: none;
+		    padding: 15px 0;
+		    color:#fff;
+		    text-align: center;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-size: 15px;
+		    margin: 4px;
+		    cursor: pointer;
+		}
+		
+		ul {
+		    list-style-type: none;
+		    margin: 0;
+		    padding: 0;
+		    background-color: #333;
+		}	
+		ul:after{
+		    content:'';
+		    display: block;
+		    clear:both;
+		}	
 	
 	</style>
 
@@ -197,7 +157,7 @@
 									</tr>
 									<tr>
 										<th>성별</th>
-										<td>${cDTO.cGender}</td>
+										<td>${cDTO.cGender == 1 ? '남' : '여'}</td>
 									</tr>
 									<tr>
 										<th>닉네임</th>
@@ -209,11 +169,11 @@
 									</tr>
 									<tr>
 										<th>비밀번호</th>
-										<td>${cDTO.cPw }"</td>
+										<td>${cDTO.cPw }</td>
 									</tr>
 									<tr>
 										<th>휴대폰번호</th>
-										<td>${cDTO.cPhone }</td>
+										<td>${fn:substring(cDTO.cPhone, 0, 3)}-${fn:substring(cDTO.cPhone, 3, 7)}-${fn:substring(cDTO.cPhone, 7, 11)}</td>
 									</tr>
 									<tr>
 										<th>이메일</th>
