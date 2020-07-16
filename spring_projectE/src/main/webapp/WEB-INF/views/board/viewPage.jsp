@@ -510,7 +510,7 @@
 		     	 </ul>
 	      	 -->
 	      	
-	    		</div>
+	    		</div> 
 			    <div class="RestaurantReviewItem__ReviewContent">
 			    	
 			      <div class="RestaurantReviewItem__ReviewTextWrap">

@@ -96,33 +96,6 @@
 			});
 			
 
-			$('#cPhotoUpdate').click(function() {
-				var p =$('#cPhoto').val();
-				var photo = p.substring($('#cPhoto').val().lastIndexOf("\\")+1,p.length-1); 
-				console.log(photo);
-				
-				if(confirm('프로필 사진을 변경하시겠습니까?')){
-					$.ajax({
-						url : 'cPhotoUpdate',
-						type : 'POST',
-						data : 'cPhoto=' + photo + '&cNo=' + no,
-						success : function(data) {
-							if (data == '1') {
-								alert('변경되었습니다.');
-								location.href = 'myPage';
-							} else {
-								alert('변경에 실패했습니다.');
-							}
-						},
-						error : function() {
-							alert('AJAX 오류 발생 자폭 3초전');
-						}
-					});
-				}
-				
-			});
-
-			
 			$('#cPwUpdateBtn').click(function() {
 				
 				if ($('#cPw').val() == "") {
@@ -193,11 +166,13 @@
 		}
 		
 		function fn_PhotoUpdate(f) {
-			if (confirm('프로필 사진을 업데이트 하시겠습니까?')){
+			if (confirm('업체 사진을 업데이트 하시겠습니까?')){
 				f.action = 'cPhotoUpdate';
 				f.submit();
 			}
 		}
+		
+		
 		
 		
 	</script>
@@ -342,7 +317,6 @@
                 <div class="form-group" id="divPhoto">
                 	<label for="inputPhoto" class="col-lg-2 control-label">프로필 사진</label><br/> &nbsp;&nbsp;&nbsp;
                 	<div id="photoBox" style="width:50; height:50;">
-
                 		<input type="file" id="cPhoto" name="cPhoto" onchange="fileCheck(this)" accept="image/jpeg,image/png,image/jpg" /> <br/>
                 		<input type="button" value="업로드 하기" class="btn btn-primary" id="cPhotoUpdate" onclick="fn_PhotoUpdate(this.form)"  />
 
@@ -382,7 +356,7 @@
 							<tbody>
 								<c:if test="${empty list }">
 									<tr>
-										<td colspan="4">
+										<td colspan="5">
 											없음
 										</td>
 									</tr>
@@ -393,8 +367,7 @@
 											<td>${dList.get(name.count-1)}</td>
 											<td>${rDTO.rTitle }</td>
 											<td>${rDTO.rContent }</td>
-											<td>${rDTO.rPoint }</td>
-											<td><input type="hidden" value="${rDTO.rNo }" name="rNo" id="rNo"/></td>
+											<td>${rDTO.rPoint }<input type="hidden" value="${rDTO.rNo }" name="rNo" id="rNo"/></td>
 										</tr>
 									</c:forEach>
 								</c:if>
@@ -417,7 +390,7 @@
 							<tbody>
 								<c:if test="${empty list2 }">
 									<tr>
-										<td colspan="3">
+										<td colspan="4">
 											없음
 										</td>
 									</tr>

@@ -40,7 +40,7 @@ public class AdminDeptAcceptListCommand implements Command {
 		
 		// 업체 리스트 가져오기
 		adminDAO aDAO = sqlSession.getMapper(adminDAO.class);
-		ArrayList<DepartmentDTO> deptList = aDAO.deptAcceptList();
+		ArrayList<DepartmentDTO> deptList = aDAO.deptAcceptList(record);
 		
 		int totalRecord = aDAO.deptAcceptCount();
 		

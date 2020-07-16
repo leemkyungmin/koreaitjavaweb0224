@@ -14,6 +14,7 @@
 			margin: 0;
 		}
 		
+		
 		ul {
 		    list-style-type: none;
 		    margin: 0;
@@ -171,21 +172,20 @@
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Main Content -->
-			<div id="content" style="height: 100%;">
+    		<div id="content" style="height: 90%;">
 				<!-- Begin Page Content -->
 				<div class="container-fluid"  style="height: 100%;">
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">회원 관리</h1>
 					<!-- Content Row -->
-					<div class="row" style="height: 100%;">
-						<div class="col-xl-8 col-lg-7"  style="height: 100%;">
+					<div class="row" style="height: 100%; width:100%;">
+						<div class="col-xl-8" style="flex: 0 0 100%; max-width: 100%; margin-top: 20px;">
 							<!-- Area Chart -->
-							<div class="card shadow mb-4"  style="height: 100%;">
+							<div class="card shadow mb-4"  style="height: 95%; width:100%;">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">111</h6>
+									<h6 class="m-0 font-weight-bold text-primary">업체 승인 리스트</h6>
 								</div>
 								<div class="card-body"  style="height: 100%;">
-									<div class="chart-area"  style="height: 100%;">
+									<div class="chart-area"  style="height: 100%;width: 100%;">
 										<!-- 내용 부분 -->
 										<div id="custom" style="width:760px; margin: auto;">
 											<div class="wrap">

@@ -16,12 +16,13 @@
 		}
 	    
 		table{
-			width: 700px;
+			width: 900px;
 			margin: auto;
 			margin-top: 10px;
 			margin-bottom: 10px;
 		    border-top: 3px solid #168;
 			border-collapse: collapse;
+			fint-size: 130%;
 		}
 		
 		table th {
@@ -40,6 +41,12 @@
 			padding: 5px;
 			border: 1px solid #ddd;
 		}
+		
+		td:nth-of-type(1) { width: 15%;}
+		td:nth-of-type(2) { width: 35%;}
+		td:nth-of-type(3) { width: 15%;}
+		td:nth-of-type(4) { width: 20%;}
+		td:nth-of-type(5) { width: 15%;}
 		
 		.tag_a {
 			text-decoration: none;
@@ -114,24 +121,22 @@
     	<!-- Content Wrapper -->
     	<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Main Content -->
-    		<div id="content" style="height: 100%;">
-				<!-- Topbar --><!-- End of Topbar -->
-        		<!-- Begin Page Content -->
-        		<div class="container-fluid"  style="height: 100%;">
-          			<!-- Page Heading -->
-          			<h1 class="h3 mb-2 text-gray-800">회원 관리</h1>
-          			<!-- Content Row -->
-          			<div class="row" style="height: 100%;">
-            			<div class="col-xl-8 col-lg-7"  style="height: 100%;">
-              			<!-- Area Chart -->
-              				<div class="card shadow mb-4"  style="height: 100%;">
-                				<div class="card-header py-3">
-                  					<h6 class="m-0 font-weight-bold text-primary">111</h6>
-                				</div>
+    		<div id="content" style="height: 90%;">
+				<!-- Begin Page Content -->
+				<div class="container-fluid"  style="height: 100%;">
+					<!-- Page Heading -->
+					<!-- Content Row -->
+					<div class="row" style="height: 100%; width:100%;">
+						<div class="col-xl-8" style="flex: 0 0 100%; max-width: 100%; margin-top: 20px;">
+							<!-- Area Chart -->
+							<div class="card shadow mb-4"  style="height: 95%; width:100%;">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">업체 승인 대기목록</h6>
+								</div>
                 				<div class="card-body"  style="height: 100%;">
                   					<div class="chart-area"  style="height: 100%;">
                   						<!-- 내용 부분 -->
-                    					<div id="custom" style="width:760px; margin: auto;">
+                    					<div id="custom" style="width:100%; margin: auto;">
 											<table border="1">
 												<tr>
 													<th>사업자번호</th>

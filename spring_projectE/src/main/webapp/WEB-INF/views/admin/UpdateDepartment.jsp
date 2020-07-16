@@ -13,8 +13,8 @@
 	
 	<style type="text/css">
 		table {
+			width: 750px;
 			margin: auto;
-			width: 500px;
 			border: 1px solid;
 			border-collapse: collapse;	
 		    border-top: 1px solid #ccc;
@@ -28,11 +28,13 @@
 		    color: #153d73;
 		    border: 1px solid #ccc;
 			background: #efefef;
+			font-size: 130%;
 		}
 		td {
 		    width: 349px;
 		    padding: 10px;
 		    border: 1px solid #ccc;
+		    font-size: 120%;
 		}
 	
 		ul {
@@ -66,8 +68,9 @@
 		    color: skyblue; 
 		    padding: 5px; 
 		    width:80px;
-		    height:78px
+		    height:78px;
 		}
+		
 	</style>
 
 	<!-- Page Wrapper -->
@@ -121,23 +124,21 @@
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Main Content -->
-			<div id="content" style="height: 100%;">
+			<div id="content" style="height: 90%;">
 				<!-- Begin Page Content -->
 				<div class="container-fluid"  style="height: 100%;">
-					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">업체 관리</h1>
 					<!-- Content Row -->
-					<div class="row" style="height: 100%;">
-						<div class="col-xl-8 col-lg-7"  style="height: 100%;"	>
+					<div class="row" style="height: 100%;  width:100%;">
+						<div class="col-xl-8"  style="flex: 0 0 100%; max-width: 100%; margin-top: 20px;">
 							<!-- Area Chart -->
-							<div class="card shadow mb-4"  style="height: 100%;">
+							<div class="card shadow mb-4"  style="height: 90%; width:100%;">
 								<div class="card-header py-3">
 								  <h6 class="m-0 font-weight-bold text-primary">업체상세정보</h6>
 								</div>
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
-										<div id="custom" style="width:760px; margin: auto;">
+										<div id="custom" style="width:100%;">
 											<table border="1" class="user">
 												<tr>
 													<th>사업자 등록번호</th>

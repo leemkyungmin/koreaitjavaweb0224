@@ -20,7 +20,6 @@ public class AdminUpdateDepartmentCommand implements Command {
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		
 		String dNo = request.getParameter("dNo");
-		System.out.println(dNo);
 		
 		adminDAO aDao = sqlSession.getMapper(adminDAO.class);
 		DepartmentDTO dDTO = aDao.UpdateDepartmentPage(dNo);
