@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
+import com.koreait.projectE.command.PageMaker;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.adminDAO;
 import com.koreait.projectE.dto.CustomerDTO;
@@ -29,7 +30,7 @@ public class AdminCommand implements Command {
 		int page = Integer.parseInt(pageStr);
 		
 		// 현재 페이지 번호를 이용해 페이지 시작과 끝의 번호를 구한다
-		int recordPerPage = 10; // 1페이지당 보여줄 갯수
+		int recordPerPage = 15; // 1페이지당 보여줄 갯수
 		int beginRecord = (page - 1) * recordPerPage + 1;
 		int endRecord = recordPerPage * page;
 		
@@ -44,10 +45,14 @@ public class AdminCommand implements Command {
 		// 전체 회원 수 구하기
 		int totalRecord = adao.getTotelRecord();
 		
+		// 페이지 뷰 생성
+		String pageView = PageMaker.getPageView("adminmanagePage", page, recordPerPage, totalRecord);
+		
 		// 데이터 MODEL에 담아 VIEW에 전달
 		model.addAttribute("page", page);
 		model.addAttribute("totalRecord", totalRecord);
 		model.addAttribute("cList", cList);
+		model.addAttribute("pageView", pageView);
 		
 	}
 

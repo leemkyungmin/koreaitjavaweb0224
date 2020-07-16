@@ -140,6 +140,16 @@
 		    width:100px;
 		    height:30px
 		}
+		
+		.pageView {
+			width: 100%;
+			text-align: center;
+		}
+		.totalCustomer {
+			display: inline-block;
+			margin-left: 135px;
+			margin-bottom: 5px;
+		}
 	</style>
 
 	<script type="text/javascript">
@@ -236,7 +246,7 @@
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
-										<saan>전체 회원 수 : ${totalRecord}</saan>
+										<saan class="totalCustomer">전체 회원 수 : ${totalRecord}명</saan>
 										<div id="custom" style="width:760px; margin: auto;">
 											<table border="1">
 												<thead id="user_info">
@@ -279,9 +289,9 @@
 													</c:if>
 												</tbody>
 											</table>
-											<div>
+											<div class="pageView">
 												<!-- 페이지 뷰 -->
-												페이지 선택이 보여지는 곳
+												${pageView}
 											</div>
 										</div>
 									</div>
