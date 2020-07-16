@@ -166,11 +166,13 @@
 		}
 		
 		function fn_PhotoUpdate(f) {
-			if (confirm('프로필 사진을 업데이트 하시겠습니까?')){
+			if (confirm('업체 사진을 업데이트 하시겠습니까?')){
 				f.action = 'cPhotoUpdate';
 				f.submit();
 			}
 		}
+		
+		
 		
 		
 	</script>

@@ -11,7 +11,7 @@
    
 	<style>
 		table{
-			width: 750px;
+			width: 1000px;
 			margin: auto;
 			margin-bottom: 10px;
 			border-collapse: collapse;
@@ -239,16 +239,40 @@
 							<!-- Area Chart -->
 							<div class="card shadow mb-4"  style="height: 90%; width:100%;">
 								<div class="card-header py-3">
+<<<<<<< HEAD
 									<h6 class="m-0 font-weight-bold text-primary">일반 회원 관리</h6>
+=======
+									<h6 class="m-0 font-weight-bold text-primary">회원 리스트</h6>
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 								</div>
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
+<<<<<<< HEAD
 										<div id="custom" style="width:760px; margin: auto;">
 											<saan class="totalCustomer">전체 회원 수 : ${totalRecord}명</saan>
 											<div id="" style="width:760px; height:800px; margin: auto;" >	
 												<table border="1">
 													<thead id="user_info">
+=======
+										<saan class="totalCustomer" style= "margin: auto">전체 회원 수 : ${totalRecord}명</saan>
+										<div id="custom" style="width:1300px;">
+											<table border="1">
+												<thead id="user_info">
+													<tr>
+														<th>아이디</th>
+														<th>이름</th>
+														<th>닉네임</th>
+														<th>비밀번호</th>
+														<th>휴대폰번호</th>
+														<th>Email</th>
+														<th>등급</th>
+														<th>성별</th>
+													</tr>
+												</thead>	
+												<tbody>
+													<c:if test="${empty cList}">
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 														<tr>
 															<th>아이디</th>
 															<th>이름</th>
