@@ -128,15 +128,17 @@
 		}
 	
 		#deleteBtn{
-			border-top-left-radius: 5px; 
-			border-bottom-left-radius: 5px;
-			border-top-right-radius: 5px; 
-			border-bottom-right-radius: 5px;
-			border: 1px solid red; 
-		    background-color: rgba(0,0,0,0); 
-		    color: red; 
-		    padding: 5px; 
+			background: none;
+		    border: 3px solid gray;
+		    border-radius: 5px;
+		    color: gray;
+		    display: inline-block;
+		    font-weight: bold;
+		    margin: 1em auto;
+		    padding: 0em 1em;
 		    position: relative;
+		    right: 0;
+		    text-transform: uppercase;
 		}
 		
 		.pageView {
@@ -147,6 +149,14 @@
 			display: inline-block;
 			margin-left: 135px;
 			margin-bottom: 5px;
+		}
+		.test{
+			
+			margin: auto;
+		}
+		.test2{
+			text-align: right;
+			position: relative;
 		}
 	</style>
 
@@ -315,10 +325,14 @@
 													</c:if>
 												</tbody>
 											</table>
-											<button type="button"  id="deleteBtn" >회원 삭제</button>
+											<div class="test" style="width:1000px">
+											<div class="test2">
+												<button type="button"  id="deleteBtn" >회원 삭제</button>
+											</div>
 											<div class="pageView">
 												<!-- 페이지 뷰 -->
 												${pageView}
+											</div>
 											</div>
 										</div>
 									</div>
