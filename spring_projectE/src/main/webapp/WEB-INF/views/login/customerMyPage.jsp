@@ -278,7 +278,7 @@
                     		<input type="password" placeholder="기존 비밀번호 입력" id="cPw" name="cPw" /> <br/>
                     		새로운 비밀번호 입력 <br/>
                     		<input type="password" placeholder="새로운 비밀번호 입력" id="cPwUpdate" name="cPwUpdate" /> <br/>
-                    		새로운 비밀번호 확인 <br/>
+                    		새로운 비밀번호 확인 <br/> 
                     		<input type="password" placeholder="비밀번호 확인" id="cPwCheck" name="cPwCheck" /> <br/>
                     		<div id="temp" class="temp"></div> <br/>
                     		<input type="button" value="비밀번호 변경" class="btn btn-primary" id="cPwUpdateBtn" name="cPwUpdateBtn" />
