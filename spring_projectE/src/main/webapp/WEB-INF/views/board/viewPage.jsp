@@ -492,16 +492,12 @@
 	    			<div class="RestaurantReviewItem__User">
 	       
 		      	<div class="RestaurantReviewItem__UserPictureWrap">
-<<<<<<< HEAD
-		       		 <img class="RestaurantReviewItem__UserPicture loaded" alt="${review.cPoto }" src="${pageContext.request.contextPath }/resources/storage/user_img/${review.cPoto }" style="width:60px;height:60px;">
-=======
 		      		 <c:if test="${review.cPoto !='' }">
 			       		 <img class="RestaurantReviewItem__UserPicture loaded" alt="${review.cPoto }" src="${pageContext.request.contextPath }/resources/storage/user_img/${review.cPoto }">
 		      		 </c:if>
 		      		  <c:if test="${review.cPoto =='' }">
 			       		 <img class="RestaurantReviewItem__UserPicture loaded" alt="기본이미지" src="${pageContext.request.contextPath }/resources/storage/user_img/unUseImage">
 		      		 </c:if>
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 		     	 </div>
 		      
 		     	  
