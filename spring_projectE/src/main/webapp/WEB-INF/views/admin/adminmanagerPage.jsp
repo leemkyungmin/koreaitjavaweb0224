@@ -145,11 +145,7 @@
 			width: 100%;
 			text-align: center;
 		}
-		.totalCustomer {
-			display: inline-block;
-			margin-left: 135px;
-			margin-bottom: 5px;
-		}
+		
 		.test{
 			
 			margin: auto;
@@ -163,6 +159,7 @@
 			width: 1000px;
 			text-align: left;
 			margin: auto;
+			margin-bottom: 5px;
 		}
 	</style>
 
