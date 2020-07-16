@@ -16,11 +16,7 @@
 		}
 	    
 		table{
-<<<<<<< HEAD
 			width: 900px;
-=======
-			width: 800px;
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 			margin: auto;
 			margin-top: 10px;
 			margin-bottom: 10px;
@@ -125,7 +121,6 @@
     	<!-- Content Wrapper -->
     	<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Main Content -->
-<<<<<<< HEAD
     		<div id="content" style="height: 90%;">
 				<!-- Begin Page Content -->
 				<div class="container-fluid"  style="height: 100%;">
@@ -138,22 +133,6 @@
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">업체 승인 대기목록</h6>
 								</div>
-=======
-    		<div id="content" style="height: 100%;">
-				<!-- Topbar --><!-- End of Topbar -->
-        		<!-- Begin Page Content -->
-        		<div class="container-fluid"  style="height: 100%;">
-          			<!-- Page Heading -->
-          			<h1 class="h3 mb-2 text-gray-800">업체 관리</h1>
-          			<!-- Content Row -->
-          			<div class="row" style="height: 100%;">
-            			<div class="col-xl-8 col-lg-7"  style="height: 100%;">
-              			<!-- Area Chart -->
-              				<div class="card shadow mb-4"  style="height: 100%;">
-                				<div class="card-header py-3">
-                  					<h6 class="m-0 font-weight-bold text-primary">업체 승인관리</h6>
-                				</div>
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
                 				<div class="card-body"  style="height: 100%;">
                   					<div class="chart-area"  style="height: 100%;">
                   						<!-- 내용 부분 -->
