@@ -78,18 +78,6 @@ public class adminController {
 		
 	}
 
-	
-		
-	@RequestMapping(value="deptAccpetPage")
-	public String deptAccpetPage(Model model) {
-		
-		command = new AdminDeptAcceptListCommand();
-		command.execute(sqlSession, model);
-		
-		return "admin/deptAcceptPage";
-	}
-	
-
 	@RequestMapping("UpdateUser")
 	public String UpdateUser(HttpServletRequest request,Model model) {
 		String cGrade = request.getParameter("cGrade");
@@ -98,10 +86,15 @@ public class adminController {
 		aDAO.UpdateUser(cGrade,cNo);
 		return "redirect:adminmanagePage";
 	}
-	
-	
-	
-	
+		
+	@RequestMapping(value="deptAccpetPage")
+	public String deptAccpetPage(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new AdminDeptAcceptListCommand();
+		command.execute(sqlSession, model);
+		
+		return "admin/deptAcceptPage";
+	}
 
 	@RequestMapping(value="deptAcceptView")
 	public String deptAcceptView(HttpServletRequest request, Model model) {
