@@ -1,6 +1,7 @@
 package com.koreait.projectE.dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,8 +10,11 @@ import com.koreait.projectE.dto.DepartmentDTO;
 
 public interface adminDAO {
 
+	// 한 페이지에 보여줘야 할 회원리스트
+	public ArrayList<CustomerDTO> getCustomList(Map<String, Integer> record);
 	
-	public ArrayList<CustomerDTO> getCustomList();
+	// 전체 회원 수
+	public int getTotelRecord();
 	
 	public ArrayList<DepartmentDTO> getDepartmentList();
 	

@@ -236,13 +236,12 @@
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
+										<saan>전체 회원 수 : ${totalRecord}</saan>
 										<div id="custom" style="width:760px; margin: auto;">
 											<table border="1">
 												<thead id="user_info">
 													<tr>
-														<th><input type="checkbox" id="allCheck"/></th>
 														<th>아이디</th>
-														<th>no.</th>
 														<th>이름</th>
 														<th>닉네임</th>
 														<th>비밀번호</th>
@@ -252,30 +251,38 @@
 														<th>성별</th>
 													</tr>
 												</thead>	
-												<c:forEach var="user" items="${cList }" >
-													<tr>	
-														<td><input type="checkbox" id="test" name=test value="${user.cNo }"/></td>
-														<td><a href="UpdateUserPage?cNo=${user.cNo }">${user.cId }</a></td>			
-														<td>${user.cNo }</td>				
-														<td>${user.cName }</td>			
-														<td>${user.cNickname }</td>						
-														<td>${user.cPw }</td>				
-														<td>${fn:substring(user.cPhone, 0, 3)}-${fn:substring(user.cPhone, 3, 7)}-${fn:substring(user.cPhone, 7, 11)}</td>			
-														<td>${user.cEmail }</td>			
-														<td>
-															<c:if test="${user.cGrade ==1 }">브론즈</c:if>			
-															<c:if test="${user.cGrade ==2 }">실버</c:if>			
-															<c:if test="${user.cGrade ==3 }">다이아</c:if>			
-															<c:if test="${user.cGrade ==4 }">vip</c:if>			
-															<c:if test="${user.cGrade ==5 }">관리자</c:if>
-														</td>								
-														<td>${user.cGender == 1 ? '남' : '여'}</td>	
-													</tr>
-												</c:forEach>
+												<tbody>
+													<c:if test="${empty cList}">
+														<tr>
+															<th colspan="8">회원이 존재하지 않습니다.</th>
+														</tr>
+													</c:if>
+													<c:if test="${not empty cList}">
+														<c:forEach var="user" items="${cList }" >
+															<tr>	
+																<td><a href="UpdateUserPage?cNo=${user.cNo }">${user.cId }</a></td>							
+																<td>${user.cName }</td>			
+																<td>${user.cNickname }</td>						
+																<td>${user.cPw }</td>				
+																<td>${fn:substring(user.cPhone, 0, 3)}-${fn:substring(user.cPhone, 3, 7)}-${fn:substring(user.cPhone, 7, 11)}</td>			
+																<td>${user.cEmail }</td>			
+																<td>
+																	<c:if test="${user.cGrade ==1 }">브론즈</c:if>			
+																	<c:if test="${user.cGrade ==2 }">실버</c:if>			
+																	<c:if test="${user.cGrade ==3 }">다이아</c:if>			
+																	<c:if test="${user.cGrade ==4 }">vip</c:if>			
+																	<c:if test="${user.cGrade ==5 }">관리자</c:if>
+																</td>								
+																<td>${user.cGender == 1 ? '남' : '여'}</td>	
+															</tr>
+														</c:forEach>
+													</c:if>
+												</tbody>
 											</table>
-										</div>
-										<div id="del" class="del" style="margin: auto;">
-											<button id="deleteBtn">회원삭제</button>
+											<div>
+												<!-- 페이지 뷰 -->
+												페이지 선택이 보여지는 곳
+											</div>
 										</div>
 									</div>
 								</div>

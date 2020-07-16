@@ -5,8 +5,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.projectE.dao.adminDAO">
 	
-	<select id="getCustomList" resultType="com.koreait.projectE.dto.CustomerDTO">
-		select * from CUSTOMER
+	<select id="getCustomList" parameterType="Map" resultType="com.koreait.projectE.dto.CustomerDTO">
+		SELECT * FROM (SELECT ROWNUM AS RN, A.* FROM (SELECT * FROM CUSTOMER ORDER BY CNO DESC) A)
+		WHERE RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+	
+	<select id="getTotelRecord" resultType="int">
+		SELECT COUNT(*) FROM CUSTOMER
 	</select>
 	
 	<select id="getDepartmentList" resultType="com.koreait.projectE.dto.DepartmentDTO">

@@ -34,8 +34,8 @@ public class adminController {
 	
 	
 	@RequestMapping("adminmanagePage") 
-	public String adminmagePage(Model model) {
-
+	public String adminmagePage(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
 		command=new AdminCommand();
 		command.execute(sqlSession, model);
 		return "admin/adminmanagerPage";	
