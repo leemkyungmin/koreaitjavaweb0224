@@ -8,7 +8,7 @@
 		<div class="footer-center">
 			<div class="footer-top">
 				<div class="footer-logo">
-					<a href="index"><img alt="로고이미지" src="<c:url value="/resources/assets/images/logo01.png" />" class="inner-logo"></a><br/>
+					<a href="index"><img alt="로고이미지" src="<c:url value="/resources/assets/images/logo02.png" />" class="inner-logo"></a><br/>
 					<br>
 					
 				</div>
