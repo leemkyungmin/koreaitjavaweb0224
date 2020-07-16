@@ -41,6 +41,9 @@ public interface adminDAO {
 	// 승인 업체 view
 	public DepartmentDTO deptAcceptView(long dNo);
 	
+	// 승인 받아야 하는 업체 수
+	public int deptAcceptCount();
+	
 	// 업체 승인
 	public void deptAccept(int dNo);
 	
