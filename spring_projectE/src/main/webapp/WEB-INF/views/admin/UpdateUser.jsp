@@ -16,7 +16,8 @@
 
 	<style type="text/css">
 		table {
-			width: 800px;
+			width: 500px;
+			margin: auto;
 			border: 1px solid;
 			border-collapse: collapse;	
 		    border-top: 1px solid #ccc;

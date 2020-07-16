@@ -13,9 +13,8 @@
 	
 	<style type="text/css">
 		table {
-			margin: auto;
 			width: 750px;
-			height: 700px;
+			margin: auto;
 			border: 1px solid;
 			border-collapse: collapse;	
 		    border-top: 1px solid #ccc;
@@ -130,16 +129,16 @@
 				<div class="container-fluid"  style="height: 100%;">
 					<!-- Content Row -->
 					<div class="row" style="height: 100%;  width:100%;">
-						<div class="col-xl-8 col-lg-7"  style="flex: 0 0 100%; max-width: 100%; margin-top: 20px;">
+						<div class="col-xl-8"  style="flex: 0 0 100%; max-width: 100%; margin-top: 20px;">
 							<!-- Area Chart -->
-							<div class="card shadow mb-4"  style="height: 100%; width:100%;">
+							<div class="card shadow mb-4"  style="height: 90%; width:100%;">
 								<div class="card-header py-3">
 								  <h6 class="m-0 font-weight-bold text-primary">업체상세정보</h6>
 								</div>
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
-										<div id="custom" style="width:760px;">
+										<div id="custom" style="width:100%;">
 											<table border="1" class="user">
 												<tr>
 													<th>사업자 등록번호</th>
