@@ -32,6 +32,12 @@
 		    border: 1px solid #ddd;
 		    text-align: center;
 		}
+		td:nth-of-type(1) { width: 5%;}
+		td:nth-of-type(2) { width: 15%;}
+		td:nth-of-type(3) { width: 45%;}
+		td:nth-of-type(4) { width: 20%;}
+		td:nth-of-type(5) { width: 15%;}
+		
 		#custom{
 			display: 'block';
 		}
@@ -168,6 +174,7 @@
 															<th>사업자 등록번호</th>
 															<th>사업체명</th>
 															<th>전화번호</th>
+															<th>승인상태</th>
 														</tr>
 													</thead>
 													<tbody>
@@ -183,6 +190,7 @@
 																	<td><a href="UpdateDepartment?dNo=${dept.dNo }">${dept.dSaup_no }</a></td>
 																	<td>${dept.dName }</td>
 																	<td>${fn:substring(dept.dPhone, 0, 3)}-${fn:substring(dept.dPhone, 3, 7)}-${fn:substring(dept.dPhone, 7, 11)}</td>
+																	<td>${dept.dAccpet==1 ? '승인완료' : '승인대기'}</td>
 																</tr>
 															</c:forEach>
 														</c:if>

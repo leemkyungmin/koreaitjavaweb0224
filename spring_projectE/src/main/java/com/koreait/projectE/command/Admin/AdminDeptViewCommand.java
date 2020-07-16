@@ -14,6 +14,7 @@ import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.adminDAO;
 import com.koreait.projectE.dto.CustomerDTO;
 import com.koreait.projectE.dto.DepartmentDTO;
+import com.koreait.projectE.dto.DepartmentLoginDTO;
 
 public class AdminDeptViewCommand implements Command {
 
@@ -42,6 +43,8 @@ public class AdminDeptViewCommand implements Command {
 		// 업체 리스트 가져오기
 		adminDAO adao = sqlSession.getMapper(adminDAO.class);
 		ArrayList<DepartmentDTO> dList = adao.getDepartmentList(record);
+		
+		// 업체 아이디 가져오기
 		
 		// 전체 회원 수 구하기
 		int totalRecord = adao.getTotelDept();

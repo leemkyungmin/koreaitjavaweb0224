@@ -14,65 +14,23 @@
 		* {
 			margin: 0;
 		}
-	
-		ul {
-		    list-style-type: none;
-		    margin: 0;
-		    padding: 0;
-		    background-color: #333;
-		}
-		
-		ul:after{
-		    content:'';
-		    display: block;
-		    clear:both;
-		}
-		
-		h2	{
-	    	color: white;
-	    	float: left;
-	    	margin-left:100px;
-	    	margin-right:100px;
-	    	height:78px;
-	    	line-height: 78px;
-	    }
-	    
-	    .top_button {
-			float: left;
-			border-radius: 5px;
-			margin-right:10px;
-		}
-		
-		button	{ 
-		    border: 1px solid skyblue; 
-		    background-color: rgba(0,0,0,0); 
-		    color: skyblue; 
-		    padding: 5px; 
-		    width:80px;
-		    height:78px
-		}
-		
-		button:hover{ 
-			color:white; 
-			background-color: skyblue; 
-		}
 	    
 		table{
+			width: 700px;
 			margin: auto;
 			margin-top: 10px;
 		    border-top: 3px solid #168;
-			width: 700px;
 			border-collapse: collapse;
 		}
 		
 		table th {
-			padding: 10px 0;
+			padding: 10px 5px;
 			color: #168;
 			background: #f0f6f9;
 			text-align: center;
 			border: 1px solid #ddd;
 			border-top: 1px solid #868686;
-			font-size: 1.2em;
+			font-size: 15px;
 			letter-spacing: -0.1em;
 	    }
 		

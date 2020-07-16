@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.koreait.projectE.dto.CustomerDTO;
 import com.koreait.projectE.dto.DepartmentDTO;
+import com.koreait.projectE.dto.DepartmentLoginDTO;
 
 public interface adminDAO {
 
