@@ -11,7 +11,7 @@
 <style type="text/css">
 	.main-wrap{
 		display:block;
-		margin: 61px auto 40px;
+		margin: auto;
     	padding: 10px 15px;
 		width: 80%;
 	}
@@ -70,6 +70,27 @@
 	.reviewPicture{
 		display:inline-block;
 	}
+	.tcontent{
+		min-height: 400px;
+	}
+	.tcontent .title{
+		display:block;
+		width:640px;
+		margin-bottom: 10px;
+		padding-bottom:10px;
+		border-bottom: 1px solid lightgray;
+	}
+	.tcontent_title{
+		display: inline-block;
+    	margin-right: 30px;
+	}
+	.content-wrap{
+		display: inline-block;
+		height: 100%;
+	}
+	.content-content{
+		display:inline-block;
+	}
 	
 </style>
 
@@ -83,10 +104,16 @@
 			 <span class="user-nickName">${rdto.cNickname}</span>
 		</div>
 		<div class ="tcontent">
-		<div class="title">
-			<span class="title_content">제목</span>${rdto.rTitle }
-		</div>
-			<pre>${rdto.rContent }</pre>
+			<div class="title">
+				<pre><span class="tcontent_title">제목</span>${rdto.rTitle }</pre>
+			</div>
+			<div class="content-wrap">
+				<span class="tcontent_title">내용</span>
+			</div>
+			<div class="content-content">
+				<pre>${rdto.rContent }</pre>
+			</div>
+			
 		</div>
 		<div class="image-Content">
 			<div class="image_wrap">

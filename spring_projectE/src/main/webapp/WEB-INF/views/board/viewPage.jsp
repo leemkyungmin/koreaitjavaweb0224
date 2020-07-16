@@ -115,6 +115,7 @@
 		});
 	}
 	
+	
 
 
 	
@@ -163,6 +164,40 @@
         	bottom: 0;
         	right: 0;
         }
+        .RestaurantReviewItem__UserPictureWrap >img{
+			width: 60px;
+		    height: 60px;
+		    margin-bottom:10px;
+		    border-radius: 100%;
+		    background-size: cover;
+		    background-position: 50% 50%;
+		    background-repeat: no-repeat;
+		}
+		.review_title{
+			margin-bottom: 10px;
+			padding-bottom:10px;
+			border-bottom: 1px solid lightgray;
+		}
+		.RestaurantReviewItem__ReviewTextWrap{
+			text-align: left;
+		}
+		.title,.content{
+			display: inline-block;
+    		margin-right: 30px;
+		}
+		.review_titles{
+			display: inline-block;
+			height: 100%;
+		}
+		.review_content{
+			display:inline-block;
+			height: 100%;
+	    line-height: 100%;
+	    vertical-align: middle;
+		}
+		.RestaurantReviewItem__ReviewContent{
+			min-height: 157px;
+		}
 </style> 
 
 </head>
@@ -457,7 +492,12 @@
 	    			<div class="RestaurantReviewItem__User">
 	       
 		      	<div class="RestaurantReviewItem__UserPictureWrap">
-		       		 <img class="RestaurantReviewItem__UserPicture loaded" alt="${review.cPoto }" src="${pageContext.request.contextPath }/resources/storage/user_img/${review.cPoto }">
+		      		 <c:if test="${review.cPoto !='' }">
+			       		 <img class="RestaurantReviewItem__UserPicture loaded" alt="${review.cPoto }" src="${pageContext.request.contextPath }/resources/storage/user_img/${review.cPoto }">
+		      		 </c:if>
+		      		  <c:if test="${review.cPoto =='' }">
+			       		 <img class="RestaurantReviewItem__UserPicture loaded" alt="기본이미지" src="${pageContext.request.contextPath }/resources/storage/user_img/unUseImage">
+		      		 </c:if>
 		     	 </div>
 		      
 		     	  
@@ -475,10 +515,17 @@
 			    	
 			      <div class="RestaurantReviewItem__ReviewTextWrap">
 					
-			        <p class="RestaurantReviewItem__ReviewText">
-			        	<pre>${review.rTitle }<br/></pre>
-			         	 <pre>${review.rContent }</pre>
-			        </p>
+			        <div class="RestaurantReviewItem__ReviewText">
+			        	<div class="review_title">
+			         	 <pre ><span class="title">제목</span>${review.rTitle}</pre>
+			        	</div>
+			         	 <div class="review_titles">
+			         	 	<span class="content">내용</span>
+			         	 </div>
+			         	 <div class="review_content">
+				         	 <pre>${review.rContent }</pre>
+			         	 </div>
+			        </div>
 					
 		       		 <span class="RestaurantReviewItem__ReviewDate">${review.rWriter_date }</span>
 				      </div>
