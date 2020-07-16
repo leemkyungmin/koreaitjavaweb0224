@@ -128,17 +128,15 @@
 		}
 	
 		#deleteBtn{
-			margin:auto;
 			border-top-left-radius: 5px; 
 			border-bottom-left-radius: 5px;
 			border-top-right-radius: 5px; 
 			border-bottom-right-radius: 5px;
-			border: 1px solid black; 
+			border: 1px solid red; 
 		    background-color: rgba(0,0,0,0); 
-		    color: black; 
+		    color: red; 
 		    padding: 5px; 
-		    width:100px;
-		    height:30px
+		    position: relative;
 		}
 		
 		.pageView {
@@ -175,7 +173,33 @@
 			document.getElementById("del").style.display='none';
 			
 		}
-		
+		// 회원삭제버튼
+		$('#deleteBtn').click(function(){
+			$('input:checkbox[name=test]:checked').each(function (){
+				alert($(this).val());
+					$.ajax({
+						type:"POST",
+						url:'deleteUser',
+						data:'cNo='+$(this).val(),
+						success:function(result){
+								
+						},error:function(){
+							
+						}
+					});
+				 
+			});
+		});
+		// 체크박스
+		$(function (){
+			$("#allCheck").click(function(){
+				if($("#allCheck").prop("checked")) {
+					$("input[type=checkbox]").prop("checked", true);
+				} else {
+					$("input[type=checkbox]").prop("checked",false);
+				}
+			});
+		});
 		
 	</script>
 
@@ -251,6 +275,7 @@
 											<table border="1">
 												<thead id="user_info">
 													<tr>
+														<th><input type="checkbox" id="allCheck"/></th>
 														<th>아이디</th>
 														<th>이름</th>
 														<th>닉네임</th>
@@ -269,7 +294,8 @@
 													</c:if>
 													<c:if test="${not empty cList}">
 														<c:forEach var="user" items="${cList }" >
-															<tr>	
+															<tr>
+																<td><input type="checkbox" id="test" name=test value="${user.cNo }"/></td>	
 																<td><a href="UpdateUserPage?cNo=${user.cNo }">${user.cId }</a></td>							
 																<td>${user.cName }</td>			
 																<td>${user.cNickname }</td>						
@@ -289,6 +315,7 @@
 													</c:if>
 												</tbody>
 											</table>
+											<button type="button"  id="deleteBtn" >회원 삭제</button>
 											<div class="pageView">
 												<!-- 페이지 뷰 -->
 												${pageView}
