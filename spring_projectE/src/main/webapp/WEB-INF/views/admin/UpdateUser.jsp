@@ -182,7 +182,7 @@
               <!-- Area Chart -->
               <div class="card shadow mb-4"  style="height: 100%;">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-primary">111</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">회원상세정보</h6>
                 </div>
                 <div class="card-body"  style="height: 100%;">
                   <div class="chart-area"  style="height: 100%;">

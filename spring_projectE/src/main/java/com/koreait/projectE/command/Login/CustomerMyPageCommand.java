@@ -42,7 +42,6 @@ public class CustomerMyPageCommand implements Command {
 			dNames2.add( lDAO.deptName(list2.get(i).getdSaup_no()));
 			dNames2.add( lDAO.deptPhone(list2.get(i).getdSaup_no()));
 		}
-		System.out.println(dNames2);
 		model.addAttribute("dList2", dNames2);
 	}
 
