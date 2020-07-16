@@ -9,146 +9,77 @@
 <link href="resources/assets/style/admin/sb-admin-2.min.css" rel="stylesheet">
 
   
-  	<style>
-	table th {
-	  border-collapse:collapse;
-      color: #168;
-      background: #f0f6f9;
-      text-align: center;
-    }
-    table tr, .table td {
-      padding: 10px;
-      border: 1px solid #ddd;
-    }
-    table tr:first-child, table td:first-child {
-      border-left: 0;
-    }
-    table tr:last-child, .table td:last-child {
-      border-right: 0;
-    }
-	table{
-		text-align: center;
-		border-collapse: collapse;
-		height: 100px;
-		width: 750px;
-	    border-top: 3px solid #168;
-	}
-	#custom{
-		display: 'block';
-	}
-	#cus_btn{
-		float: left;
-		border-top-left-radius: 5px; 
-		border-bottom-left-radius: 5px;
-		border-top-right-radius: 5px; 
-		border-bottom-right-radius: 5px;
-		margin-right:10px;
-	}
-	#dept_btn{
-		float: left;
-		border-top-left-radius: 5px; 
-		border-bottom-left-radius: 5px;
-		border-top-right-radius: 5px; 
-		border-bottom-right-radius: 5px;
-		margin-right:10px;
-	}
-	#Acc_btn{
-	
-		float: left;
-		border-top-left-radius: 5px; 
-		border-bottom-left-radius: 5px;
-		border-top-right-radius: 5px; 
-		border-bottom-right-radius: 5px;
-	}
-	#deleteBtn{
-		margin:auto;
-		border-top-left-radius: 5px; 
-		border-bottom-left-radius: 5px;
-		border-top-right-radius: 5px; 
-		border-bottom-right-radius: 5px;
-		border: 1px solid black; 
-	    background-color: rgba(0,0,0,0); 
-	    color: black; 
-	    padding: 5px; 
-	    width:100px;
-	    height:30px
-	}
-	button, button::after {
-	  -webkit-transition: all 0.3s;
-		-moz-transition: all 0.3s;
-	  -o-transition: all 0.3s;
-		transition: all 0.3s;
-	}
-	
-	button {
-	  background: none;
-	  border: 3px solid #fff;
-	  border-radius: 5px;
-	  color: #fff;
-	  display: block;
-	  font-weight: bold;
-	  margin: 1em auto;
-	  padding: 2em 6em;
-	  position: relative;
-	  text-transform: uppercase;
-	}
-	
-	button::before,
-	button::after {
-	  background: #fff;
-	  content: '';
-	  position: absolute;
-	  z-index: -1;
-	}
-	
-	button:hover {
-	  color: #2ecc71;
-	}
-	
-	/* BUTTON 1 */
-	.btn-1::after {
-	  height: 0;
-	  left: 0;
-	  top: 0;
-	  width: 100%;
-	}
-	
-	.btn-1:hover:after {
-	  height: 100%;
-	}
-	
-	/* BUTTON 2 */
-	.btn-2::after {
-	  height: 100%;
-	  left: 0;
-	  top: 0;
-	  width: 0;
-	}
-	
-	.btn-2:hover:after {
-	  width: 100%;
-	}
-	
-	/* BUTTON 3 */
-	.btn-3::after {
-	  height: 0;
-	  left: 50%;
-	  top: 50%;
-	  width: 0;
-	}
-	
-	.btn-3:hover:after {
-	  height: 100%;
-	  left: 0;
-	  top: 0;
-	  width: 100%;
-	}
-	.del{
-		width: 750px;
-		display: block;
+	<style>
+		table{
+			width: 750px;
+			margin: auto;
+			margin-bottom: 10px;
+			border-collapse: collapse;
+		    border-top: 3px solid #168;
+		}
+		table th {
+		    padding: 10px 5px;
+		    color: #168;
+		    background: #f0f6f9;
+		    text-align: center;
+		    border: 1px solid #ddd;
+			border-top: 1px solid #868686;
+			font-size: 15px;
+			letter-spacing: -0.1em;
+		}
+		table td {
+		    padding: 5px;
+		    border: 1px solid #ddd;
+		    text-align: center;
+		}
+		#custom{
+			display: 'block';
+		}
+				
+		/* BUTTON 1 */
+		.btn-1::after {
+		  height: 0;
+		  left: 0;
+		  top: 0;
+		  width: 100%;
+		}
 		
-	}
-  </style>
+		.btn-1:hover:after {
+		  height: 100%;
+		}
+		
+		/* BUTTON 2 */
+		.btn-2::after {
+		  height: 100%;
+		  left: 0;
+		  top: 0;
+		  width: 0;
+		}
+		
+		.btn-2:hover:after {
+		  width: 100%;
+		}
+		
+		/* BUTTON 3 */
+		.btn-3::after {
+		  height: 0;
+		  left: 50%;
+		  top: 50%;
+		  width: 0;
+		}
+		
+		.btn-3:hover:after {
+		  height: 100%;
+		  left: 0;
+		  top: 0;
+		  width: 100%;
+		}
+		.del{
+			width: 750px;
+			display: block;
+			
+		}
+	</style>
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
