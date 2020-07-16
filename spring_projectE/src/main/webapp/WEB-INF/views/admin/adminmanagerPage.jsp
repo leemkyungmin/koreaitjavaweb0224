@@ -147,7 +147,6 @@
 		}
 		.totalCustomer {
 			display: inline-block;
-			margin-left: 135px;
 			margin-bottom: 5px;
 		}
 	</style>
@@ -230,68 +229,69 @@
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
 			<!-- Main Content -->
-			<div id="content" style="height: 100%;">
+			<div id="content" style="height: 90%;">
 				<!-- Begin Page Content -->
 				<div class="container-fluid"  style="height: 100%;">
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">회원 관리</h1>
 					<!-- Content Row -->
-					<div class="row" style="height: 100%;">
-						<div class="col-xl-8 col-lg-7"  style="height: 100%;">
+					<div class="row" style="height: 100%; width:100%;">
+						<div class="col-xl-8" style="flex: 0 0 100%; max-width: 100%; margin-top: 20px;">
 							<!-- Area Chart -->
-							<div class="card shadow mb-4"  style="height: 100%;">
+							<div class="card shadow mb-4"  style="height: 90%; width:100%;">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">111</h6>
+									<h6 class="m-0 font-weight-bold text-primary">일반 회원 관리</h6>
 								</div>
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
-										<saan class="totalCustomer">전체 회원 수 : ${totalRecord}명</saan>
 										<div id="custom" style="width:760px; margin: auto;">
-											<table border="1">
-												<thead id="user_info">
-													<tr>
-														<th>아이디</th>
-														<th>이름</th>
-														<th>닉네임</th>
-														<th>비밀번호</th>
-														<th>휴대폰번호</th>
-														<th>Email</th>
-														<th>등급</th>
-														<th>성별</th>
-													</tr>
-												</thead>	
-												<tbody>
-													<c:if test="${empty cList}">
+											<saan class="totalCustomer">전체 회원 수 : ${totalRecord}명</saan>
+											<div id="" style="width:760px; height:800px; margin: auto;" >	
+												<table border="1">
+													<thead id="user_info">
 														<tr>
-															<th colspan="8">회원이 존재하지 않습니다.</th>
+															<th>아이디</th>
+															<th>이름</th>
+															<th>닉네임</th>
+															<th>비밀번호</th>
+															<th>휴대폰번호</th>
+															<th>Email</th>
+															<th>등급</th>
+															<th>성별</th>
 														</tr>
-													</c:if>
-													<c:if test="${not empty cList}">
-														<c:forEach var="user" items="${cList }" >
-															<tr>	
-																<td><a href="UpdateUserPage?cNo=${user.cNo }">${user.cId }</a></td>							
-																<td>${user.cName }</td>			
-																<td>${user.cNickname }</td>						
-																<td>${user.cPw }</td>				
-																<td>${fn:substring(user.cPhone, 0, 3)}-${fn:substring(user.cPhone, 3, 7)}-${fn:substring(user.cPhone, 7, 11)}</td>			
-																<td>${user.cEmail }</td>			
-																<td>
-																	<c:if test="${user.cGrade ==1 }">브론즈</c:if>			
-																	<c:if test="${user.cGrade ==2 }">실버</c:if>			
-																	<c:if test="${user.cGrade ==3 }">다이아</c:if>			
-																	<c:if test="${user.cGrade ==4 }">vip</c:if>			
-																	<c:if test="${user.cGrade ==5 }">관리자</c:if>
-																</td>								
-																<td>${user.cGender == 1 ? '남' : '여'}</td>	
+													</thead>	
+													<tbody>
+														<c:if test="${empty cList}">
+															<tr>
+																<th colspan="8">회원이 존재하지 않습니다.</th>
 															</tr>
-														</c:forEach>
-													</c:if>
-												</tbody>
-											</table>
-											<div class="pageView">
-												<!-- 페이지 뷰 -->
-												${pageView}
+														</c:if>
+														<c:if test="${not empty cList}">
+															<c:forEach var="user" items="${cList }" >
+																<tr>	
+																	<td><a href="UpdateUserPage?cNo=${user.cNo }">${user.cId }</a></td>							
+																	<td>${user.cName }</td>			
+																	<td>${user.cNickname }</td>						
+																	<td>${user.cPw }</td>				
+																	<td>${fn:substring(user.cPhone, 0, 3)}-${fn:substring(user.cPhone, 3, 7)}-${fn:substring(user.cPhone, 7, 11)}</td>			
+																	<td>${user.cEmail }</td>			
+																	<td>
+																		<c:if test="${user.cGrade ==1 }">브론즈</c:if>			
+																		<c:if test="${user.cGrade ==2 }">실버</c:if>			
+																		<c:if test="${user.cGrade ==3 }">다이아</c:if>			
+																		<c:if test="${user.cGrade ==4 }">vip</c:if>			
+																		<c:if test="${user.cGrade ==5 }">관리자</c:if>
+																	</td>								
+																	<td>${user.cGender == 1 ? '남' : '여'}</td>	
+																</tr>
+															</c:forEach>
+														</c:if>
+													</tbody>
+												</table>
+												<div class="pageView">
+													<!-- 페이지 뷰 -->
+													${pageView}
+												</div>
 											</div>
 										</div>
 									</div>

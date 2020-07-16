@@ -3,11 +3,8 @@ package com.koreait.projectE.dao;
 import java.util.ArrayList;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.koreait.projectE.dto.CustomerDTO;
 import com.koreait.projectE.dto.DepartmentDTO;
-import com.koreait.projectE.dto.DepartmentLoginDTO;
 
 public interface adminDAO {
 
@@ -32,11 +29,10 @@ public interface adminDAO {
 	public void deleteUser(String cNo);
 	public void deleteReview(String cNo);
 	
-	// �듅�씤 諛쏆븘�빞 �븯�뒗 �뾽泥대━�뒪�듃
-	public ArrayList<DepartmentDTO> deptAcceptList();
-	
-
 	public void UpdateUser(String cGrade,String cNo);
+	
+	// 승인 받아야 하는 업체리스트
+	public ArrayList<DepartmentDTO> deptAcceptList(Map<String, Integer> record);
 
 	// 승인 업체 view
 	public DepartmentDTO deptAcceptView(long dNo);
