@@ -1,6 +1,9 @@
 package com.koreait.projectE.contorller;
 
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,10 +19,12 @@ import com.koreait.projectE.command.Admin.AdminDeptAcceptListCommand;
 import com.koreait.projectE.command.Admin.AdminDeptAcceptViewCommand;
 import com.koreait.projectE.command.Admin.AdminDeptDeleteCommand;
 import com.koreait.projectE.command.Admin.AdminDeptViewCommand;
+import com.koreait.projectE.command.Admin.AdminSearchQueryDeptInfo;
 import com.koreait.projectE.command.Admin.AdminUpdateDepartmentCommand;
 import com.koreait.projectE.command.Admin.AdminUpdateUserCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.adminDAO;
+import com.koreait.projectE.dto.DepartmentDTO;
 
 
 
@@ -125,7 +130,14 @@ public class adminController {
 		command.execute(sqlSession, model);
 		return "redirect:deptAccpetPage";
 	}
-		
+	
+	@RequestMapping(value="searchQueryDeptInfo", method=RequestMethod.GET)
+	public String searchQueryDeptInfo(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new AdminSearchQueryDeptInfo();
+		command.execute(sqlSession, model);
+		return "admin/departmentView";
+	}
 
 }
 	

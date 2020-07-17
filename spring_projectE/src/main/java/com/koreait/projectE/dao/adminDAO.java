@@ -45,5 +45,11 @@ public interface adminDAO {
 	
 	// 업체 거절 -> 삭제
 	public void deptReject(int dNo);
+	
+	// 업체리스트에서 검색
+	public ArrayList<DepartmentDTO> searchQueryDeptInfo(Map<String, Object> record);
+	
+	// 검색한 리트스 개수
+	public int searchQueryDeptCount(String query);
 
 }
