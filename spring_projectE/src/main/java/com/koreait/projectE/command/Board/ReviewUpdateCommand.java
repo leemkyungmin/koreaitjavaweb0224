@@ -11,25 +11,25 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.BoardDAO;
-import com.koreait.projectE.dao.ReviewDAO;
+import com.koreait.projectE.dao.ReviewDAO;  
 
-public class ReviewInsertCommand implements Command {
+public class ReviewUpdateCommand implements Command {
 
 	@Override
 	public void execute(SqlSession sqlSession, Model model) {
 		
 		Map<String, Object> map = model.asMap();
 		MultipartHttpServletRequest mrequest = (MultipartHttpServletRequest) map.get("mrequest");
-		
-		int rPoint = Integer.parseInt(mrequest.getParameter("rPoint"));
+		 
+		int rPoint = Integer.parseInt(mrequest.getParameter("rPoint"));   
 		String rTitle = mrequest.getParameter("rTitle");		
 		String rContent = mrequest.getParameter("rContent");
 		List<MultipartFile> fileList = mrequest.getFiles("rPoto");
-		int cNo = Integer.parseInt(mrequest.getParameter("cNo"));
+		int rNo= Integer.parseInt(mrequest.getParameter("rNo"));  
 		String dSaup_no = mrequest.getParameter("dSaup_no");
-		
-		ReviewDAO rDAO = sqlSession.getMapper(ReviewDAO.class);  
-		
+		int cNo=Integer.parseInt(mrequest.getParameter("cNo"));
+		ReviewDAO rDAO = sqlSession.getMapper(ReviewDAO.class);
+		System.out.println(rTitle);
 		String rPoto = ""; // 실제 DB에 들어가는 필드
 		int count = 0;
 		
@@ -69,9 +69,9 @@ public class ReviewInsertCommand implements Command {
 					}
 				}
 			}
-			rDAO.insertReview(rTitle, rContent, rPoint, rPoto, cNo, dSaup_no);	
+			rDAO.updateReview(rTitle, rContent, rPoint, rPoto,cNo,dSaup_no, rNo);	
 		} else { // 파일첨부 X
-			rDAO.insertReview(rTitle, rContent, rPoint, null, cNo, dSaup_no);
+			rDAO.updateReview(rTitle, rContent, rPoint, null,cNo,dSaup_no,rNo);
 		}
 		BoardDAO bdao =sqlSession.getMapper(BoardDAO.class);
 		bdao.DepartRatingUpdate(dSaup_no);

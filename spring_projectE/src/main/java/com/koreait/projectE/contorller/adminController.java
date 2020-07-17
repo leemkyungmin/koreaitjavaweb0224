@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.koreait.projectE.command.Admin.AdminCommand;
 import com.koreait.projectE.command.Admin.AdminDeptAcceptCommand;
@@ -21,7 +20,6 @@ import com.koreait.projectE.command.Admin.AdminUpdateDepartmentCommand;
 import com.koreait.projectE.command.Admin.AdminUpdateUserCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.adminDAO;
-import com.koreait.projectE.dto.CustomerDTO;
 
 
 
@@ -71,11 +69,17 @@ public class adminController {
 	}
 	
 	@RequestMapping(value="deleteUser", method=  RequestMethod.POST)
-	public void deleteBtnuser(@RequestParam("cNo") String cNo) {
+	public String deleteBtnuser(HttpServletRequest request, Model model) {
+		String[] cNo = request.getParameterValues("cNo");
+		System.out.println(cNo.length);
 		adminDAO aDAO = sqlSession.getMapper(adminDAO.class);
-		aDAO.deleteReview(cNo);
-		aDAO.deleteUser(cNo);
 		
+		for (int i=0, len=cNo.length; i<len; i++) {
+			aDAO.deleteReview(cNo[i]);
+			aDAO.deleteUser(cNo[i]);			
+		}
+
+		return "redirect:adminmanagePage";
 	}
 
 	@RequestMapping("UpdateUser")

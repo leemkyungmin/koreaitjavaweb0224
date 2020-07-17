@@ -12,9 +12,7 @@ import org.springframework.ui.Model;
 import com.koreait.projectE.command.PageMaker;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.adminDAO;
-import com.koreait.projectE.dto.CustomerDTO;
 import com.koreait.projectE.dto.DepartmentDTO;
-import com.koreait.projectE.dto.DepartmentLoginDTO;
 
 public class AdminDeptViewCommand implements Command {
 

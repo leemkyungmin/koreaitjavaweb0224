@@ -9,5 +9,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO REVIEW (RNO, RTITLE, RCONTENT, RPOINT, RPOTO, RDEPTH, REPORTCOUNT, RWRITER_DATE, RAPPOINTMENT, CNO, DSAUP_NO)
 		VALUES (REVIEW_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4}, 0, 0, SYSDATE, (SELECT COUNT(*) FROM APPOINTMENT WHERE CNO=#{param5} AND DSAUP_NO=#{param6}), #{param5}, #{param6})
 	</insert>
+	<insert id="updateReview">
+		UPDATE REVIEW SET RTITLE=#{param1},RCONTENT=#{param2},RPOINT=#{param3},RPOTO=#{param4},RWRITER_DATE=SYSDATE,RAPPOINTMENT=(SELECT COUNT(*) FROM APPOINTMENT WHERE CNO=#{param5} AND DSAUP_NO=#{param6})
+		WHERE RNO=${param7}
+	</insert>
 	
 </mapper>

@@ -18,13 +18,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.koreait.projectE.command.Board.AppointmentInsertCommand;
 import com.koreait.projectE.command.Board.ReviewDetailCommand;
 import com.koreait.projectE.command.Board.ReviewInsertCommand;
+import com.koreait.projectE.command.Board.ReviewUpdateCommand;
 import com.koreait.projectE.command.Board.boardViewCommand;
 import com.koreait.projectE.command.Board.reviewWriteCommand;
 import com.koreait.projectE.commom.Command;
@@ -38,7 +38,7 @@ import com.koreait.projectE.dto.ReviewDTO;
 
 
 
-@Controller
+@Controller	
 public class BoardController {
 	
 	@Autowired
@@ -236,6 +236,14 @@ public class BoardController {
 		command.execute(sqlSession, model);
 		
 		return "board/reviewDetail";
+	}
+	
+	@RequestMapping("UpdateReview")
+	public String ReviewUpdate(MultipartHttpServletRequest mrequest, Model model) {
+		model.addAttribute("mrequest", mrequest);
+		command = new ReviewUpdateCommand();
+		command.execute(sqlSession, model);
+		return "redirect:myPage";
 	}
 
 }
