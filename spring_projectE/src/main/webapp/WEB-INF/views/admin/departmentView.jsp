@@ -130,6 +130,7 @@
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
 										<div id="custom" style="width:950px; margin: auto;">
+											<input type="text" name="query" placeholder="업체명 또는 사업자번호"/>
 											<div class="center">
 												<span class="totalDept">전체 업체 수 : ${totalRecord}</span>
 											</div>
