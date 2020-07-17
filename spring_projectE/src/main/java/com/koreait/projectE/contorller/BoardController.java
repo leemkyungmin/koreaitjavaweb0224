@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.koreait.projectE.command.Board.AppointmentInsertCommand;
 import com.koreait.projectE.command.Board.ReviewDetailCommand;
 import com.koreait.projectE.command.Board.ReviewInsertCommand;
+import com.koreait.projectE.command.Board.ReviewUpdateCommand;
 import com.koreait.projectE.command.Board.boardViewCommand;
 import com.koreait.projectE.command.Board.reviewWriteCommand;
 import com.koreait.projectE.commom.Command;
@@ -236,6 +237,14 @@ public class BoardController {
 		command.execute(sqlSession, model);
 		
 		return "board/reviewDetail";
+	}
+	
+	@RequestMapping("UpdateReview")
+	public String ReviewUpdate(MultipartHttpServletRequest mrequest, Model model) {
+		model.addAttribute("mrequest", mrequest);
+		command = new ReviewUpdateCommand();
+		command.execute(sqlSession, model);
+		return "redirect:viewPage?dSaup_no="+mrequest.getParameter("dSaup_no");
 	}
 
 }
