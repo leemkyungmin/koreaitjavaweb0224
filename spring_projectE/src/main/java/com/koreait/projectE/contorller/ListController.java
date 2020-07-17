@@ -16,7 +16,7 @@ import com.koreait.projectE.command.SearchCommand;
 import com.koreait.projectE.commom.Command;
 
 @Controller
-public class listController {
+public class ListController {
 	
 	@Autowired
 	private SqlSession sqlSession;

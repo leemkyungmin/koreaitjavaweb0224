@@ -25,8 +25,8 @@ import com.koreait.projectE.command.Board.AppointmentInsertCommand;
 import com.koreait.projectE.command.Board.ReviewDetailCommand;
 import com.koreait.projectE.command.Board.ReviewInsertCommand;
 import com.koreait.projectE.command.Board.ReviewUpdateCommand;
-import com.koreait.projectE.command.Board.boardViewCommand;
-import com.koreait.projectE.command.Board.reviewWriteCommand;
+import com.koreait.projectE.command.Board.BoardViewCommand;
+import com.koreait.projectE.command.Board.ReviewWriteCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.AppointmentDAO;
 import com.koreait.projectE.dao.BoardDAO;
@@ -50,7 +50,7 @@ public class BoardController {
 	public String viewPage(HttpServletRequest request,Model model) {
 		
 		model.addAttribute("request",request);
-		command= new boardViewCommand();
+		command= new BoardViewCommand();
 		command.execute(sqlSession, model);
 		
 		return "board/viewPage";
@@ -60,7 +60,7 @@ public class BoardController {
 	public String reviewPage(HttpServletRequest request,Model model) {
 		
 		model.addAttribute("request", request);
-		command= new reviewWriteCommand();
+		command= new ReviewWriteCommand();
 		command.execute(sqlSession, model);
 		return "board/reviewWritePage";
 	}

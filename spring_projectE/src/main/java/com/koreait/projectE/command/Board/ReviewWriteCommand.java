@@ -11,7 +11,7 @@ import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.BoardDAO;
 import com.koreait.projectE.dto.DepartmentDTO;
 
-public class reviewWriteCommand implements Command {
+public class ReviewWriteCommand implements Command {
 
 	@Override
 	public void execute(SqlSession sqlSession, Model model) {

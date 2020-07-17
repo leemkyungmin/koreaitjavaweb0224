@@ -2,18 +2,18 @@ package com.koreait.projectE.dto;
 
 import java.sql.Date;
 
-public class adminDTO {
+public class AdminDTO {
 
 	private long dNo,dSeat,dHit,dRating,dAccpet;
 	private int cNo;
 	private String cId,cPw,cName,cNickname,cPhone,cEmail,cGrade,cDept,cGender,dPhone,dName,dAddress,dType,dPoto,dStart,dEnd,dParking,dSaup_no;
 	private Date dReg_date;
 	
-	public adminDTO() {
+	public AdminDTO() {
 			
 	}
 
-	public adminDTO(long dNo, long dSeat, long dHit, long dRating, long dAccpet, int cNo, String cId, String cPw,
+	public AdminDTO(long dNo, long dSeat, long dHit, long dRating, long dAccpet, int cNo, String cId, String cPw,
 			String cName, String cNickname, String cPhone, String cEmail, String cGrade, String cDept, String cGender,
 			String dPhone, String dName, String dAddress, String dType, String dPoto, String dStart, String dEnd,
 			String dParking, String dSaup_no, Date dReg_date) {

@@ -29,7 +29,7 @@ import com.koreait.projectE.dto.DepartmentDTO;
 
 
 @Controller
-public class adminController {
+public class AdminController {
 
 	@Autowired
 	private SqlSession sqlSession;

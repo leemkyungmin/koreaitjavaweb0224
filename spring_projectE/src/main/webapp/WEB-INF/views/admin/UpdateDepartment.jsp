@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ include file="../template/header.jsp" %>
 	  
 <link href="resources/assets/style/admin/sb-admin-2.min.css" rel="stylesheet">
@@ -13,8 +14,7 @@
 	
 	<style type="text/css">
 		table {
-			width: 750px;
-			margin: auto;
+			width: 50%;
 			border: 1px solid;
 			border-collapse: collapse;	
 		    border-top: 1px solid #ccc;
@@ -133,7 +133,7 @@
 							<!-- Area Chart -->
 							<div class="card shadow mb-4"  style="height: 90%; width:100%;">
 								<div class="card-header py-3">
-								  <h6 class="m-0 font-weight-bold text-primary">업체상세정보</h6>
+								  <h6 class="m-0 font-weight-bold text-primary">업체 상세정보</h6>
 								</div>
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
@@ -150,18 +150,22 @@
 												</tr>
 												<tr>
 													<th>전화번호</th>
-													<td>${dDTO.dPhone }</td>
+													<td>${fn:substring(dDTO.dPhone, 0, 3)}-${fn:substring(dDTO.dPhone, 3, 7)}-${fn:substring(dDTO.dPhone, 7, 11)}</td>
 												</tr>
 												<tr>
 													<th>주소</th>
 													<td>${dDTO.dAddress }</td>
 												</tr>
 												<tr>
+													<th>영업시간</th>
+													<td>${fn:substring(dDTO.dStart, 0, 2)}:${fn:substring(dDTO.dStart, 2, 4)} ~ ${fn:substring(dDTO.dEnd,0,2)}:${fn:substring(dDTO.dEnd,2,4)}</td>
+												</tr>
+												<tr>
 													<th>별점</th>
 													<td>${dDTO.dRating }</td>
 												</tr>
 												<tr>
-													<th>오픈날짜</th>
+													<th>수정일</th>
 													<td>${dDTO.dReg_date }</td>
 												</tr>
 											</table>
