@@ -243,7 +243,7 @@ public class BoardController {
 		model.addAttribute("mrequest", mrequest);
 		command = new ReviewUpdateCommand();
 		command.execute(sqlSession, model);
-		return "redirect:viewPage?dSaup_no="+mrequest.getParameter("dSaup_no");
+		return "redirect:myPage";
 	}
 
 }

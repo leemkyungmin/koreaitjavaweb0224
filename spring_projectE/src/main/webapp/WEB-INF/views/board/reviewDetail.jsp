@@ -327,7 +327,7 @@
 				<div class="ReviewWritenPage_FormWrap">
 					<div class="ReviewWritenPage_Content">
 						<div class="ReviewWritenPage_Title">
-							<input id="title" type="text" name="rTitle" size="50" placeholder="제목을 입력하세요." value=${rdto.rTitle }/>
+							<input id="title" type="text" name="rTitle" size="50" placeholder="제목을 입력하세요." value='${rdto.rTitle}'>
 						</div>
 						<textarea name="rContent" class="ReviewWritenPage_Editor" id="review" rows="1" cols="1" placeholder="주문하신 메뉴는 어떠셨나요? 식당의 분위기와 서비스도 궁금해요!">${rdto.rContent}</textarea>
 						<p class="ReviewWritenPage_TextLength" id="lengthResult">
