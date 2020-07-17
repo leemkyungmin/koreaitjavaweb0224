@@ -15,6 +15,7 @@
     
     <!-- Bootstrap CSS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <title>로그인 폼</title>
 	<style type="text/css">
@@ -30,7 +31,8 @@
 	    width:100%;
 	    height:100%;
 	    margin: 0;
-  		padding-top: 80px;
+	    margin-top: 20px;	
+	    padding-top: 80px;
   		padding-bottom: 40px;
   		font-family: "Nanum Gothic", arial, helvetica, sans-serif;
   		background-repeat: no-repeat;
