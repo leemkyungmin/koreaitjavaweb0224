@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
-=======
+
 <%@page import="java.beans.Statement"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
->>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../template/header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
@@ -14,7 +10,7 @@
 <link href="resources/assets/style/admin/sb-admin-2.min.css" rel="stylesheet">
 
    
-	<style>
+	<style>ㅋ	
 		table{
 			width: 1000px;
 			margin: auto;
