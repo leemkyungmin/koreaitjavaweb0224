@@ -22,13 +22,13 @@ public class reviewWriteCommand implements Command {
 		String dSaup_no = request.getParameter("dSaup_no");
 		int cNo = Integer.parseInt(request.getParameter("cNo"));
 		
+		
 		BoardDAO bdao = sqlSession.getMapper(BoardDAO.class);
-		
 		DepartmentDTO deptDTO = bdao.DepartView(dSaup_no);
-		
+			
 		model.addAttribute("deptDTO", deptDTO);
-		
 		model.addAttribute("cNo", cNo);
+		
 		
 	}
 
