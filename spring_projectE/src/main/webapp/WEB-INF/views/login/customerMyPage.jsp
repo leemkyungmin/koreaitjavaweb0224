@@ -194,6 +194,30 @@
 			background-color: lightpink;
 		}
 		
+        
+        #Modal .modal-content{
+          width:1000px;
+          height:100%;
+          margin:100px auto;
+          padding:20px 10px;
+          background:#fff;
+          
+        }
+        
+         #Modal .modal_layer{
+          position:fixed;
+          top:0;
+          left:0;
+          width:100%;
+          height:100%;
+          background:rgba(0, 0, 0, 0.5);
+          z-index:-1;
+        }
+        #myModal {
+        	position: relative;
+        	width: 1040px;
+        }
+       
 		
 	</style>
 	
@@ -205,40 +229,37 @@
             <%@ include file="../template/header.jsp" %>
             
             <!--// 헤더 들어가는 부분 -->
-            <!-- 본문 들어가는 부분 -->
             <!-- 모달창 -->
-            <div class="modal fade" id="myModal">
-               
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <div class="modal fade" id="Modal" data-backdrop="static">
+                <div class="modal-dialog" data-backdrop="static">
+                    <div class="modal-content" data-backdrop="static">
+                        <div class="modal-header" data-backdrop="static">
+                            <button type="button" class="close"  data-dismiss="modal" aria-hidden="true">
+								<i class="fas fa-times fa-3x"></i>
+							</button>
                         </div>
                         <div class="modal-body">
-                          
                         </div>
                         <div class="modal_layer" data-backdrop="static"></div>
                     </div><!-- /.modal-content -->
-                
+                </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
             <!--// 모달창 -->
-            <!-- 모달창 --> 
-              
             <script type="text/javascript">
-					
-					
-					$('.reviewdetail').click(function(){
-						console.log('111111');
-						
-						var modal = $('#myModal');
-						modal.find('.modal-body').load($('.reviewdetail').data("remote"));
-					})
-					
-
-
-				
-				</script>
+            	
+            $(function(){
+            	$('#reviewTable tr').click(function(e){
+            		$('.modal-body').empty();
+            		$('#Modal .modal-body').load($(this).data('remote'));
+            		
+            	});
+            })
+            
+            </script>
+            
             <hr/>
-              
+            <!-- 본문 들어가는 부분 -->
+                
  
  
             <form class="form-horizontal" id="loginForm" role="form" method="post" action="customerUpdate" enctype="multipart/form-data">
@@ -257,7 +278,7 @@
                     		<input type="password" placeholder="기존 비밀번호 입력" id="cPw" name="cPw" /> <br/>
                     		새로운 비밀번호 입력 <br/>
                     		<input type="password" placeholder="새로운 비밀번호 입력" id="cPwUpdate" name="cPwUpdate" /> <br/>
-                    		새로운 비밀번호 확인 <br/>
+                    		새로운 비밀번호 확인 <br/> 
                     		<input type="password" placeholder="비밀번호 확인" id="cPwCheck" name="cPwCheck" /> <br/>
                     		<div id="temp" class="temp"></div> <br/>
                     		<input type="button" value="비밀번호 변경" class="btn btn-primary" id="cPwUpdateBtn" name="cPwUpdateBtn" />
@@ -298,6 +319,7 @@
                 	<div id="photoBox" style="width:50; height:50;">
                 		<input type="file" id="cPhoto" name="cPhoto" onchange="fileCheck(this)" accept="image/jpeg,image/png,image/jpg" /> <br/>
                 		<input type="button" value="업로드 하기" class="btn btn-primary" id="cPhotoUpdate" onclick="fn_PhotoUpdate(this.form)"  />
+
                 	</div>
                 </div>
                 <div class="form-group" id="divPhoneNumber">
@@ -319,23 +341,10 @@
                         </select>
                     </div>
                 </div>
-                
-               
-                
-                <br/><br/>
-                
-                <div class="form-group">
-                    <div class="col-lg-offset-2 col-lg-10">
-                        <input type="button" value="돌아가기" class="btn btn-primary" onclick="index" />
-                        <input type="button" value="회원탈퇴" class="btn btn-primary" onclick="fn_customerSignOut(this.form)" />
-                    </div>
-                    
-                </div>
-            </form>
-        	<div>
+                <div>
                 	내가 쓴 리뷰 (클릭하면 리뷰로 이동합니다.)
                 	<div class="border">
-					     <table border="1">
+					     <table border="1" id="reviewTable">
 							<thead>
 								<tr>
 									<td>업체</td>
@@ -354,8 +363,7 @@
 								</c:if>
 								<c:if test="${not empty list }">
 									<c:forEach var="rDTO" items="${list }" varStatus="name">
-										<tr class="reviewdetail" data-remote="reviewDetail?rNo=${rDTO.rNo}" onclick="fn_load(${rDTO.rNo})"	data-toggle="modal" data-target="#myModal">
-											
+										<tr id="review" data-remote="reviewDetail?rNo=${rDTO.rNo}"data-toggle="modal" data-target="#Modal">
 											<td>${dList.get(name.count-1)}</td>
 											<td>${rDTO.rTitle }</td>
 											<td>${rDTO.rContent }</td>
@@ -400,7 +408,19 @@
 							</tbody>
 						</table>		
                 	</div>
-        	 </div>
+                </div>
+                
+                <br/><br/>
+                
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <input type="button" value="돌아가기" class="btn btn-primary" onclick="index" />
+                        <input type="button" value="회원탈퇴" class="btn btn-primary" onclick="fn_customerSignOut(this.form)" />
+                    </div>
+                </div>
+            </form>
+        
+        
         <script>
         	
         $(function(){
