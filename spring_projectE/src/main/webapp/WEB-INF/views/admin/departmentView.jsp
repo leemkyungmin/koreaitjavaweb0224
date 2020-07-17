@@ -8,7 +8,7 @@
 <!-- Custom styles for this template-->
 <link href="resources/assets/style/admin/sb-admin-2.min.css" rel="stylesheet">
 
-  
+
 	<style>
 		table{
 			width: 950px;
@@ -54,12 +54,25 @@
 		}
 		.totalDept {
 			display: inline-block;
-			margin-bottom: 5px;
+			vertical-align: bottom;
+			height: 5px;
+			line-height: 100%;
 		}
 		.center {
 			width: 950px;
+			height: 40px;
 			text-align: left;
 			margin: auto;
+		}
+		
+		.searchbox_wrap {
+			float: right;
+		}
+		
+		.searchbox {
+			padding: 5px;
+			border: 1px solid lightgray;
+			border-radius: 5px;
 		}
 		
 	</style>
@@ -130,9 +143,15 @@
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
 										<div id="custom" style="width:950px; margin: auto;">
-											<div class="center">
-												<span class="totalDept">전체 업체 수 : ${totalRecord}</span>
-											</div>
+											<form action="searchQueryDeptInfo">
+												<div class="center">
+													<span class="totalDept">전체 업체 수 : ${totalRecord}</span>
+													<div class="searchbox_wrap">
+														<input type="text" class="searchbox" name="query" placeholder="업체명/사업자번호" size="15" />
+														<input type="submit" class="searchbox" value="검색" />
+													</div>
+												</div>
+											</form>
 											<div id="dept" style="width:950px; margin: auto;" >	
 												<table border="1">
 													<thead>

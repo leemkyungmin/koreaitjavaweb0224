@@ -16,7 +16,7 @@ import com.koreait.projectE.command.SearchCommand;
 import com.koreait.projectE.commom.Command;
 
 @Controller
-public class listController {
+public class ListController {
 	
 	@Autowired
 	private SqlSession sqlSession;
@@ -35,6 +35,12 @@ public class listController {
 		command= new ListCommand();
 		command.execute(sqlSession, model);
 		return "main";
+	}
+	@RequestMapping("main2")
+	public String goMain2(Model model) {
+		command= new ListCommand();
+		command.execute(sqlSession, model);
+		return "main2";
 	}
 	@RequestMapping("locationlist")
 	public String golocation_list(@RequestParam("location") String location,Model model) {

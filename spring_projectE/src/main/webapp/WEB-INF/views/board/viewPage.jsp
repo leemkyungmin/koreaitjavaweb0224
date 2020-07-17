@@ -199,6 +199,17 @@
 		.RestaurantReviewItem__ReviewContent{
 			min-height: 157px;
 		}
+		
+		.nav-wrap {  
+    		height: 45px; 	
+  		}
+  		.nav-list-wrap {
+			padding-top: 10px;
+		}
+	
+		.nav-user-wrap {
+			padding-top: 10px;
+		}
 </style> 
 
 </head>

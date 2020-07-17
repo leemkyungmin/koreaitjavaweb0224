@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
+=======
+<%@page import="java.beans.Statement"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
     pageEncoding="UTF-8"%>
 <%@ include file="../template/header.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -182,6 +187,7 @@
 			});
 		});
 		
+		
 	</script>
 
 	<!-- Page Wrapper -->
@@ -252,7 +258,15 @@
 										<div id="custom" style="width:100%;">
 											<div class="center">
 												<span class="totalCustomer" style= "margin: auto;">전체 회원 수 : ${totalRecord}명</span>
-											</div>
+											</div>				
+											<form name="serch" method="post">
+											<select name="keyField">
+												<option value="0">----선택----</option>
+												<option value="1">아이디</option>
+											</select>
+											<input type="text" name="keyWord" />
+											<input type= "button" value="검색" onclick="adminmanagerPage(form)"/>
+											</form>			
 											<form id="myForm" method="post">
 												<table border="1">
 													<thead id="user_info">
@@ -295,6 +309,7 @@
 																</tr>
 															</c:forEach>
 														</c:if>
+					
 													</tbody>
 												</table>
 												

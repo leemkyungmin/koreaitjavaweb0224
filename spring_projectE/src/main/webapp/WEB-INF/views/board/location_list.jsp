@@ -4,6 +4,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 	<link href="resources/assets/style/locationlist.css" rel="stylesheet" type="text/css">
 	<%@ include file="../template/header.jsp" %>
+	<style>
+		.nav-wrap {  
+    	
+    		height: 45px;
+    	}
+    	.nav-list-wrap {
+			padding-top: 10px;
+		}
+	
+		.nav-user-wrap {
+			padding-top: 10px;
+		}
+	</style>
 	<main class="mn-toplist pg-toplist">
 	<article class="contents">
     <header class="basic-info-list">

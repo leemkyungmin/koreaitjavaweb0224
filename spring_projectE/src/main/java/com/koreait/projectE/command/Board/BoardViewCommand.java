@@ -13,7 +13,7 @@ import com.koreait.projectE.dto.DepartmentDTO;
 import com.koreait.projectE.dto.MenuDTO;
 import com.koreait.projectE.dto.ReviewDTO;
 
-public class boardViewCommand implements Command {
+public class BoardViewCommand implements Command {
 
 	@Override
 	public void execute(SqlSession sqlSession, Model model) {

@@ -27,7 +27,7 @@ import com.koreait.projectE.command.Login.DepartmentUpdateCommand;
 import com.koreait.projectE.command.Login.DeptSignOutCommand;
 import com.koreait.projectE.command.Login.DeptSignUpCommand;
 import com.koreait.projectE.command.Login.VerifyRecaptcha;
-import com.koreait.projectE.command.Login.deptFindIdPwCommand;
+import com.koreait.projectE.command.Login.DeptFindIdPwCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.LoginDAO;
 import com.koreait.projectE.dto.CustomerDTO;
@@ -344,7 +344,7 @@ public class LoginController {
 			model.addAttribute("dEmail", dEmail);
 			model.addAttribute("type", "id");
 			model.addAttribute("mailSender", mailSender);
-			deptFindIdPwCommand cmd =new deptFindIdPwCommand();
+			DeptFindIdPwCommand cmd =new DeptFindIdPwCommand();
 			 cmd.execute(sqlSession, model);
 			message = "입력하신 메일에서 아이디를 확인해주세요.";
 		}else {
@@ -373,7 +373,7 @@ public class LoginController {
 			model.addAttribute("dEmail", dEmail);
 			model.addAttribute("type", "pw");
 			model.addAttribute("mailSender", mailSender);
-			deptFindIdPwCommand cmd =new deptFindIdPwCommand();
+			DeptFindIdPwCommand cmd =new DeptFindIdPwCommand();
 			String emailAuth = (String) cmd.execute(sqlSession, model);
 			ldao.deptpwUpdate(emailAuth, dSaup_no);
 			message ="등록된 이메일로 임시 비밀번호를 보냈습니다.";

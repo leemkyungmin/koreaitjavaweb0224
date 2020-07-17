@@ -77,9 +77,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM DEPARTMENT_INFO WHERE DNO = #{dNo}
 	</delete>
 	
+<<<<<<< HEAD
 	<select id="customerReview" parameterType="Map" resultType="com.koreait.projectE.dto.ReviewDTO">
 		SELECT * FROM (SELECT ROWNUM AS RN, A.* FROM (SELECT * FROM REVIEW WHERE CNO=#{cNo} order by rNo desc) A)
 		WHERE RN BETWEEN #{beginRecord} AND #{endRecord}
+=======
+	<select id="searchQueryDeptInfo" parameterType="Map" resultType="com.koreait.projectE.dto.DepartmentDTO">		
+		SELECT * FROM (SELECT ROWNUM AS RN, A.* FROM (SELECT * FROM DEPARTMENT_INFO WHERE DNAME LIKE '%' || #{query} || '%' OR DSAUP_NO LIKE '%' || #{query} || '%' ORDER BY DNO DESC) A)
+		WHERE RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+	
+	<select id="searchQueryDeptCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM DEPARTMENT_INFO WHERE DNAME LIKE '%' || #{query} || '%' OR DSAUP_NO LIKE '%' || #{query} || '%'
+>>>>>>> branch 'master' of https://github.com/leemkyungmin/koreaitjavaweb0224.git
 	</select>
 	
 </mapper>

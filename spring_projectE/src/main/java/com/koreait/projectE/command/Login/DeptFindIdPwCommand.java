@@ -9,7 +9,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.ui.Model;
 
-public class deptFindIdPwCommand {
+public class DeptFindIdPwCommand {
 
 	public String execute(SqlSession sqlSession, Model model) {
 		
