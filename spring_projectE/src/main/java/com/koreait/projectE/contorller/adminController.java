@@ -71,12 +71,13 @@ public class adminController {
 	}
 	
 	@RequestMapping(value="deleteUser", method=  RequestMethod.POST)
-	public void deleteBtnuser(@RequestParam("cNo") String cNo) {
+	public String deleteBtnuser(@RequestParam("cNo") String cNo) {
 		adminDAO aDAO = sqlSession.getMapper(adminDAO.class);
 		aDAO.deleteReview(cNo);
 		aDAO.deleteUser(cNo);
-	
-		
+
+		return "redirect:adminmanagePage";
+
 	}
 
 	@RequestMapping("UpdateUser")

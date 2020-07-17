@@ -103,7 +103,7 @@
 				<li class="nav-search-wrap" >
 					<form class="nav-search-form" action="searchPage">
 					<div class="nav-icon-box"><i class="fab fa-searchengin"></i></div>
-					<input id="search_keyword" class="nav-HomeSearchInput" name="main-search" type="text" maxlength="50" placeholder="지역 또는 식당" autocomplete="off">
+					<input id="search_keyword" class="nav-HomeSearchInput" name="main-search" type="text" maxlength="50" placeholder="지역 또는 맛집 이름" autocomplete="off">
 					<input class="nav-search-submit" type="submit" value="전송">
 					</form>
 				</li>
