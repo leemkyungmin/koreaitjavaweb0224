@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.koreait.projectE.dto.CustomerDTO;
 import com.koreait.projectE.dto.DepartmentDTO;
+import com.koreait.projectE.dto.ReviewDTO;
 
 public interface adminDAO {
 
@@ -45,5 +46,7 @@ public interface adminDAO {
 	
 	// 업체 거절 -> 삭제
 	public void deptReject(int dNo);
+	
+	public ArrayList<ReviewDTO> customerReview(Map<String, Integer> record);
 
 }

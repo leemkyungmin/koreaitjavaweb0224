@@ -5,7 +5,9 @@
 <%@ include file="../template/header.jsp" %>
 
 <link href="resources/assets/style/admin/sb-admin-2.min.css" rel="stylesheet">
-
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   	<script type="text/javascript">
 
 	function goBack() {
@@ -15,7 +17,7 @@
 	</script>
 
 	<style type="text/css">
-		table {
+		form-wrap table {
 			width: 500px;
 			margin: auto;
 			border: 1px solid;
@@ -29,14 +31,14 @@
 		    font-weight: bold;
 			text-align: left;
 		    color: #153d73;
-		    border: 1px solid #ccc;
+		    border: 1px solid black;
 			background: #efefef;
 			font-size: 120%;
 		}
 		td {
 		    width: 349px;
 		    padding: 10px;
-		    border: 1px solid #ccc;
+		    border: 1px solid black;
 		    font-size: 100%;
 		}
 		#btnUpdate {
@@ -64,7 +66,71 @@
 		    display: block;
 		    clear:both;
 		}	
-	
+		.bordered,.form-wrap{
+			display:inline-block; 
+		}
+		.bordered {
+			height: 500px;
+			position: absolute;
+			top: 70px
+		}
+		.bordered table {
+			display: inline-block;
+		    width: 1000px;
+		    margin-left: 20px;
+		    text-align: center;
+		    border-collapse: collapse;
+		    border: 1px solid black;
+		}
+		.boarded tr,.boarded td{
+		 	border: 1px solid black;
+		}
+		.pageView{
+			display:inline-block;
+			width:100%;
+			text-align: center;
+			
+		}
+		 #Modal,#myModal {
+          display: none;
+          position:relative;
+          margin:auto;
+          width:1000px;
+          height:800px;
+          z-index:1;
+        }
+        
+        #Modal h2{
+          margin:0;
+        }
+       
+        
+        #Modal .modal-content,#myModal .modal-body {
+          width:100%;
+          height:100%;
+          margin:100px auto;
+          padding:20px 10px;
+          background:#fff;
+          
+        }
+        
+         #Modal .modal_layer ,#myModal .modal_layer{
+          position:fixed;
+          top:0;
+          left:0;
+          width:100%;
+          height:100%;
+          background:rgba(0, 0, 0, 0.5);
+          z-index:-1;
+        }
+        #myModal .modal-header{
+        	position: relative;
+        	width: 1040px;
+        }
+        tr:hover{
+        	background-color: lightpink; 
+        }
+		
 	</style>
 
 	<!-- Page Wrapper -->
@@ -180,7 +246,72 @@
 													</tr>
 												</table>
 											</form>
+											
 										</div>
+										<div class="bordered">
+										     <table border="1" id="reviewTable"  >
+												<thead style="background-color: #ccc;">
+													<tr>
+														<td>업체</td>
+														<td>제목</td>
+														<td>내용</td>
+														<td>별점</td>
+													<tr>	
+												</thead>		 
+												<tbody>
+													<c:if test="${empty list }">
+														<tr>
+															<td colspan="5">
+																없음
+															</td>
+														</tr>
+													</c:if>
+													<c:if test="${not empty list }">
+														<c:forEach var="rDTO" items="${list }" varStatus="name">
+															<tr id="review" data-remote="reviewDetail?rNo=${rDTO.rNo}"data-toggle="modal" data-target="#Modal">
+																<td>${dList.get(name.count-1)}</td>
+																<td>${rDTO.rTitle }</td>
+																<td>${rDTO.rContent }</td>
+																<td>${rDTO.rPoint }<input type="hidden" value="${rDTO.rNo }" name="rNo" id="rNo"/></td>
+																
+															</tr>
+														</c:forEach>
+													</c:if>
+													
+												</tbody>
+											</table>
+											<div class="pageView">
+												${pageView }
+											</div>		
+					                	</div>
+					                	<div class="modal fade" id="Modal" data-backdrop="static">
+							                <div class="modal-dialog" data-backdrop="static">
+							                    <div class="modal-content" data-backdrop="static">
+							                        <div class="modal-header" data-backdrop="static">
+							                            <button type="button" class="close"  data-dismiss="modal" aria-hidden="true">
+															<i class="fas fa-times fa-3x"></i>
+														</button>
+							                        </div>
+							                        <div class="modal-body">
+							                        </div>
+							                        <div class="modal_layer" data-backdrop="static"></div>
+							                    </div><!-- /.modal-content -->
+							                </div><!-- /.modal-dialog -->
+							            </div><!-- /.modal -->
+									
+										<script type="text/javascript">
+											$(function(){
+								            	$('#reviewTable tr').click(function(e){
+								            		$('.modal-body').empty();
+								            		$('#Modal .modal-body').load($(this).data('remote'));
+								            		var offset = $(".pageView" ).offset();
+											        var top =offset.top+100; 
+											      
+											        $('html,body ').animate({scrollTop :top});
+								            	});
+								            });
+											
+										</script>
 									</div>
 								</div>
 							</div>

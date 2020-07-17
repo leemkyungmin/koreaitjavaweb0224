@@ -77,4 +77,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM DEPARTMENT_INFO WHERE DNO = #{dNo}
 	</delete>
 	
+	<select id="customerReview" parameterType="Map" resultType="com.koreait.projectE.dto.ReviewDTO">
+		SELECT * FROM (SELECT ROWNUM AS RN, A.* FROM (SELECT * FROM REVIEW WHERE CNO=#{cNo} order by rNo desc) A)
+		WHERE RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+	
 </mapper>
