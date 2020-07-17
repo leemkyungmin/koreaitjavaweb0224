@@ -252,6 +252,9 @@
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
 										<div id="custom" style="width:100%;">
+											<div class="center">
+												<span class="totalCustomer" style= "margin: auto;">전체 회원 수 : ${totalRecord}명</span>
+											</div>				
 											<form name="serch" method="post">
 											<select name="keyField">
 												<option value="0">----선택----</option>
@@ -259,10 +262,7 @@
 											</select>
 											<input type="text" name="keyWord" />
 											<input type= "button" value="검색" onclick="adminmanagerPage(form)"/>
-											</form>
-											<div class="center">
-												<span class="totalCustomer" style= "margin: auto;">전체 회원 수 : ${totalRecord}명</span>
-											</div>							
+											</form>			
 											<form id="myForm" method="post">
 												<table border="1">
 													<thead id="user_info">
