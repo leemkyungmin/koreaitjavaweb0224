@@ -19,10 +19,11 @@
 			border-collapse: collapse;	
 		    border-top: 1px solid #ccc;
 		    border-left: 3px solid #369;
+		    float: left;
 		}
 		th {
 		    width: 147px;
-		    padding: 10px;
+		    padding: 5px;
 		    font-weight: bold;
 		    text-align: left;
 		    color: #153d73;
@@ -32,7 +33,7 @@
 		}
 		td {
 		    width: 349px;
-		    padding: 10px;
+		    padding: 5px;
 		    border: 1px solid #ccc;
 		    font-size: 120%;
 		}
@@ -69,6 +70,10 @@
 		    padding: 5px; 
 		    width:80px;
 		    height:78px;
+		}
+		
+		.map {
+			float: right;
 		}
 		
 	</style>
@@ -138,7 +143,7 @@
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
-										<div id="custom" style="width:100%;">
+										<div id="custom" style="width: 80%; margin:auto;">
 											<table border="1" class="user">
 												<tr>
 													<th>사업자 등록번호</th>
@@ -168,7 +173,8 @@
 													<th>수정일</th>
 													<td>${dDTO.dReg_date }</td>
 												</tr>
-											</table>
+											</table>									
+											<div class="map" id="map" style="width:45%;height:350px;"></div>
 										</div>
 									</div>
 								</div>
@@ -179,6 +185,46 @@
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=395b351aabfbda166c782bab5c1101f8&libraries=services"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = {
+		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };  
+		
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+	
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch('${dDTO.dAddress}', function(result, status) {
+			
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+		
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+		
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">${dDTO.dName}<strong class="rate-point "></strong></div>'
+		        });
+		        infowindow.open(map, marker);
+		
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		    } 
+		});    
+	</script>
 
 	<!-- Scroll to Top Button-->
 	<a class="scroll-to-top rounded" href="#page-top">
