@@ -36,6 +36,12 @@ public class listController {
 		command.execute(sqlSession, model);
 		return "main";
 	}
+	@RequestMapping("main2")
+	public String goMain2(Model model) {
+		command= new ListCommand();
+		command.execute(sqlSession, model);
+		return "main2";
+	}
 	@RequestMapping("locationlist")
 	public String golocation_list(@RequestParam("location") String location,Model model) {
 		

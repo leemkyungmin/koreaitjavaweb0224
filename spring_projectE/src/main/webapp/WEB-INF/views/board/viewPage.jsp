@@ -198,6 +198,17 @@
 		.RestaurantReviewItem__ReviewContent{
 			min-height: 157px;
 		}
+		
+		.nav-wrap {  
+    		height: 45px; 	
+  		}
+  		.nav-list-wrap {
+			padding-top: 10px;
+		}
+	
+		.nav-user-wrap {
+			padding-top: 10px;
+		}
 </style> 
 
 </head>
@@ -429,6 +440,7 @@
 				<script type="text/javascript">
 					
 					$('#myModal').on('show.bs.modal',function(e){
+						
 						var button = $(e.relatedTarget);
 						var modal = $(this);
 						modal.find('.modal-body').load(button.data("remote"));

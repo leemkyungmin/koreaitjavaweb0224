@@ -114,7 +114,7 @@
 				</c:if>
 				
 				<li class="nav-list-wrap">
-					<a href="main" class="nav-btn">맛집 리스트</a>
+					<a href="main2" class="nav-btn">맛집 리스트</a>
 				</li>
 				
 				<li class="nav-user-wrap">

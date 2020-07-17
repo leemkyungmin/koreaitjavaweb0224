@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
+<% request.setCharacterEncoding("utf-8"); %>
+
+<%@ include file="template/header.jsp" %>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link href="resources/assets/style/MainList.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-		.nav-list-wrap {
+
+<style>
+	.nav-wrap {
+		height:45px;
+	}
+	.nav-list-wrap {
 		padding-top: 10px;
 	}
 	
@@ -18,6 +21,7 @@
 		padding-top: 10px;
 	}
 </style>
+
 </head>
 	
 <body class="main-body">
@@ -78,5 +82,4 @@
 
 
 </main>
-</body>
-</html>
+<%@ include file="template/footer.jsp" %>
