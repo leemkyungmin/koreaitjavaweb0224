@@ -74,7 +74,8 @@
 		}
 		
 		.map {
-			float: right;
+			float: left;
+			margin-left: 36px;
 		}
 		
 		.image-Content {
