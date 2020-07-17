@@ -180,7 +180,7 @@
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
-										<div id="custom" style="width: 66.5%; margin:auto;">
+										<div id="custom" style="width: 66.5%; margin:auto; margin-top: 50px;">
 											<div class="wrap">
 												<table border="1" class="user">
 													<tr>
