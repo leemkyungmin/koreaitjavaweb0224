@@ -22,20 +22,21 @@
 		    float: left;
 		}
 		th {
-		    width: 147px;
+		    width: 30%;
 		    padding: 5px;
 		    font-weight: bold;
 		    text-align: left;
 		    color: #153d73;
 		    border: 1px solid #ccc;
 			background: #efefef;
-			font-size: 130%;
+			font-size: 18px;
 		}
 		td {
-		    width: 349px;
+		    width: 70%;
 		    padding: 5px;
+		    padding-left: 10px;
 		    border: 1px solid #ccc;
-		    font-size: 120%;
+		    font-size: 18px;
 		}
 	
 		ul {
@@ -74,6 +75,37 @@
 		
 		.map {
 			float: right;
+		}
+		
+		.image-Content {
+			width:100%;
+			position: relative;
+		    white-space: nowrap;
+		    overflow-x: auto;
+		    overflow-y: hidden;
+		    overflow-scrolling: touch;
+		    -webkit-overflow-scrolling: touch;
+		}
+		
+		.image_wrap{
+		    margin-top: 20px;
+			font-size: 0;
+	    	line-height: 0;
+		}
+		
+		.column-image {
+			display:inline-block;
+		}
+		
+		img{
+			display: inline-block;
+		    width: 200px;
+		    height: 200px;
+		    margin-right: 6px;
+		    background-size: cover;
+		    background-position: 50% 50%;
+		    background-repeat: no-repeat;
+		    cursor: pointer;
 		}
 		
 	</style>
@@ -143,38 +175,53 @@
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
-										<div id="custom" style="width: 80%; margin:auto;">
-											<table border="1" class="user">
-												<tr>
-													<th>사업자 등록번호</th>
-													<td>${dDTO.dSaup_no }</td>
-												</tr>
-												<tr>
-													<th>사업체명</th>
-													<td>${dDTO.dName}</td>
-												</tr>
-												<tr>
-													<th>전화번호</th>
-													<td>${fn:substring(dDTO.dPhone, 0, 3)}-${fn:substring(dDTO.dPhone, 3, 7)}-${fn:substring(dDTO.dPhone, 7, 11)}</td>
-												</tr>
-												<tr>
-													<th>주소</th>
-													<td>${dDTO.dAddress }</td>
-												</tr>
-												<tr>
-													<th>영업시간</th>
-													<td>${fn:substring(dDTO.dStart, 0, 2)}:${fn:substring(dDTO.dStart, 2, 4)} ~ ${fn:substring(dDTO.dEnd,0,2)}:${fn:substring(dDTO.dEnd,2,4)}</td>
-												</tr>
-												<tr>
-													<th>별점</th>
-													<td>${dDTO.dRating }</td>
-												</tr>
-												<tr>
-													<th>수정일</th>
-													<td>${dDTO.dReg_date }</td>
-												</tr>
-											</table>									
-											<div class="map" id="map" style="width:45%;height:350px;"></div>
+										<div id="custom" style="width: 65%; margin:auto;">
+											<div class="wrap">
+												<table border="1" class="user">
+													<tr>
+														<th>사업자 등록번호</th>
+														<td>${dDTO.dSaup_no }</td>
+													</tr>
+													<tr>
+														<th>사업체명</th>
+														<td>${dDTO.dName}</td>
+													</tr>
+													<tr>
+														<th>전화번호</th>
+														<td>${fn:substring(dDTO.dPhone, 0, 3)}-${fn:substring(dDTO.dPhone, 3, 7)}-${fn:substring(dDTO.dPhone, 7, 11)}</td>
+													</tr>
+													<tr>
+														<th>주소</th>
+														<td>${dDTO.dAddress }</td>
+													</tr>
+													<tr>
+														<th>영업시간</th>
+														<td>${fn:substring(dDTO.dStart, 0, 2)}:${fn:substring(dDTO.dStart, 2, 4)} ~ ${fn:substring(dDTO.dEnd,0,2)}:${fn:substring(dDTO.dEnd,2,4)}</td>
+													</tr>
+													<tr>
+														<th>별점</th>
+														<td>${dDTO.dRating }</td>
+													</tr>
+													<tr>
+														<th>수정일</th>
+														<td>${dDTO.dReg_date }</td>
+													</tr>
+												</table>						
+												<div class="map" id="map" style="width:45%;height:270px;"></div>
+											</div>
+											
+											<!-- 업체 삭제 버튼 구현 -->
+											<div class="image-Content">
+												<div class="image_wrap">
+													<c:set var="img" value="${dDTO.dPhoto }"></c:set>
+													<!-- 업체에서 등록한 이미지 가져오기 -->
+													<c:forEach var="split" items="${fn:split(img,',')}">
+														<div class="column-image">
+															<img alt="${split }" src="${pageContext.request.contextPath }/resources/storage/department_img/${split }">
+														</div>
+													</c:forEach>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -216,7 +263,7 @@
 		
 		        // 인포윈도우로 장소에 대한 설명을 표시합니다
 		        var infowindow = new kakao.maps.InfoWindow({
-		            content: '<div style="width:150px;text-align:center;padding:6px 0;">${dDTO.dName}<strong class="rate-point "></strong></div>'
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;"><strong class="rate-point">${dDTO.dName}</strong></div>'
 		        });
 		        infowindow.open(map, marker);
 		
