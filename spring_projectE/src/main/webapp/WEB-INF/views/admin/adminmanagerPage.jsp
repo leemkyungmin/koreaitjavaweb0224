@@ -197,7 +197,7 @@
 						success:function(result){
 								
 						},error:function(){
-							
+							return "redirect:adminmanagerPage";
 						}
 					});
 				 

@@ -75,6 +75,7 @@ public class adminController {
 		adminDAO aDAO = sqlSession.getMapper(adminDAO.class);
 		aDAO.deleteReview(cNo);
 		aDAO.deleteUser(cNo);
+	
 		
 	}
 
