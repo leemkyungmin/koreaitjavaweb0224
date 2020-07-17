@@ -144,6 +144,23 @@
 			
 		}
 		// 회원삭제버튼
+		$('#deleteBtn').click(function(){
+			$('input:checkbox[name=test]:checked').each(function (){
+				alert($(this).val());
+					$.ajax({
+						type:"POST",
+						url:'deleteUser',
+						data:'cNo='+$(this).val(),
+						success:function(result){
+								
+						},error:function(){
+							return "redirect:adminmanagerPage";
+						}
+					});
+				 
+			});
+		});
+
 		function deleteCust(form) {
 			if (!confirm('회원을 삭제하시겠습니까?')) {
 				return;
@@ -153,6 +170,7 @@
 				form.submit();
 			}
 		}
+
 		// 체크박스
 		$(function (){
 			$("#allCheck").click(function(){
