@@ -1,5 +1,7 @@
 package com.koreait.projectE.contorller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -24,6 +26,7 @@ import com.koreait.projectE.command.Login.DepartmentMyPageCommand;
 import com.koreait.projectE.command.Login.DepartmentUpdateCommand;
 import com.koreait.projectE.command.Login.DeptSignOutCommand;
 import com.koreait.projectE.command.Login.DeptSignUpCommand;
+import com.koreait.projectE.command.Login.VerifyRecaptcha;
 import com.koreait.projectE.command.Login.deptFindIdPwCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.LoginDAO;
@@ -409,6 +412,25 @@ public class LoginController {
 		return "redirect:index";
 	}
 	
+	
+	@ResponseBody
+    @RequestMapping(value = "VerifyRecaptcha", method = RequestMethod.POST)
+    public int VerifyRecaptcha(HttpServletRequest request) {
+        VerifyRecaptcha.setSecretKey("6Lfi_rEZAAAAABM3-IKPiYnd2CdgjAaiR9_SOiHw");
+        String gRecaptchaResponse = request.getParameter("recaptcha");
+        System.out.println(gRecaptchaResponse);
+        //0 = 성공, 1 = 실패, -1 = 오류
+        try {
+            if(VerifyRecaptcha.verify(gRecaptchaResponse))
+                return 0;
+            else return 1;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+
 	
 }
 
