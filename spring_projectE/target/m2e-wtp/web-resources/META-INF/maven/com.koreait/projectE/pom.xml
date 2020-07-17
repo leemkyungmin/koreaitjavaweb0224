@@ -7,7 +7,7 @@
 	<name>spring_projectE</name>
 	<packaging>war</packaging>  
 	<version>1.0.0-BUILD-SNAPSHOT</version>
-	<repositories> 
+	<repositories>  
 		<repository> 
 			<id>oracle</id>
 			<name>ORACLE JDBC Repository</name>

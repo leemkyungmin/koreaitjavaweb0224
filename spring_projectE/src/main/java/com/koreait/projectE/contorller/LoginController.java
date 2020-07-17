@@ -26,8 +26,8 @@ import com.koreait.projectE.command.Login.DepartmentMyPageCommand;
 import com.koreait.projectE.command.Login.DepartmentUpdateCommand;
 import com.koreait.projectE.command.Login.DeptSignOutCommand;
 import com.koreait.projectE.command.Login.DeptSignUpCommand;
-import com.koreait.projectE.command.Login.VerifyRecaptcha;
 import com.koreait.projectE.command.Login.deptFindIdPwCommand;
+
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.LoginDAO;
 import com.koreait.projectE.dto.CustomerDTO;
@@ -413,7 +413,7 @@ public class LoginController {
 	}
 	
 	
-	@ResponseBody
+	/*@ResponseBody
     @RequestMapping(value = "VerifyRecaptcha", method = RequestMethod.POST)
     public int VerifyRecaptcha(HttpServletRequest request) {
         VerifyRecaptcha.setSecretKey("6Lfi_rEZAAAAABM3-IKPiYnd2CdgjAaiR9_SOiHw");
@@ -428,7 +428,7 @@ public class LoginController {
             e.printStackTrace();
             return -1;
         }
-    }
+    }*/
 
 
 	
