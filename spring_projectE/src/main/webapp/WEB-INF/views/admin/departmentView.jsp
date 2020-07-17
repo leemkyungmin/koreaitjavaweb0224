@@ -8,7 +8,7 @@
 <!-- Custom styles for this template-->
 <link href="resources/assets/style/admin/sb-admin-2.min.css" rel="stylesheet">
 
-    
+        
 	<style>
 		table{
 			width: 950px;
