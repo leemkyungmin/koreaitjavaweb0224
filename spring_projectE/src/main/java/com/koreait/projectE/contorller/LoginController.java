@@ -409,7 +409,7 @@ public class LoginController {
 		if (session != null) {
 			session.invalidate();
 		}
-		return "redirect:index";
+		return "redirect:index"; 
 	}
 	
 	

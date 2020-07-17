@@ -106,13 +106,10 @@
 			text-align: center;
 		}
 		
-		.test{
-			
+		.button_wrap {
+			width: 1000px;
 			margin: auto;
-		}
-		.test2{
 			text-align: right;
-			position: relative;
 		}
 		
 		.center {
@@ -157,12 +154,23 @@
 						success:function(result){
 								
 						},error:function(){
-							
+							return "redirect:adminmanagerPage";
 						}
 					});
 				 
 			});
 		});
+
+		function deleteCust(form) {
+			if (!confirm('회원을 삭제하시겠습니까?')) {
+				return;
+			} else {
+				alert('삭제되었습니다.');			
+				form.action='deleteUser';
+				form.submit();
+			}
+		}
+
 		// 체크박스
 		$(function (){
 			$("#allCheck").click(function(){
@@ -245,53 +253,54 @@
 											<div class="center">
 												<span class="totalCustomer" style= "margin: auto;">전체 회원 수 : ${totalRecord}명</span>
 											</div>
-											<table border="1">
-												<thead id="user_info">
-													<tr>
-														<th><input type="checkbox" id="allCheck"/></th>
-														<th>아이디</th>
-														<th>이름</th>
-														<th>닉네임</th>
-														<th>비밀번호</th>
-														<th>휴대폰번호</th>
-														<th>Email</th>
-														<th>등급</th>
-														<th>성별</th>
-													</tr>
-												</thead>	
-												<tbody>
-													<c:if test="${empty cList}">
+											<form id="myForm" method="post">
+												<table border="1">
+													<thead id="user_info">
 														<tr>
-															<th colspan="8">회원이 존재하지 않습니다.</th>
+															<th><input type="checkbox" id="allCheck"/></th>
+															<th>아이디</th>
+															<th>이름</th>
+															<th>닉네임</th>
+															<th>비밀번호</th>
+															<th>휴대폰번호</th>
+															<th>Email</th>
+															<th>등급</th>
+															<th>성별</th>
 														</tr>
-													</c:if>
-													<c:if test="${not empty cList}">
-														<c:forEach var="user" items="${cList }" >
+													</thead>	
+													<tbody>
+														<c:if test="${empty cList}">
 															<tr>
-																<td><input type="checkbox" id="test" name=test value="${user.cNo }"/></td>	
-																<td><a href="UpdateUserPage?cNo=${user.cNo }">${user.cId }</a></td>							
-																<td>${user.cName }</td>			
-																<td>${user.cNickname }</td>						
-																<td>${user.cPw }</td>				
-																<td>${fn:substring(user.cPhone, 0, 3)}-${fn:substring(user.cPhone, 3, 7)}-${fn:substring(user.cPhone, 7, 11)}</td>			
-																<td>${user.cEmail }</td>			
-																<td>
-																	<c:if test="${user.cGrade ==1 }">브론즈</c:if>			
-																	<c:if test="${user.cGrade ==2 }">실버</c:if>			
-																	<c:if test="${user.cGrade ==3 }">다이아</c:if>			
-																	<c:if test="${user.cGrade ==4 }">vip</c:if>			
-																	<c:if test="${user.cGrade ==5 }">관리자</c:if>
-																</td>								
-																<td>${user.cGender == 1 ? '남' : '여'}</td>	
+																<th colspan="8">회원이 존재하지 않습니다.</th>
 															</tr>
-														</c:forEach>
-													</c:if>
-												</tbody>
-											</table>
-											<div class="test" style="width:1000px">
-											<div class="test2">
-												<button type="button"  id="deleteBtn" >회원 삭제</button>
-											</div>
+														</c:if>
+														<c:if test="${not empty cList}">
+															<c:forEach var="user" items="${cList }" >
+																<tr>
+																	<td><input type="checkbox" id="cNo" name="cNo" value="${user.cNo}"/></td>	
+																	<td><a href="UpdateUserPage?cNo=${user.cNo }">${user.cId }</a></td>							
+																	<td>${user.cName }</td>			
+																	<td>${user.cNickname }</td>						
+																	<td>${user.cPw }</td>				
+																	<td>${fn:substring(user.cPhone, 0, 3)}-${fn:substring(user.cPhone, 3, 7)}-${fn:substring(user.cPhone, 7, 11)}</td>			
+																	<td>${user.cEmail }</td>			
+																	<td>
+																		<c:if test="${user.cGrade ==1 }">브론즈</c:if>			
+																		<c:if test="${user.cGrade ==2 }">실버</c:if>			
+																		<c:if test="${user.cGrade ==3 }">다이아</c:if>			
+																		<c:if test="${user.cGrade ==4 }">vip</c:if>			
+																		<c:if test="${user.cGrade ==5 }">관리자</c:if>
+																	</td>								
+																	<td>${user.cGender == 1 ? '남' : '여'}</td>	
+																</tr>
+															</c:forEach>
+														</c:if>
+													</tbody>
+												</table>
+												<div class="button_wrap">
+														<input type="button" id="deleteBtn" value="회원삭제" onclick="deleteCust(this.form)" />
+												</div>
+											</form>
 											<div class="pageView">
 												<!-- 페이지 뷰 -->
 												${pageView}
