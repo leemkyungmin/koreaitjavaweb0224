@@ -1,3 +1,4 @@
+<%@page import="java.beans.Statement"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../template/header.jsp" %>
@@ -182,6 +183,7 @@
 			});
 		});
 		
+		
 	</script>
 
 	<!-- Page Wrapper -->
@@ -250,9 +252,17 @@
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
 										<div id="custom" style="width:100%;">
+											<form name="serch" method="post">
+											<select name="keyField">
+												<option value="0">----선택----</option>
+												<option value="1">아이디</option>
+											</select>
+											<input type="text" name="keyWord" />
+											<input type= "button" value="검색" onclick="adminmanagerPage(form)"/>
+											</form>
 											<div class="center">
 												<span class="totalCustomer" style= "margin: auto;">전체 회원 수 : ${totalRecord}명</span>
-											</div>
+											</div>							
 											<form id="myForm" method="post">
 												<table border="1">
 													<thead id="user_info">
@@ -295,6 +305,7 @@
 																</tr>
 															</c:forEach>
 														</c:if>
+					
 													</tbody>
 												</table>
 												<div class="button_wrap">
