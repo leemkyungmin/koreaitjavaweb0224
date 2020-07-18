@@ -119,6 +119,12 @@
 			margin: auto;
 			margin-bottom: 5px;
 		}
+		
+		.searchbox {
+			padding: 5px;
+			border: 1px solid lightgray;
+			border-radius: 5px;
+		}
 	</style>
 
 	<script type="text/javascript">
@@ -251,18 +257,15 @@
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
-										<div id="custom" style="width:100%;">
+										<div id="custom" style="width:1000px; margin: auto;">
 											<div class="center">
 												<span class="totalCustomer" style= "margin: auto;">전체 회원 수 : ${totalRecord}명</span>
 											</div>				
-											<form name="serch" method="post">
-											<select name="keyField">
-												<option value="0">----선택----</option>
-												<option value="1">아이디</option>
-											</select>
-											<input type="text" name="keyWord" />
-											<input type= "button" value="검색" onclick="adminmanagerPage(form)"/>
-											</form>			
+													<div class="searchbox_wrap">
+														<input type="text" class="searchbox" name="query" placeholder="이름/아이디" size="15" />
+														<input type="submit" class="searchbox" value="검색" />
+													</div>
+											
 											<form id="myForm" method="post">
 												<table border="1">
 													<thead id="user_info">
