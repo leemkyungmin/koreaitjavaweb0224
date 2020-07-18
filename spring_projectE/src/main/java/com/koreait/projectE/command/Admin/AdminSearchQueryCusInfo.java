@@ -22,7 +22,7 @@ public class AdminSearchQueryCusInfo implements Command {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-		// 업제정보 검색 후 페이지 구현
+		// 회원정보 검색 후 페이지 구현
 		String pageStr = request.getParameter("page"); // 현재 페이지
 		if (pageStr == null || pageStr.isEmpty()) {
 			pageStr = "1";
