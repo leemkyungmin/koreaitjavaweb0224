@@ -103,7 +103,7 @@
 	        					});
 	                        	break;
 	                        case 1:
-	                        	alert('1111111111');
+	                        	alert('자동 가입 방지 봇을 체크해주세요.');
 	                            
 	                            break;
 	                        default:
@@ -151,7 +151,7 @@
 	            				});
 	            				break;
 	                        case 1:
-	                        	alert('1111111111');
+	                        	alert('자동 가입 방지 봇을 체크해주세요.');
 	                            return false;
 	                            break;
 	                        default:
