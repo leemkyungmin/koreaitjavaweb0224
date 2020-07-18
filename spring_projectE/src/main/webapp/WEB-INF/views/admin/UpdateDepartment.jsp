@@ -39,23 +39,6 @@
 		    font-size: 18px;
 		}
 	
-		ul {
-		    list-style-type: none;
-		    margin: 0;
-		    padding: 0;
-		    background-color: #333;
-		}	
-		ul:after{
-		    content:'';
-		    display: block;
-		    clear:both;
-		}	
-		h2	{
-	    	color: white;
-	    	float: left;
-	    	margin-left:100px;
-	    	margin-right:100px;
-	    }
 	    #listbtn {
 			float: left;
 			border-top-left-radius: 5px; 
@@ -64,6 +47,7 @@
 			border-bottom-right-radius: 5px;
 			margin-right:10px;
 		}
+		
 		button	{ 
 		    border: 1px solid skyblue; 
 		    background-color: rgba(0,0,0,0); 
@@ -109,7 +93,7 @@
 		    cursor: pointer;
 		}
 		
-		imf:last-of-type {
+		img:nth-of-type(5) {
 			margin: 0;
 		}
 		

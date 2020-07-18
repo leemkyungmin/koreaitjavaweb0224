@@ -18,7 +18,6 @@
 		table{
 			width: 900px;
 			margin: auto;
-			margin-top: 10px;
 			margin-bottom: 10px;
 		    border-top: 3px solid #168;
 			border-collapse: collapse;
@@ -57,6 +56,30 @@
 		.pageView {
 			width: 100%;
 			text-align: center;
+		}
+		
+		.totalDept {
+			display: inline-block;
+			vertical-align: bottom;
+			height: 5px;
+			line-height: 100%;
+		}
+		
+		.center {
+			width: 900px;
+			height: 40px;
+			text-align: left;
+			margin: auto;
+		}
+		
+		.searchbox_wrap {
+			float: right;
+		}
+		
+		.searchbox {
+			padding: 5px;
+			border: 1px solid lightgray;
+			border-radius: 5px;
 		}
 		
 	</style>
@@ -137,6 +160,15 @@
                   					<div class="chart-area"  style="height: 100%;">
                   						<!-- 내용 부분 -->
                     					<div id="custom" style="width:100%; margin: auto;">
+                    						<form action="searchQueryDeptAcceptInfo">
+												<div class="center">
+													<span class="totalDept">전체 수 : ${totalRecord}</span>
+													<div class="searchbox_wrap">
+														<input type="text" class="searchbox" name="query" placeholder="업체명/사업자번호" size="15" />
+														<input type="submit" class="searchbox" value="검색" />
+													</div>
+												</div>
+											</form>
 											<table border="1">
 												<tr>
 													<th>사업자번호</th>
