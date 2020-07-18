@@ -127,7 +127,7 @@
         	position: relative;
         	width: 1040px;
         }
-        tr:hover{
+        #reviewTable tbody >tr:hover{
         	background-color: lightpink; 
         }
 		

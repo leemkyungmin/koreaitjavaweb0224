@@ -55,8 +55,8 @@
 		}
 		
 		.wrap {
-			width: 600px;
-			margin: auto;
+			width: 1000px;
+			
 			margin-top: 10px;
 		}
 		
@@ -64,6 +64,8 @@
 			text-align: left;
 			margin-bottom: 10px;
 			margin-left: 50px;
+			position: relative;
+   			left: 200px;
 		}
 		
 		.small_btn {
@@ -117,7 +119,64 @@
 			border-radius: 5px;
 			border: 0;
 		}
-	
+		.image-Content {
+			width:100%;
+			position: relative;
+		    white-space: nowrap;
+		    overflow-x: auto;
+		    overflow-y: hidden;
+		    overflow-scrolling: touch;
+		    -webkit-overflow-scrolling: touch;
+		}
+		
+		.image_wrap{
+		    margin-top: 20px;
+			font-size: 0;
+	    	line-height: 0;
+		}
+		
+		.column-image {
+			display:inline-block;
+		}
+		
+		img{
+			display: inline-block;
+		    width: 200px;
+		    height: 200px;
+		    margin-right: 6px;
+		    background-size: cover;
+		    background-position: 50% 50%;
+		    background-repeat: no-repeat;
+		    cursor: pointer;
+		}
+		ol, ul, ul li {
+	    	list-style: none;
+		}
+		.Restaurant_MenuItem {
+		    display: -moz-flex;
+		    display: -ms-flexbox;
+		    display: flex;
+		    display: -webkit-box;
+		    display: -webkit-flex;
+		    -moz-flex-direction: row;
+		    -ms-flex-direction: row;
+		    flex-direction: row;
+		    -webkit-flex-direction: row;
+		    -webkit-box-direction: normal;
+		    -webkit-box-orient: horizontal;
+		    border-bottom: 1px solid #e9e9e9;
+		    margin-bottom: 4px;
+		}
+		.Restaurant_Menu {
+		    flex: 1;
+		    display: inline-block;
+		    margin-right: 30px;
+		    white-space: normal;
+		}
+		.Restaurant_MenuPrice {
+		    margin-left: auto;
+		}
+		
 	</style>
 
 
@@ -187,7 +246,7 @@
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;width: 100%;">
 										<!-- 내용 부분 -->
-										<div id="custom" style="width:760px; margin: auto;">
+										<div id="custom" style="width:1000px; x">
 											<div class="wrap">
 												<div class="back_btn">
 													<input class="small_btn" type="button" value="목록" onclick="location.href='deptAccpetPage'"/> 
@@ -218,7 +277,33 @@
 															<th>주차</th>
 															<td>${deptDTO.dParking ==1 ? '주차 가능' : '주차 불가' }</td>
 														</tr>
+														<tr>
+															<th>메뉴 </th>
+															<td>
+																<c:if test="${not empty menuList }">
+											                  		<ul class="Restaurant_MenuList">
+											                  		<c:forEach var="menu" items="${menuList }">
+											                  			<li class="Restaurant_MenuItem">
+												                          	<span class="Restaurant_Menu">${menu.mName }</span>
+												                            <span class="Restaurant_MenuPrice">${menu.mPrice }원</span>
+											                        	</li>
+											                  		</c:forEach>
+											                  		</ul>
+											                  	</c:if>
+															</td>
+														</tr>
 													</table>
+													<div class="image-Content">
+														<div class="image_wrap">
+															<c:set var="img" value="${deptDTO.dPhoto }"></c:set>
+															<!-- 업체에서 등록한 이미지 가져오기 -->
+															<c:forEach var="split" items="${fn:split(img,',')}">
+																<div class="column-image">
+																	<img alt="${split }" src="${pageContext.request.contextPath }/resources/storage/department_img/${split }">
+																</div>
+															</c:forEach>
+														</div>
+													</div>
 													<div class="btn_wrap">
 														<input class="btn" type="hidden" name="dNo" value="${deptDTO.dNo}" />
 														<input class="btn" type="button" value="승인" onclick="endorse(this.form)"/> 
@@ -226,6 +311,7 @@
 													</div>
 												</form>
 											</div>
+											
 										</div>
 		   							</div>
 								</div>
