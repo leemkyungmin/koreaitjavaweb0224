@@ -11,8 +11,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
+    
+    
     <!-- Bootstrap CSS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <title>로그인 폼</title>
 	<style type="text/css">
@@ -28,7 +31,8 @@
 	    width:100%;
 	    height:100%;
 	    margin: 0;
-  		padding-top: 80px;
+	    margin-top: 20px;	
+	    padding-top: 80px;
   		padding-bottom: 40px;
   		font-family: "Nanum Gothic", arial, helvetica, sans-serif;
   		background-repeat: no-repeat;
@@ -51,56 +55,116 @@
   		font-size: 16px;
 	}
 	</style>
+	
+	<!-- 구글 리캡챠 -->
+	 <!--여기에 div 추가 -->
+    
+ 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- 여기에 스크립트 추가 -->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+	
 	<script type="text/javascript">
 		
-	
 		// 일반회원 로그인
 		$(function(){
 			
+			
+			var captcha = false;
 			$('#login').click(function(){
+				
 				$.ajax({
-					url:'customerLogin',
-					type:'POST',
-					data: 'cId=' + $('#cId').val() + '&cPw=' + $('#cPw').val(),
-					success:function(data){
-						if (data == '1'){
-							alert('로그인 성공');
-							location.href = 'index';
-						} else {
-							alert('로그인 실패');
-						} 
-							
-					},
-					error:function() {
-						alert('AJAX 통신 실패');
-					}
-				});
+	                url: '/projectE/VerifyRecaptcha',
+	                type: 'post',
+	                data: {
+	                    recaptcha: $("#g-recaptcha-response").val()
+	                },
+	                success: function(data) {
+	                	
+	                    switch (data) {
+	                        case 0:
+	                        	$.ajax({
+	        						url:'customerLogin',
+	        						type:'POST',
+	        						data: 'cId=' + $('#cId').val() + '&cPw=' + $('#cPw').val(),
+	        						success:function(data){
+	        						
+	        							if (data == '1'){
+	        								alert('로그인 성공');
+	        								location.href = 'index';
+	        							} else {
+	        								alert('로그인 실패');
+	        							} 
+	        								
+	        						},
+	        						error:function() {
+	        							alert('AJAX 통신 실패');
+	        						}
+	        					});
+	                        	break;
+	                        case 1:
+	                        	alert('1111111111');
+	                            
+	                            break;
+	                        default:
+	                            alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]");
+	                        	break;
+	                    }
+	                }
+	            });
+				
+				
+				
 			}); // login.click
 		}); // function({})
 		
 		// 사업자 로그인
 		
 		$(function(){
-			
 			$('#login_dept').click(function(){
 				$.ajax({
-					url:'departmentLogin',
-					type:'POST',
-					data: 'dId=' + $('#dId').val() + '&dPw=' + $('#dPw').val(),
-					success:function(data){
-						if (data == '1'){
-							alert('로그인 성공');
-							location.href = 'index';
-						} else {
-							alert('로그인 실패');
-						} 
-							
-					},
-					error:function() {
-						alert('AJAX 통신 실패');
-					}
-				});
-			}); // login.click
+	                url: '/projectE/VerifyRecaptcha',
+	                type: 'post',
+	                data: {
+	                    recaptcha: $("#g-recaptcha-response").val()
+	                },
+	                success: function(data) {
+	                    switch (data) {
+	                        case 0:
+	                        	$.ajax({
+	            					url:'departmentLogin',
+	            					type:'POST',
+	            					data: 'dId=' + $('#dId').val() + '&dPw=' + $('#dPw').val(),
+	            					success:function(data){
+	            						if (data == '1'){
+	            							alert('로그인 성공');
+	            							location.href = 'index';
+	            							
+	            						} else {
+	            							alert('로그인 실패');
+	            						} 
+	            							
+	            					},
+	            					error:function() {
+	            						alert('AJAX 통신 실패');
+	            					}
+	            				});
+	            				break;
+	                        case 1:
+	                        	alert('1111111111');
+	                            return false;
+	                            break;
+	                        default:
+	                            alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]");
+	                        	break;
+	                    }
+	                }
+	            });
+				
+				
+			
+			});
+				 // login.click
 		}); // function({})
 		
 		
@@ -181,6 +245,13 @@
 				$('.customer').css('background','gray');
 				$('.dept').css('background','#007bff');
 			});
+			$('.recaptcha-checkbox').change(function(){
+				if($('aria-checked').val() =="true"){
+					captcha=true;
+				}else{
+					captcha=false;
+				}
+			})
 		});
 		 
 	</script>
@@ -262,6 +333,39 @@
 		</div>
 	</div>
 	
+	
+	
+ 
+    <!-- <script>
+        $(document).ready(function() {
+            $("#login").click(function() {
+                $.ajax({
+                    url: '/projectE/VerifyRecaptcha',
+                    type: 'post',
+                    data: {
+                        recaptcha: $("#g-recaptcha-response").val()
+                    },
+                    success: function(data) {
+                        switch (data) {
+                            case 0:
+                                alert("자동 가입 방지 봇 통과");
+                                break;
+ 
+                            case 1:
+                                alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
+                                return false;
+ 
+                            default:
+                                alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]");
+                                return false;
+                        }
+                    }
+                });
+            });
+        });
+ 
+    </script> -->
+	<div class="g-recaptcha" data-sitekey="6Lfi_rEZAAAAAJofp01ZBq9JJ5p3cwmrXPyG6ecS"></div>
 	<div class="modal">
 	</div>
     <!-- Optional JavaScript -->

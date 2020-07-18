@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%> 
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="ko">
+
     <head>
     <style>
     	#pwUpdate{
@@ -39,7 +42,6 @@
 			$('#cPwCheckBtn').click(function() {
 				$('#pwUpdate').css('display','block')		
 			});
-			 
 			var NicknamePass = false;
            	$('#nickname').blur(function() {
         		$.ajax({
@@ -93,29 +95,7 @@
 				
 			});
 			
-			$('#cPhotoUpdate').click(function() {
-				
-				if(confirm('프로필 사진을 변경하시겠습니까?')){
-					$.ajax({
-						url : 'cPhotoUpdate',
-						type : 'POST',
-						data : 'cPhoto=' + $('#cPhoto').val() + '&cNo=' + no,
-						success : function(data) {
-							if (data == '1') {
-								alert('변경되었습니다.');
-								location.href = 'myPage';
-							} else {
-								alert('변경에 실패했습니다.');
-							}
-						},
-						error : function() {
-							alert('AJAX 오류 발생 자폭 3초전');
-						}
-					});
-				}
-				
-			});
-			
+
 			$('#cPwUpdateBtn').click(function() {
 				
 				if ($('#cPw').val() == "") {
@@ -184,9 +164,63 @@
 				f.submit();
 			}
 		}
-	
+		
+		function fn_PhotoUpdate(f) {
+			if (confirm('업체 사진을 업데이트 하시겠습니까?')){
+				f.action = 'cPhotoUpdate';
+				f.submit();
+			}
+		}
+		
+		
+		
+		
 	</script>
-
+	
+	<style type="text/css">
+	
+		table {
+			width: 1000px;
+			height: 100px;
+			text-align: center;
+		}
+		
+		table > thead {
+			background: lightgray;
+			font-weight: bold; 
+		}
+		
+		table > tbody > tr:hover{
+			background-color: lightpink;
+		}
+		
+        
+        #Modal .modal-content{
+          width:1000px;
+          height:100%;
+          margin:100px auto;
+          padding:20px 10px;
+          background:#fff;
+          
+        }
+        
+         #Modal .modal_layer{
+          position:fixed;
+          top:0;
+          left:0;
+          width:100%;
+          height:100%;
+          background:rgba(0, 0, 0, 0.5);
+          z-index:-1;
+        }
+        #myModal {
+        	position: relative;
+        	width: 1040px;
+        }
+       
+		
+	</style>
+	
 </head>
 <body>
         <div class="container"><!-- 좌우측의 공간 확보 -->
@@ -196,46 +230,33 @@
             
             <!--// 헤더 들어가는 부분 -->
             <!-- 모달창 -->
-            <div class="modal fade" id="defaultModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title">알림</h4>
+            <div class="modal fade" id="Modal" data-backdrop="static">
+                <div class="modal-dialog" data-backdrop="static">
+                    <div class="modal-content" data-backdrop="static">
+                        <div class="modal-header" data-backdrop="static">
+                            <button type="button" class="close"  data-dismiss="modal" aria-hidden="true">
+								<i class="fas fa-times fa-3x"></i>
+							</button>
                         </div>
                         <div class="modal-body">
-                            <p class="modal-contents"></p>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                        </div>
+                        <div class="modal_layer" data-backdrop="static"></div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
             <!--// 모달창 -->
-            <!-- 모달창 -->
-            <div class="modal fade" id="defaultModal2">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 class="modal-title">인증</h4>
-                        </div>
-                        <form>
-                        <div class="modal-body">
-                            <p class="modal-contents"></p><br/>
-                        	<input type="text" id="emailAuthNum" name="emailAuthNum" placeholder="인증번호를 입력하세요.">
-							<input type="button" id="emailAuthBtn" value="인증하기"  />	                    
-							<!-- onclick="fn_emailAuthConfirm(this.form)" -->    	
-                        </div>
-                        </form>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                        </div>
-                    </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-            </div><!-- /.modal -->
-            <!--// 모달창 -->
+            <script type="text/javascript">
+            	
+            $(function(){
+            	$('#reviewTable tr').click(function(e){
+            		$('.modal-body').empty();
+            		$('#Modal .modal-body').load($(this).data('remote'));
+            		
+            	});
+            })
+            
+            </script>
+            
             <hr/>
             <!-- 본문 들어가는 부분 -->
                 
@@ -257,7 +278,7 @@
                     		<input type="password" placeholder="기존 비밀번호 입력" id="cPw" name="cPw" /> <br/>
                     		새로운 비밀번호 입력 <br/>
                     		<input type="password" placeholder="새로운 비밀번호 입력" id="cPwUpdate" name="cPwUpdate" /> <br/>
-                    		새로운 비밀번호 확인 <br/>
+                    		새로운 비밀번호 확인 <br/> 
                     		<input type="password" placeholder="비밀번호 확인" id="cPwCheck" name="cPwCheck" /> <br/>
                     		<div id="temp" class="temp"></div> <br/>
                     		<input type="button" value="비밀번호 변경" class="btn btn-primary" id="cPwUpdateBtn" name="cPwUpdateBtn" />
@@ -297,7 +318,8 @@
                 	<label for="inputPhoto" class="col-lg-2 control-label">프로필 사진</label><br/> &nbsp;&nbsp;&nbsp;
                 	<div id="photoBox" style="width:50; height:50;">
                 		<input type="file" id="cPhoto" name="cPhoto" onchange="fileCheck(this)" accept="image/jpeg,image/png,image/jpg" /> <br/>
-                		<input type="button" value="업로드 하기" class="btn btn-primary" id="cPhotoUpdate"  />
+                		<input type="button" value="업로드 하기" class="btn btn-primary" id="cPhotoUpdate" onclick="fn_PhotoUpdate(this.form)"  />
+
                 	</div>
                 </div>
                 <div class="form-group" id="divPhoneNumber">
@@ -319,6 +341,77 @@
                         </select>
                     </div>
                 </div>
+                <div>
+                	내가 쓴 리뷰 (클릭하면 리뷰로 이동합니다.)
+                	<div class="border">
+					     <table border="1" id="reviewTable">
+							<thead>
+								<tr>
+									<td>업체</td>
+									<td>제목</td>
+									<td>내용</td>
+									<td>별점</td>
+								<tr>	
+							</thead>		 
+							<tbody>
+								<c:if test="${empty list }">
+									<tr>
+										<td colspan="5">
+											없음
+										</td>
+									</tr>
+								</c:if>
+								<c:if test="${not empty list }">
+									<c:forEach var="rDTO" items="${list }" varStatus="name">
+										<tr id="review" data-remote="reviewDetail?rNo=${rDTO.rNo}"data-toggle="modal" data-target="#Modal">
+											<td>${dList.get(name.count-1)}</td>
+											<td>${rDTO.rTitle }</td>
+											<td>${rDTO.rContent }</td>
+											<td>${rDTO.rPoint }<input type="hidden" value="${rDTO.rNo }" name="rNo" id="rNo"/></td>
+										</tr>
+									</c:forEach>
+								</c:if>
+							</tbody>
+						</table>		
+                	</div>
+                </div>
+                <div>
+                	예약 현황 (클릭하면 예약한 업체로 이동합니다.)
+                	<div class="border2">
+					     <table border="1">
+							<thead>
+								<tr>
+									<td>업체</td>
+									<td>업체 전화번호</td>
+									<td>예약일</td>
+									<td>인원</td>
+								<tr>	
+							</thead>		 
+							<tbody>
+								<c:if test="${empty list2 }">
+									<tr>
+										<td colspan="4">
+											없음
+										</td>
+									</tr>
+								</c:if>
+								<c:if test="${not empty list2 }">
+									<c:forEach var="aDTO" items="${list2 }" varStatus="name">
+										<tr onclick="location.href='viewPage?dSaup_no=' + ${aDTO.dSaup_no}">
+											<td>${dList2.get(name.index*2)}</td>
+											<td>${dList2.get(name.index*2+1) }</td>
+											<td>${aDTO.aDate }</td>
+											<td>${aDTO.aP_count}</td>
+										</tr>
+									</c:forEach>
+								</c:if>
+							</tbody>
+						</table>		
+                	</div>
+                </div>
+                
+                <br/><br/>
+                
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
                         <input type="button" value="돌아가기" class="btn btn-primary" onclick="index" />

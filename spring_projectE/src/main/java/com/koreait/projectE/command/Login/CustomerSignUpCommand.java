@@ -51,7 +51,7 @@ public class CustomerSignUpCommand implements Command {
 			// 2) 업로드
 			
 			// 2-1) 파일이 저장될 서버 내 경로(/resources/storage)를 알아낸다.
-			String realPath = mr.getSession().getServletContext().getRealPath("/resources/storage");
+			String realPath = mr.getSession().getServletContext().getRealPath("/resources/storage/user_img");
 			
 			// 2-2) /resources/storage 경로가 존재하지 않으면 필요한 경로(디렉토리)를 만든다.
 			// new File(경로) : 경로로 디렉토리만 사용되면 디렉토리로 인식한다.

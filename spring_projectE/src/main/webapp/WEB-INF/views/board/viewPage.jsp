@@ -14,6 +14,7 @@
 <title>${deptDTO.dName }&nbsp;${deptDTO.dType }</title>
 
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
 <link href="resources/assets/style/ViewPage.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> 
@@ -115,6 +116,7 @@
 		});
 	}
 	
+	
 
 
 	
@@ -163,6 +165,51 @@
         	bottom: 0;
         	right: 0;
         }
+        .RestaurantReviewItem__UserPictureWrap >img{
+			width: 60px;
+		    height: 60px;
+		    margin-bottom:10px;
+		    border-radius: 100%;
+		    background-size: cover;
+		    background-position: 50% 50%;
+		    background-repeat: no-repeat;
+		}
+		.review_title{
+			margin-bottom: 10px;
+			padding-bottom:10px;
+			border-bottom: 1px solid lightgray;
+		}
+		.RestaurantReviewItem__ReviewTextWrap{
+			text-align: left;
+		}
+		.title,.content{
+			display: inline-block;
+    		margin-right: 30px;
+		}
+		.review_titles{
+			display: inline-block;
+			height: 100%;
+		}
+		.review_content{
+			display:inline-block;
+			height: 100%;
+	    line-height: 100%;
+	    vertical-align: middle;
+		}
+		.RestaurantReviewItem__ReviewContent{
+			min-height: 157px;
+		}
+		
+		.nav-wrap {  
+    		height: 45px; 	
+  		}
+  		.nav-list-wrap {
+			padding-top: 10px;
+		}
+	
+		.nav-user-wrap {
+			padding-top: 10px;
+		}
 </style> 
 
 </head>
@@ -389,11 +436,12 @@
 				  </div>
 				  
 				  <div class="modal_layer" data-backdrop="static"></div>
-				</div>
+				</div>  
 				
 				<script type="text/javascript">
 					
 					$('#myModal').on('show.bs.modal',function(e){
+						
 						var button = $(e.relatedTarget);
 						var modal = $(this);
 						modal.find('.modal-body').load(button.data("remote"));
@@ -457,7 +505,12 @@
 	    			<div class="RestaurantReviewItem__User">
 	       
 		      	<div class="RestaurantReviewItem__UserPictureWrap">
-		       		 <img class="RestaurantReviewItem__UserPicture loaded" alt="${review.cPoto }" src="${pageContext.request.contextPath }/resources/storage/user_img/${review.cPoto }">
+		      		 <c:if test="${review.cPoto !='' }">
+			       		 <img class="RestaurantReviewItem__UserPicture loaded" alt="${review.cPoto }" src="${pageContext.request.contextPath }/resources/storage/user_img/${review.cPoto }">
+		      		 </c:if>
+		      		  <c:if test="${review.cPoto =='' }">
+			       		 <img class="RestaurantReviewItem__UserPicture loaded" alt="기본이미지" src="${pageContext.request.contextPath }/resources/storage/user_img/unUseImage">
+		      		 </c:if>
 		     	 </div>
 		      
 		     	  
@@ -470,15 +523,22 @@
 		     	 </ul>
 	      	 -->
 	      	
-	    		</div>
+	    		</div> 
 			    <div class="RestaurantReviewItem__ReviewContent">
 			    	
 			      <div class="RestaurantReviewItem__ReviewTextWrap">
 					
-			        <p class="RestaurantReviewItem__ReviewText">
-			        	<pre>${review.rTitle }<br/></pre>
-			         	 <pre>${review.rContent }</pre>
-			        </p>
+			        <div class="RestaurantReviewItem__ReviewText">
+			        	<div class="review_title">
+			         	 <pre ><span class="title">제목</span>${review.rTitle}</pre>
+			        	</div>
+			         	 <div class="review_titles">
+			         	 	<span class="content">내용</span>
+			         	 </div>
+			         	 <div class="review_content">
+				         	 <pre>${review.rContent }</pre>
+			         	 </div>
+			        </div>
 					
 		       		 <span class="RestaurantReviewItem__ReviewDate">${review.rWriter_date }</span>
 				      </div>

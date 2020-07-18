@@ -1,10 +1,12 @@
 package com.koreait.projectE.dao;
 
-import java.util.Map;
+import java.util.ArrayList;
 
+import com.koreait.projectE.dto.AppointmentDTO;
 import com.koreait.projectE.dto.CustomerDTO;
 import com.koreait.projectE.dto.DepartmentDTO;
 import com.koreait.projectE.dto.DepartmentLoginDTO;
+import com.koreait.projectE.dto.ReviewDTO;
 
 public interface LoginDAO {
    
@@ -13,6 +15,9 @@ public interface LoginDAO {
 	
 	// 업체 회원가입
 	public void deptSignUp(String dSaup_no, String dId, String dPw );
+	
+	// 일반 회원 사진 업데이트
+	public void customerPhotoUpdate(String cNo, String saveFilename);
 	
 	// 일반 회원 아이디 중복체크
 	public int idCheck(String cId);
@@ -34,6 +39,18 @@ public interface LoginDAO {
 	
 	// 일반 회원 마이홈
 	public CustomerDTO selectBycNo(int cNo);
+	
+	// 일반 회원 마이홈 리뷰
+	public ArrayList<ReviewDTO> customerMyReview(int cNo);
+	
+	// 리뷰 업체 이름 꺼내오기
+	public String deptName(String dSaup_no);
+	
+	// 예약 업체 전화번호 꺼내오기
+	public String deptPhone(String dSaup_no);
+	
+	// 일반 회원 예약 현황
+	public ArrayList<AppointmentDTO> customerMyAppointment(int cNo);
 	
 	// 일반 회원 비밀번호 변경
 	public int pwUpdate(String cPw, int cNo);

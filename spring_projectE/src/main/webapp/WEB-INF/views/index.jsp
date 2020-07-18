@@ -50,28 +50,45 @@
 	
 	</script>
 	
-	<script>
-		var cookieList = Cookies.getJSON('query');
-		alert(cookieList);
+	 <script>
+	 	var json_list = Cookies.getJSON('query');
+		$(function(){
+			var html ='';
+			console.log(json_list.length);
+			console.log(json_list);
+			for(var i=json_list.length-1; i>=0; i--){
+				for(key in json_list[i]){
+					if(json_list[i][key] !=""){
+						html +='<div class="item"><a href="searchPage?main-search='+json_list[i][key]+'">'+json_list[i][key]+'</a></div>';
+					}
+				}
+			}
+			$('.invisible').html(html);
+		});
 		
-	</script>
+	</script> 
 	
 	
 	<style>
 		.invisible {
 			margin-top: 1px;
 			margin-left:80px;
-			top: 55px;
+			top: 61px;
 			width: 500px;
 			position: absolute;
 			background: white;
+			z-index: 999;
+			border: 2px solid #ff7100;
+			border-top: 0;
 		}
 		
 		.item {
 			height: 1.8em;
 			width: 220px;
+			margin-left: 5px;
+			margin-top: 10px;
 			outline: none;
-			font-size: 30px;
+			font-size: 20px;
     		padding-left: 15px;
     		color: lightgray;
 		}
@@ -83,6 +100,7 @@
 		#aa {
 			text-decoration: none;
 		}
+		
 
 	</style>
 	
@@ -97,13 +115,13 @@
 	 		<div class="main-search">
 				<div class="icon-box"><i class="fas fa-search"></i></div>
 				<form class="search-form" action="searchPage">
-				<input id="search-input" class="HomeSearchInput" name="main-search" type="text" maxlength="50" placeholder="지역, 식당 또는 음식" autocomplete="off" >
+				<input id="search-input" class="HomeSearchInput" name="main-search" type="text" maxlength="50" placeholder="지역명, 맛집 이름" autocomplete="off" >
 				<input class="btn-search" type="submit" value="검색">
 
     			</form>
 				<div class="invisible" style="display: none">
 			       
-			       <div class="item"><a href="searchPage?main-search=" ></a></div>
+			       <!-- <div class="item"><a href="searchPage?main-search=" ></a></div> -->
 
     			</div>
 			</div>					
@@ -115,12 +133,8 @@
 		</video>
 	</div>
 	
-
-	${sessionScope }
-	
-	<a href="viewPage?dSaup_no=11111111111">view페이지 테스트</a><br/><br/>
-
-	<a href="loginChoicePage">테스트용 로그인하러가기</a> <!-- 테스트용 수정하셔도 됩니다. -->
+	<br/><br/>
+	<a href="adminmanagePage">관리자 페이지</a>
 	
 	<%@ include file="main.jsp" %>
 	

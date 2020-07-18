@@ -1,6 +1,6 @@
 package com.koreait.projectE.contorller;
 
-import java.util.Map;
+import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,13 +19,15 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.koreait.projectE.command.Login.CustomerEmailAuthCommand;
 import com.koreait.projectE.command.Login.CustomerFindIdPwCommand;
 import com.koreait.projectE.command.Login.CustomerMyPageCommand;
+import com.koreait.projectE.command.Login.CustomerMyPagePhotoUpdateCommand;
 import com.koreait.projectE.command.Login.CustomerSignOutCommand;
 import com.koreait.projectE.command.Login.CustomerSignUpCommand;
 import com.koreait.projectE.command.Login.DepartmentMyPageCommand;
 import com.koreait.projectE.command.Login.DepartmentUpdateCommand;
 import com.koreait.projectE.command.Login.DeptSignOutCommand;
 import com.koreait.projectE.command.Login.DeptSignUpCommand;
-import com.koreait.projectE.command.Login.deptFindIdPwCommand;
+import com.koreait.projectE.command.Login.VerifyRecaptcha;
+import com.koreait.projectE.command.Login.DeptFindIdPwCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.LoginDAO;
 import com.koreait.projectE.dto.CustomerDTO;
@@ -71,6 +73,11 @@ public class LoginController {
 		return "login/deptSignUpPage";
 	}
 	
+	@RequestMapping("customerMyPage")
+	public String custoemrMyPage() {
+		return "login/customerMyPage";
+	}
+	
 	@RequestMapping("myPage")
 	public String myPage(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
@@ -95,7 +102,13 @@ public class LoginController {
 		return "redirect:loginChoicePage"; 
 	}
 	
-	
+	@RequestMapping(value="cPhotoUpdate", method=RequestMethod.POST)
+	public String cPhotoUpdate(MultipartHttpServletRequest mr, Model model) {
+		model.addAttribute("mr", mr);
+		command = new CustomerMyPagePhotoUpdateCommand();
+		command.execute(sqlSession, model);
+		return "redirect:myPage";
+	}
 	
 	@RequestMapping(value="deptUpdate", method=RequestMethod.POST)
 	public String deptUpdate(MultipartHttpServletRequest mr, Model model) {
@@ -176,6 +189,7 @@ public class LoginController {
 			request.getSession().setAttribute("cId", cDTO.getcId());
 			request.getSession().setAttribute("cNo", cDTO.getcNo());
 			request.getSession().setAttribute("cNickname", cDTO.getcNickname());
+			request.getSession().setAttribute("cGrede", cDTO.getcGrade());
 			result = "1";
 		}
 				 
@@ -224,12 +238,7 @@ public class LoginController {
 		return lDAO.pwUpdate(cPw, cNo) + "";
 	}
 	
-	@RequestMapping(value="cPhotoUpdate", method=RequestMethod.POST, produces="text/html; charset=utf-8")
-	@ResponseBody
-	public String cPhotoUpdate(@RequestParam("cPhoto") String cPhoto, @RequestParam("cNo")int cNo) {
-		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
-		return lDAO.cPhotoUpdate(cPhoto, cNo) + "";
-	}
+	
 	
 	@RequestMapping(value="deptpwUpdate", method=RequestMethod.POST, produces="text/html; charset=utf-8")
 	@ResponseBody
@@ -335,7 +344,7 @@ public class LoginController {
 			model.addAttribute("dEmail", dEmail);
 			model.addAttribute("type", "id");
 			model.addAttribute("mailSender", mailSender);
-			deptFindIdPwCommand cmd =new deptFindIdPwCommand();
+			DeptFindIdPwCommand cmd =new DeptFindIdPwCommand();
 			 cmd.execute(sqlSession, model);
 			message = "입력하신 메일에서 아이디를 확인해주세요.";
 		}else {
@@ -364,7 +373,7 @@ public class LoginController {
 			model.addAttribute("dEmail", dEmail);
 			model.addAttribute("type", "pw");
 			model.addAttribute("mailSender", mailSender);
-			deptFindIdPwCommand cmd =new deptFindIdPwCommand();
+			DeptFindIdPwCommand cmd =new DeptFindIdPwCommand();
 			String emailAuth = (String) cmd.execute(sqlSession, model);
 			ldao.deptpwUpdate(emailAuth, dSaup_no);
 			message ="등록된 이메일로 임시 비밀번호를 보냈습니다.";
@@ -400,9 +409,28 @@ public class LoginController {
 		if (session != null) {
 			session.invalidate();
 		}
-		return "redirect:index";
+		return "redirect:index"; 
 	}
 	
+	
+	@ResponseBody
+    @RequestMapping(value = "VerifyRecaptcha", method = RequestMethod.POST)
+    public int VerifyRecaptcha(HttpServletRequest request) {
+        VerifyRecaptcha.setSecretKey("6Lfi_rEZAAAAABM3-IKPiYnd2CdgjAaiR9_SOiHw");
+        String gRecaptchaResponse = request.getParameter("recaptcha");
+        System.out.println(gRecaptchaResponse);
+        //0 = 성공, 1 = 실패, -1 = 오류
+        try {
+            if(VerifyRecaptcha.verify(gRecaptchaResponse))
+                return 0;
+            else return 1;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+
 	
 }
 

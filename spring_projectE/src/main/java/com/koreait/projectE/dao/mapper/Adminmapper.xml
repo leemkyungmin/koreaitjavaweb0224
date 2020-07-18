@@ -5,12 +5,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.projectE.dao.adminDAO">
 	
-	<select id="getCustomList" resultType="com.koreait.projectE.dto.CustomerDTO">
-		select * from CUSTOMER
+	<select id="getCustomList" parameterType="Map" resultType="com.koreait.projectE.dto.CustomerDTO">
+		SELECT * FROM (SELECT ROWNUM AS RN, A.* FROM (SELECT * FROM CUSTOMER ORDER BY CNO DESC) A)
+		WHERE RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
 	
-	<select id="getDepartmentList" resultType="com.koreait.projectE.dto.DepartmentDTO">
-		select * from DEPARTMENT_INFO
+	<select id="getTotelRecord" resultType="int">
+		SELECT COUNT(*) FROM CUSTOMER
+	</select>
+	
+	<select id="getDepartmentList" parameterType="Map" resultType="com.koreait.projectE.dto.DepartmentDTO">
+		SELECT * FROM (SELECT ROWNUM AS RN, A.* FROM (SELECT * FROM DEPARTMENT_INFO ORDER BY DNO DESC) A)
+		WHERE RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+	
+	<select id="getTotelDept" resultType="int">
+		SELECT COUNT(*) FROM DEPARTMENT_INFO
 	</select>
 	
 	<select id="UpdateUserPage" resultType="com.koreait.projectE.dto.CustomerDTO">
@@ -45,8 +55,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	
-	<select id="deptAcceptList" resultType="com.koreait.projectE.dto.DepartmentDTO">
-		SELECT * FROM DEPARTMENT_INFO WHERE DACCPET = 0
+	<select id="deptAcceptList" parameterType="Map" resultType="com.koreait.projectE.dto.DepartmentDTO">
+		SELECT * FROM (SELECT ROWNUM AS RN, A.* FROM (SELECT * FROM DEPARTMENT_INFO WHERE DACCPET = 0 ORDER BY DNO DESC) A)
+		WHERE RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+	
+	
+	<select id="deptAcceptCount" resultType="int">
+		SELECT COUNT(*) FROM DEPARTMENT_INFO WHERE DACCPET = 0
 	</select>
 	
 	<select id="deptAcceptView" resultType="com.koreait.projectE.dto.DepartmentDTO">
@@ -60,5 +76,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deptReject">
 		DELETE FROM DEPARTMENT_INFO WHERE DNO = #{dNo}
 	</delete>
+
+	<select id="customerReview" parameterType="Map" resultType="com.koreait.projectE.dto.ReviewDTO">
+		SELECT * FROM (SELECT ROWNUM AS RN, A.* FROM (SELECT * FROM REVIEW WHERE CNO=#{cNo} order by rNo desc) A)
+		WHERE RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+	<select id="searchQueryDeptInfo" parameterType="Map" resultType="com.koreait.projectE.dto.DepartmentDTO">		
+		SELECT * FROM (SELECT ROWNUM AS RN, A.* FROM (SELECT * FROM DEPARTMENT_INFO WHERE DNAME LIKE '%' || #{query} || '%' OR DSAUP_NO LIKE '%' || #{query} || '%' ORDER BY DNO DESC) A)
+		WHERE RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+	
+	<select id="searchQueryDeptCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM DEPARTMENT_INFO WHERE DNAME LIKE '%' || #{query} || '%' OR DSAUP_NO LIKE '%' || #{query} || '%'
+
+	</select>
 	
 </mapper>

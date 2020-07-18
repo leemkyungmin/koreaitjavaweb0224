@@ -28,7 +28,7 @@ public class ReviewInsertCommand implements Command {
 		int cNo = Integer.parseInt(mrequest.getParameter("cNo"));
 		String dSaup_no = mrequest.getParameter("dSaup_no");
 		
-		ReviewDAO rDAO = sqlSession.getMapper(ReviewDAO.class);
+		ReviewDAO rDAO = sqlSession.getMapper(ReviewDAO.class);  
 		
 		String rPoto = ""; // 실제 DB에 들어가는 필드
 		int count = 0;

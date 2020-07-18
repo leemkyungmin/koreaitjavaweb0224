@@ -103,12 +103,18 @@
 				<li class="nav-search-wrap" >
 					<form class="nav-search-form" action="searchPage">
 					<div class="nav-icon-box"><i class="fab fa-searchengin"></i></div>
-					<input id="search_keyword" class="nav-HomeSearchInput" name="main-search" type="text" maxlength="50" placeholder="지역 또는 식당" autocomplete="off">
+					<input id="search_keyword" class="nav-HomeSearchInput" name="main-search" type="text" maxlength="50" placeholder="지역 또는 맛집 이름" autocomplete="off">
 					<input class="nav-search-submit" type="submit" value="전송">
 					</form>
 				</li>
+				<c:if test="${sessionScope !=null && sessionScope.cGrede==5 }">
+					<li class="nav-list-wrap">
+						<a href="adminmanagePage" class="nav-btn">관리자 페이지로 이동하기</a>
+					</li>
+				</c:if>
+				
 				<li class="nav-list-wrap">
-					<a href="main" class="nav-btn">맛집 리스트</a>
+					<a href="main2" class="nav-btn">맛집 리스트</a>
 				</li>
 				
 				<li class="nav-user-wrap">

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.BoardDAO;
+import com.koreait.projectE.dto.DepartmentDTO;
 import com.koreait.projectE.dto.ReviewDTO;
 
 public class ReviewDetailCommand implements Command {
@@ -20,11 +21,12 @@ public class ReviewDetailCommand implements Command {
 		Map<String,Object> map = model.asMap();
 		HttpServletRequest request =(HttpServletRequest) map.get("request");
 		int rNo= Integer.parseInt(request.getParameter("rNo"));
-		
+		System.out.println(rNo);
 		BoardDAO bdao = sqlSession.getMapper(BoardDAO.class);
 		ReviewDTO rdto =bdao.reivewDetail(rNo);
-		
+		DepartmentDTO deptdto = bdao.DepartView(rdto.getdSaup_no());
 		model.addAttribute("rdto", rdto);
+		model.addAttribute("deptdto", deptdto); 
 		
 	}
 
