@@ -28,38 +28,6 @@
 		    clear: both;
 		}
 		
-		h2	{
-	    	color: white;
-	    	float: left;
-	    	margin-left:100px;
-	    	margin-right:100px;
-	    	height:78px;
-	    	line-height: 78px;
-	    }
-	    
-	    .top_button {
-			float: left;
-			border-radius: 5px;
-			margin-right:10px;
-		    border: 1px solid skyblue; 
-		    background-color: rgba(0,0,0,0); 
-		    color: skyblue; 
-		    padding: 5px; 
-		    width:80px;
-		    height:78px;
-		}
-		
-		.top_button:hover{ 
-			color:white; 
-			background-color: skyblue; 
-		}
-		
-		.wrap {
-			width: 1000px;
-			
-			margin-top: 10px;
-		}
-		
 		.back_btn {
 			text-align: left;
 			margin-bottom: 10px;
@@ -79,16 +47,16 @@
 		}
 		
 		table {
-			width: 500px;
-			margin: auto;
-			margin-bottom: 10px;
+			width: 50%;
 			border-top: 3px solid #168;
 			border-bottom: 3px solid #168;
 			border-collapse: collapse;
+			float: left;
 		}
 		
 		table th {
-			padding: 10px 0;
+			width: 20%;
+			padding: 5px;
 			color: #168;
 			background: #f0f6f9;
 			text-align: center;
@@ -99,6 +67,7 @@
 		}
 		
 		table td {
+			width: 80%;
 			text-align: left;
 			padding: 5px;
 			padding-left: 15px;
@@ -108,6 +77,7 @@
 		.btn_wrap {
 			margin: auto;
 			text-align: center;
+			clear: left;
 		}
 		
 		.btn {
@@ -119,6 +89,12 @@
 			border-radius: 5px;
 			border: 0;
 		}
+		
+		.map {
+			float: left;
+			margin-left: 36px;
+		}
+		
 		.image-Content {
 			width:100%;
 			position: relative;
@@ -131,6 +107,7 @@
 		
 		.image_wrap{
 		    margin-top: 20px;
+		    margin-bottom: 20px;
 			font-size: 0;
 	    	line-height: 0;
 		}
@@ -149,9 +126,15 @@
 		    background-repeat: no-repeat;
 		    cursor: pointer;
 		}
-		ol, ul, ul li {
+		
+		img:nth-of-type(5) {
+			margin: 0;
+		}
+		
+		ul, ul li {
 	    	list-style: none;
 		}
+		
 		.Restaurant_MenuItem {
 		    display: -moz-flex;
 		    display: -ms-flexbox;
@@ -244,13 +227,10 @@
 									<h6 class="m-0 font-weight-bold text-primary">업체 승인 리스트</h6>
 								</div>
 								<div class="card-body"  style="height: 100%;">
-									<div class="chart-area"  style="height: 100%;width: 100%;">
+									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
-										<div id="custom" style="width:1000px; x">
+										<div id="custom" style="width: 66.5%; margin:auto; margin-top: 50px;">
 											<div class="wrap">
-												<div class="back_btn">
-													<input class="small_btn" type="button" value="목록" onclick="location.href='deptAccpetPage'"/> 
-												</div>
 												<form method="post">
 													<table>
 														<tr>
@@ -293,6 +273,7 @@
 															</td>
 														</tr>
 													</table>
+													<div class="map" id="map" style="width:45%;height:270px;"></div>
 													<div class="image-Content">
 														<div class="image_wrap">
 															<c:set var="img" value="${deptDTO.dPhoto }"></c:set>
@@ -306,6 +287,7 @@
 													</div>
 													<div class="btn_wrap">
 														<input class="btn" type="hidden" name="dNo" value="${deptDTO.dNo}" />
+														<input class="small_btn" type="button" value="목록" onclick="location.href='deptAccpetPage'"/> 
 														<input class="btn" type="button" value="승인" onclick="endorse(this.form)"/> 
 														<input class="btn" type="button" value="거절" onclick="reject(this.form)"/> 
 													</div>
@@ -340,6 +322,46 @@
 			form.action='deptReject';
 			form.submit();
 		}
+	</script>
+	
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=395b351aabfbda166c782bab5c1101f8&libraries=services"></script>
+	<script>
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = {
+		        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };  
+		
+		// 지도를 생성합니다    
+		var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+	
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch('${deptDTO.dAddress}', function(result, status) {
+			
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+		
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+		
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;"><strong class="rate-point">${deptDTO.dName}</strong></div>'
+		        });
+		        infowindow.open(map, marker);
+		
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		    } 
+		});    
 	</script>
 	
 	<!-- Scroll to Top Button-->
