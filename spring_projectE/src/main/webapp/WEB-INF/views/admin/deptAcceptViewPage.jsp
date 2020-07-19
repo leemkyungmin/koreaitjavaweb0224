@@ -19,7 +19,7 @@
 		    list-style-type: none;
 		    margin: 0;
 		    padding: 0;
-		    background-color: #333;
+	
 		}
 		
 		ul:after{
@@ -162,7 +162,11 @@
 		
 	</style>
 
-
+	<c:if test="${sessionScope.cGrede !=5 }">
+		<script>
+			location.href="index";
+		</script>
+	</c:if>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 	

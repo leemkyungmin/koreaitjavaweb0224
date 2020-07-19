@@ -83,7 +83,11 @@
 		}
 		
 	</style>
-	
+	<c:if test="${sessionScope.cGrede !=5 }">
+		<script>
+			location.href="index";
+		</script>
+	</c:if>
 	<script type="text/javascript">
 	
 		function goBack() {

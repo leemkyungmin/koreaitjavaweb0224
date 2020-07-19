@@ -56,7 +56,7 @@
 			display: inline-block;
 			vertical-align: bottom;
 			height: 5px;
-			line-height: 100%;
+			line-height: 90%;
 		}
 		.center {
 			width: 950px;
@@ -76,7 +76,11 @@
 		}
 		
 	</style>
-
+	<c:if test="${sessionScope.cGrede !=5 }">
+		<script>
+			location.href="index";
+		</script>
+	</c:if>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 	
@@ -130,17 +134,17 @@
 			<!-- Main Content -->
 			<div id="content" style="height: 90%;">
 				<!-- Begin Page Content -->
-				<div class="container-fluid"  style="height: 100%;">
+				<div class="container-fluid"  style="height: 90%;">
 					<!-- Content Row -->
-					<div class="row" style="height: 100%; width:100%;">
+					<div class="row" style="height: 90%; width:100%;">
 						<div class="col-xl-8" style="flex: 0 0 100%; max-width: 100%; margin-top: 20px;">
 							<!-- Area Chart -->
 							<div class="card shadow mb-4"  style="height: 90%; width:100%;">
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">업체 정보 관리</h6>
 								</div>
-								<div class="card-body"  style="height: 100%;">
-									<div class="chart-area"  style="height: 100%;">
+								<div class="card-body"  style="height: 90%;">
+									<div class="chart-area"  style="height: 90%;">
 										<!-- 내용 부분 -->
 										<div id="custom" style="width:950px; margin: auto;">
 											<form action="searchQueryDeptInfo">
