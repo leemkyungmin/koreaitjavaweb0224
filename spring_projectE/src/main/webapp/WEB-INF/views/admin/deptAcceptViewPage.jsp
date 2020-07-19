@@ -290,14 +290,13 @@
 														</div>
 													</div>
 													<div class="btn_wrap">
-														<input class="btn" type="hidden" name="dNo" value="${deptDTO.dNo}" />
+														<input type="hidden" name="dNo" value="${deptDTO.dNo}" />
 														<input class="small_btn" type="button" value="목록" onclick="location.href='deptAccpetPage'"/> 
 														<input class="btn" type="button" value="승인" onclick="endorse(this.form)"/> 
 														<input class="btn" type="button" value="거절" onclick="reject(this.form)"/> 
 													</div>
 												</form>
 											</div>
-											
 										</div>
 		   							</div>
 								</div>
@@ -314,17 +313,21 @@
 		function endorse(form) {
 			if (!confirm('승인하시겠습니까?')) {
 				return;
+			} else {
+				alert('승인되었습니다.');			
+				form.action='deptAccept';
+				form.submit();
 			}
-			form.action='deptAccept';
-			form.submit();
 		}
 		
 		function reject(form) {
 			if (!confirm('거절하시겠습니까?')) {
 				return;
+			} else {
+				alert('거절되었습니다.');				
+				form.action='deptReject';
+				form.submit();
 			}
-			form.action='deptReject';
-			form.submit();
 		}
 	</script>
 	

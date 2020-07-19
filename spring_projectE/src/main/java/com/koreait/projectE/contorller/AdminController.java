@@ -155,6 +155,14 @@ public class AdminController {
 		return "admin/deptAcceptPage";
 	}
 	
+	@RequestMapping(value="deleteDept", method=RequestMethod.POST)
+	public String deleDept(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new AdminDeptDeleteCommand();
+		command.execute(sqlSession, model);
+		return "redirect:departmentView";
+	}
+	
 }
 	
 

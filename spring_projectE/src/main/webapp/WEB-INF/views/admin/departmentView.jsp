@@ -32,11 +32,12 @@
 		    border: 1px solid #ddd;
 		    text-align: center;
 		}
-		td:nth-of-type(1) { width: 5%;}
-		td:nth-of-type(2) { width: 15%;}
-		td:nth-of-type(3) { width: 45%;}
-		td:nth-of-type(4) { width: 20%;}
-		td:nth-of-type(5) { width: 15%;}
+		
+		th:nth-of-type(1) { width: 5%;}
+		th:nth-of-type(2) { width: 15%;}
+		th:nth-of-type(3) { width: 45%;}
+		th:nth-of-type(4) { width: 20%;}
+		th:nth-of-type(5) { width: 15%;}
 		
 		#custom{
 			display: 'block';
@@ -51,6 +52,7 @@
 		.pageView {
 			width: 100%;
 			text-align: center;
+			margin-top: 20px;
 		}
 		.totalDept {
 			display: inline-block;
@@ -134,7 +136,7 @@
 			<!-- Main Content -->
 			<div id="content" style="height: 90%;">
 				<!-- Begin Page Content -->
-				<div class="container-fluid"  style="height: 10%;">
+				<div class="container-fluid"  style="height: 100%;">
 					<!-- Content Row -->
 					<div class="row" style="height: 100%; width:100%;">
 						<div class="col-xl-8" style="flex: 0 0 100%; max-width: 100%; margin-top: 20px;">

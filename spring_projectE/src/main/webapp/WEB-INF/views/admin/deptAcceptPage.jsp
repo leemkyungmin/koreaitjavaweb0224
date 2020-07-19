@@ -41,11 +41,11 @@
 			border: 1px solid #ddd;
 		}
 		
-		td:nth-of-type(1) { width: 15%;}
-		td:nth-of-type(2) { width: 35%;}
-		td:nth-of-type(3) { width: 15%;}
-		td:nth-of-type(4) { width: 20%;}
-		td:nth-of-type(5) { width: 15%;}
+		th:nth-of-type(1) { width: 15%;}
+		th:nth-of-type(2) { width: 35%;}
+		th:nth-of-type(3) { width: 15%;}
+		th:nth-of-type(4) { width: 20%;}
+		th:nth-of-type(5) { width: 15%;}
 		
 		.tag_a {
 			text-decoration: none;
@@ -56,6 +56,7 @@
 		.pageView {
 			width: 100%;
 			text-align: center;
+			margin-top: 20px;
 		}
 		
 		.totalDept {
