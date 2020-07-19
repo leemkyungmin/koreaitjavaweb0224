@@ -10,7 +10,7 @@
 <link href="resources/assets/style/admin/sb-admin-2.min.css" rel="stylesheet">
 
    
-	<style>ㅋ	
+	<style>	
 		table{
 			width: 1000px;
 			margin: auto;
@@ -119,6 +119,9 @@
 			margin: auto;
 			margin-bottom: 5px;
 		}
+		.searchbox_wrap {
+			float: right;
+		}
 		
 		.searchbox {
 			padding: 5px;
@@ -191,7 +194,11 @@
 		
 		
 	</script>
-
+	<c:if test="${sessionScope.cGrede !=5 }">
+		<script>
+			location.href="index";
+		</script>
+	</c:if>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 	  <!-- Sidebar -->
@@ -245,27 +252,28 @@
 			<!-- Main Content -->
 			<div id="content" style="height: 90%;">
 				<!-- Begin Page Content -->
-				<div class="container-fluid"  style="height: 100%;">
+				<div class="container-fluid"  style="height: 90%;">
 					<!-- Content Row -->
-					<div class="row" style="height: 100%;  width:100%;">
+					<div class="row" style="height: 90%;  width:100%;">
 						<div class="col-xl-8" style="flex: 0 0 100%; max-width: 100%; margin-top: 20px;">
 							<!-- Area Chart -->
 							<div class="card shadow mb-4" style="height: 95%; width:100%;">
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">회원 리스트</h6>
 								</div>
-								<div class="card-body"  style="height: 100%;">
-									<div class="chart-area"  style="height: 100%;">
+								<div class="card-body"  style="height: 90%;">
+									<div class="chart-area"  style="height: 90%;">
 										<!-- 내용 부분 -->
-										<div id="custom" style="width:1000px; margin: auto;">
-											<div class="center">
-												<span class="totalCustomer" style= "margin: auto;">전체 회원 수 : ${totalRecord}명</span>
-											</div>				
+										<div id="custom" style="width:1000px; ">
+											<form action="searchQueryCusInfo">
+												<div class="center">
+													<span class="totalCustomer" style= "margin: auto;">전체 회원 수 : ${totalRecord}명</span>
 													<div class="searchbox_wrap">
 														<input type="text" class="searchbox" name="query" placeholder="이름/아이디" size="15" />
 														<input type="submit" class="searchbox" value="검색" />
 													</div>
-											
+												</div>	
+												</form>
 											<form id="myForm" method="post">
 												<table border="1">
 													<thead id="user_info">
@@ -284,7 +292,7 @@
 													<tbody>
 														<c:if test="${empty cList}">
 															<tr>
-																<th colspan="8">회원이 존재하지 않습니다.</th>
+																<th colspan="9">회원이 존재하지 않습니다.</th>
 															</tr>
 														</c:if>
 														<c:if test="${not empty cList}">

@@ -228,14 +228,14 @@
 	
 </head>
 <body>
-	<c:if test="${sessionScope.dSaup_No !=null }">
+	<c:if test="${sessionScope.dSaup_no !=null }">
 		<script type="text/javascript">
 			alert('기업 회원은 예약이 불가능합니다.');
 			location.href='viewPage?dSaup_no='+${deptDTO.dSaup_no};
 			
 		</script>
 	</c:if>	
-	<c:if test="${sessionScope.cId==null && sessionScope.dSaup_No ==null }">
+	<c:if test="${sessionScope.cId==null && sessionScope.dSaup_no ==null }">
 		<script type="text/javascript">
 		
 			alert('로그인후 예약이 가능합니다 . 로그인후 이용해주세요');
@@ -300,14 +300,21 @@
 									<td id="${dateList.date}" class="dayCSS">
 										<div class="notButton">${dateList.date}</div>
 									</td>
-								</c:when>							
+								</c:when>
+								<c:when test="${dateList.value eq'today' and date_status.index%7==0}">
+									</tr>
+									<tr>
+										<td id="${dateList.date}" class="dayCSS"  onclick="fn_a(${dateList.date})">
+											<div class="date">${dateList.date}</div>
+											<div class="today">today</div>
+										</td>
+								</c:when>						
 								<c:when test="${dateList.value eq'today'}">
 									<td id="${dateList.date}" class="dayCSS"  onclick="fn_a(${dateList.date})">
 										<div class="date">${dateList.date}</div>
 										<div class="today">today</div>
 									</td>
 								</c:when>
-								
 								<c:when test="${dateList.value eq 'Button' and date_status.index%7==6}">
 									<td id="${dateList.date}" class="dayCSS"  onclick="fn_a(${dateList.date})">
 										<div class="sat">${dateList.date}</div>

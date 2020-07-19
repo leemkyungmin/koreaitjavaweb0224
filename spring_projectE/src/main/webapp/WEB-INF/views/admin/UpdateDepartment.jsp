@@ -98,7 +98,11 @@
 		}
 		
 	</style>
-
+	<c:if test="${sessionScope.cGrede !=5 }">
+		<script>
+			location.href="index";
+		</script>
+	</c:if>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 	  

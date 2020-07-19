@@ -91,7 +91,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</select>
 	
-	<select id="searchQueryCusInfo" parameterType="Map" resultType="com.koreait.projectE.dto.DepartmentDTO">		
+	<select id="searchQueryCusInfo" parameterType="Map" resultType="com.koreait.projectE.dto.CustomerDTO">		
 		SELECT * FROM (SELECT ROWNUM AS RN, A.* FROM (SELECT * FROM CUSTOMER WHERE CNAME LIKE '%' || #{query} || '%' OR CID LIKE '%' || #{query} || '%' ORDER BY CNO DESC) A)
 		WHERE RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>

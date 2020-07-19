@@ -365,8 +365,16 @@
 									<c:forEach var="rDTO" items="${list }" varStatus="name">
 										<tr id="review" data-remote="reviewDetail?rNo=${rDTO.rNo}"data-toggle="modal" data-target="#Modal">
 											<td>${dList.get(name.count-1)}</td>
-											<td>${rDTO.rTitle }</td>
-											<td>${rDTO.rContent }</td>
+											<td>${rDTO.rTitle}</td>
+											<td>
+												<c:set var ="content" value="${rDTO.rContent }"/>
+												<c:if test="${fn:length(content) > 35 }">
+													${fn:substring(content,0,35) }...
+												</c:if>
+												<c:if test="${fn:length(content) < 35 }">
+													${rDTO.rContent }
+												</c:if>
+											</td>
 											<td>${rDTO.rPoint }<input type="hidden" value="${rDTO.rNo }" name="rNo" id="rNo"/></td>
 										</tr>
 									</c:forEach>

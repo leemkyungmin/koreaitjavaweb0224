@@ -1,3 +1,4 @@
+<%@page import="org.springframework.web.context.annotation.SessionScope"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -132,9 +133,6 @@
 			<source src="<c:url value="/resources/assets/video/indexvideo01.mp4" />" type="video/mp4">
 		</video>
 	</div>
-	
-	<br/><br/>
-	<a href="adminmanagePage">관리자 페이지</a>
 	
 	<%@ include file="main.jsp" %>
 	
