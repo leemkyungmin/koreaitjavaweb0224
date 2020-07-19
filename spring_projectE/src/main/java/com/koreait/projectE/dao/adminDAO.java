@@ -53,7 +53,7 @@ public interface adminDAO {
 	// 업체리스트에서 검색
 	public ArrayList<DepartmentDTO> searchQueryDeptInfo(Map<String, Object> record);
 	
-	// 검색한 리트스 개수
+	// 검색한 업체리트스 개수
 	public int searchQueryDeptCount(String query);
 
 	// 회원리스트에서 검색
@@ -61,5 +61,11 @@ public interface adminDAO {
 		
 	// 검색한 리스트 개수
 	public int searchQueryCusCount(String query);
-
+	
+	// 업체승인리스트에서 검색
+	public ArrayList<DepartmentDTO> searchQueryDeptAcceptInfo(Map<String, Object> record);
+		
+	// 검색한 업체승인리스트 개수
+	public int searchQueryDeptAcceptCount(String query);
+	
 }

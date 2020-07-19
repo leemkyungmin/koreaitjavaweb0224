@@ -50,6 +50,7 @@ public class AdminDeptAcceptListCommand implements Command {
 		model.addAttribute("page", page);
 		model.addAttribute("deptList", deptList);
 		model.addAttribute("pageView", pageView);
+		model.addAttribute("totalRecord", totalRecord);
 	}
 
 }

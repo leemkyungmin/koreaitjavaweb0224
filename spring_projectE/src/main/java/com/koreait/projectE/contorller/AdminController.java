@@ -19,6 +19,7 @@ import com.koreait.projectE.command.Admin.AdminDeptAcceptViewCommand;
 import com.koreait.projectE.command.Admin.AdminDeptDeleteCommand;
 import com.koreait.projectE.command.Admin.AdminDeptViewCommand;
 import com.koreait.projectE.command.Admin.AdminSearchQueryCusInfo;
+import com.koreait.projectE.command.Admin.AdminSearchQueryDeptAcceptInfo;
 import com.koreait.projectE.command.Admin.AdminSearchQueryDeptInfo;
 import com.koreait.projectE.command.Admin.AdminUpdateDepartmentCommand;
 import com.koreait.projectE.command.Admin.AdminUpdateUserCommand;
@@ -146,7 +147,14 @@ public class AdminController {
 		return "admin/adminmanagerPage";
 	}
 	
-
+	@RequestMapping(value="searchQueryDeptAcceptInfo", method=RequestMethod.GET)
+	public String searchQueryDeptAcceptInfo(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new AdminSearchQueryDeptAcceptInfo();
+		command.execute(sqlSession, model);
+		return "admin/deptAcceptPage";
+	}
+	
 }
 	
 
