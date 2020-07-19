@@ -1,8 +1,7 @@
 package com.koreait.projectE.contorller;
 
 
-import java.util.ArrayList;
-import java.util.Iterator;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,12 +18,13 @@ import com.koreait.projectE.command.Admin.AdminDeptAcceptListCommand;
 import com.koreait.projectE.command.Admin.AdminDeptAcceptViewCommand;
 import com.koreait.projectE.command.Admin.AdminDeptDeleteCommand;
 import com.koreait.projectE.command.Admin.AdminDeptViewCommand;
+import com.koreait.projectE.command.Admin.AdminSearchQueryCusInfo;
 import com.koreait.projectE.command.Admin.AdminSearchQueryDeptInfo;
 import com.koreait.projectE.command.Admin.AdminUpdateDepartmentCommand;
 import com.koreait.projectE.command.Admin.AdminUpdateUserCommand;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.adminDAO;
-import com.koreait.projectE.dto.DepartmentDTO;
+
 
 
 
@@ -138,6 +138,14 @@ public class AdminController {
 		command.execute(sqlSession, model);
 		return "admin/departmentView";
 	}
+	@RequestMapping(value="searchQueryCusInfo", method=RequestMethod.GET)
+	public String searchQueryCusInfo(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new AdminSearchQueryCusInfo();
+		command.execute(sqlSession, model);
+		return "admin/adminmanagerPage";
+	}
+	
 
 }
 	

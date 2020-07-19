@@ -56,5 +56,10 @@ public interface adminDAO {
 	// 검색한 리트스 개수
 	public int searchQueryDeptCount(String query);
 
+	// 회원리스트에서 검색
+	public ArrayList<CustomerDTO> searchQueryCusInfo(Map<String, Object> record);
+		
+	// 검색한 리스트 개수
+	public int searchQueryCusCount(String query);
 
 }
