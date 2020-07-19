@@ -228,14 +228,14 @@
 	
 </head>
 <body>
-	<c:if test="${sessionScope.dSaup_No !=null }">
+	<c:if test="${sessionScope.dSaup_no !=null }">
 		<script type="text/javascript">
 			alert('기업 회원은 예약이 불가능합니다.');
 			location.href='viewPage?dSaup_no='+${deptDTO.dSaup_no};
 			
 		</script>
 	</c:if>	
-	<c:if test="${sessionScope.cId==null && sessionScope.dSaup_No ==null }">
+	<c:if test="${sessionScope.cId==null && sessionScope.dSaup_no ==null }">
 		<script type="text/javascript">
 		
 			alert('로그인후 예약이 가능합니다 . 로그인후 이용해주세요');
