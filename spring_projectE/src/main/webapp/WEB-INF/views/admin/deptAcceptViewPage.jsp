@@ -251,11 +251,14 @@
 														</tr>
 														<tr>
 															<th>전화번호</th>
-															<td>${fn:substring(deptDTO.dPhone, 0, 3)}-${fn:substring(deptDTO.dPhone, 3, 7)}-${fn:substring(deptDTO.dPhone, 7, 11)}</td>
+															<td>${fn:substring(deptDTO.dPhone, 0, 3)}-
+															${fn:substring(deptDTO.dPhone, 3, 7)}-
+															${fn:substring(deptDTO.dPhone, 7, 11)}</td>
 														</tr>
 														<tr>
 															<th>영업시간</th>
-															<td>${fn:substring(deptDTO.dStart, 0, 2)}:${fn:substring(deptDTO.dStart, 2, 4)} ~ ${fn:substring(deptDTO.dEnd,0,2)}:${fn:substring(deptDTO.dEnd,2,4)} (${deptDTO.dSeat}석)</td>
+															<td>${fn:substring(deptDTO.dStart, 0, 2)}:${fn:substring(deptDTO.dStart, 2, 4)} ~ 
+															${fn:substring(deptDTO.dEnd,0,2)}:${fn:substring(deptDTO.dEnd,2,4)} (${deptDTO.dSeat}석)</td>
 														</tr>
 														<tr>
 															<th>주차</th>

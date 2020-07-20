@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.BoardDAO;
-import com.koreait.projectE.dao.adminDAO;
+import com.koreait.projectE.dao.AdminDAO;
 import com.koreait.projectE.dto.DepartmentDTO;
 import com.koreait.projectE.dto.MenuDTO;
 
@@ -24,7 +24,7 @@ public class AdminDeptAcceptViewCommand implements Command {
 		
 		long dNo = Long.parseLong(request.getParameter("dNo"));
 		
-		adminDAO aDAO = sqlSession.getMapper(adminDAO.class);
+		AdminDAO aDAO = sqlSession.getMapper(AdminDAO.class);
 		DepartmentDTO deptDTO = aDAO.deptAcceptView(dNo);
 		
 		model.addAttribute("deptDTO", deptDTO);

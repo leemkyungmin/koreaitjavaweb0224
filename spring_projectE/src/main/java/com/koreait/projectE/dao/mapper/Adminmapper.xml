@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.koreait.projectE.dao.adminDAO">
+<mapper namespace="com.koreait.projectE.dao.AdminDAO">
 	
 	<select id="getCustomList" parameterType="Map" resultType="com.koreait.projectE.dto.CustomerDTO">
 		SELECT * FROM (SELECT ROWNUM AS RN, A.* FROM (SELECT * FROM CUSTOMER ORDER BY CNO DESC) A)
@@ -100,7 +100,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="searchQueryDeptAcceptInfo" parameterType="Map" resultType="com.koreait.projectE.dto.DepartmentDTO">
-		SELECT * FROM (SELECT ROWNUM AS RN, A.* FROM (SELECT * FROM DEPARTMENT_INFO WHERE DACCPET = 0 AND (DNAME LIKE '%' || #{query} || '%' OR DSAUP_NO LIKE '%' || #{query} || '%') ORDER BY DNO DESC) A)
+		SELECT * FROM (SELECT ROWNUM AS RN, A.* FROM (SELECT * FROM DEPARTMENT_INFO WHERE DACCPET = 0 AND 
+		(DNAME LIKE '%' || #{query} || '%' OR DSAUP_NO LIKE '%' || #{query} || '%') ORDER BY DNO DESC) A)
 		WHERE RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
 	

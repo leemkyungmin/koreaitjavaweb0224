@@ -116,7 +116,8 @@
 	 		<div class="main-search">
 				<div class="icon-box"><i class="fas fa-search"></i></div>
 				<form class="search-form" action="searchPage">
-				<input id="search-input" class="HomeSearchInput" name="main-search" type="text" maxlength="50" placeholder="지역명, 맛집 이름" autocomplete="off" >
+				<input id="search-input" class="HomeSearchInput" name="main-search" type="text" maxlength="50" 
+					placeholder="지역명, 맛집 이름"	autocomplete="off" >
 				<input class="btn-search" type="submit" value="검색">
 
     			</form>
