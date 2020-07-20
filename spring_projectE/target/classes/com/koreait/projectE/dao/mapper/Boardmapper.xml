@@ -55,7 +55,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where RAPPOINTMENT = 0 and dSaup_no=#{dSaup_no} and r.cNo=c.cNo
 	</select>
 	<select id="reivewDetail" resultType="com.koreait.projectE.dto.ReviewDTO">
-		select  r.rNo,r.rpoint,r.rdepth,r.REPORTCOUNT,c.cPoto,c.cnickname,r.rTitle,r.rcontent,r.rPoto,r.rwriter_date,r.rAppointment,r.dSaup_no 
+		select  r.rNo,r.rpoint,r.rdepth,r.REPORTCOUNT,c.cPoto,c.cnickname,r.rTitle,r.rcontent,r.rPoto,r.rwriter_date,r.rAppointment,
+		r.dSaup_no 
 		from review r,customer c 
 		where  r.cno=c.cno and r.rno=#{rNo}
 	</select>

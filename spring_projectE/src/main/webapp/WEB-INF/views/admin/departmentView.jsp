@@ -32,11 +32,12 @@
 		    border: 1px solid #ddd;
 		    text-align: center;
 		}
-		td:nth-of-type(1) { width: 5%;}
-		td:nth-of-type(2) { width: 15%;}
-		td:nth-of-type(3) { width: 45%;}
-		td:nth-of-type(4) { width: 20%;}
-		td:nth-of-type(5) { width: 15%;}
+		
+		th:nth-of-type(1) { width: 5%;}
+		th:nth-of-type(2) { width: 15%;}
+		th:nth-of-type(3) { width: 45%;}
+		th:nth-of-type(4) { width: 20%;}
+		th:nth-of-type(5) { width: 15%;}
 		
 		#custom{
 			display: 'block';
@@ -51,12 +52,13 @@
 		.pageView {
 			width: 100%;
 			text-align: center;
+			margin-top: 20px;
 		}
 		.totalDept {
 			display: inline-block;
 			vertical-align: bottom;
 			height: 5px;
-			line-height: 100%;
+			line-height: 90%;
 		}
 		.center {
 			width: 950px;
@@ -76,7 +78,11 @@
 		}
 		
 	</style>
-
+	<c:if test="${sessionScope.cGrede !=5 }">
+		<script>
+			location.href="index";
+		</script>
+	</c:if>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 	
@@ -135,14 +141,14 @@
 					<div class="row" style="height: 100%; width:100%;">
 						<div class="col-xl-8" style="flex: 0 0 100%; max-width: 100%; margin-top: 20px;">
 							<!-- Area Chart -->
-							<div class="card shadow mb-4"  style="height: 90%; width:100%;">
+							<div class="card shadow mb-4"  style="height: 95%; width:100%;">
 								<div class="card-header py-3">
 									<h6 class="m-0 font-weight-bold text-primary">업체 정보 관리</h6>
 								</div>
 								<div class="card-body"  style="height: 100%;">
 									<div class="chart-area"  style="height: 100%;">
 										<!-- 내용 부분 -->
-										<div id="custom" style="width:950px; margin: auto;">
+										<div id="custom" style="width:100%; margin: auto;">
 											<form action="searchQueryDeptInfo">
 												<div class="center">
 													<span class="totalDept">전체 업체 수 : ${totalRecord}</span>
@@ -166,7 +172,7 @@
 													<tbody>
 														<c:if test="${empty dList}">
 															<tr>
-																<th colspan="4">업체가 존재하지 않습니다.</th>
+																<th colspan="5">업체가 존재하지 않습니다.</th>
 															</tr>
 														</c:if>
 														<c:if test="${not empty dList}">

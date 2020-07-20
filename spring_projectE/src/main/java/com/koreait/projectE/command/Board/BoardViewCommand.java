@@ -46,6 +46,7 @@ public class BoardViewCommand implements Command {
 		//menu_info 에서 업체 메뉴 가져오기 
 		ArrayList<MenuDTO> menuList =bdao.menuList(dSaup_no);
 		model.addAttribute("menuList", menuList);
+	
 		
 		//view 페이지 리뷰 가져오기 
 		

@@ -393,7 +393,8 @@
                 <div class="form-group" id="divEmail">
                     <label for="inputEmail" class="col-lg-2 control-label">이메일</label>
                     <div class="col-lg-10">
-                        <input type="email" class="form-control" id="email" name="cEmail" data-rule-required="true" placeholder="이메일" maxlength="40"> <br/>
+                        <input type="email" class="form-control" id="email" name="cEmail" data-rule-required="true" placeholder="이메일" 
+                        maxlength="40"> <br/>
                         <div id="temp-email" class="temp-email"></div><br/>
                         <input type="button" id="emailCheck" name="emailCheck" value="이메일 중복체크" class="btn btn-primary" /> &nbsp;&nbsp;&nbsp;
                         <input type="button" id="emailAuth" name="emailAuth" value="이메일 인증" class="btn btn-primary"  />

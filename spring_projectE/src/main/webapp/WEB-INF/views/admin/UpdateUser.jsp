@@ -15,7 +15,11 @@
 	}
 	
 	</script>
-
+	<c:if test="${sessionScope.cGrede !=5 }">
+		<script>
+			location.href="index";
+		</script>
+	</c:if>
 	<style type="text/css">
 		form-wrap table {
 			width: 500px;
@@ -127,7 +131,7 @@
         	position: relative;
         	width: 1040px;
         }
-        tr:hover{
+        #reviewTable tbody >tr:hover{
         	background-color: lightpink; 
         }
 		
@@ -271,7 +275,15 @@
 															<tr id="review" data-remote="reviewDetail?rNo=${rDTO.rNo}"data-toggle="modal" data-target="#Modal">
 																<td>${dList.get(name.count-1)}</td>
 																<td>${rDTO.rTitle }</td>
-																<td>${rDTO.rContent }</td>
+																<td>
+																	<c:set var ="content" value="${rDTO.rContent }"/>
+																	<c:if test="${fn:length(content) > 35 }">
+																		${fn:substring(content,0,35) }...
+																	</c:if>
+																	<c:if test="${fn:length(content) < 35 }">
+																		${rDTO.rContent }
+																	</c:if>
+																</td>
 																<td>${rDTO.rPoint }<input type="hidden" value="${rDTO.rNo }" name="rNo" id="rNo"/></td>
 																
 															</tr>

@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 
 import com.koreait.projectE.command.PageMaker;
 import com.koreait.projectE.commom.Command;
-import com.koreait.projectE.dao.adminDAO;
+import com.koreait.projectE.dao.AdminDAO;
 import com.koreait.projectE.dto.DepartmentDTO;
 
 public class AdminDeptViewCommand implements Command {
@@ -39,7 +39,7 @@ public class AdminDeptViewCommand implements Command {
 		record.put("endRecord", endRecord);
 		
 		// 업체 리스트 가져오기
-		adminDAO adao = sqlSession.getMapper(adminDAO.class);
+		AdminDAO adao = sqlSession.getMapper(AdminDAO.class);
 		ArrayList<DepartmentDTO> dList = adao.getDepartmentList(record);
 		
 		// 업체 아이디 가져오기

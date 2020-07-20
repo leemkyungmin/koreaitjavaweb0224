@@ -88,14 +88,12 @@
 	        						type:'POST',
 	        						data: 'cId=' + $('#cId').val() + '&cPw=' + $('#cPw').val(),
 	        						success:function(data){
-	        						
 	        							if (data == '1'){
 	        								alert('로그인 성공');
 	        								location.href = 'index';
 	        							} else {
 	        								alert('로그인 실패');
 	        							} 
-	        								
 	        						},
 	        						error:function() {
 	        							alert('AJAX 통신 실패');
@@ -103,8 +101,7 @@
 	        					});
 	                        	break;
 	                        case 1:
-	                        	alert('1111111111');
-	                            
+	                        	alert('자동 가입 방지 봇을 체크해주세요.');
 	                            break;
 	                        default:
 	                            alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]");
@@ -151,7 +148,7 @@
 	            				});
 	            				break;
 	                        case 1:
-	                        	alert('1111111111');
+	                        	alert('자동 가입 방지 봇을 체크해주세요.');
 	                            return false;
 	                            break;
 	                        default:

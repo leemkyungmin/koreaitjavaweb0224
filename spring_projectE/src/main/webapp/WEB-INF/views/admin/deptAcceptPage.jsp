@@ -18,7 +18,6 @@
 		table{
 			width: 900px;
 			margin: auto;
-			margin-top: 10px;
 			margin-bottom: 10px;
 		    border-top: 3px solid #168;
 			border-collapse: collapse;
@@ -42,11 +41,11 @@
 			border: 1px solid #ddd;
 		}
 		
-		td:nth-of-type(1) { width: 15%;}
-		td:nth-of-type(2) { width: 35%;}
-		td:nth-of-type(3) { width: 15%;}
-		td:nth-of-type(4) { width: 20%;}
-		td:nth-of-type(5) { width: 15%;}
+		th:nth-of-type(1) { width: 15%;}
+		th:nth-of-type(2) { width: 35%;}
+		th:nth-of-type(3) { width: 15%;}
+		th:nth-of-type(4) { width: 20%;}
+		th:nth-of-type(5) { width: 15%;}
 		
 		.tag_a {
 			text-decoration: none;
@@ -57,10 +56,39 @@
 		.pageView {
 			width: 100%;
 			text-align: center;
+			margin-top: 20px;
+		}
+		
+		.totalDept {
+			display: inline-block;
+			vertical-align: bottom;
+			height: 5px;
+			line-height: 100%;
+		}
+		
+		.center {
+			width: 900px;
+			height: 40px;
+			text-align: left;
+			margin: auto;
+		}
+		
+		.searchbox_wrap {
+			float: right;
+		}
+		
+		.searchbox {
+			padding: 5px;
+			border: 1px solid lightgray;
+			border-radius: 5px;
 		}
 		
 	</style>
-	
+	<c:if test="${sessionScope.cGrede !=5 }">
+		<script>
+			location.href="index";
+		</script>
+	</c:if>
 	<script type="text/javascript">
 	
 		function goBack() {
@@ -137,6 +165,15 @@
                   					<div class="chart-area"  style="height: 100%;">
                   						<!-- 내용 부분 -->
                     					<div id="custom" style="width:100%; margin: auto;">
+                    						<form action="searchQueryDeptAcceptInfo">
+												<div class="center">
+													<span class="totalDept">전체 수 : ${totalRecord}</span>
+													<div class="searchbox_wrap">
+														<input type="text" class="searchbox" name="query" placeholder="업체명/사업자번호" size="15" />
+														<input type="submit" class="searchbox" value="검색" />
+													</div>
+												</div>
+											</form>
 											<table border="1">
 												<tr>
 													<th>사업자번호</th>

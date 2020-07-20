@@ -39,23 +39,6 @@
 		    font-size: 18px;
 		}
 	
-		ul {
-		    list-style-type: none;
-		    margin: 0;
-		    padding: 0;
-		    background-color: #333;
-		}	
-		ul:after{
-		    content:'';
-		    display: block;
-		    clear:both;
-		}	
-		h2	{
-	    	color: white;
-	    	float: left;
-	    	margin-left:100px;
-	    	margin-right:100px;
-	    }
 	    #listbtn {
 			float: left;
 			border-top-left-radius: 5px; 
@@ -64,6 +47,7 @@
 			border-bottom-right-radius: 5px;
 			margin-right:10px;
 		}
+		
 		button	{ 
 		    border: 1px solid skyblue; 
 		    background-color: rgba(0,0,0,0); 
@@ -109,12 +93,36 @@
 		    cursor: pointer;
 		}
 		
-		imf:last-of-type {
+		img:nth-of-type(5) {
 			margin: 0;
 		}
 		
+		.small_btn {
+			padding: 5px;
+			display: inline-block;
+			width: 50px;
+			color: white;
+			background: #168;
+			border-radius: 5px;
+			border: 0;
+		}
+		
+		.btn_wrap {
+			margin: auto;
+			margin-top: 20px;
+			text-align: center;
+			clear: left;
+		}
+		
 	</style>
-
+	
+	
+	<c:if test="${sessionScope.cGrede !=5 }">
+		<script>
+			location.href="index";
+		</script>
+	</c:if>
+	
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 	  
@@ -213,18 +221,23 @@
 													</tr>
 												</table>						
 												<div class="map" id="map" style="width:45%;height:270px;"></div>
-											</div>
-											
-											<!-- 업체 삭제 버튼 구현 -->
-											<div class="image-Content">
-												<div class="image_wrap">
-													<c:set var="img" value="${dDTO.dPhoto }"></c:set>
-													<!-- 업체에서 등록한 이미지 가져오기 -->
-													<c:forEach var="split" items="${fn:split(img,',')}">
-														<div class="column-image">
-															<img alt="${split }" src="${pageContext.request.contextPath }/resources/storage/department_img/${split }">
-														</div>
-													</c:forEach>
+												<div class="image-Content">
+													<div class="image_wrap">
+														<c:set var="img" value="${dDTO.dPhoto }"></c:set>
+														<!-- 업체에서 등록한 이미지 가져오기 -->
+														<c:forEach var="split" items="${fn:split(img,',')}">
+															<div class="column-image">
+																<img alt="${split }" src="${pageContext.request.contextPath }/resources/storage/department_img/${split }">
+															</div>
+														</c:forEach>
+													</div>
+												</div>
+												<div class="btn_wrap">
+													<form method="post">
+														<input type="hidden" name="dNo" value="${dDTO.dNo}" />
+														<input class="small_btn" type="button" value="목록" onclick="location.href='departmentView'"/> 
+														<input class="small_btn" type="button" value="삭제" onclick="deleteDept(this.form)"/> 
+													</form>
 												</div>
 											</div>
 										</div>
@@ -237,6 +250,18 @@
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		function deleteDept(form) {
+			if (!confirm('삭제하시겠습니까?')) {
+				return;
+			} else {
+				alert('삭제되었습니다.');				
+				form.action='deleteDept';
+				form.submit();
+			}
+		}	
+	</script>
 	
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=395b351aabfbda166c782bab5c1101f8&libraries=services"></script>
 	<script>

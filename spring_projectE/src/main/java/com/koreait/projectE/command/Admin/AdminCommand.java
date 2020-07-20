@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 
 import com.koreait.projectE.command.PageMaker;
 import com.koreait.projectE.commom.Command;
-import com.koreait.projectE.dao.adminDAO;
+import com.koreait.projectE.dao.AdminDAO;
 import com.koreait.projectE.dto.CustomerDTO;
 
 public class AdminCommand implements Command {
@@ -39,7 +39,7 @@ public class AdminCommand implements Command {
 		record.put("endRecord", endRecord);
 		
 		// 회원 리스트 가져오기
-		adminDAO adao = sqlSession.getMapper(adminDAO.class);
+		AdminDAO adao = sqlSession.getMapper(AdminDAO.class);
 		ArrayList<CustomerDTO> cList = adao.getCustomList(record);
 		
 		// 전체 회원 수 구하기

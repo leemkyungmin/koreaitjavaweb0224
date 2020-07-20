@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.koreait.projectE.dao.adminDAO">
+<mapper namespace="com.koreait.projectE.dao.AdminDAO">
 	
 	<select id="getCustomList" parameterType="Map" resultType="com.koreait.projectE.dto.CustomerDTO">
 		SELECT * FROM (SELECT ROWNUM AS RN, A.* FROM (SELECT * FROM CUSTOMER ORDER BY CNO DESC) A)
@@ -88,7 +88,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="searchQueryDeptCount" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM DEPARTMENT_INFO WHERE DNAME LIKE '%' || #{query} || '%' OR DSAUP_NO LIKE '%' || #{query} || '%'
-
 	</select>
+	
+	<select id="searchQueryCusInfo" parameterType="Map" resultType="com.koreait.projectE.dto.CustomerDTO">		
+		SELECT * FROM (SELECT ROWNUM AS RN, A.* FROM (SELECT * FROM CUSTOMER WHERE CNAME LIKE '%' || #{query} || '%' OR CID LIKE '%' || #{query} || '%' ORDER BY CNO DESC) A)
+		WHERE RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+	
+	<select id="searchQueryCusCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM CUSTOMER WHERE CNAME LIKE '%' || #{query} || '%' OR CID LIKE '%' || #{query} || '%'
+	</select>
+	
+	<select id="searchQueryDeptAcceptInfo" parameterType="Map" resultType="com.koreait.projectE.dto.DepartmentDTO">
+		SELECT * FROM (SELECT ROWNUM AS RN, A.* FROM (SELECT * FROM DEPARTMENT_INFO WHERE DACCPET = 0 AND 
+		(DNAME LIKE '%' || #{query} || '%' OR DSAUP_NO LIKE '%' || #{query} || '%') ORDER BY DNO DESC) A)
+		WHERE RN BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+	
+	<select id="searchQueryDeptAcceptCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM DEPARTMENT_INFO WHERE DACCPET = 0 AND (DNAME LIKE '%' || #{query} || '%' OR DSAUP_NO LIKE '%' || #{query} || '%')
+	</select>
+	
 	
 </mapper>

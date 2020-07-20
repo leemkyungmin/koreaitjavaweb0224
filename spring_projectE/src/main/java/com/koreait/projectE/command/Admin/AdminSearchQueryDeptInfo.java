@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 
 import com.koreait.projectE.command.PageMaker;
 import com.koreait.projectE.commom.Command;
-import com.koreait.projectE.dao.adminDAO;
+import com.koreait.projectE.dao.AdminDAO;
 import com.koreait.projectE.dto.DepartmentDTO;
 
 public class AdminSearchQueryDeptInfo implements Command {
@@ -41,7 +41,7 @@ public class AdminSearchQueryDeptInfo implements Command {
 		record.put("endRecord", endRecord);
 		record.put("query", query);
 		
-		adminDAO aDAO = sqlSession.getMapper(adminDAO.class);
+		AdminDAO aDAO = sqlSession.getMapper(AdminDAO.class);
 		ArrayList<DepartmentDTO> dList = aDAO.searchQueryDeptInfo(record);
 		
 		// 검색한 갯수 구하기

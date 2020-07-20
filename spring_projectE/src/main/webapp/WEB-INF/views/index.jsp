@@ -1,3 +1,4 @@
+<%@page import="org.springframework.web.context.annotation.SessionScope"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -115,7 +116,8 @@
 	 		<div class="main-search">
 				<div class="icon-box"><i class="fas fa-search"></i></div>
 				<form class="search-form" action="searchPage">
-				<input id="search-input" class="HomeSearchInput" name="main-search" type="text" maxlength="50" placeholder="지역명, 맛집 이름" autocomplete="off" >
+				<input id="search-input" class="HomeSearchInput" name="main-search" type="text" maxlength="50" 
+					placeholder="지역명, 맛집 이름"	autocomplete="off" >
 				<input class="btn-search" type="submit" value="검색">
 
     			</form>
@@ -132,9 +134,6 @@
 			<source src="<c:url value="/resources/assets/video/indexvideo01.mp4" />" type="video/mp4">
 		</video>
 	</div>
-	
-	<br/><br/>
-	<a href="adminmanagePage">관리자 페이지</a>
 	
 	<%@ include file="main.jsp" %>
 	

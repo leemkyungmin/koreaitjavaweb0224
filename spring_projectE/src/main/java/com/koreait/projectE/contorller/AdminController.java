@@ -1,8 +1,7 @@
 package com.koreait.projectE.contorller;
 
 
-import java.util.ArrayList;
-import java.util.Iterator;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,12 +18,14 @@ import com.koreait.projectE.command.Admin.AdminDeptAcceptListCommand;
 import com.koreait.projectE.command.Admin.AdminDeptAcceptViewCommand;
 import com.koreait.projectE.command.Admin.AdminDeptDeleteCommand;
 import com.koreait.projectE.command.Admin.AdminDeptViewCommand;
+import com.koreait.projectE.command.Admin.AdminSearchQueryCusInfo;
+import com.koreait.projectE.command.Admin.AdminSearchQueryDeptAcceptInfo;
 import com.koreait.projectE.command.Admin.AdminSearchQueryDeptInfo;
 import com.koreait.projectE.command.Admin.AdminUpdateDepartmentCommand;
 import com.koreait.projectE.command.Admin.AdminUpdateUserCommand;
 import com.koreait.projectE.commom.Command;
-import com.koreait.projectE.dao.adminDAO;
-import com.koreait.projectE.dto.DepartmentDTO;
+import com.koreait.projectE.dao.AdminDAO;
+
 
 
 
@@ -77,7 +78,7 @@ public class AdminController {
 	public String deleteBtnuser(HttpServletRequest request, Model model) {
 		String[] cNo = request.getParameterValues("cNo");
 		System.out.println(cNo.length);
-		adminDAO aDAO = sqlSession.getMapper(adminDAO.class);
+		AdminDAO aDAO = sqlSession.getMapper(AdminDAO.class);
 		
 		for (int i=0, len=cNo.length; i<len; i++) {
 			aDAO.deleteReview(cNo[i]);
@@ -91,7 +92,7 @@ public class AdminController {
 	public String UpdateUser(HttpServletRequest request,Model model) {
 		String cGrade = request.getParameter("cGrade");
 		String cNo =request.getParameter("cNo");
-		adminDAO aDAO = sqlSession.getMapper(adminDAO.class);
+		AdminDAO aDAO = sqlSession.getMapper(AdminDAO.class);
 		aDAO.UpdateUser(cGrade,cNo);
 		return "redirect:adminmanagePage";
 	}
@@ -138,7 +139,30 @@ public class AdminController {
 		command.execute(sqlSession, model);
 		return "admin/departmentView";
 	}
-
+	@RequestMapping(value="searchQueryCusInfo", method=RequestMethod.GET)
+	public String searchQueryCusInfo(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new AdminSearchQueryCusInfo();
+		command.execute(sqlSession, model);
+		return "admin/adminmanagerPage";
+	}
+	
+	@RequestMapping(value="searchQueryDeptAcceptInfo", method=RequestMethod.GET)
+	public String searchQueryDeptAcceptInfo(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new AdminSearchQueryDeptAcceptInfo();
+		command.execute(sqlSession, model);
+		return "admin/deptAcceptPage";
+	}
+	
+	@RequestMapping(value="deleteDept", method=RequestMethod.POST)
+	public String deleDept(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new AdminDeptDeleteCommand();
+		command.execute(sqlSession, model);
+		return "redirect:departmentView";
+	}
+	
 }
 	
 

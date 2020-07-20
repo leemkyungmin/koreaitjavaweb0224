@@ -12,9 +12,9 @@ import org.springframework.ui.Model;
 import com.koreait.projectE.command.PageMaker;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.AdminDAO;
-import com.koreait.projectE.dto.DepartmentDTO;
+import com.koreait.projectE.dto.CustomerDTO;
 
-public class AdminDeptAcceptListCommand implements Command {
+public class AdminSearchQueryCusInfo implements Command {
 
 	@Override
 	public void execute(SqlSession sqlSession, Model model) {
@@ -22,7 +22,7 @@ public class AdminDeptAcceptListCommand implements Command {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		
-		// 업체승인 목록 페이지 구현
+		// 회원정보 검색 후 페이지 구현
 		String pageStr = request.getParameter("page"); // 현재 페이지
 		if (pageStr == null || pageStr.isEmpty()) {
 			pageStr = "1";
@@ -33,24 +33,28 @@ public class AdminDeptAcceptListCommand implements Command {
 		int recordPerPage = 15; // 1페이지당 보여줄 갯수
 		int beginRecord = (page - 1) * recordPerPage + 1;
 		int endRecord = recordPerPage * page;
+
+		String query = request.getParameter("query");
 		
-		Map<String, Integer> record = new HashMap<String, Integer>();
+		Map<String, Object> record = new HashMap<String, Object>();
 		record.put("beginRecord", beginRecord);
 		record.put("endRecord", endRecord);
+		record.put("query", query);
 		
-		// 업체 리스트 가져오기
 		AdminDAO aDAO = sqlSession.getMapper(AdminDAO.class);
-		ArrayList<DepartmentDTO> deptList = aDAO.deptAcceptList(record);
+		ArrayList<CustomerDTO> cList = aDAO.searchQueryCusInfo(record);
 		
-		int totalRecord = aDAO.deptAcceptCount();
+		// 검색한 갯수 구하기
+		int totalRecord = aDAO.searchQueryCusCount(query);
 		
 		// 페이지 뷰 생성
-		String pageView = PageMaker.getPageView("deptAccpetPage", page, recordPerPage, totalRecord);
-				
+		String pageView = PageMaker.getPageView2("searchQueryCysInfo?query=" + query, page, recordPerPage, totalRecord);
+		
+		// 데이터 MODEL에 담아 VIEW에 전달
 		model.addAttribute("page", page);
-		model.addAttribute("deptList", deptList);
-		model.addAttribute("pageView", pageView);
 		model.addAttribute("totalRecord", totalRecord);
+		model.addAttribute("cList", cList);
+		model.addAttribute("pageView", pageView);
 	}
 
 }
