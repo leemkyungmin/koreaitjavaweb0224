@@ -29,7 +29,6 @@ public class ReviewUpdateCommand implements Command {
 		String dSaup_no = mrequest.getParameter("dSaup_no");
 		int cNo=Integer.parseInt(mrequest.getParameter("cNo"));
 		ReviewDAO rDAO = sqlSession.getMapper(ReviewDAO.class);
-		System.out.println(rTitle);
 		String rPoto = ""; // 실제 DB에 들어가는 필드
 		int count = 0;
 		

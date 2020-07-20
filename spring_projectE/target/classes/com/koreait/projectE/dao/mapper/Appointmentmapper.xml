@@ -11,7 +11,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="selectAp_count" resultType="int">
-		SELECT nvl(Dseat, 0) - nvl((select sum(nvl(ap_count, 0)) from appointment where adate = #{param2}), 0) from department_info where dsaup_no = #{param1}
+		SELECT NVL(DSEAT, 0) - NVL((SELECT SUM(NVL(AP_COUNT, 0)) FROM APPOINTMENT WHERE ADATE = #{param2}), 0)
+		FROM DEPARTMENT_INFO WHERE DSAUP_NO = #{param1}
 	</select>
 	
 </mapper>

@@ -401,8 +401,7 @@
 			if (Number.isInteger(aP_count*1) == false) {
 				alert('예약 인원을 확인해주세요.');
 				return;
-			}
-			
+			}	
 			
 			if (!confirm('예약하시겠습니까?')) {
 				return;
