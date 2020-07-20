@@ -30,9 +30,9 @@
 	var ans;
 	var no = '${sessionScope.dSaup_no}';
 	var pw = '${sessionScope.dPw}';
-	var nickname = '${cDTO.cNickname}';
 	var PwUpdatePass = false;
 	
+		
 	
 		$(function() {
 			// 비밀번호 변경 버튼
@@ -40,35 +40,6 @@
 				$('#pwUpdate').css('display','block')		
 			});
 			 
-			var NicknamePass = false;
-           	$('#nickname').blur(function() {
-        		$.ajax({
-        			url: 'NicknameCheck',
-        			type: 'POST',
-        			data: 'cNickname=' + $('#nickname').val(),
-        			success: function(data) {
-        				var color;
-        				var ans;
-        				if(data == '1'){
-        					ans='중복된 별명 입니다.';
-        					color='red';
-        					
-        				}else if ($('#nickname').val() != '' && data == '0'){
-        					ans='변경 가능한 별명 입니다.';
-        					color='blue';
-        					NicknamePass=true;
-        				} else {
-        					ans='별명을 입력하세요';
-        					color='red';
-        				}	
-        				$('#temp-nickname').text(ans);
-        				$('#temp-nickname').css('color',color);
-        			},
-        			error: function () {
-        				alert('AJAX 통신 실패');
-        			}
-        		});
-        	});
 			
 			
 			$('#dPwUpdateBtn').click(function() {
@@ -158,7 +129,10 @@
 					return false;
 				}
 			}
-			
+			if($('#menu').val() == ''){
+				alert('메뉴를입력하세요.');
+				return false;
+			}
 			
 			if ($('#dName').val() == '') {
 				alert('업체명을 입력하세요.');
@@ -191,6 +165,12 @@
 			} else if ($('#dPhoto').val() == ''){
 				alert('사진은 최소 '+'한장'+' 최대 다섯장 입니다.');
 				return false;
+			} else if($('#menu').val() == ''){
+				alert('메뉴를 입력하세요.');
+				return false;
+			} else if($('#price').val() == '') {
+				alert('가격을 입력하세요.');
+				return false;
 			} else {
 				f.action = 'deptUpdate';
 				f.submit();
@@ -209,9 +189,41 @@
 			}	
 		}
 		
+		
+		function insert_input() {
+			
+			tables = document.getElementById("input_point");
+			var row = tables.insertRow(input_point.rows.length);
+			
+			var menu = row.insertCell(0);
+			var price = row.insertCell(1);
+			var deleteMenu = row.insertCell(2);
+			
+			  menu.innerHTML = "<input type=text name=menu id=menu >";
+			  price.innerHTML = "<input type=text name=price id=price>";
+			  deleteMenu.innerHTML = "<input type=button value=삭제>";
+			
+		}
+		
+		function delete_input() {
+			
+			var del_tables=document.getElementById("input_point");
+			del_tables.deleteRow(del_tables.rows.length-1);
+			
+		}
+		
 	
 	</script>
-
+	
+	<style type="text/css">
+	
+		#input_point  th {
+			margin-right: 20px;
+			width: 200px; 
+		}
+	
+	</style>
+	
 </head>
 <body>
         <div class="container"><!-- 좌우측의 공간 확보 -->
@@ -338,6 +350,40 @@
                 	<div>
                 		<input type="text" id="dType" name="dType" placeholder="일식/양식/한식" class="form-control" value="${dDTO.dType }"/>
                 	</div>
+                </div>
+                <br/><br/>
+                <div>
+                	<label for="#" class="col-lg-2 control-label">메뉴입력</label><br/>
+                	<input type="button" value="추가하기" onClick="insert_input()" class="btn btn-primary" /> <br/>
+                	<table id="input_point">
+                		<thead>
+                			<tr>
+                				<th>메뉴</th>
+                				<th>가격</th>
+                			</tr>
+                		</thead>
+                		<tbody>
+                			
+                				<c:if test="${bDTO eq null }">
+	                				<tr>
+		                				<th><input type="text" name="menu" id="menu" /></th>
+		                				<th><input type="text" name="price" id="price"/></th>
+		                				<th><input type="button" name="deleteMenu" onclick="delete_input()"></th>
+		                			</tr>
+                				</c:if>
+                				<c:if test="${bDTO ne null }">
+                					<c:forEach var="menu" items="${bDTO }">
+                						<tr>
+	                						<th><input type="text" name="menu" value="${menu.mName }" id="menu" /></th>
+		                					<th><input type="text" name="price" value="${menu.mPrice }" id="price"/></th>
+		                					<td><input type="button" value="삭제" onclick="delete_input()"/></td>
+	                					</tr>	
+                					</c:forEach>
+                				</c:if>
+                			
+                		</tbody>
+                		
+                	</table>
                 </div>
                 <br/><br/>
                 <div class="form-group" id="divPhoto">
@@ -470,31 +516,7 @@
                 }
             });
             
-            $('#nickname').keyup(function(event){
-                
-                var divNickname = $('#divNickname');
-                
-                if($.trim($('#nickname').val())==""){
-                    divNickname.removeClass("has-success");
-                    divNickname.addClass("has-error");
-                }else{
-                    divNickname.removeClass("has-error");
-                    divNickname.addClass("has-success");
-                }
-            });
             
-            $('#email').keyup(function(event){
-                
-                var divEmail = $('#divEmail');
-                
-                if($.trim($('#email').val())==""){
-                    divEmail.removeClass("has-success");
-                    divEmail.addClass("has-error");
-                }else{
-                    divEmail.removeClass("has-error");
-                    divEmail.addClass("has-success");
-                }
-            });
             
             $('#phoneNumber').keyup(function(event){
                 

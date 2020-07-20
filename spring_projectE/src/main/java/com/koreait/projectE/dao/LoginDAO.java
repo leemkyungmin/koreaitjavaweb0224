@@ -106,4 +106,10 @@ public interface LoginDAO {
 	public void customerSignOut2(String cNo);
 	public void customerSignOut3(String cNo);
 	
+	// 업체 메뉴 추가
+	public void menuInsert(String menu, String price, String dSaup_no);
+	
+	// 메뉴 삭제
+	public void menuDelete(String dSaup_no);
+	
 }

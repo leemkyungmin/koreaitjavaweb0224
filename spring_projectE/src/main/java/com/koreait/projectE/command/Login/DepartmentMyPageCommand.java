@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.koreait.projectE.commom.Command;
+import com.koreait.projectE.dao.BoardDAO;
 import com.koreait.projectE.dao.LoginDAO;
 
 public class DepartmentMyPageCommand implements Command {
@@ -22,9 +23,11 @@ public class DepartmentMyPageCommand implements Command {
 		String dSaup_no = (String) session.getAttribute("dSaup_no");
 		
 		LoginDAO lDAO = sqlSession.getMapper(LoginDAO.class);
+		BoardDAO bDAO = sqlSession.getMapper(BoardDAO.class);
+		
 		
 		model.addAttribute("dDTO", lDAO.selectBydSaup_no(dSaup_no));
-		
+		model.addAttribute("bDTO", bDAO.menuList(dSaup_no));
 	}
 
 }

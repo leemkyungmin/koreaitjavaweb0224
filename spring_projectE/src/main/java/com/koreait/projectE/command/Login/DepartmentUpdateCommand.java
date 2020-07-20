@@ -36,10 +36,13 @@ public class DepartmentUpdateCommand implements Command {
 		String dParking = mr.getParameter("dParking");
 		String dType = mr.getParameter("dType");
 		String dNo = mr.getParameter("dNo");
+		String[] menu = mr.getParameterValues("menu");
+		String[] price = mr.getParameterValues("price");
 		
 		dStart = (dStart.substring(0, 2) + dStart.substring(3,4)+1);
 		dEnd = (dEnd.substring(0,2) + dEnd.substring(3,4)+1);
 		
+		lDAO.menuDelete(dSaup_no);
 		
 		
 		List<MultipartFile> fileList = mr.getFiles("dPhoto");
@@ -95,6 +98,11 @@ public class DepartmentUpdateCommand implements Command {
 		} else {
 			lDAO.departInsert(dSeat, dSaup_no, dPhone, dName, dAddress, dStart, dEnd, dParking, dType, amuguna);
 		}
+		
+		for(int i = 0; i < menu.length; i++) {
+			lDAO.menuInsert(menu[i], price[i], dSaup_no);
+		}
+		
 	}
 	
 	
