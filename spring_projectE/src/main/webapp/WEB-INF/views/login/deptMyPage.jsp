@@ -110,7 +110,7 @@
 			   if(filetype=='jpg' || filetype=='png' || filetype=='jpeg'){
 				   
 			   } else {
-				   alert('이미지 파일만 선택할 수 있습니다.');
+				   
 				   parentObj = obj.parentNode
 				   node = parentObj.replaceChild(obj.cloneNode(true),obj);
 				   return false;
