@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.koreait.projectE.commom.Command;
-import com.koreait.projectE.dao.adminDAO;
+import com.koreait.projectE.dao.AdminDAO;
 
 public class AdminDeptDeleteCommand implements Command {
 
@@ -19,7 +19,7 @@ public class AdminDeptDeleteCommand implements Command {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		int dNo = Integer.parseInt(request.getParameter("dNo"));
 		
-		adminDAO aDAO = sqlSession.getMapper(adminDAO.class);
+		AdminDAO aDAO = sqlSession.getMapper(AdminDAO.class);
 		aDAO.deptReject(dNo);
 		
 	}

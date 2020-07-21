@@ -253,7 +253,7 @@
             		$('#Modal .modal-body').load($(this).data('remote'));
             		
             	});
-            })
+            });
             
             </script>
             

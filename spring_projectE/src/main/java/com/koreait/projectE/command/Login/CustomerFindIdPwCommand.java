@@ -14,7 +14,7 @@ public class CustomerFindIdPwCommand {
 	public String execute(SqlSession sqlSession, Model model) {
 		
 		String authKey = "";	
-		String randomnum ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		String randomnum ="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; 
 		try {
 				
 			Map<String, Object> map = model.asMap();
@@ -34,18 +34,15 @@ public class CustomerFindIdPwCommand {
 				message.setText((String)map.get("cId") + "입니다.");
 			}else if(type=="pw") {
 				for(int i=0; i<10; i++) {
-					authKey+=randomnum.charAt((int) (Math.random() * randomnum.length()));
+					authKey+=randomnum.charAt((int) (Math.random() * randomnum.length())); 
+					//randomnum 에서 랜덤으로 가져오기 
 				}
 				message.setSubject((String)map.get("cId") + "님 임시 비밀번호입니다.\n");
 				message.setText((String)map.get("cId") + "님\n" +
 						"임시 비밀번호는 : " +authKey +" 입니다.\n" +
 						"로그인후 비밀번호를 변경해주세요.\n");
-				
-				System.out.println(message);
 			}
-						
-			// mailSender 는 send() 메소드로 이메일을 보낸다.
-			
+
 			mailSender.send(message);
 			
 			} catch (Exception e) {

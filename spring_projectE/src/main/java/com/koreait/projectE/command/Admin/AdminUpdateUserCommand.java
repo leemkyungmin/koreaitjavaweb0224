@@ -13,7 +13,7 @@ import com.koreait.projectE.command.PageMaker;
 import com.koreait.projectE.command.ReviewPageMaker;
 import com.koreait.projectE.commom.Command;
 import com.koreait.projectE.dao.LoginDAO;
-import com.koreait.projectE.dao.adminDAO;
+import com.koreait.projectE.dao.AdminDAO;
 import com.koreait.projectE.dto.CustomerDTO;
 import com.koreait.projectE.dto.ReviewDTO;
 
@@ -27,7 +27,7 @@ public class AdminUpdateUserCommand implements Command {
 		
 		int cNo =Integer.parseInt(request.getParameter("cNo"));
 		
-		adminDAO aDao = sqlSession.getMapper(adminDAO.class);
+		AdminDAO aDao = sqlSession.getMapper(AdminDAO.class);
 		CustomerDTO cDTO = aDao.UpdateUserPage(cNo);
 		model.addAttribute("cDTO", cDTO);
 		

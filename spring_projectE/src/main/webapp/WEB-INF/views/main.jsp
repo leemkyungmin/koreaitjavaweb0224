@@ -44,10 +44,12 @@
         		<c:set var="img_source" value="main_list_img"></c:set>
         		<c:if test="${f.count%2==1}">
         			<div class="under_line">
-        			<ul class="list-toplist-slider slick-slide slick-current slick-active" style="width: 551px;height:501px"; data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide00">
+        			<ul class="list-toplist-slider slick-slide slick-current slick-active" style="width: 551px;height:501px";
+        				 data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide00">
         		</c:if>
             		<li>
-              			<img class="center-croping" alt="${img_source}${f.count}" src="${pageContext.request.contextPath }/resources/storage/main_img/${img_source}${f.count}.jpg">
+              			<img class="center-croping" alt="${img_source}${f.count}" 
+              			src="${pageContext.request.contextPath }/resources/storage/main_img/${img_source}${f.count}.jpg">
 
               			<a href="locationlist?location=${list.dong}"  tabindex="0">
 	                		<figure class="ls-item">
@@ -61,7 +63,7 @@
               			</a>
             		</li>
 		         <c:if test="${f.count %2==0 or f.last }">
-	       			 </ul>
+	       			 </ul> 
 	       			 </div>
 		         </c:if> 
        			 </c:forEach>

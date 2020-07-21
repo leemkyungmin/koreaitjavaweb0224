@@ -187,4 +187,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE CUSTOMER WHERE CNO = #{param1}
 	</delete>
 	
+	<insert id="menuInsert">
+		INSERT INTO MENU_INFO
+		VALUES (MENU_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3})
+	</insert>
+	
+	<delete id="menuDelete">
+		DELETE FROM MENU_INFO
+		WHERE DSAUP_NO = #{param1}
+	</delete>
+	
 </mapper>

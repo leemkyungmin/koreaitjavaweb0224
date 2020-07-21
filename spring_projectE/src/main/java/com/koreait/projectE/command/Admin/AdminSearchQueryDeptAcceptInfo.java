@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 
 import com.koreait.projectE.command.PageMaker;
 import com.koreait.projectE.commom.Command;
-import com.koreait.projectE.dao.adminDAO;
+import com.koreait.projectE.dao.AdminDAO;
 import com.koreait.projectE.dto.DepartmentDTO;
 
 public class AdminSearchQueryDeptAcceptInfo implements Command {
@@ -41,7 +41,8 @@ public class AdminSearchQueryDeptAcceptInfo implements Command {
 		record.put("endRecord", endRecord);
 		record.put("query", query);
 		
-		adminDAO aDAO = sqlSession.getMapper(adminDAO.class);
+		AdminDAO aDAO = sqlSession.getMapper(AdminDAO.class);
+
 		ArrayList<DepartmentDTO> dList = aDAO.searchQueryDeptAcceptInfo(record);
 		
 		int totalRecord = aDAO.searchQueryDeptAcceptCount(query);

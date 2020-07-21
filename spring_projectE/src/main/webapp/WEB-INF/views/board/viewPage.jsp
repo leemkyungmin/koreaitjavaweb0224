@@ -62,23 +62,17 @@
 						html+='<li class="RestaurantReviewItem RestaurantReviewList__ReviewItem">';
 						html+='<button class="RestaurantReviewItem__Link" onclick="fnMove()" data-remote="reviewDetail?rNo='+data[i].rNo+'" data-toggle="modal" data-target="#myModal">';
 		    			html+='<div class="RestaurantReviewItem__User">';
-		       
 		    			html+='<div class="RestaurantReviewItem__UserPictureWrap">';
 		    			html+='<img class="RestaurantReviewItem__UserPicture loaded" alt='+data[i].cPoto+' src="${pageContext.request.contextPath }/resources/storage/user_img/'+data[i].cPoto+'">';
 		    			html+='</div>';
 			      		html +='<span class="RestaurantReviewItem__UserNickName">'+data[i].cNickname+'</span>';
-			     	
-		      
 				      	html+='</div>';
-				      	html+='<div class="RestaurantReviewItem__ReviewContent">';
-						    	
-				      	html+='<div class="RestaurantReviewItem__ReviewTextWrap">';
-								
+				      	html+='<div class="RestaurantReviewItem__ReviewContent">';	
+				      	html+='<div class="RestaurantReviewItem__ReviewTextWrap">';	
 				      	html+='<p class="RestaurantReviewItem__ReviewText">'
 				      	html+='<pre>'+data[i].rTitle+'</pre><br/>';
 				      	html+='<pre>'+data[i].rContent+'</pre>';
-				      	html+='</p>';
-								
+				      	html+='</p>';	
 				      	html+='<span class="RestaurantReviewItem__ReviewDate">'+data[i].rWriter_date+'</span>';
 				      	html+='</div>';
 				      	html+='</div>';
@@ -86,15 +80,12 @@
 				    	html+='<span class="RestaurantReviewItem__RatingText">';
 						if(data[i].rPoint>=4){
 							html+='<i class="far fa-smile fa-3x"></i><span>좋다</span>';
-		
 						}else if(data[i].rPoint<=2){
 							html+='<i class="far fa-angry fa-3x"></i><span>별로</span>';
 						}else if(data[i].rPoint==3){
 							html+='<i class="far fa-smile fa-3x"></i><span>보통</span>';
 						}
-				    		
-						html+='</span></div>';
-							  
+						html+='</span></div>'; 
 				      	html+='</div>';  
 				      	html+='</button>';
 				      	html+='</li>';	
@@ -302,33 +293,29 @@
 	           
 	                  <th>주소</th>
 	                  <td>
-	                  <c:if test="${fn:length(deptDTO.dAddress) >20}">
-	                  	${fn:substring(deptDTO.dAddress,0,20)}<br/>
-	                  	${fn:substring(deptDTO.dAddress,20,fn:length(deptDTO.dAddress)) }	
-	                  </c:if>
-	                  <c:if test="${fn:length(deptDTO.dAddress) <=20}">
-	                 	 ${deptDTO.dAddress}
-	                  </c:if>
+		                  <c:if test="${fn:length(deptDTO.dAddress) >20}">
+		                  	${fn:substring(deptDTO.dAddress,0,20)}<br/>
+		                  	${fn:substring(deptDTO.dAddress,20,fn:length(deptDTO.dAddress)) }	
+		                  </c:if>
+		                  <c:if test="${fn:length(deptDTO.dAddress) <=20}">
+		                 	 ${deptDTO.dAddress}
+		                  </c:if>
 	                  </td>
 	                </tr>
-	
 	                <tr class="only-desktop">
 	                  <th>전화번호</th>
 	                  <td>${deptDTO.dPhone}</td>
 	                </tr>
-	
 	                <tr>
 	                  <th>음식 종류</th>
 	                  <td>
 	                    <span>${deptDTO.dType }</span>
 	                  </td>
 	                </tr> 
-	
 	                <tr>
 	                  <th>주차</th>
 	                  <td>${dept.dParking ==1 ? '주차 가능' : '주차 불가' }</td>
 	                </tr>
-	
 	                <tr>
 	                  <th style="vertical-align:top;">영업시간</th>
 	                  <td>
@@ -336,9 +323,6 @@
 					  	${fn:substring(deptDTO.dEnd,0,2) }:${fn:substring(deptDTO.dEnd,2,4) }
 					  </td>
 	                </tr>
-					
-	               
-	
 	                <tr>
 	                  <th>메뉴</th>
 	                  <td class="menu_td">
@@ -389,34 +373,26 @@
 				    mapOption = {
 				        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
 				        level: 3 // 지도의 확대 레벨
-				    };  
-				
+				    };
 				// 지도를 생성합니다    
 				var map = new kakao.maps.Map(mapContainer, mapOption); 
-				
 				// 주소-좌표 변환 객체를 생성합니다
 				var geocoder = new kakao.maps.services.Geocoder();
-			
 				// 주소로 좌표를 검색합니다
 				geocoder.addressSearch('${deptDTO.dAddress}', function(result, status) {
-					
 				    // 정상적으로 검색이 완료됐으면 
 				     if (status === kakao.maps.services.Status.OK) {
-				
 				        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-						
 				        // 결과값으로 받은 위치를 마커로 표시합니다
 				        var marker = new kakao.maps.Marker({
 				            map: map,
 				            position: coords
 				        });
-				
 				        // 인포윈도우로 장소에 대한 설명을 표시합니다
 				        var infowindow = new kakao.maps.InfoWindow({
 				            content: '<div style="width:150px;text-align:center;padding:6px 0;">${deptDTO.dName}<strong class="rate-point "><span>${deptDTO.dRating }</span></strong></div>'
 				        });
 				        infowindow.open(map, marker);
-				
 				        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 				        map.setCenter(coords);
 				    } 
@@ -589,30 +565,24 @@
             <!-- 주변 인기 식당 -->
             <section class="module near-rastaurant NearByRestaurantList">
               <span class="title NearByRestaurantList__Title">주변 인기 식당</span>
-
               <ul class="list-restaurants type-single NearByRestaurantList__List">
               	<c:forEach var="side" items="${side_list }">
               		<li class="NearByRestaurantItem NearByRestaurantList__Item">
 				    <div class="NearByRestaurantItem__PictureAndContent">
-				  	
 				      <a class="NearByRestaurantItem__PictureLink" href="viewPage?dSaup_no=${side.dSaup_no }">
 				       <c:set var="index" value="${fn:indexOf(side.dPhoto,',') }"></c:set>
-				       
-				        <img class="NearByRestaurantItem__Picture loaded" alt="${fn:substring(side.dPhoto,0,index) }" src="${pageContext.request.contextPath }/resources/storage/department_img/${fn:substring(side.dPhoto,0,index) }" >
-				       
+				        <img class="NearByRestaurantItem__Picture loaded" alt="${fn:substring(side.dPhoto,0,index) }" 
+				        src="${pageContext.request.contextPath }/resources/storage/department_img/${fn:substring(side.dPhoto,0,index) }" >
 				      </a>
-				  
 				      <div class="NearByRestaurantItem__Content">
 				        <div class="NearByRestaurantItem__NameWrap">
 				          <a class="NearByRestaurantItem__Name" href="viewPage?dSaup_no=${side.dSaup_no }">${side.dName }</a>
 				          <span class="NearByRestaurantItem__Rating NearByRestaurantItem__Rating--Expected">${side.dRating }</span>
 				        </div>
-				  
 				        <div class="NearByRestaurantItem__MetroAndCuisine">
 				          <span class="NearByRestaurantItem__Metro">${side.dAddress }</span>
 				          <span class="NearByRestaurantItem__SubCuisine">${side.dType }</span>
 				        </div>
-				  
 				        <div class="NearByRestaurantItem__InfoWrap">
 				          <dl class="NearByRestaurantItem__Info">
 				            <dt class="NearByRestaurantItem__InfoLabel">음식 종류</dt>

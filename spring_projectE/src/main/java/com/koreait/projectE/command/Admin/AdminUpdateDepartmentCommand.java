@@ -8,7 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.koreait.projectE.commom.Command;
-import com.koreait.projectE.dao.adminDAO;
+import com.koreait.projectE.dao.AdminDAO;
 import com.koreait.projectE.dto.DepartmentDTO;
 
 public class AdminUpdateDepartmentCommand implements Command {
@@ -21,7 +21,7 @@ public class AdminUpdateDepartmentCommand implements Command {
 		
 		String dNo = request.getParameter("dNo");
 		
-		adminDAO aDao = sqlSession.getMapper(adminDAO.class);
+		AdminDAO aDao = sqlSession.getMapper(AdminDAO.class);
 		DepartmentDTO dDTO = aDao.UpdateDepartmentPage(dNo);
 		model.addAttribute("dDTO", dDTO);
 	}

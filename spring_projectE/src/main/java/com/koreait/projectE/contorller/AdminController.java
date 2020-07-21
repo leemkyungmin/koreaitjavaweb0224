@@ -24,7 +24,7 @@ import com.koreait.projectE.command.Admin.AdminSearchQueryDeptInfo;
 import com.koreait.projectE.command.Admin.AdminUpdateDepartmentCommand;
 import com.koreait.projectE.command.Admin.AdminUpdateUserCommand;
 import com.koreait.projectE.commom.Command;
-import com.koreait.projectE.dao.adminDAO;
+import com.koreait.projectE.dao.AdminDAO;
 
 
 
@@ -78,7 +78,7 @@ public class AdminController {
 	public String deleteBtnuser(HttpServletRequest request, Model model) {
 		String[] cNo = request.getParameterValues("cNo");
 		System.out.println(cNo.length);
-		adminDAO aDAO = sqlSession.getMapper(adminDAO.class);
+		AdminDAO aDAO = sqlSession.getMapper(AdminDAO.class);
 		
 		for (int i=0, len=cNo.length; i<len; i++) {
 			aDAO.deleteReview(cNo[i]);
@@ -92,7 +92,7 @@ public class AdminController {
 	public String UpdateUser(HttpServletRequest request,Model model) {
 		String cGrade = request.getParameter("cGrade");
 		String cNo =request.getParameter("cNo");
-		adminDAO aDAO = sqlSession.getMapper(adminDAO.class);
+		AdminDAO aDAO = sqlSession.getMapper(AdminDAO.class);
 		aDAO.UpdateUser(cGrade,cNo);
 		return "redirect:adminmanagePage";
 	}

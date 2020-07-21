@@ -7,7 +7,7 @@ import com.koreait.projectE.dto.CustomerDTO;
 import com.koreait.projectE.dto.DepartmentDTO;
 import com.koreait.projectE.dto.ReviewDTO;
 
-public interface adminDAO {
+public interface AdminDAO {
 
 	// 한 페이지에 보여줘야 할 회원리스트
 	public ArrayList<CustomerDTO> getCustomList(Map<String, Integer> record);
