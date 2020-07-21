@@ -203,13 +203,13 @@ public class BoardController {
 		 
 		 AppointmentDAO aDAO = sqlSession.getMapper(AppointmentDAO.class);
 		 
-		 int[] remainSeat = new int[dEnd-dStart];
+		 int[] remainSeat = null;
 		 
 		 // 선택한 날짜가 오늘인 경우 현재 시간 반영하여 예약 시간 선택
 		 SimpleDateFormat ysdf = new SimpleDateFormat("yyyy");
 		 SimpleDateFormat msdf = new SimpleDateFormat("MM");
 		 SimpleDateFormat dsdf = new SimpleDateFormat("dd");
-		 SimpleDateFormat hsdf = new SimpleDateFormat("hh");
+		 SimpleDateFormat hsdf = new SimpleDateFormat("HH");
 		 Calendar today = Calendar.getInstance();
 		 int year = Integer.parseInt(ysdf.format(today.getTime()));
 		 int month = Integer.parseInt(msdf.format(today.getTime()));
@@ -220,8 +220,10 @@ public class BoardController {
 
 		 if (aDate.equals(todayStr)) {
 			 int hour = Integer.parseInt(hsdf.format(today.getTime()));
+			 System.out.println(hour);
 			 if (hour < dEnd) {
 				 int count = 0;
+				 remainSeat = new int[dEnd-hour];
 				 for (int i=hour+1; i<dEnd; i++) {
 					 remainSeat[count] = aDAO.selectAp_count(dSaup_no, aDate + " " + i + "00");
 					 html += "<option value="+ i + "00>";
@@ -232,6 +234,7 @@ public class BoardController {
 				 html += "<option value=no>예약 가능한 시간이 없습니다.</option>";
 			 }
 		 } else {
+			 remainSeat = new int[dEnd-dStart];
 			 for (int i=0; i<dEnd-dStart; i++) {
 				 remainSeat[i] = aDAO.selectAp_count(dSaup_no, aDate + " " + (dEnd-(12-i)) + "00");
 				 html += "<option value="+ (dEnd-(12-i)) + "00>";
