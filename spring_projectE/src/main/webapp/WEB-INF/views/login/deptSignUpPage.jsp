@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="ko">
-    <head>
-        <meta charset="utf-8">
+<%@ include file="../template/header.jsp" %>
+        
         <!-- meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0"/ -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>회원가입</title>
@@ -115,7 +113,7 @@
                 <p></p>
                 <div class="col-md-12">
                     <small>
-                    <a href="loginPage">로그인</a> | <a href="#">회원가입</a>
+                    <a href="loginChoicePage">로그인</a> 
                     </small>
                 </div>
             </div>
@@ -496,5 +494,4 @@
             </div>
             <!--// 푸터 들어가는 부분 -->
         </div>
-    </body>
-</html>
+<%@ include file="../template/footer.jsp" %>

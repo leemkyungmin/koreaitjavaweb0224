@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
-<!DOCTYPE html>
-<html lang="ko">
-    <head>
+
+     <%@ include file="../template/header.jsp" %>
     <style>
     	#emailAuth{
     		display:none;
@@ -182,7 +181,7 @@
         			data: 'cEmail=' + $('#email').val(),
         			success: function(data) {
         				emailSeverAuthNum = data;
-        				alert(emailSeverAuthNum);
+        				//alert(emailSeverAuthNum);
         				
         				$('#emailAuthBtn').click(function(){
         	 	    		
@@ -241,7 +240,7 @@
 	     
         </script>
         
-    </head>
+     
     <body>
         <div class="container"><!-- 좌우측의 공간 확보 -->
             <!-- 헤더 들어가는 부분 -->
@@ -250,7 +249,7 @@
                 <p></p>
                 <div class="col-md-12">
                     <small>
-                    <a href="loginPage">로그인</a> | <a href="#">회원가입</a>
+                    <a href="loginChoicePage">로그인</a>  
                     </small>
                 </div>
             </div>
@@ -811,5 +810,4 @@
             </div>
             <!--// 푸터 들어가는 부분 -->
         </div>
-    </body>
-</html>
+<%@ include file="../template/footer.jsp" %>
