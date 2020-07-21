@@ -1,5 +1,6 @@
 package com.koreait.projectE.contorller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -202,16 +203,41 @@ public class BoardController {
 		 
 		 AppointmentDAO aDAO = sqlSession.getMapper(AppointmentDAO.class);
 		 
-		 int[] remainSeat = new int[dEnd-dStart]; // 12
+		 int[] remainSeat = new int[dEnd-dStart];
+		 
+		 // 선택한 날짜가 오늘인 경우 현재 시간 반영하여 예약 시간 선택
+		 SimpleDateFormat ysdf = new SimpleDateFormat("yyyy");
+		 SimpleDateFormat msdf = new SimpleDateFormat("MM");
+		 SimpleDateFormat dsdf = new SimpleDateFormat("dd");
+		 SimpleDateFormat hsdf = new SimpleDateFormat("hh");
+		 Calendar today = Calendar.getInstance();
+		 int year = Integer.parseInt(ysdf.format(today.getTime()));
+		 int month = Integer.parseInt(msdf.format(today.getTime()));
+		 int day = Integer.parseInt(dsdf.format(today.getTime()));
+		 String todayStr = "" + year + month + day;
 		 
 		 String html ="<select class='select_aDate_hour' name='aDate_hour'>";
-		 for (int i=0; i<dEnd-dStart; i++) {
-			 remainSeat[i] = aDAO.selectAp_count(dSaup_no, aDate + " " + (dEnd-(12-i)) + "00");
-			 html += "<option value="+ (dEnd-(12-i)) + "00>";
-			 html += (dEnd-(12-i)) + ":00 (" +  remainSeat[i];
-			 html += "명)</option>";
+
+		 if (aDate.equals(todayStr)) {
+			 int hour = Integer.parseInt(hsdf.format(today.getTime()));
+		//	 if (hour < dEnd) {
+			 int count = 0;
+			 for (int i=hour+1; i<dEnd; i++) {
+				 remainSeat[count] = aDAO.selectAp_count(dSaup_no, aDate + " " + i + "00");
+				 html += "<option value="+ i + "00>";
+				 html += i + ":00 (" +  remainSeat[count++];
+				 html += "명)</option>";
+			 }	 
+		 } else {
+			 for (int i=0; i<dEnd-dStart; i++) {
+				 remainSeat[i] = aDAO.selectAp_count(dSaup_no, aDate + " " + (dEnd-(12-i)) + "00");
+				 html += "<option value="+ (dEnd-(12-i)) + "00>";
+				 html += (dEnd-(12-i)) + ":00 (" +  remainSeat[i];
+				 html += "명)</option>";
+			 }		 
 		 }
-			 html += "</select>";
+		 
+		 html += "</select>";
 		 
 		 return html;
 	}
