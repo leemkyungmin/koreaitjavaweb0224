@@ -413,7 +413,10 @@
 				data: {'dSaup_no': ${deptDTO.dSaup_no}, 'aDate': date + ' ' + time},
 				dataType: 'text',
 				success: function (data) {
-					if ((aP_count*1) > (1*data) || $('#aP_count_textbox').val() == '') {
+					if ($('.select_aDate_hour').val() == 'no') {
+						alert('예약 시간을 확인해주세요.');
+						return;
+					} else if ((aP_count*1) > (1*data) || $('#aP_count_textbox').val() == '') {
 						alert('예약 인원을 확인해주세요.');
 						$('#aP_count_textbox').val('');
 						return;

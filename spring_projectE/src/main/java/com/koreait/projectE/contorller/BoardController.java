@@ -220,14 +220,17 @@ public class BoardController {
 
 		 if (aDate.equals(todayStr)) {
 			 int hour = Integer.parseInt(hsdf.format(today.getTime()));
-		//	 if (hour < dEnd) {
-			 int count = 0;
-			 for (int i=hour+1; i<dEnd; i++) {
-				 remainSeat[count] = aDAO.selectAp_count(dSaup_no, aDate + " " + i + "00");
-				 html += "<option value="+ i + "00>";
-				 html += i + ":00 (" +  remainSeat[count++];
-				 html += "명)</option>";
-			 }	 
+			 if (hour < dEnd) {
+				 int count = 0;
+				 for (int i=hour+1; i<dEnd; i++) {
+					 remainSeat[count] = aDAO.selectAp_count(dSaup_no, aDate + " " + i + "00");
+					 html += "<option value="+ i + "00>";
+					 html += i + ":00 (" +  remainSeat[count++];
+					 html += "명)</option>";
+				 }
+			 } else {
+				 html += "<option value=no>예약 가능한 시간이 없습니다.</option>";
+			 }
 		 } else {
 			 for (int i=0; i<dEnd-dStart; i++) {
 				 remainSeat[i] = aDAO.selectAp_count(dSaup_no, aDate + " " + (dEnd-(12-i)) + "00");
