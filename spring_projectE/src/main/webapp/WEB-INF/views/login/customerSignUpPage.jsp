@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
-<!DOCTYPE html>
-<html lang="ko">
-    <head>
+
+     <%@ include file="../template/header.jsp" %>
     <style>
     	#emailAuth{
     		display:none;
@@ -182,7 +181,7 @@
         			data: 'cEmail=' + $('#email').val(),
         			success: function(data) {
         				emailSeverAuthNum = data;
-        				alert(emailSeverAuthNum);
+        				//alert(emailSeverAuthNum);
         				
         				$('#emailAuthBtn').click(function(){
         	 	    		
@@ -241,7 +240,7 @@
 	     
         </script>
         
-    </head>
+     
     <body>
         <div class="container"><!-- 좌우측의 공간 확보 -->
             <!-- 헤더 들어가는 부분 -->
@@ -250,7 +249,7 @@
                 <p></p>
                 <div class="col-md-12">
                     <small>
-                    <a href="loginPage">로그인</a> | <a href="#">회원가입</a>
+                    <a href="loginChoicePage">로그인</a>  
                     </small>
                 </div>
             </div>
@@ -306,6 +305,16 @@
                     <label for="provision" class="col-lg-2 control-label">회원가입약관</label>
                     <div class="col-lg-10" id="provision">
                         <textarea class="form-control" rows="8" style="resize:none"readonly>
+                        	2. 수집하는 개인정보 항목 및 방법
+3. 개인정보 보유ㆍ이용기간 및 파기절차 및 방법
+4. 개인정보의 제공
+5. 개인정보의 처리위탁
+6. 이용자 및 법정대리인의 권리와 그 행사방법
+7. 개인정보 자동수집 장치의 설치ㆍ운영 및 그 거부에 관한 사항
+8. 개인정보의 기술적/관리적 보호대책
+9. 개인정보 전담조직 운영
+10. 기타 개인정보 처리에 관한 방침
+11. 고지의무
                         </textarea>
                         <div class="radio">
                             <label>
@@ -801,5 +810,4 @@
             </div>
             <!--// 푸터 들어가는 부분 -->
         </div>
-    </body>
-</html>
+<%@ include file="../template/footer.jsp" %>

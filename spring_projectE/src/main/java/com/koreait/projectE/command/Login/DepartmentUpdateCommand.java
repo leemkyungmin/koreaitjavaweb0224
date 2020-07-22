@@ -39,8 +39,8 @@ public class DepartmentUpdateCommand implements Command {
 		String[] menu = mr.getParameterValues("menu");
 		String[] price = mr.getParameterValues("price");
 		
-		dStart = (dStart.substring(0, 2) + dStart.substring(3,4)+1);
-		dEnd = (dEnd.substring(0,2) + dEnd.substring(3,4)+1);
+		dStart = (dStart.substring(0, 2) + dStart.substring(3,5));
+		dEnd = (dEnd.substring(0,2) + dEnd.substring(3,5));
 		
 		lDAO.menuDelete(dSaup_no);
 		

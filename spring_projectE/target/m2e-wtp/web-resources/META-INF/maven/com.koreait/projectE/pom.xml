@@ -5,7 +5,7 @@
 	<groupId>com.koreait</groupId>
 	<artifactId>projectE</artifactId>
 	<name>spring_projectE</name>
-	<packaging>war</packaging>  
+	<packaging>war</packaging>   
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<repositories>  
 		<repository> 

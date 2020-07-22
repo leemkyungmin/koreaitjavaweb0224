@@ -236,7 +236,46 @@
 													</tr>
 													<tr>
 														<th>등급</th>
-														<td><input type="text" name="cGrade"  value="${cDTO.cGrade }"/></td>
+														<td>
+															<select name="cGrade">
+																<c:if test="${cDTO.cGrade ==1 }">
+																	<option value="1" selected="selected">브론즈</option> 
+																	<option value="2" >실버</option> 
+																	<option value="3" >골드</option> 
+																	<option value="4" >다이아</option> 
+																	<option value="5" >관리자</option> 
+																</c:if>
+																<c:if test="${cDTO.cGrade ==2 }">
+																	<option value="1" >브론즈</option> 
+																	<option value="2" selected="selected">실버</option> 
+																	<option value="3" >다이아</option> 
+																	<option value="4" >vip</option> 
+																	<option value="5" >관리자</option> 
+																</c:if>
+																<c:if test="${cDTO.cGrade ==3 }">
+																	<option value="1" >브론즈</option> 
+																	<option value="2" >실버</option> 
+																	<option value="3" selected="selected">다이아</option> 
+																	<option value="4" >vip</option> 
+																	<option value="5" >관리자</option> 
+																</c:if>
+																<c:if test="${cDTO.cGrade ==4 }">
+																	<option value="1" >브론즈</option> 
+																	<option value="2" >실버</option> 
+																	<option value="3" >다이아</option> 
+																	<option value="4" selected="selected">vip</option> 
+																	<option value="5" >관리자</option> 
+																</c:if>
+																<c:if test="${cDTO.cGrade ==5 }">
+																	<option value="1" >브론즈</option> 
+																	<option value="2" >실버</option> 
+																	<option value="3" >다이아</option> 
+																	<option value="4" >vip</option> 
+																	<option value="5" selected="selected">관리자</option> 
+																</c:if>
+															</select>
+															
+														</td>
 													</tr>
 													<tr>
 														<th>가입날짜</th>

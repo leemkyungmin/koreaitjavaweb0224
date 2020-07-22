@@ -343,7 +343,7 @@
                 </div>
                 <div>
                 	내가 쓴 리뷰 (클릭하면 리뷰로 이동합니다.)
-                	<div class="border">
+                	<div class="border2">
 					     <table border="1" id="reviewTable">
 							<thead>
 								<tr>
@@ -356,7 +356,7 @@
 							<tbody>
 								<c:if test="${empty list }">
 									<tr>
-										<td colspan="5">
+										<td colspan="4">
 											없음
 										</td>
 									</tr>
