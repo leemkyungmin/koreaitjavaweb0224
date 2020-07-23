@@ -6,8 +6,6 @@
 <% request.setCharacterEncoding("utf-8"); %>
 
 <%@ include file="template/header.jsp" %>
-	
-
 
 	<link rel="stylesheet" href="resources/assets/style/main-nav.css" type="text/css">
 	
@@ -116,10 +114,9 @@
 	 		<div class="main-search">
 				<div class="icon-box"><i class="fas fa-search"></i></div>
 				<form class="search-form" action="searchPage">
-				<input id="search-input" class="HomeSearchInput" name="main-search" type="text" maxlength="50" 
-					placeholder="지역명, 맛집 이름"	autocomplete="off" >
-				<input class="btn-search" type="submit" value="검색">
-
+					<input id="search-input" class="HomeSearchInput" name="main-search" type="text" maxlength="50" 
+						placeholder="지역명, 맛집 이름"	autocomplete="off" >
+					<input class="btn-search" type="submit" value="검색">
     			</form>
 				<div class="invisible" style="display: none">
 			       
