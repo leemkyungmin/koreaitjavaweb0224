@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html lang="ko">
     <head>
@@ -134,6 +135,17 @@
 				return false;
 			}
 			
+			var dPhotoPass = false;
+			if(x != '') {
+				dPhotoPass = true;
+			}
+			
+			if ($('#dPhoto').val() == '' && dPhotoPass == false){
+				alert('사진은 최소 '+'한장'+' 최대 다섯장 입니다.');
+				return false;
+			}
+			
+			
 			if ($('#dName').val() == '') {
 				alert('업체명을 입력하세요.');
 				$('#dName').focus();
@@ -162,9 +174,6 @@
 				alert('음식점 종류를 입력하세요.');
 				$('#dType').focus();
 				return false;
-			} else if ($('#dPhoto').val() == ''){
-				alert('사진은 최소 '+'한장'+' 최대 다섯장 입니다.');
-				return false;
 			} else if($('#menu').val() == ''){
 				alert('메뉴를 입력하세요.');
 				return false;
@@ -175,7 +184,6 @@
 				f.action = 'deptUpdate';
 				f.submit();
 			}
-			
 			
 			
 			
@@ -201,7 +209,7 @@
 			
 			  menu.innerHTML = "<input type=text name=menu id=menu >";
 			  price.innerHTML = "<input type=text name=price id=price>";
-			  deleteMenu.innerHTML = "<input type=button value=삭제>";
+			  deleteMenu.innerHTML = "<input type=button value=삭제 onclick=delete_input()>";
 			
 		}
 		
@@ -221,7 +229,44 @@
 			margin-right: 20px;
 			width: 200px; 
 		}
-	
+		
+		.image-Content {
+			width:100%;
+			position: relative;
+		    white-space: nowrap;
+		    overflow-x: auto;
+		    overflow-y: hidden;
+		    overflow-scrolling: touch;
+		    -webkit-overflow-scrolling: touch;
+		}
+		
+		.image_wrap{
+		    margin-top: 20px;
+		    margin-bottom: 20px;
+			font-size: 0;
+	    	line-height: 0;
+		}
+		
+		.column-image {
+			display:inline-block;
+		}
+		
+		img{
+			display: inline-block;
+		    width: 200px;
+		    height: 200px;
+		    margin-right: 6px;
+		    background-size: cover;
+		    background-position: 50% 50%;
+		    background-repeat: no-repeat;
+		    cursor: pointer;
+		}
+		
+		img:nth-of-type(5) {
+			margin: 0;
+		}
+		
+		
 	</style>
 	
 </head>
@@ -389,7 +434,18 @@
                 <div class="form-group" id="divPhoto">
                 	<h4>음식점 사진 </h4><h4 style="color:red;">(*최대 5장입니다.)</h4>
                 	<div id="photoBox" style="width:50; height:50;">
-                		<input type="file" maxlength="5" id="dPhoto" name="dPhoto" onchange="fileCheck(this)" accept="image/jpeg,image/png,image/jpg" multiple="multiple" value="${dDTP.dPhoto }" /> 
+                		<input type="file" maxlength="5" id="dPhoto" name="dPhoto" onchange="fileCheck(this)" accept="image/jpeg,image/png,image/jpg" multiple="multiple" value="${dDTO.dPhoto }" /> 
+                		<div class="image-Content">
+							<div class="image_wrap">
+								<c:set var="img" value="${dDTO.dPhoto }"></c:set>
+									<!-- 업체에서 등록한 이미지 가져오기 -->
+									<c:forEach var="split" items="${fn:split(img,',')}">
+										<div class="column-image">
+											<img alt="${split }" src="${pageContext.request.contextPath }/resources/storage/department_img/${split }" id="dPhoto">
+										</div>
+								</c:forEach>
+							</div>
+						</div>
                 	</div>
                 </div>
                 <br/><br/>
